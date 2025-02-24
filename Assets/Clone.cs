@@ -35,15 +35,17 @@ public class Clone : MonoBehaviour
     {
         if (context.started)
         {
-            if (_next == null)
+            if (_nextGO == null)
             {
                 _nextGO = Instantiate(_prefab1, _offset + transform.position, transform.rotation);
-                updateNextPrevious();
+                UpdateNext();
             }
-            else if (_previous == null)
+            else if (_previousGO == null)
             {
                 _previousGO = Instantiate(_prefab2, _offset-transform.position, transform.rotation);
-                updateNextPrevious();
+                UpdatePrevious();
+                UpdateNext();
+
             }
         }
     }
@@ -51,6 +53,7 @@ public class Clone : MonoBehaviour
     {
         if (context.started)
         {
+            print(gameObject.name);
             if (_next)
             {
                 _nextPI.enabled = true;
@@ -63,13 +66,9 @@ public class Clone : MonoBehaviour
             }
         }
     }
-    public void updateNextPrevious()
+    public void UpdateNext()
     {
-        _selfGO = gameObject;
-        _self = _selfGO.GetComponent<Clone>();
-        _selfPI = _selfGO.GetComponent<PlayerInput>();
-        if (_nextGO)
-        {
+
             _next = _nextGO.GetComponent<Clone>();
             _nextPI = _nextGO.GetComponent<PlayerInput>();
             if (_previousGO)
@@ -81,22 +80,22 @@ public class Clone : MonoBehaviour
             _next.Previous = _self;
             _next.PreviousPI = _selfPI;
             _next._previousGO = gameObject;
-        }
-        if (_previousGO)
+        
+        
+    }
+    public void UpdatePrevious()
+    {
+
+        _previous = _previousGO.GetComponent<Clone>();
+        _previousPI = _previousGO.GetComponent<PlayerInput>();
+        if (_nextGO)
         {
-            _previous = _previousGO.GetComponent<Clone>();
-            _previousPI = _previousGO.GetComponent<PlayerInput>();
-            if (_nextGO)
-            {
-                _previous.Previous = _next;
-                _previous.PreviousPI = _nextPI;
-                _previous._previousGO = _nextGO;
-            }
-            _previous.Next = _self;
-            _previous.NextPI = _selfPI;
-            _previous._nextGO = gameObject;
-
-
+            _previous.Previous = _next;
+            _previous.PreviousPI = _nextPI;
+            _previous._previousGO = _nextGO;
         }
+        _previous.Next = _self;
+        _previous.NextPI = _selfPI;
+        _previous._nextGO = gameObject;
     }
 }
