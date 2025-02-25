@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8898260830909096694}
   - component: {fileID: 5022045810866500532}
   - component: {fileID: 488444524121359304}
-  - component: {fileID: 4244106387198836414}
+  - component: {fileID: 7255647302960763750}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &488444524121359304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4244106387198836414}
+      - m_Target: {fileID: 7255647302960763750}
         m_TargetAssemblyTypeName: Clone, Assembly-CSharp
         m_MethodName: Cloned
         m_Mode: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
     m_ActionName: Player/Clone[/Keyboard/c]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4244106387198836414}
+      - m_Target: {fileID: 7255647302960763750}
         m_TargetAssemblyTypeName: Clone, Assembly-CSharp
         m_MethodName: Switch
         m_Mode: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4244106387198836414
+--- !u!114 &7255647302960763750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,15 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a76748de21d2049b15e3d25ba97a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab1: {fileID: 3218966155319493150, guid: f5678907cb0985644905cd8367de776d, type: 3}
-  _prefab2: {fileID: 8318242726981423982, guid: 921d16f8d22f77a44b87fa1e2581a8d7, type: 3}
-  _offset: {x: 5, y: 0, z: 0}
-  _next: {fileID: 0}
-  _nextGO: {fileID: 0}
-  _previous: {fileID: 0}
-  _previousGO: {fileID: 0}
-  _selfGO: {fileID: 0}
-  _self: {fileID: 0}
-  _nextPI: {fileID: 0}
-  _previousPI: {fileID: 0}
-  _selfPI: {fileID: 0}
+  _clones:
+  - {fileID: 3218966155319493150, guid: f5678907cb0985644905cd8367de776d, type: 3}
+  - {fileID: 8318242726981423982, guid: 921d16f8d22f77a44b87fa1e2581a8d7, type: 3}
+  _currentClone: 0
+  _charID: 0

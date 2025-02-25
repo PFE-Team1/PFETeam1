@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1725587821072694047}
   - component: {fileID: 502741020835415921}
   - component: {fileID: 8880818962881237616}
-  - component: {fileID: -1080652836961363843}
+  - component: {fileID: 8222386705991391720}
   m_Layer: 0
   m_Name: Clone 2
   m_TagString: Untagged
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &502741020835415921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
     m_ActionName: Player/Clone[/Keyboard/c]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -1080652836961363843}
+      - m_Target: {fileID: 8222386705991391720}
         m_TargetAssemblyTypeName: Clone, Assembly-CSharp
         m_MethodName: Switch
         m_Mode: 0
@@ -210,7 +210,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-1080652836961363843
+--- !u!114 &8222386705991391720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,12 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a76748de21d2049b15e3d25ba97a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab1: {fileID: 0}
-  _prefab2: {fileID: 0}
-  _offset: {x: 0, y: 0, z: 0}
-  _next: {fileID: 0}
-  _previous: {fileID: 0}
-  _self: {fileID: 0}
-  _nextPI: {fileID: 0}
-  _previousPI: {fileID: 0}
-  _selfPI: {fileID: 0}
+  _clones: []
+  _currentClone: 0
+  _charID: 0
