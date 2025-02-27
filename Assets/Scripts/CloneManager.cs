@@ -34,6 +34,18 @@ public class CloneManager : MonoBehaviour
             }
             _characters[charID].GetComponent<PlayerInput>().enabled = true;
             _currentPlayer = charID;
+            foreach (Clone c in _characters)
+            {
+                if (c.CharID != charID)
+                {
+                    c.GetComponentInChildren<BoxCollider2D>().enabled = true;
+                }
+                else 
+                {
+                    c.GetComponentInChildren<BoxCollider2D>().enabled = false;
+
+                }
+            }
         }
     }
 }

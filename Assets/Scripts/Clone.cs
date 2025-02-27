@@ -10,6 +10,7 @@ public class Clone : MonoBehaviour
     [SerializeField] private int _charID;
     [SerializeField] private GameObject _spawnPoint;//temp
 
+    public int CharID { get => _charID;}
 
     private void Start()
     {
@@ -30,6 +31,7 @@ public class Clone : MonoBehaviour
         if (context.performed)
         {
             CloneManager.instance.Switch(_charID);
+
         }
     }
 }
