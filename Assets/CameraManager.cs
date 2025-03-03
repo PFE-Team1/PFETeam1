@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance { get; private set; }
-    [SerializeField] private GameObject[] _levels;
-    [SerializeField] private GameObject _currentLevel;
+    
+    [SerializeField] private GameObject[] _levels; 
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
-    public CinemachineVirtualCamera mainCamera { get => _mainCamera; set => _mainCamera = value; }
+    public CinemachineVirtualCamera MainCamera { get => _mainCamera; set => _mainCamera = value; }
+
+    private Bounds _cameraBounds;
+    private Camera _globalCamera;
+
 
     void Awake()
     {
@@ -21,7 +24,15 @@ public class CameraManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+
+        CalculateWorldBounds();
+    }
+
+    void Start()
+    {
+        CalculateCameraBounds();
     }
 
     void Update()
@@ -30,26 +41,53 @@ public class CameraManager : MonoBehaviour
         {
             SeeAllLevels();
         }
-        else if (Input.GetKeyDown(KeyCode.F2))
+    }
+
+    private void CalculateWorldBounds()
+    {
+        if (_levels.Length == 0) return;
+
+        Bounds worldBounds = _levels[0].GetComponent<SpriteRenderer>().bounds;
+        
+        foreach (var level in _levels)
         {
-            SeeCurrentLevel();
+            if (level.TryGetComponent(out SpriteRenderer sr))
+            {
+                worldBounds.Encapsulate(sr.bounds);
+            }
         }
+
+        GlobalsCamera.WorldBounds = worldBounds;
+    }
+
+    private void CalculateCameraBounds()
+    {
+        float height = _mainCamera.m_Lens.OrthographicSize;
+        float width = height * _mainCamera.m_Lens.Aspect;
+
+        float minX = GlobalsCamera.WorldBounds.min.x + width;
+        float maxX = GlobalsCamera.WorldBounds.max.x - width;
+        float minY = GlobalsCamera.WorldBounds.min.y + height;
+        float maxY = GlobalsCamera.WorldBounds.max.y - height;
+
+        _cameraBounds = new Bounds();
+        _cameraBounds.SetMinMax(
+            new Vector3(minX, minY, 0),
+            new Vector3(maxX, maxY, 0)
+        );
     }
 
     public void SeeAllLevels()
     {
-        Bounds bounds = new Bounds(_levels[0].transform.position, Vector3.zero);
-        foreach (GameObject level in _levels)
-        {
-            bounds.Encapsulate(level.GetComponent<Renderer>().bounds);
-        }
+        Camera _globalCamera = Instantiate(Camera.main);
 
-        _mainCamera.transform.position = bounds.center - _mainCamera.transform.forward * bounds.size.magnitude;
-    }
+        float worldWidth = GlobalsCamera.WorldBounds.size.x;
+        float worldHeight = GlobalsCamera.WorldBounds.size.y;
 
-    public void SeeCurrentLevel()
-    {
-        //permet au joueur de voir le niveau actuel
+        float aspectRatio = _globalCamera.aspect;
+
+        _globalCamera.transform.position = new Vector3(GlobalsCamera.WorldBounds.center.x, GlobalsCamera.WorldBounds.center.y, -20);
+        _globalCamera.transform.LookAt(GlobalsCamera.WorldBounds.center);
     }
 
     public void AddNewLevel(GameObject newLevel)
@@ -57,16 +95,20 @@ public class CameraManager : MonoBehaviour
         List<GameObject> levelsList = new List<GameObject>(_levels);
         levelsList.Add(newLevel);
         _levels = levelsList.ToArray();
+
+        newLevel.GetComponentInChildren<CinemachineVirtualCamera>().Follow = _mainCamera.Follow;
+
+        CalculateWorldBounds();
+        CalculateCameraBounds();
     }
 
     public void RemoveLevel(GameObject level)
     {
-        for (int i = 0; i < _levels.Length; i++)
-        {
-            if (_levels[i] == level)
-            {
-                _levels[i] = null;
-            }
-        }
+        List<GameObject> levelsList = new List<GameObject>(_levels);
+        levelsList.Remove(level);
+        _levels = levelsList.ToArray();
+
+        CalculateWorldBounds();
+        CalculateCameraBounds();
     }
 }

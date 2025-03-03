@@ -70,16 +70,16 @@ public class LevelSpawner : MonoBehaviour
         switch (_direction)
         {
             case Direction.Up:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y + 14f, 0);
+                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y + _currentLevel.GetComponent<SpriteRenderer>().bounds.size.y, 0);
                 break;
             case Direction.Down:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y - 10f, 0);
+                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y - _currentLevel.GetComponent<SpriteRenderer>().bounds.size.y, 0);
                 break;
             case Direction.Left:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x - 14.75f, _currentLevel.transform.position.y, 0);
+                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x - _currentLevel.GetComponent<SpriteRenderer>().bounds.size.x, _currentLevel.transform.position.y, 0);
                 break;
             case Direction.Right:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x + 10f, _currentLevel.transform.position.y, 0);
+                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x + _currentLevel.GetComponent<SpriteRenderer>().bounds.size.x, _currentLevel.transform.position.y, 0);
                 break;
         }
         isAlreadySpawned = true;
