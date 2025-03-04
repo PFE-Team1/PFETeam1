@@ -1,36 +1,131 @@
-# This is a basic workflow to help you get started with Actions
+name: Building CI on Unity for Team 1 PFE
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  PROJECT_NAME: PFE_CI # Définir le nom du projet comme variable d'environnement
+
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - name: Set Start Time
+        run: echo "START_TIME=$(TZ=":Europe/Paris" date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Checking out Git
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Get last successful build date
+        id: last-build
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "LAST_BUILD_DATE=$(git log --pretty=format:'%cd' -1 --date=iso)" >> $GITHUB_ENV
+
+      - name: Get commits since last build
+        id: commits
+        run: |
+          COMMITS=$(git log --pretty=format:'[%h](https://github.com/${{ github.repository }}/commit/%h) - %s - %an' --since="${{ env.LAST_BUILD_DATE }}")
+          echo "COMMITS<<EOF" >> $GITHUB_ENV
+          echo "$COMMITS" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Set Build Name
+        run: echo "BUILD_NAME=PFE1_WIN_${{ env.START_TIME }}" >> $GITHUB_ENV
+
+      - name: Build execution time - start
+        id: build-execution-time-start
+        run: echo "start_time=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Caching
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library   
+
+      - name: Building Game
+        id: project-build
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          buildName: ${{ env.BUILD_NAME }}
+          buildsPath: Builds
+          targetPlatform: StandaloneWindows64
+          allowDirtyBuild: true
+
+      - name: Build execution time - end
+        id: build-execution-time
+        run: |
+          end_time=$(date +%s)
+          duration=$((end_time - ${{ env.start_time }}))
+          echo "duration=$duration" >> $GITHUB_OUTPUT
+
+      - name: Storing Build Artefact
+        id: build-upload
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: ${{ env.BUILD_NAME }}
+          path: Builds/StandaloneWindows64
+          retention-days: 14
+
+      - name: List files in Builds directory (Debug)
+        run: ls -R ${{ github.workspace }}/Builds
+
+      - name: Get build artifact URL
+        id: build-artifact-url
+        run: |
+          ARTIFACT_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+            | jq -r '.artifacts[] | select(.name == "${{ env.BUILD_NAME }}") | .id')
+          echo "BUILD_ARTIFACT_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ARTIFACT_ID" >> $GITHUB_ENV
+
+      - name: Get logs artifact URL
+        id: logs-artifact-url
+        run: |
+          ARTIFACT_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+            | jq -r '.artifacts[] | select(.name == "${{ env.BUILD_NAME }}_Logs") | .id')
+          echo "LOGS_ARTIFACT_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ARTIFACT_ID" >> $GITHUB_ENV
+
+      - name: Set build status
+        id: build-status
+        run: |
+          if [ "${{ steps.project-build.outputs.engineExitCode }}" -eq "0" ]; then
+            echo "STATUS=Réussie ✅ 🙉" >> $GITHUB_ENV
+            echo "COLOR=65280" >> $GITHUB_ENV
+          else
+            echo "STATUS=Échouée ❌ 🙊" >> $GITHUB_ENV
+            echo "COLOR=16711680" >> $GITHUB_ENV
+          fi
+
+      - name: Send Discord notification
+        uses: tsickert/discord-webhook@v6.0.0
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          username: "Abbuild 🐒🍌"
+          avatar-url: "https://unity.com/favicon.ico"
+          embed-title: "Build Unity ${{ env.STATUS }}"
+          embed-description: |
+            **Détails de la build:**
+            - **Nom:** ${{ env.BUILD_NAME }}
+            - **Plateforme:** StandaloneWindows64
+            - **Durée d'exécution:** ${{ steps.build-execution-time.outputs.duration }} secondes
+            - **Code de sortie:** ${{ steps.project-build.outputs.engineExitCode }}
+
+            **Commits depuis la dernière build:**
+            ${{ env.COMMITS }}
+
+            **Liens Utiles:**
+            - [Télécharger la build](${{ env.BUILD_ARTIFACT_URL }})
+            - [Détails du workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          embed-color: ${{ env.COLOR }}
+          embed-footer-text: "Team 1 PFE - Build générée le ${{ env.START_TIME }}" 
