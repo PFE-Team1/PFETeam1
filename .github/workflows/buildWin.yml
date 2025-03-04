@@ -23,9 +23,12 @@ jobs:
         run: |
           IMAGES=(
             "https://i.pinimg.com/originals/63/b7/77/63b7778a45cac5a7a6e040b9486e1947.gif"
-            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnJ3enN1YmN4c3R5OTZ0dGhtbWQ5Y3VhMXQ2MjU2aWZrNXd1OXU1YyZlcD12X2dpcGh5X2dpZl9zZWFyY2gmY3Q9Zw/3o6Zt4HU9uwXmXSAuI/giphy.gif"
-            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGRhbXh0aHUwdXB0dWZlaGZyeXh2ZGphMW5wYjN2Yzh6YzRkbGtiZyZlcD12X2dpcGh5X2dpZl9zZWFyY2gmY3Q9Zw/l3fQf0Xq8YGIYAOac/giphy.gif"
-            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXkwNXd5aGV3YmNxNHQ3MTJ5dTFubGRmMzN6ZjN1YXp3aGUyYWhlZyZlcD12X2dpcGh5X2dpZl9zZWFyY2gmY3Q9Zw/xT9DPIlGnuHpr2l2LA/giphy.gif"
+            "https://pa1.aminoapps.com/6415/0ef06d84eaad1dd5a9eec4ce34eef24cabafff53_hq.gif"
+            "https://i.gifer.com/1Qs4.gif"
+            "https://i.pinimg.com/originals/09/26/01/09260106b02bdfecddb010cc8022300e.gif"
+            "https://i.gifer.com/3FGw.gif"
+            "https://ww2.kqed.org/pop/wp-content/uploads/sites/12/2015/12/02-smile-abu.gif"
+
           )
           RANDOM_IMAGE=${IMAGES[$((RANDOM % ${#IMAGES[@]}))]}
           echo "random_image_url=$RANDOM_IMAGE" >> $GITHUB_OUTPUT
