@@ -18,6 +18,18 @@ jobs:
       - name: Set Start Time
         run: echo "START_TIME=$(TZ=":Europe/Paris" date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
 
+      - name: Set Random Image URL
+        id: random-image
+        run: |
+          IMAGES=(
+            "https://i.pinimg.com/originals/63/b7/77/63b7778a45cac5a7a6e040b9486e1947.gif"
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnJ3enN1YmN4c3R5OTZ0dGhtbWQ5Y3VhMXQ2MjU2aWZrNXd1OXU1YyZlcD12X2dpcGh5X2dpZl9zZWFyY2gmY3Q9Zw/3o6Zt4HU9uwXmXSAuI/giphy.gif"
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGRhbXh0aHUwdXB0dWZlaGZyeXh2ZGphMW5wYjN2Yzh6YzRkbGtiZyZlcD12X2dpcGh5X2dpZl9zZWFyY2gmY3Q9Zw/l3fQf0Xq8YGIYAOac/giphy.gif"
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXkwNXd5aGV3YmNxNHQ3MTJ5dTFubGRmMzN6ZjN1YXp3aGUyYWhlZyZlcD12X2dpcGh5X2dpZl9zZWFyY2gmY3Q9Zw/xT9DPIlGnuHpr2l2LA/giphy.gif"
+          )
+          RANDOM_IMAGE=${IMAGES[$((RANDOM % ${#IMAGES[@]}))]}
+          echo "random_image_url=$RANDOM_IMAGE" >> $GITHUB_OUTPUT
+
       - name: Checking out Git
         uses: actions/checkout@v4
         with:
@@ -112,7 +124,8 @@ jobs:
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
           username: "Abbuild 🐒🍌"
-          avatar-url: "https://unity.com/favicon.ico"
+          avatar-url: "https://media.discordapp.net/attachments/1314208057806426152/1346476105367814228/Abbu_3.png?ex=67c85317&is=67c70197&hm=c7c88ce931b72cf8e68da0792d2091a2e4b5f2e57e348f87d3ed36c5f1b792b5&=&format=webp&quality=lossless"
+          embed-image-url: ${{ steps.random-image.outputs.random_image_url }}
           embed-title: "Build Unity ${{ env.STATUS }}"
           embed-description: |
             **Détails de la build:**
@@ -128,4 +141,4 @@ jobs:
             - [Télécharger la build](${{ env.BUILD_ARTIFACT_URL }})
             - [Détails du workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
           embed-color: ${{ env.COLOR }}
-          embed-footer-text: "Team 1 PFE - Build générée le ${{ env.START_TIME }}" 
+          embed-footer-text: "Team 1 PFE - Build générée le ${{ env.START_TIME }}"
