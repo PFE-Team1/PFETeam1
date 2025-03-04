@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class InputsManager : MonoBehaviour
 {
-    #region Variables
+    // permet de récup les inputs bools/float ou vector2 partout dans le code
+    #region InputVariables
     private bool _inputJumping;
     private bool _inputZooming;
     private bool _inputDezooming;
@@ -14,8 +15,8 @@ public class InputsManager : MonoBehaviour
     private bool _inputRestarting;
     private float _moveX;
     private Vector2 _lookaround;
-#endregion
-    #region Propriétés 
+    #endregion
+    #region InputPropriétés 
     public bool InputJumping { get => _inputJumping;}
     public bool InputZooming { get => _inputZooming;}
     public bool InputDezooming { get => _inputDezooming;}
@@ -25,7 +26,7 @@ public class InputsManager : MonoBehaviour
     public float MoveX { get => _moveX; }
     public Vector2 Lookaround { get => _lookaround;}
     #endregion
-    #region Methodes
+    #region InputMethodes
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -107,4 +108,29 @@ public class InputsManager : MonoBehaviour
         _lookaround = context.ReadValue<Vector2>();
     }
     #endregion
+    #region Singleton
+    private static InputsManager instance = null;
+    public static InputsManager Instance => instance;
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+
+        // Initialisation du Game Manager...
+    }
+    #endregion
+    PlayerInput _currentPlayer;//if clone faire une méthode qui cherche le joueur actif 
+
+    private void Start()
+    {
+        _currentPlayer = FindObjectOfType<PlayerInput>();//marche parcequ'il n'y a pas de clones ouai .sinon chercher le truc total
+    }
 }
