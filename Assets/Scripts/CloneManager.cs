@@ -26,23 +26,23 @@ public class CloneManager : MonoBehaviour
     {
         if (_characters.Count > 0)
         {
-            _characters[charID].GetComponent<PlayerInput>().enabled=false;
+            _characters[charID].Switchup();
             charID++;
             if (charID >= _characters.Count)
             {
                 charID = 0;
             }
-            _characters[charID].GetComponent<PlayerInput>().enabled = true;
+            _characters[charID].Switchup();
             _currentPlayer = charID;
             foreach (Clone c in _characters)
             {
                 if (c.CharID != charID)
                 {
-                    c.GetComponentInChildren<BoxCollider2D>().enabled = true;
+                    c.gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
                 }
                 else 
                 {
-                    c.GetComponentInChildren<BoxCollider2D>().enabled = false;
+                    c.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
 
                 }
             }

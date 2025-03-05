@@ -476,6 +476,7 @@ GameObject:
   - component: {fileID: 8682684317871151545}
   - component: {fileID: 244036144124306980}
   - component: {fileID: 7935253893663324012}
+  - component: {fileID: 8978795770275156206}
   m_Layer: 6
   m_Name: Joueur
   m_TagString: Player
@@ -566,6 +567,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f044de56-901a-407b-a170-09654aab16c8
     m_ActionName: Movements/TeaBag[/DualShock4GamepadHID/dpad/down]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8978795770275156206}
+        m_TargetAssemblyTypeName: Clone, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ac62f475-38ad-4044-98e8-d73530234067
+    m_ActionName: Movements/Interact
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8978795770275156206}
+        m_TargetAssemblyTypeName: Clone, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: da226911-bf6d-4c5f-b3ce-541a74058a8f
+    m_ActionName: Movements/Switch
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movements
@@ -5519,3 +5552,22 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8978795770275156206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885932740852423821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a76748de21d2049b15e3d25ba97a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clones:
+  - {fileID: 8885932740852423821, guid: e3d73e124e459194ca351fd780f624c1, type: 3}
+  - {fileID: 8885932740852423821, guid: a52fee4009eb9374b9c035cc36baa63c, type: 3}
+  _currentClone: 0
+  _charID: 0
+  _playerInput: {fileID: 2440285559612817661}
+  _spawnPoint: {fileID: 0}

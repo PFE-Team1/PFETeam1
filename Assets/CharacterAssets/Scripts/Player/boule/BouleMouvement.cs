@@ -33,7 +33,7 @@ public class BouleMouvement : MonoBehaviour
     #region Private variables
     public bool _needColor = true;
     [HideInInspector]
-    public PlayerInput _playerInputs;
+    public PlayerInputs _playerInputs;
     [HideInInspector]
     public PlayerStateMachine ParentMachine;
     public Vector3 _beforeThrow;

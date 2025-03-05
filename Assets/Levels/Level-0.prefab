@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 3505673319470046622}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 4.61, z: 0}
+  m_LocalPosition: {x: -3.82, y: -4.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ConfineMode: 0
   m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 4382572002817142037}
+  m_BoundingShape2D: {fileID: 0}
   m_ConfineScreenEdges: 1
   m_Damping: 0
 --- !u!1 &7420887511101264669
@@ -470,7 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5182244853209950213}
   - component: {fileID: 5449350780346953849}
-  - component: {fileID: 4382572002817142037}
+  - component: {fileID: 3916941099763878606}
   m_Layer: 0
   m_Name: Level-0
   m_TagString: Untagged
@@ -549,8 +549,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &4382572002817142037
-PolygonCollider2D:
+--- !u!61 &3916941099763878606
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -591,10 +591,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -7.8676977, y: 5.4666667}
-      - {x: -7.8676977, y: -5.4666667}
-      - {x: 7.8676977, y: -5.4666667}
-      - {x: 7.8676977, y: 5.4666667}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 15.735395, y: 10.933333}
+  m_EdgeRadius: 0

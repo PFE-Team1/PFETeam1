@@ -20,10 +20,10 @@ public class InputsManager : MonoBehaviour
     private GameObject lastSelected;
     public class PlayersInputs
     {
-        public PlayerInput _playerInputs;
+        public PlayerInputs _playerInputs;
         public PlayerStateMachine _playerStateMachine;
         
-        public PlayersInputs(PlayerInput playerInputs, PlayerStateMachine playerStateMachine)
+        public PlayersInputs(PlayerInputs playerInputs, PlayerStateMachine playerStateMachine)
         {
             _playerInputs = playerInputs;
             _playerStateMachine = playerStateMachine;
@@ -44,7 +44,7 @@ public class InputsManager : MonoBehaviour
     }
     public void resetPlayers()
     {
-        foreach(PlayerInput pi in GetComponents<PlayerInput>())
+        foreach(PlayerInputs pi in GetComponents<PlayerInputs>())
         {
             Destroy(pi);
         }

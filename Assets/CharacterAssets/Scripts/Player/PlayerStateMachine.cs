@@ -11,7 +11,7 @@ public class PlayerStateMachine : MonoBehaviour
     public IMouvementLockedReader _iMouvementLockedReader => GetComponent<IMouvementLockedReader>();
     public  IMouvementLockedWriter _iMouvementLockedWriter => GetComponent<IMouvementLockedWriter>();
 
-    public PlayerInput _playerInputs;
+    public PlayerInputs _playerInputs;
 
     public IdleState stateIdle { get; } = new IdleState();
     public WalkState stateWalk { get; } = new WalkState();
@@ -56,7 +56,7 @@ public class PlayerStateMachine : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         _InitAllStates();
-        _playerInputs = InputsManager.Instance.AddComponent<PlayerInput>();
+        _playerInputs = InputsManager.Instance.AddComponent<PlayerInputs>();
         _playerInputs._ipaPlayercontrols = this.GetComponent<UnityEngine.InputSystem.PlayerInput>().actions;
         _playerInputs.IOrient = this.GetComponent<IOrientWriter>();
         _playerInputs.jump = this.GetComponent<IWantsJumpWriter>();

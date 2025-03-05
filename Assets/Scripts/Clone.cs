@@ -2,29 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class Clone : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _clones;
-    [SerializeField] private int _currentClone = 0;
+    [SerializeField] private GameObject _clone;
     [SerializeField] private int _charID;
-    [SerializeField] private GameObject _spawnPoint;//temp
-
+    [SerializeField] private PlayerInput _playerInput;
+    private CinemachineVirtualCamera CVC;
+    private bool _isInteracting;
+    private bool _isInSocleRange=false;
+    private GameObject _heldObject;
+    public GameObject heldObject { get => _heldObject; set => _heldObject = value; }
     public int CharID { get => _charID;}
+    public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
+    public bool IsInSocleRange { get => _isInSocleRange; set => _isInSocleRange = value; }
 
     private void Start()
     {
+        CVC = FindObjectOfType<CinemachineVirtualCamera>();
+        CVC.Follow = transform;
+        _playerInput = GetComponent<PlayerInput>();
         _charID = CloneManager.instance.Characters.Count;
         CloneManager.instance.Characters.Add(this);
     }
+    
     public void Cloned(GameObject spawnPoint)
     {
-            if (_currentClone < _clones.Count)//condition à changer.
-            {
-                GameObject instantiatedClone = Instantiate(_clones[_currentClone], _spawnPoint.transform.position, _spawnPoint.transform.rotation);
-                _currentClone++;
-            }
-        
+        GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);                   
+    }
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _isInteracting = true;
+        }
+        if (context.canceled)
+        {
+            _isInteracting = false;
+        }
     }
     public void Switch(InputAction.CallbackContext context)
     {
@@ -33,5 +49,9 @@ public class Clone : MonoBehaviour
             CloneManager.instance.Switch(_charID);
 
         }
+    }
+    public void Switchup()
+    {
+        _playerInput.enabled = !_playerInput.enabled;
     }
 }

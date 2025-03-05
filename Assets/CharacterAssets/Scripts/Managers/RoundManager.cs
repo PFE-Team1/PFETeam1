@@ -36,7 +36,7 @@ public class RoundManager : MonoBehaviour
     public List<Color> teamColors;
     public class Player
     {
-        public PlayerInput _playerInputs;
+        public PlayerInputs _playerInputs;
         public PlayerStateMachine _playerStateMachine;
         public Team _team;
         public int _points = 0;
