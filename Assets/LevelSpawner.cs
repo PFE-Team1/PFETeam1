@@ -62,7 +62,9 @@ public class LevelSpawner : MonoBehaviour
 
     public void SpawnNewLevel()
     {
-        newLevel = Instantiate(_heldObject.GetComponent<PaintingController>().newLevelPrefab, Vector3.zero, Quaternion.identity);
+        if (newLevel == null) newLevel = Instantiate(_heldObject.GetComponent<PaintingController>().newLevelPrefab, Vector3.zero, Quaternion.identity);
+        newLevel.SetActive(true);
+        _heldObject.transform.SetParent(transform);
         _heldObject.transform.localPosition = Vector3.zero;
 
         _player.GetComponent<PlayerControllerTest>().heldObject = null;
@@ -90,7 +92,7 @@ public class LevelSpawner : MonoBehaviour
     {
         isAlreadySpawned = false;
         _player.GetComponent<PlayerControllerTest>().heldObject = _heldObject;
-        Destroy(newLevel);
+        newLevel.SetActive(false);
         CameraManager.Instance.RemoveLevel(newLevel);
     }
 }

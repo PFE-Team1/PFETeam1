@@ -9,6 +9,7 @@ public class PaintingController : MonoBehaviour
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
     private GameObject player;
+    private GameObject tableau;
     bool isInRange = false;
     bool isHeld = false;
 
@@ -30,6 +31,11 @@ public class PaintingController : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        tableau = GetComponentInParent<PolygonCollider2D>().gameObject;
+    }
+
     void Update()
     {
         if (isInRange)
@@ -38,7 +44,7 @@ public class PaintingController : MonoBehaviour
             {
                 if (isHeld)
                 {
-                    transform.SetParent(null);
+                    transform.SetParent(tableau.transform);
                     player.GetComponent<PlayerControllerTest>().heldObject = null;
                     isHeld = false;
                 }
