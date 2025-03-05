@@ -129,10 +129,10 @@ jobs:
           username: "Abbuild 🐒🍌"
           avatar-url: "https://media.discordapp.net/attachments/1314208057806426152/1346476105367814228/Abbu_3.png?ex=67c85317&is=67c70197&hm=c7c88ce931b72cf8e68da0792d2091a2e4b5f2e57e348f87d3ed36c5f1b792b5&=&format=webp&quality=lossless"
           embed-image-url: ${{ steps.random-image.outputs.random_image_url }}
-          embed-title: "Build Unity ${{ env.STATUS }}"
+          embed-title: "Build Unity - ${{ env.START_TIME }}  ${{ env.STATUS }}"
           embed-description: |
             **Détails de la build:**
-            - **Nom:** ${{ env.BUILD_NAME }}
+            - **Nom:** PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}
             - **Plateforme:** StandaloneWindows64
             - **Durée d'exécution:** ${{ steps.build-execution-time.outputs.duration }} secondes
             - **Code de sortie:** ${{ steps.project-build.outputs.engineExitCode }}
