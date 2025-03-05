@@ -8,6 +8,7 @@ public class InputsManager : MonoBehaviour
     // permet de récup les inputs bools/float ou vector2 partout dans le code
     #region InputVariables
     private bool _inputJumping;
+    private bool _inputInteract;
     private bool _inputZooming;
     private bool _inputDezooming;
     private bool _inputSwitching;
@@ -18,6 +19,8 @@ public class InputsManager : MonoBehaviour
     #endregion
     #region InputPropriétés 
     public bool InputJumping { get => _inputJumping;}
+    public bool InputInteract { get => _inputInteract; }
+
     public bool InputZooming { get => _inputZooming;}
     public bool InputDezooming { get => _inputDezooming;}
     public bool InputSwitching { get => _inputSwitching; }
@@ -37,6 +40,18 @@ public class InputsManager : MonoBehaviour
         if (context.canceled)
         {
             _inputJumping = false;
+        }
+    }
+    public void Interract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _inputInteract = true;
+        }
+
+        if (context.canceled)
+        {
+            _inputInteract = false;
         }
     }
     public void Zoom(InputAction.CallbackContext context)
@@ -111,6 +126,8 @@ public class InputsManager : MonoBehaviour
     #region Singleton
     private static InputsManager instance = null;
     public static InputsManager Instance => instance;
+
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -127,10 +144,4 @@ public class InputsManager : MonoBehaviour
         // Initialisation du Game Manager...
     }
     #endregion
-    PlayerInput _currentPlayer;//if clone faire une méthode qui cherche le joueur actif 
-
-    private void Start()
-    {
-        _currentPlayer = FindObjectOfType<PlayerInput>();//marche parcequ'il n'y a pas de clones ouai .sinon chercher le truc total
-    }
 }
