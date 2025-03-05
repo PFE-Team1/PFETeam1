@@ -51,7 +51,7 @@ jobs:
       - name: Get commits since last build
         id: commits
         run: |
-          COMMITS=$(git log --pretty=format:'[%h](https://github.com/${{ github.repository }}/commit/%h) - %s - %an' --since="${{ env.LAST_BUILD_DATE }}")
+          COMMITS=$(git log --pretty=format:'- [%h](https://github.com/${{ github.repository }}/commit/%h) - %s - %an' --since="${{ env.LAST_BUILD_DATE }}")
           echo "COMMITS<<EOF" >> $GITHUB_ENV
           echo "$COMMITS" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
