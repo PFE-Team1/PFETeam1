@@ -33,7 +33,7 @@ public class PaintingController : MonoBehaviour
 
     void Start()
     {
-        tableau = GetComponentInParent<PolygonCollider2D>().gameObject;
+        tableau = GetComponentInParent<BoxCollider2D>().gameObject;
     }
 
     void Update()

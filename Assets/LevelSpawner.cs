@@ -62,7 +62,7 @@ public class LevelSpawner : MonoBehaviour
 
     public void SpawnNewLevel()
     {
-        if (newLevel == null) newLevel = Instantiate(_heldObject.GetComponent<PaintingController>().newLevelPrefab, Vector3.zero, Quaternion.identity);
+        if (newLevel == null) newLevel = Instantiate(_heldObject.GetComponent<PaintingController>().newLevelPrefab, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
         newLevel.SetActive(true);
         _heldObject.transform.SetParent(transform);
         _heldObject.transform.localPosition = Vector3.zero;

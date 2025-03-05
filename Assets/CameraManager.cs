@@ -9,6 +9,7 @@ public class CameraManager : MonoBehaviour
     public static CameraManager Instance { get; private set; }
     [SerializeField] private List<GameObject> _levels; 
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
+    [SerializeField] private GameObject _compositeParent;
     private List<CinemachineVirtualCamera> _allCameras = new List<CinemachineVirtualCamera>();
 
     private Bounds _cameraBounds;
@@ -22,6 +23,7 @@ public class CameraManager : MonoBehaviour
 
     public CinemachineVirtualCamera MainCamera { get => _mainCamera; set => _mainCamera = value; }
     public List<CinemachineVirtualCamera> AllCameras { get => _allCameras; set => _allCameras = value; }
+    public GameObject CompositeParent { get => _compositeParent; set => _compositeParent = value; }
 
     void Awake()
     {
@@ -196,63 +198,13 @@ public class CameraManager : MonoBehaviour
     {
         _levels.Add(newLevel);
 
-        PolygonCollider2D currentLevelCollider = _levels[0].GetComponent<PolygonCollider2D>();
-        SpriteRenderer LevelRenderer = newLevel.GetComponent<SpriteRenderer>();
-
-        Vector2[] points = currentLevelCollider.points;
-        Bounds bounds = LevelRenderer.bounds;
-
-        var addedPoint = currentLevelCollider.points[0];
-
-        points = AddBoundsToPolygon(points, bounds, addedPoint);
-    
-        currentLevelCollider.points = points;
         CalculateWorldBounds();
         CalculateCameraBounds();
-    }
-
-    private Vector2[] AddBoundsToPolygon(Vector2[] points, Bounds bounds, Vector2 addedPoint)
-    {
-        List<Vector2> newPoints = new List<Vector2>(points);
-        newPoints.Add(new Vector2(bounds.max.x / 2, bounds.min.y / 2));
-        newPoints.Add(new Vector2(bounds.max.x / 2, bounds.max.y / 2));
-        newPoints.Add(new Vector2(bounds.min.x / 2, bounds.max.y / 2));
-        newPoints.Add(new Vector2(bounds.min.x / 2, bounds.min.y / 2));
-
-        newPoints.Add(new Vector2(bounds.max.x / 2, bounds.min.y / 2));
-
-        return newPoints.ToArray();
-    }
-
-    private Vector2[] RemoveBoundsToPolygon(Vector2[] points, Bounds bounds, Vector2 removedPoint)
-    {
-        List<Vector2> newPoints = new List<Vector2>(points);
-
-        newPoints.Remove(new Vector2(bounds.max.x / 2, bounds.min.y / 2));
-        newPoints.Remove(new Vector2(bounds.max.x / 2, bounds.max.y / 2));
-        newPoints.Remove(new Vector2(bounds.min.x / 2, bounds.max.y / 2));
-        newPoints.Remove(new Vector2(bounds.min.x / 2, bounds.min.y / 2));
-
-        newPoints.Remove(new Vector2(bounds.max.x / 2, bounds.min.y / 2));
-
-        return newPoints.ToArray();
     }
 
     public void RemoveLevel(GameObject level)
     {
         _levels.Remove(level);
-
-        PolygonCollider2D currentLevelCollider = _levels[0].GetComponent<PolygonCollider2D>();
-        SpriteRenderer levelRenderer = level.GetComponent<SpriteRenderer>();
-
-        Vector2[] points = currentLevelCollider.points;
-        Bounds bounds = levelRenderer.bounds;
-
-        var removedPoint = points[points.Length - 1];
-
-        points = RemoveBoundsToPolygon(points, bounds, removedPoint);
-
-        currentLevelCollider.points = points;
         
         CalculateWorldBounds();
         CalculateCameraBounds();
