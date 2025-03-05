@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Set Start Time
-        run: echo "START_TIME=$(TZ=":Europe/Paris" date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
+        run: echo "START_TIME=$(TZ=":Europe/Paris" date +'%H:%M le %d-%m-%Y')" >> $GITHUB_ENV
 
       - name: Set Random Image URL
         id: random-image
@@ -57,7 +57,7 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Set Build Name
-        run: echo "BUILD_NAME=PFE1_WIN_${{ env.START_TIME }}" >> $GITHUB_ENV
+        run: echo "BUILD_NAME=PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Build execution time - start
         id: build-execution-time-start
@@ -134,7 +134,7 @@ jobs:
           username: "Abbuild 🐒🔧"
           avatar-url: "https://media.discordapp.net/attachments/1314208057806426152/1346476105367814228/Abbu_3.png?ex=67c85317&is=67c70197&hm=c7c88ce931b72cf8e68da0792d2091a2e4b5f2e57e348f87d3ed36c5f1b792b5&=&format=webp&quality=lossless"
           embed-image-url: ${{ steps.random-image.outputs.random_image_url }}
-          embed-title: "Build Unity - ${{ env.START_TIME }}  ${{ env.STATUS }}"
+          embed-title: "Build Unity - ${{ env.START_TIME }} - ${{ env.STATUS }}"
           embed-description: |
             **Détails de la build:**
             - **Nom:** PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}
@@ -142,11 +142,11 @@ jobs:
             - **Durée d'exécution:** ${{ steps.build-execution-time.outputs.duration }} secondes
             - **Code de sortie:** ${{ steps.project-build.outputs.engineExitCode }}
 
-            **Commits depuis la dernière build:**
+            **Dernier commit depuis la dernière build:**
             ${{ env.COMMITS }}
 
             **Liens Utiles:**
             - [Télécharger la build](${{ env.BUILD_ARTIFACT_URL }})
             - [Détails du workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
           embed-color: ${{ env.COLOR }}
-          embed-footer-text: "Team 1 PFE - Build générée le ${{ env.START_TIME }}"
+          embed-footer-text: "Team 1 PFE - Build générée à ${{ env.START_TIME }}"
