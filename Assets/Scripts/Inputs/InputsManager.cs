@@ -30,7 +30,7 @@ public class InputsManager : MonoBehaviour
     public Vector2 Lookaround { get => _lookaround;}
     #endregion
     #region InputMethodes
-    public void Jump(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -42,7 +42,7 @@ public class InputsManager : MonoBehaviour
             _inputJumping = false;
         }
     }
-    public void Interract(InputAction.CallbackContext context)
+    public void OnInterract(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -54,7 +54,7 @@ public class InputsManager : MonoBehaviour
             _inputInteract = false;
         }
     }
-    public void Zoom(InputAction.CallbackContext context)
+    public void OnZoom(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -66,7 +66,7 @@ public class InputsManager : MonoBehaviour
             _inputZooming = false;
         }
     }
-    public void Dezoom(InputAction.CallbackContext context)
+    public void OnDezoom(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -78,7 +78,7 @@ public class InputsManager : MonoBehaviour
             _inputDezooming = false;
         }
     }
-    public void Switch(InputAction.CallbackContext context)
+    public void OnSwitch(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -90,7 +90,7 @@ public class InputsManager : MonoBehaviour
             _inputSwitching = false;
         }
     }
-    public void Restart(InputAction.CallbackContext context)
+    public void OnRestart(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -102,7 +102,7 @@ public class InputsManager : MonoBehaviour
             _inputRestarting = false;
         }
     }
-    public void Pause(InputAction.CallbackContext context)
+    public void OnPauseResume(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -114,11 +114,11 @@ public class InputsManager : MonoBehaviour
             _inputPausing = false;
         }
     }
-    public void Move(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         _moveX = context.ReadValue<Vector2>().x;
     }
-    public void LookAround(InputAction.CallbackContext context)
+    public void OnLook(InputAction.CallbackContext context)
     {
         _lookaround = context.ReadValue<Vector2>();
     }
@@ -142,6 +142,50 @@ public class InputsManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         // Initialisation du Game Manager...
+    }
+    #endregion
+    #region Init/InputAction
+    private PlayerInput _playerInputs;
+    [SerializeField] private InputActionAsset _inputActionAsset;
+    private void Start()
+    {
+        SetupInputs();
+    }
+
+    private void SetupInputs()
+    {
+        _playerInputs = gameObject.AddComponent<PlayerInput>();
+        _playerInputs.camera = FindFirstObjectByType<Camera>();
+        _playerInputs.notificationBehavior = PlayerNotifications.InvokeUnityEvents;
+        _playerInputs.actions = _inputActionAsset;
+        _playerInputs.actions["Interact"].performed += OnInterract;
+        _playerInputs.actions["Interact"].canceled += OnInterract;
+        _playerInputs.actions["Interact"].Enable();
+        _playerInputs.actions["Move"].performed += OnMove;
+        _playerInputs.actions["Move"].canceled += OnMove;
+        _playerInputs.actions["Move"].Enable();
+        _playerInputs.actions["Jump"].performed += OnJump;
+        _playerInputs.actions["Jump"].canceled += OnJump;
+        _playerInputs.actions["Jump"].Enable();
+        _playerInputs.actions["Switch"].performed += OnSwitch;
+        _playerInputs.actions["Switch"].canceled += OnSwitch;
+        _playerInputs.actions["Switch"].Enable();
+        _playerInputs.actions["Restart"].performed += OnRestart;
+        _playerInputs.actions["Restart"].canceled += OnRestart;
+        _playerInputs.actions["Restart"].Enable() ;
+        _playerInputs.actions["Pause"].performed += OnPauseResume;
+        _playerInputs.actions["Pause"].canceled += OnPauseResume;
+        _playerInputs.actions["Pause"].Enable();
+        _playerInputs.actions["Zoom"].performed += OnZoom;
+        _playerInputs.actions["Zoom"].canceled += OnZoom;
+        _playerInputs.actions["Zoom"].Enable();
+        _playerInputs.actions["Dezoom"].performed += OnDezoom;
+        _playerInputs.actions["Dezoom"].canceled += OnDezoom;
+        _playerInputs.actions["Dezoom"].Enable();
+        _playerInputs.actions["Look"].performed += OnLook;
+        _playerInputs.actions["Look"].canceled += OnLook;
+        _playerInputs.actions["Look"].Enable();
+
     }
     #endregion
 }
