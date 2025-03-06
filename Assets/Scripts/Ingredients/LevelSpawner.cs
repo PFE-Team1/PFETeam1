@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Events;
 
 public class LevelSpawner : MonoBehaviour
 {
     enum Direction { Up, Down, Left, Right };
     [SerializeField] private GameObject _currentLevel;
-    [SerializeField] private GameObject _door;
     [SerializeField] private Direction _direction;
     private GameObject _newLevelPrefab;
     private GameObject _heldObject;
@@ -15,7 +15,7 @@ public class LevelSpawner : MonoBehaviour
     private GameObject _paint;
     private Clone _playerC;
 
-
+    [SerializeField] private UnityEvent OnRemovePainting;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     
     public bool isInRange = false;
@@ -72,7 +72,6 @@ public class LevelSpawner : MonoBehaviour
 
     public void SpawnNewLevel()
     {
-        _door.SetActive(false);
         if (newLevel == null) newLevel = Instantiate(_heldObject.GetComponent<PaintingController>().newLevelPrefab, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
         newLevel.SetActive(true);
         _heldObject.transform.SetParent(transform);
@@ -96,17 +95,17 @@ public class LevelSpawner : MonoBehaviour
                 break;
         }
         isAlreadySpawned = true;
-        CameraManager.Instance.AddNewLevel(newLevel);
+        CameraManager.Instance?.AddNewLevel(newLevel);
     }
 
     public void RemoveNewLevel()
     {
-        _door.SetActive(true);
+        OnRemovePainting.Invoke();
         isAlreadySpawned = false;
         _paint.transform.SetParent(_player.transform);
         _playerC.heldObject = _paint;
         _paint = null;
         newLevel.SetActive(false);
-        CameraManager.Instance.RemoveLevel(newLevel);
+        CameraManager.Instance?.RemoveLevel(newLevel);
     }
 }
