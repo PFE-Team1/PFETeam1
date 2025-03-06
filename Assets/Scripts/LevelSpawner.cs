@@ -7,10 +7,12 @@ public class LevelSpawner : MonoBehaviour
 {
     enum Direction { Up, Down, Left, Right };
     [SerializeField] private GameObject _currentLevel;
+    [SerializeField] private GameObject _door;
     [SerializeField] private Direction _direction;
     private GameObject _newLevelPrefab;
     private GameObject _heldObject;
     private GameObject _player;
+    private GameObject _paint;
     private Clone _playerC;
 
 
@@ -51,9 +53,10 @@ public class LevelSpawner : MonoBehaviour
             
             if (!isAlreadySpawned)
             {
-                if (_playerC.IsInteracting)
+                if (_playerC.IsInteracting&&_playerC.heldObject!=null)
                 {
                     SpawnNewLevel();
+                    _playerC.IsInteracting = false;
                 }
             }
             else if (isAlreadySpawned)
@@ -61,6 +64,7 @@ public class LevelSpawner : MonoBehaviour
                 if (_playerC.IsInteracting)
                 {
                     RemoveNewLevel();
+                    _playerC.IsInteracting = false;
                 }
             }
         }
@@ -68,11 +72,12 @@ public class LevelSpawner : MonoBehaviour
 
     public void SpawnNewLevel()
     {
+        _door.SetActive(false);
         if (newLevel == null) newLevel = Instantiate(_heldObject.GetComponent<PaintingController>().newLevelPrefab, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
         newLevel.SetActive(true);
         _heldObject.transform.SetParent(transform);
         _heldObject.transform.localPosition = Vector3.zero;
-
+        _paint = _playerC.heldObject;
         _playerC.heldObject = null;
 
         switch (_direction)
@@ -96,8 +101,11 @@ public class LevelSpawner : MonoBehaviour
 
     public void RemoveNewLevel()
     {
+        _door.SetActive(true);
         isAlreadySpawned = false;
-        _playerC.heldObject = _heldObject;
+        _paint.transform.SetParent(_player.transform);
+        _playerC.heldObject = _paint;
+        _paint = null;
         newLevel.SetActive(false);
         CameraManager.Instance.RemoveLevel(newLevel);
     }
