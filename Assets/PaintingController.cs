@@ -44,10 +44,48 @@ public class PaintingController : MonoBehaviour
             {
                 if (isHeld)
                 {
+                    Vector3 releasePosition = transform.position;
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
+
+                    foreach (var hit in hits)
+                    {
+                        if (hit.collider != null)
+                        {
+                            GameObject hitObject = hit.collider.gameObject;
+
+                            // Vérifie si l'objet touché fait partie d'un CompositeCollider2D
+                            CompositeCollider2D composite = hitObject.GetComponent<CompositeCollider2D>();
+                            if (composite != null)
+                            {
+                                Collider2D[] childColliders = hitObject.GetComponentsInChildren<Collider2D>();
+                                foreach (var child in childColliders)
+                                {
+                                    SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+                                    if (sr != null)
+                                    {
+                                        Bounds levelBounds = sr.bounds;
+                                        Bounds paintingBounds = GetComponent<SpriteRenderer>().bounds;
+
+                                        // Vérifie si les bounds du painting sont inclus dans ceux du level
+                                        if (levelBounds.Intersects(paintingBounds))
+                                        {
+                                            transform.SetParent(hitObject.transform);
+                                            player.GetComponent<PlayerControllerTest>().heldObject = null;
+                                            isHeld = false;
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     transform.SetParent(tableau.transform);
                     player.GetComponent<PlayerControllerTest>().heldObject = null;
                     isHeld = false;
                 }
+
+
                 else
                 {
                     transform.SetParent(player.transform);

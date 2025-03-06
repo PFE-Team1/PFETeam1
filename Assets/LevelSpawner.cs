@@ -62,30 +62,77 @@ public class LevelSpawner : MonoBehaviour
 
     public void SpawnNewLevel()
     {
-        if (newLevel == null) newLevel = Instantiate(_heldObject.GetComponent<PaintingController>().newLevelPrefab, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
-        newLevel.SetActive(true);
+        if (_heldObject == null) return;
+
+        var paintingController = _heldObject.GetComponent<PaintingController>();
+        var newLevelPrefab = paintingController.newLevelPrefab;
+
+        if (!CameraManager.Instance.Levels.Exists(level => level.name == newLevelPrefab.name))
+        {
+            newLevel = Instantiate(newLevelPrefab, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
+            newLevel.name = newLevelPrefab.name;
+            CameraManager.Instance.AddNewLevel(newLevel);
+        }
+        else
+        {
+            newLevel = CameraManager.Instance.Levels.Find(level => level.name == newLevelPrefab.name);
+            Debug.Log($"Level {newLevel.name} already exists");
+            newLevel.SetActive(true);
+        }
+
         _heldObject.transform.SetParent(transform);
         _heldObject.transform.localPosition = Vector3.zero;
-
         _player.GetComponent<PlayerControllerTest>().heldObject = null;
+
+        var newLevelBounds = newLevel.GetComponent<SpriteRenderer>().bounds.size;
+        var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
 
         switch (_direction)
         {
             case Direction.Up:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y + _currentLevel.GetComponent<SpriteRenderer>().bounds.size.y, 0);
-                break;
+            newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y + currentLevelBounds.y / 2 + newLevelBounds.y / 2, 0);
+            break;
             case Direction.Down:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y - _currentLevel.GetComponent<SpriteRenderer>().bounds.size.y, 0);
-                break;
+            newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y - currentLevelBounds.y / 2 - newLevelBounds.y / 2, 0);
+            break;
             case Direction.Left:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x - _currentLevel.GetComponent<SpriteRenderer>().bounds.size.x, _currentLevel.transform.position.y, 0);
-                break;
+            newLevel.transform.position = new Vector3(_currentLevel.transform.position.x - currentLevelBounds.x / 2 - newLevelBounds.x / 2, _currentLevel.transform.position.y, 0);
+            break;
             case Direction.Right:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x + _currentLevel.GetComponent<SpriteRenderer>().bounds.size.x, _currentLevel.transform.position.y, 0);
-                break;
+            newLevel.transform.position = new Vector3(_currentLevel.transform.position.x + currentLevelBounds.x / 2 + newLevelBounds.x / 2, _currentLevel.transform.position.y, 0);
+            break;
         }
+
+        if (CanBePlaced(newLevel))
+        {
+            Debug.Log($"Oui");
+        }
+        else
+        {
+            Debug.Log($"Non");
+        }
+
         isAlreadySpawned = true;
-        CameraManager.Instance.AddNewLevel(newLevel);
+    }
+
+    private bool CanBePlaced(GameObject newLevel)
+    {
+        foreach (var level in CameraManager.Instance.Levels)
+        {
+            if (level == newLevel) continue;
+
+            if (level.TryGetComponent(out SpriteRenderer sr))
+            {
+                if (newLevel.TryGetComponent(out SpriteRenderer newSr))
+                {
+                    if (newSr.bounds.Intersects(sr.bounds))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public void RemoveNewLevel()
@@ -93,6 +140,5 @@ public class LevelSpawner : MonoBehaviour
         isAlreadySpawned = false;
         _player.GetComponent<PlayerControllerTest>().heldObject = _heldObject;
         newLevel.SetActive(false);
-        CameraManager.Instance.RemoveLevel(newLevel);
     }
 }
