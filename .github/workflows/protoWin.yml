@@ -74,6 +74,7 @@ jobs:
           buildsPath: Builds
           targetPlatform: StandaloneWindows64
           allowDirtyBuild: true
+        continue-on-error: true
 
       - name: Build execution time - end
         id: build-execution-time
@@ -84,6 +85,7 @@ jobs:
 
       - name: Storing Build Artefact
         id: build-upload
+        if: ${{ steps.project-build.outcome == 'success' }}
         uses: actions/upload-artifact@v4.3.3
         with:
           name: ${{ env.BUILD_NAME }}
@@ -91,33 +93,33 @@ jobs:
           retention-days: 14
 
       - name: List files in Builds directory (Debug)
+        if: ${{ steps.project-build.outcome == 'success' }}
         run: ls -R ${{ github.workspace }}/Builds
 
-      - name: Get build artifact URL
+      - name: Set build artifact URL
         id: build-artifact-url
+        if: ${{ steps.project-build.outcome == 'success' }}
         run: |
           ARTIFACT_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
             | jq -r '.artifacts[] | select(.name == "${{ env.BUILD_NAME }}") | .id')
           echo "BUILD_ARTIFACT_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ARTIFACT_ID" >> $GITHUB_ENV
 
-      - name: Get logs artifact URL
-        id: logs-artifact-url
-        run: |
-          ARTIFACT_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
-            | jq -r '.artifacts[] | select(.name == "${{ env.BUILD_NAME }}_Logs") | .id')
-          echo "LOGS_ARTIFACT_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ARTIFACT_ID" >> $GITHUB_ENV
+      - name: Set empty artifact URL if build failed
+        if: ${{ steps.project-build.outcome != 'success' }}
+        run: echo "BUILD_ARTIFACT_URL=Non disponible (échec de la compilation)" >> $GITHUB_ENV
 
       - name: Set build status
         id: build-status
         run: |
-          if [ "${{ steps.project-build.outputs.engineExitCode }}" -eq "0" ]; then
+          if [ "${{ steps.project-build.outcome }}" == "success" ]; then
             echo "STATUS=Réussie ✅ 🤖" >> $GITHUB_ENV
             echo "COLOR=65280" >> $GITHUB_ENV
+            echo "EXIT_CODE=${{ steps.project-build.outputs.engineExitCode || '0' }}" >> $GITHUB_ENV
           else
             echo "STATUS=Échouée ❌ 🤖" >> $GITHUB_ENV
             echo "COLOR=16711680" >> $GITHUB_ENV
+            echo "EXIT_CODE=1" >> $GITHUB_ENV
           fi
 
       - name: Send Discord notification
@@ -133,7 +135,7 @@ jobs:
             - **Nom:** PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}
             - **Plateforme:** StandaloneWindows64
             - **Durée d'exécution:** ${{ steps.build-execution-time.outputs.duration }} secondes
-            - **Code de sortie:** ${{ steps.project-build.outputs.engineExitCode }}
+            - **Code de sortie:** ${{ env.EXIT_CODE }}
 
             **Dernier commit depuis la dernière build:**
             ${{ env.COMMITS }}
