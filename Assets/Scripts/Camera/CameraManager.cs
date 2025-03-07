@@ -24,6 +24,7 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera MainCamera { get => _mainCamera; set => _mainCamera = value; }
     public List<CinemachineVirtualCamera> AllCameras { get => _allCameras; set => _allCameras = value; }
     public GameObject CompositeParent { get => _compositeParent; set => _compositeParent = value; }
+    public List<GameObject> Levels { get => _levels; set => _levels = value; }
 
     void Awake()
     {

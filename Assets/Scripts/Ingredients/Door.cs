@@ -6,9 +6,9 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Collider _collider;
     [SerializeField] private SpriteRenderer _sprite;
-    private Door _otherDoor;
-
-    public Door OtherDoor { get => _otherDoor;}
+    [SerializeField]private Door _otherDoor;
+    
+    public Door OtherDoor { get => _otherDoor; set => _otherDoor = null; }
 
     public void Open()
     {
@@ -25,8 +25,8 @@ public class Door : MonoBehaviour
     {
         if (other.CompareTag("Door") )
         {
-            _otherDoor = GetComponentInParent<Door>();
-            _otherDoor.Open();
+            _otherDoor = other.GetComponentInParent<Door>();
+            //_otherDoor.Open();
             Open();
         }
     }

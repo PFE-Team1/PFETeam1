@@ -44,11 +44,43 @@ public class PaintingController : MonoBehaviour
         {
             if (playerC.IsInteracting&&!playerC.IsInSocleRange)
             {
+                playerC.IsInteracting = false;
                 if (isHeld)
                 {
-                    transform.SetParent(tableau.transform);
-                    playerC.heldObject = null;
-                    isHeld = false;
+                    Vector3 releasePosition = transform.position;
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
+
+                    foreach (var hit in hits)
+                    {
+                        if (hit.collider != null)
+                        {
+                            GameObject hitObject = hit.collider.gameObject;
+
+                            CompositeCollider2D composite = hitObject.GetComponent<CompositeCollider2D>();
+                            if (composite != null)
+                            {
+                                Collider2D[] childColliders = hitObject.GetComponentsInChildren<Collider2D>();
+                                foreach (var child in childColliders)
+                                {
+                                    SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+                                    if (sr != null)
+                                    {
+                                        Bounds levelBounds = sr.bounds;
+                                        Bounds paintingBounds = GetComponent<SpriteRenderer>().bounds;
+
+                                        if (levelBounds.Intersects(paintingBounds))
+                                        {
+                                            transform.SetParent(child.transform);
+                                            playerC.heldObject = null;
+                                            isHeld = false;
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                 }
                 else
                 {
@@ -56,7 +88,6 @@ public class PaintingController : MonoBehaviour
                     isHeld = true;
                     playerC.heldObject = gameObject;
                 }
-                playerC.IsInteracting = false;
             }
         }
     }
