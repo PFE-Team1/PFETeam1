@@ -2174,6 +2174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 2234299457454170834}
   _sprite: {fileID: 1487987613347149433}
+  _otherDoor: {fileID: 0}
 --- !u!114 &6409307183844628768
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2357,12 +2358,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentLevel: {fileID: 7859655166057531403}
-  _direction: 2
+  _direction: 0
   OnRemovePainting:
     m_PersistentCalls:
       m_Calls: []
   isInRange: 0
   isAlreadySpawned: 0
+  isSoawnOnStart: 0
+  isFixed: 0
+  levelToSpawn: {fileID: 0}
 --- !u!1 &7859655166057531403
 GameObject:
   m_ObjectHideFlags: 0
