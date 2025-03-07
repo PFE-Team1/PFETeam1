@@ -53,11 +53,10 @@ public class PaintingController : MonoBehaviour
                         {
                             GameObject hitObject = hit.collider.gameObject;
 
-                            // Vérifie si l'objet touché fait partie d'un CompositeCollider2D
                             CompositeCollider2D composite = hitObject.GetComponent<CompositeCollider2D>();
                             if (composite != null)
                             {
-                                Collider2D[] childColliders = hitObject.GetComponentsInChildren<Collider2D>();
+                                BoxCollider2D[] childColliders = hitObject.GetComponentsInChildren<BoxCollider2D>();
                                 foreach (var child in childColliders)
                                 {
                                     SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
@@ -66,10 +65,9 @@ public class PaintingController : MonoBehaviour
                                         Bounds levelBounds = sr.bounds;
                                         Bounds paintingBounds = GetComponent<SpriteRenderer>().bounds;
 
-                                        // Vérifie si les bounds du painting sont inclus dans ceux du level
                                         if (levelBounds.Intersects(paintingBounds))
                                         {
-                                            transform.SetParent(hitObject.transform);
+                                            transform.SetParent(child.transform);
                                             player.GetComponent<PlayerControllerTest>().heldObject = null;
                                             isHeld = false;
                                             return;

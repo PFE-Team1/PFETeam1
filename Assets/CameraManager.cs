@@ -198,7 +198,7 @@ public class CameraManager : MonoBehaviour
     public void AddNewLevel(GameObject newLevel)
     {
         _levels.Add(newLevel);
-
+        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
         CalculateWorldBounds();
         CalculateCameraBounds();
     }
@@ -206,7 +206,7 @@ public class CameraManager : MonoBehaviour
     public void RemoveLevel(GameObject level)
     {
         _levels.Remove(level);
-        
+        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
         CalculateWorldBounds();
         CalculateCameraBounds();
     }
