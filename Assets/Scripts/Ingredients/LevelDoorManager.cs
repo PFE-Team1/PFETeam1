@@ -15,4 +15,12 @@ public class LevelDoorManage : MonoBehaviour
             d.Close();
         }
     }
+    private void OnEnable()
+    {
+        if (_doors.Count <= 0) return;
+        foreach (Door d in _doors)
+        {
+            d.OtherDoor = null;
+        }
+    }
 }
