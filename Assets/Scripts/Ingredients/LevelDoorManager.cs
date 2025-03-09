@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class LevelDoorManage : MonoBehaviour
 {
-    [SerializeField] List<Door> _doors = new List<Door>();
+    List<Door> _doors = new List<Door>();
 
+    private void Start()
+    {
+        _doors.AddRange(GetComponentsInChildren<Door>());
+    }
     private void OnDisable()
     {
         if (_doors.Count <= 0) return;

@@ -86,6 +86,7 @@ public class LevelSpawner : MonoBehaviour
 
     public void SpawnLevelOnStart()
     {
+        _paint = transform.GetChild(0).gameObject;
         newLevel = Instantiate(levelToSpawn, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
         newLevel.name = levelToSpawn.name;
         CameraManager.Instance.AddNewLevel(newLevel);

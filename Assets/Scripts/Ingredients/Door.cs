@@ -12,26 +12,21 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
-        _collider.excludeLayers = 8;
+        _collider.isTrigger = true;
         _sprite.enabled = false;
     }
     public  void Close()
     {
-        _collider.excludeLayers = 0;
+        _collider.isTrigger = false;
         _sprite.enabled = true;
     }
     private void OnTriggerEnter(Collider other)
-
     {
-        if (other.CompareTag("Door") )
+        if (other.CompareTag("Door")&&other!=_collider )
         {
-            _otherDoor = other.GetComponentInParent<Door>();
+            _otherDoor = other.GetComponentInChildren<Door>();
             //_otherDoor.Open();
             Open();
         }
-    }
-    private void Update()
-    {
-
     }
 }
