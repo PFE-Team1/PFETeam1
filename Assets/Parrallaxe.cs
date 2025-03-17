@@ -28,20 +28,20 @@ public class Parrallaxe : MonoBehaviour
         float distY = 0;
         if (_vertical)
         {
-            distY = _mainCamera.transform.position.y * _strengthY;
+            distY = _mainCamera.transform.position.y ;
             if (distY > _bounds.size.y / 2) distY = _bounds.size.y / 2;
             if (distY <1- _bounds.size.y / 2) distY = 1-_bounds.size.y / 2;
         }
         if (_horizontal)
         {
-            distX = _mainCamera.transform.position.x * _strengthX;
+            distX = _mainCamera.transform.position.x;
             if (distX > _bounds.size.x / 2) distX = _bounds.size.x / 2;
             if (distX <1- _bounds.size.x / 2) distX = 1-_bounds.size.x / 2;
         }
         float currentFallOff = 0;
         foreach(GameObject layer in _layers)
         {
-            layer.transform.position = new Vector2(_startPos.x + distX*(1-currentFallOff), _startPos.y + distY*(1-currentFallOff));
+            layer.transform.position = new Vector2(_startPos.x + distX * _strengthX * (1-currentFallOff), _startPos.y + distY * _strengthY * (1-currentFallOff));
             currentFallOff += fallOff;
         }
     }
