@@ -25,11 +25,13 @@ public class Clone : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _charID = CloneManager.instance.Characters.Count;
         CloneManager.instance.Characters.Add(this);
+        CloneManager.instance.Switch(_charID-1);
     }
     
     public void Cloned(GameObject spawnPoint)// mettre dans des états pour la state machine
     {
-        GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);                   
+        GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        
     }
     public void Interact(InputAction.CallbackContext context)
     {
@@ -50,8 +52,12 @@ public class Clone : MonoBehaviour
 
         }
     }
-    public void Switchup()
+    public void Switchup(bool isEnable)
     {
-        _playerInput.enabled = !_playerInput.enabled;
+        _playerInput.enabled = isEnable;
+        if (isEnable)
+        {
+            CVC.Follow = transform;
+        }
     }
 }
