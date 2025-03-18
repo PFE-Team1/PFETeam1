@@ -33,6 +33,7 @@ public class CloneManager : MonoBehaviour
         {
             charID = 0;
         }
+        _characters[charID].Switchup(true);
         _currentPlayer = charID;
         foreach (Clone c in _characters)
         {
@@ -44,7 +45,6 @@ public class CloneManager : MonoBehaviour
             else
             {
                 c.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
-                c.Switchup(true);
             }
         }
     }
