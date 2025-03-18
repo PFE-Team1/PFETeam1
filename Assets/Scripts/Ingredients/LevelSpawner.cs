@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Events;
 
 public class LevelSpawner : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class LevelSpawner : MonoBehaviour
     private GameObject _player;
 
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
+    [SerializeField] private UnityEvent SFX_ApparitionToile;
+    [SerializeField] private UnityEvent SFX_DisparitionToile;
+    [SerializeField] private UnityEvent SFX_DécalageToile;
     
-    public bool isInRange = false;
+    bool isInRange = false;
     public bool isAlreadySpawned = false;
     private GameObject newLevel;
 
@@ -61,6 +65,7 @@ public class LevelSpawner : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    SFX_ApparitionToile.Invoke();
                     SpawnNewLevel();
                 }
             }
@@ -68,6 +73,7 @@ public class LevelSpawner : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    SFX_DisparitionToile.Invoke();
                     RemoveNewLevel();
                 }
             }
@@ -144,13 +150,14 @@ public class LevelSpawner : MonoBehaviour
                     {
                         Vector2 offset = GetCollisionOffset(newLevelBounds, existingBounds);
 
-                        // Décalage plus grand (évite les micro-ajustements infinis)
                         newLevel.transform.position -= new Vector3(offset.x, offset.y, 0);
                     }
                 }
             }
-            attempts++; // On compte le nombre de tentatives
+            attempts++;
         }
+
+        SFX_DécalageToile.Invoke();
 
         if (attempts >= maxAttempts)
         {

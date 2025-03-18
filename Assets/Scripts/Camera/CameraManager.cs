@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Unity.VisualScripting;
+using UnityEngine.Events;
 
 public class CameraManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
     [SerializeField] private GameObject _compositeParent;
     private List<CinemachineVirtualCamera> _allCameras = new List<CinemachineVirtualCamera>();
+    [SerializeField] private UnityEvent SFX_Dezoom;
+    [SerializeField] private UnityEvent SFX_Zoom;
 
     private Bounds _cameraBounds;
     private Camera _globalCamera;
@@ -52,11 +55,13 @@ public class CameraManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
+            SFX_Dezoom.Invoke();
             SeeAllLevels();
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
+            SFX_Zoom.Invoke();
             FocusCamera();
         }
     }
