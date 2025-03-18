@@ -24,27 +24,27 @@ public class CloneManager : MonoBehaviour
 
     public void Switch(int charID)
     {
-        if (_characters.Count > 0)
+        if (_characters.Count <= 0)
         {
-            _characters[charID].Switchup();
-            charID++;
-            if (charID >= _characters.Count)
+            return;
+        }
+        charID++;
+        if (charID >= _characters.Count)
+        {
+            charID = 0;
+        }
+        _characters[charID].Switchup(true);
+        _currentPlayer = charID;
+        foreach (Clone c in _characters)
+        {
+            if (c.CharID != charID)
             {
-                charID = 0;
+                c.gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
+                c.Switchup(false);
             }
-            _characters[charID].Switchup();
-            _currentPlayer = charID;
-            foreach (Clone c in _characters)
+            else
             {
-                if (c.CharID != charID)
-                {
-                    c.gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
-                }
-                else 
-                {
-                    c.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
-
-                }
+                c.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
             }
         }
     }
