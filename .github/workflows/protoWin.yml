@@ -1,0 +1,147 @@
+name: Building CI on Unity for Team 1 PFE PROTOTYPE
+
+on:
+  push:
+    branches: [ "GP-Proto" ]
+  pull_request:
+    branches: [ "GP-Proto" ]
+  workflow_dispatch:
+
+env:
+  PROJECT_NAME: PFE_CI # Définir le nom du projet comme variable d'environnement
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Start Time
+        run: echo "START_TIME=$(TZ=":Europe/Paris" date +'%H:%M le %d-%m-%Y')" >> $GITHUB_ENV
+
+      - name: Set Random Image URL
+        id: random-image
+        run: |
+          IMAGES=(
+            "https://media3.giphy.com/media/PSnWg72p9ed3i/giphy.gif?cid=6c09b95251my7wnigieofx0orvcqelkbw39vrlotqdha2891&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g"
+            "https://media.tenor.com/1IG6EM1whsoAAAAM/glasses.gif"
+            "https://media.tenor.com/-hiLIoLZc2AAAAAM/wall-walle-clap.gif"
+            "https://media3.giphy.com/media/gm70vZBCSQtnW/giphy.gif?cid=6c09b952z8glguq0gc291mu24ug8nqqxky2a4qrs1kr9en36&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g"
+            "https://gifdb.com/images/high/wall-e-498-x-498-gif-ilywdmuywv6ayu7u.gif"
+          )
+          RANDOM_IMAGE=${IMAGES[$((RANDOM % ${#IMAGES[@]}))]}
+          echo "random_image_url=$RANDOM_IMAGE" >> $GITHUB_OUTPUT
+
+      - name: Checking out Git
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get last successful build date
+        id: last-build
+        run: |
+          echo "LAST_BUILD_DATE=$(git log --pretty=format:'%cd' -1 --date=iso)" >> $GITHUB_ENV
+
+      - name: Get commits since last build
+        id: commits
+        run: |
+          COMMITS=$(git log --pretty=format:'- [%h](https://github.com/${{ github.repository }}/commit/%h) - %s - %an' --since="${{ env.LAST_BUILD_DATE }}")
+          echo "COMMITS<<EOF" >> $GITHUB_ENV
+          echo "$COMMITS" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Set Build Name
+        run: echo "BUILD_NAME=PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}" >> $GITHUB_ENV
+
+      - name: Build execution time - start
+        id: build-execution-time-start
+        run: echo "start_time=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Caching
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library   
+
+      - name: Building Game
+        id: project-build
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          buildName: ${{ env.BUILD_NAME }}
+          buildsPath: Builds
+          targetPlatform: StandaloneWindows64
+          allowDirtyBuild: true
+        continue-on-error: true
+
+      - name: Build execution time - end
+        id: build-execution-time
+        run: |
+          end_time=$(date +%s)
+          duration=$((end_time - ${{ env.start_time }}))
+          echo "duration=$duration" >> $GITHUB_OUTPUT
+
+      - name: Storing Build Artefact
+        id: build-upload
+        if: ${{ steps.project-build.outcome == 'success' }}
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: ${{ env.BUILD_NAME }}
+          path: Builds/StandaloneWindows64
+          retention-days: 14
+
+      - name: List files in Builds directory (Debug)
+        if: ${{ steps.project-build.outcome == 'success' }}
+        run: ls -R ${{ github.workspace }}/Builds
+
+      - name: Set build artifact URL
+        id: build-artifact-url
+        if: ${{ steps.project-build.outcome == 'success' }}
+        run: |
+          ARTIFACT_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+            | jq -r '.artifacts[] | select(.name == "${{ env.BUILD_NAME }}") | .id')
+          echo "BUILD_ARTIFACT_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ARTIFACT_ID" >> $GITHUB_ENV
+
+      - name: Set empty artifact URL if build failed
+        if: ${{ steps.project-build.outcome != 'success' }}
+        run: echo "BUILD_ARTIFACT_URL=Non disponible (échec de la compilation)" >> $GITHUB_ENV
+
+      - name: Set build status
+        id: build-status
+        run: |
+          if [ "${{ steps.project-build.outcome }}" == "success" ]; then
+            echo "STATUS=Réussie ✅ 🤖" >> $GITHUB_ENV
+            echo "COLOR=65280" >> $GITHUB_ENV
+            echo "EXIT_CODE=${{ steps.project-build.outputs.engineExitCode || '0' }}" >> $GITHUB_ENV
+          else
+            echo "STATUS=Échouée ❌ 🤖" >> $GITHUB_ENV
+            echo "COLOR=16711680" >> $GITHUB_ENV
+            echo "EXIT_CODE=1" >> $GITHUB_ENV
+          fi
+
+      - name: Send Discord notification
+        uses: tsickert/discord-webhook@v6.0.0
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          username: "Wall-tifact 🤖🔧"
+          avatar-url: "https://avatarfiles.alphacoders.com/999/99923.jpg"
+          embed-image-url: ${{ steps.random-image.outputs.random_image_url }}
+          embed-title: "Build Unity - ${{ env.START_TIME }} - ${{ env.STATUS }}"
+          embed-description: |
+            **Détails de la build:**
+            - **Nom:** PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}
+            - **Plateforme:** StandaloneWindows64
+            - **Durée d'exécution:** ${{ steps.build-execution-time.outputs.duration }} secondes
+            - **Code de sortie:** ${{ env.EXIT_CODE }}
+
+            **Dernier commit depuis la dernière build:**
+            ${{ env.COMMITS }}
+
+            **Liens Utiles:**
+            - [Télécharger la build](${{ env.BUILD_ARTIFACT_URL }})
+            - [Détails du workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          embed-color: ${{ env.COLOR }}
+          embed-footer-text: "Team 1 PFE PROTOTYPE - Build générée à ${{ env.START_TIME }}"
