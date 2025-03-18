@@ -101,7 +101,6 @@ public class LevelSpawner : MonoBehaviour
         else
         {
             newLevel = CameraManager.Instance.Levels.Find(level => level.name == newLevelPrefab.name);
-            Debug.Log($"Level {newLevel.name} already exists");
             newLevel.SetActive(true);
         }
 
@@ -111,18 +110,76 @@ public class LevelSpawner : MonoBehaviour
 
         var newLevelBounds = newLevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
-        SetDirection(newLevelBounds, currentLevelBounds);
 
         if (CanBePlaced(newLevel))
         {
-            //SetDirection(newLevelBounds, currentLevelBounds);
+            SetDirection(newLevelBounds, currentLevelBounds);
         }
         else
         {
-            //Debug.Log($"Non");
+            SetDirection(newLevelBounds, currentLevelBounds);
+            SetNewPosition();
         }
 
         isAlreadySpawned = true;
+    }
+
+    private void SetNewPosition()
+    {
+        int maxAttempts = 50; // On limite à 50 essais pour éviter une boucle infinie
+        int attempts = 0;
+
+        while (!CanBePlaced(newLevel) && attempts < maxAttempts)
+        {
+            foreach (var level in CameraManager.Instance.Levels)
+            {
+                if (level == newLevel) continue;
+
+                if (level.TryGetComponent(out SpriteRenderer sr) && newLevel.TryGetComponent(out SpriteRenderer newSr))
+                {
+                    Bounds newLevelBounds = newSr.bounds;
+                    Bounds existingBounds = sr.bounds;
+
+                    if (newLevelBounds.Intersects(existingBounds))
+                    {
+                        Vector2 offset = GetCollisionOffset(newLevelBounds, existingBounds);
+
+                        // Décalage plus grand (évite les micro-ajustements infinis)
+                        newLevel.transform.position -= new Vector3(offset.x, offset.y, 0);
+                    }
+                }
+            }
+            attempts++; // On compte le nombre de tentatives
+        }
+
+        if (attempts >= maxAttempts)
+        {
+            Debug.LogWarning("Impossible de placer l'objet sans collision après plusieurs essais !");
+        }
+    }
+
+    private Vector2 GetCollisionOffset(Bounds newBounds, Bounds existingBounds)
+    {
+        float leftOverlap = Mathf.Abs(newBounds.min.x - existingBounds.max.x);
+        float rightOverlap = Mathf.Abs(newBounds.max.x - existingBounds.min.x);
+        float bottomOverlap = Mathf.Abs(newBounds.min.y - existingBounds.max.y);
+        float topOverlap = Mathf.Abs(newBounds.max.y - existingBounds.min.y);
+
+        float minOverlap = Mathf.Min(leftOverlap, rightOverlap, bottomOverlap, topOverlap);
+
+        Vector2 offset = Vector2.zero;
+
+        if (minOverlap == leftOverlap)
+            offset.x = -leftOverlap; // Collision à gauche
+        else if (minOverlap == rightOverlap)
+            offset.x = rightOverlap; // Collision à droite
+        else if (minOverlap == bottomOverlap)
+            offset.y = -bottomOverlap; // Collision en bas
+        else if (minOverlap == topOverlap)
+            offset.y = topOverlap; // Collision en haut
+
+        Debug.Log($"Décalage : {offset}");
+        return offset;
     }
 
     private void SetDirection(Vector3 newLevelBounds, Vector3 currentLevelBounds)
@@ -144,6 +201,52 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
+    private Vector2? TouchingBounds(GameObject newLevel)
+    {
+        foreach (var level in CameraManager.Instance.Levels)
+        {
+            if (level == newLevel) continue;
+
+            if (level.TryGetComponent(out SpriteRenderer sr))
+            {
+                if (newLevel.TryGetComponent(out SpriteRenderer newSr))
+                {
+                    Bounds newLevelBounds = newSr.bounds;
+                    newLevelBounds.Expand(-0.1f);
+
+                    return GetTouchingBounds(newLevelBounds, sr.bounds);
+                }
+            }
+        }
+        return null;
+    }
+
+    public Vector2 GetTouchingBounds(Bounds newLevelBounds, Bounds srBounds)
+    {
+        Vector2 touchingBounds = new Vector2();
+        if (newLevelBounds.Intersects(srBounds))
+        {
+            if (newLevelBounds.min.x < srBounds.min.x)
+            {
+                touchingBounds.x = newLevelBounds.min.x - srBounds.min.x;
+            }
+            else if (newLevelBounds.max.x > srBounds.max.x)
+            {
+                touchingBounds.x = newLevelBounds.max.x - srBounds.max.x;
+            }
+
+            if (newLevelBounds.min.y < srBounds.min.y)
+            {
+                touchingBounds.y = newLevelBounds.min.y - srBounds.min.y;
+            }
+            else if (newLevelBounds.max.y > srBounds.max.y)
+            {
+                touchingBounds.y = newLevelBounds.max.y - srBounds.max.y;
+            }
+        }
+        return touchingBounds;
+    }
+
     private bool CanBePlaced(GameObject newLevel)
     {
         foreach (var level in CameraManager.Instance.Levels)
@@ -154,7 +257,10 @@ public class LevelSpawner : MonoBehaviour
             {
                 if (newLevel.TryGetComponent(out SpriteRenderer newSr))
                 {
-                    if (newSr.bounds.Intersects(sr.bounds))
+                    Bounds newLevelBounds = newSr.bounds;
+                    newLevelBounds.Expand(-0.1f);
+
+                    if (newLevelBounds.Intersects(sr.bounds))
                     {
                         return false;
                     }

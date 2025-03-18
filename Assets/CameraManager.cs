@@ -195,18 +195,23 @@ public class CameraManager : MonoBehaviour
         onComplete?.Invoke();
     }
 
+    public void DefineCameraBounds()
+    {
+        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+    }
+
     public void AddNewLevel(GameObject newLevel)
     {
         _levels.Add(newLevel);
-        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
         CalculateWorldBounds();
+        DefineCameraBounds();
         CalculateCameraBounds();
     }
 
     public void RemoveLevel(GameObject level)
     {
         _levels.Remove(level);
-        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+        DefineCameraBounds();
         CalculateWorldBounds();
         CalculateCameraBounds();
     }
