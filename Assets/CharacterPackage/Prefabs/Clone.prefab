@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 7935253893663324012}
   - component: {fileID: 8978795770275156206}
   m_Layer: 3
-  m_Name: Joueur
+  m_Name: Clone
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,7 +546,7 @@ RectTransform:
   m_GameObject: {fileID: 8885932740852423821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7536746513119400259}
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8885932740852423821}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -5618,6 +5618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a76748de21d2049b15e3d25ba97a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clone: {fileID: 8885932740852423821, guid: cc11a1799ce74ee46a3d858b9d1f7afe, type: 3}
+  _clone: {fileID: 8885932740852423821}
   _charID: 0
   _playerInput: {fileID: 2440285559612817661}

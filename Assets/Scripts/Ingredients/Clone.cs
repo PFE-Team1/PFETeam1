@@ -25,11 +25,13 @@ public class Clone : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _charID = CloneManager.instance.Characters.Count;
         CloneManager.instance.Characters.Add(this);
+        CloneManager.instance.Switch(_charID - 1);
+        ChangeParent();
     }
-    
     public void Cloned(GameObject spawnPoint)// mettre dans des états pour la state machine
     {
-        GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);                   
+        GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        
     }
     public void Interact(InputAction.CallbackContext context)
     {
@@ -50,8 +52,48 @@ public class Clone : MonoBehaviour
 
         }
     }
-    public void Switchup()
+    public void Switchup(bool isEnable)
     {
-        _playerInput.enabled = !_playerInput.enabled;
+        _playerInput.enabled = isEnable;
+        if (isEnable)
+        {
+            CVC.Follow = transform;
+        }
+        else
+        {
+            ChangeParent();
+        }
+    }
+    private void ChangeParent()
+    {
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.back);
+        foreach (var hit in hits)
+        {
+            if (hit.collider != null)
+            {
+                GameObject hitObject = hit.collider.gameObject;
+
+                CompositeCollider2D composite = hitObject.GetComponent<CompositeCollider2D>();
+                if (composite != null)
+                {
+                    Collider2D[] childColliders = hitObject.GetComponentsInChildren<Collider2D>();
+                    foreach (var child in childColliders)
+                    {
+                        SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+                        if (sr != null)
+                        {
+                            Bounds levelBounds = sr.bounds;
+                            Bounds paintingBounds = GetComponent<CapsuleCollider>().bounds;
+
+                            if (levelBounds.Intersects(paintingBounds))
+                            {
+                                transform.SetParent(child.transform);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

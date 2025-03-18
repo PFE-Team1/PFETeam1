@@ -50,7 +50,13 @@ MonoBehaviour:
   bouleParams: {fileID: 11400000, guid: 098f8e25194efd4489a646984462cb28, type: 2}
   selectionPersoCanvas: {fileID: 0}
   characterSelector: []
+  StartGame: {fileID: 0}
   ReadyToFight: {fileID: 0}
+  horizontalLayoutGroup: {fileID: 0}
+  diePrefab: []
+  castPrefab: []
+  petDiePrefab: {fileID: 0}
+  ControlsPrefab: {fileID: 0}
 --- !u!114 &8878696033058727485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,9 +69,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e75616ada90bc04985767f623fc40f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 6823378595812609141, guid: 279fb6a7e6470d040806726a02c19112,
-    type: 3}
-  _isPaused: 0
+  _pauseMenu: {fileID: 0}
+  _continue: {fileID: 0}
+  _quit: {fileID: 0}
 --- !u!1 &6252447588885283343
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,8 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11bd2f5ce24a6ed4e9e52bdbaf41c131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 8885932740852423821, guid: 46a54111bde654d478154b5c650628c4,
-    type: 3}
+  playerPrefab: {fileID: 8885932740852423821, guid: de6cfe0cb8410bb4e8147bacf0ec5fe9, type: 3}
 --- !u!114 &6588468207800784611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 1
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -138,17 +143,16 @@ MonoBehaviour:
   m_JoinAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 272711ad-1f11-4c60-8f42-d1564616d505
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 8885932740852423821, guid: 46a54111bde654d478154b5c650628c4,
-    type: 3}
+  m_PlayerPrefab: {fileID: 8885932740852423821, guid: de6cfe0cb8410bb4e8147bacf0ec5fe9, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
