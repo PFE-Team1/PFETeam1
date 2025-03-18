@@ -3,13 +3,27 @@ using UnityEngine;
 public abstract class PlayerState
 {
     public PlayerStateMachine StateMachine { get; private set; }
+    protected InputsManager _inputsManager => StateMachine.InputsManager;
+    protected PlayerMovementParameters _playerMovementParameters => StateMachine.PlayerMovementParameters;
     protected void ChangeState(PlayerState state) => StateMachine.ChangeState(state);
     public void StateEnter(PlayerState previousState) => OnStateEnter(previousState);
     public void StateExit(PlayerState nextState) => OnStateExit(nextState);
 
+    public void Init(PlayerStateMachine stateMachine)
+    {
+        StateMachine = stateMachine;
+        OnStateInit();
+    }
     public void StateUpdate()
     {
+        if (_playerMovementParameters == null)
+        {
+            Debug.LogWarning("You forgot playerMovementParameters Scriptable object ! ");
+            return;
+        } 
+        
         OnStateUpdate();
+
     }
 
     protected abstract void OnStateInit();

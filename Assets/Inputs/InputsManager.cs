@@ -116,7 +116,6 @@ public class InputsManager : MonoBehaviour
     }
     public void Move(InputAction.CallbackContext context)
     {
-        print(_moveX);
         _moveX = context.ReadValue<Vector2>().x;
     }
     public void LookAround(InputAction.CallbackContext context)
