@@ -29,7 +29,13 @@ public class Clone : MonoBehaviour
         CloneManager.instance.Switch(_charID - 1);
   
     }
-    public void Cloned(GameObject spawnPoint)// mettre dans des états pour la state machine
+
+    void Update()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+    }
+
+    public void Cloned(GameObject spawnPoint)// mettre dans des ï¿½tats pour la state machine
     {
         GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
         
@@ -47,7 +53,7 @@ public class Clone : MonoBehaviour
             _isInteracting = false;
         }
     }
-    public void Switch(InputAction.CallbackContext context)// mettre dans des états pour la state machine
+    public void Switch(InputAction.CallbackContext context)// mettre dans des ï¿½tats pour la state machine
     {
         if (context.performed)
         {

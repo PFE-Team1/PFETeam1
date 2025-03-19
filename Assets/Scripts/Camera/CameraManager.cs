@@ -47,7 +47,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         CalculateCameraBounds();
-        _mainCamera.GetComponent<CinemachineConfiner2D>().InvalidateCache();
+        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
         _allCameras.AddRange(_mainCamera.GetComponentsInChildren<CinemachineVirtualCamera>());
     }
 
@@ -186,7 +186,7 @@ public class CameraManager : MonoBehaviour
 
     public void DefineCameraBounds()
     {
-        _mainCamera.GetComponent<CinemachineConfiner2D>().InvalidateCache();
+        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
     }
 
     public void AddNewLevel(GameObject newLevel)
