@@ -19,7 +19,6 @@ public class LevelSpawner : MonoBehaviour
     
     public bool isInRange = false;
     public bool isAlreadySpawned = false;
-    private GameObject _newLevel;
 
     public bool isSoawnOnStart;
     public bool isFixed;
@@ -83,9 +82,9 @@ public class LevelSpawner : MonoBehaviour
             {
                 if (_playerC.IsInteracting)
                 {
+                    RemoveNewLevel();
                     _playerC.IsInteracting = false;
                     SFX_DisparitionToile.Invoke();
-                    RemoveNewLevel();
                 }
             }
         }
@@ -299,9 +298,7 @@ public class LevelSpawner : MonoBehaviour
         _paint.transform.SetParent(_player.transform);
         _playerC.heldObject = _paint;
         _paint = null;
-        _newLevel.SetActive(false);
-        CameraManager.Instance?.RemoveLevel(_newLevel);
+        _newlevel.SetActive(false);
+        CameraManager.Instance?.RemoveLevel(_newlevel);
     }
-    
-  
 }

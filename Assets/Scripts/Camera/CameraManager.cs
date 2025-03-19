@@ -199,7 +199,7 @@ public class CameraManager : MonoBehaviour
 
     public void RemoveLevel(GameObject level)
     {
-        _levels.Remove(level);
+       // _levels.Remove(level);
         DefineCameraBounds();
         CalculateWorldBounds();
         CalculateCameraBounds();
