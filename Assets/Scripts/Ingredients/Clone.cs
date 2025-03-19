@@ -9,12 +9,14 @@ public class Clone : MonoBehaviour
     [SerializeField] private GameObject _clone;
     [SerializeField] private int _charID;
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
     private bool _isInteracting;
     private bool _isInSocleRange=false;
     private GameObject _heldObject;
     public GameObject heldObject { get => _heldObject; set => _heldObject = value; }
     public int CharID { get => _charID;}
+    public Transform PaintingTransform { get => _paintingTransform; set => _paintingTransform = value; }
     public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
     public bool IsInSocleRange { get => _isInSocleRange; set => _isInSocleRange = value; }
 
@@ -27,7 +29,6 @@ public class Clone : MonoBehaviour
         ChangeParent();
         CloneManager.instance.Characters.Add(this);
         CloneManager.instance.Switch(_charID - 1);
-  
     }
 
     void Update()

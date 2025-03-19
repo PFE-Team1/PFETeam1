@@ -21,6 +21,8 @@ public class CameraManager : MonoBehaviour
     public float _cameraZoomSpeed = 1f;
     public float _cameraMoveSpeed = 1f;
 
+    float initOrthoSize;
+
     private Coroutine _zoomCoroutine;
     private Coroutine _dezoomCoroutine;
 
@@ -103,7 +105,7 @@ public class CameraManager : MonoBehaviour
     public void SeeAllLevels()
     {
         if (_globalCamera != null) return;
-
+        initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
         _globalCamera = new GameObject("Global Camera").AddComponent<CinemachineVirtualCamera>();
 
         Bounds combinedBounds = new Bounds();
@@ -179,8 +181,17 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator ZoomEffect(System.Action onComplete)
     {
-        _globalCamera.Priority = 0;
-        yield return null;
+        float initialOrthoSize = _globalCamera.m_Lens.OrthographicSize;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _cameraZoomSpeed)
+        {
+            _globalCamera.m_Lens.OrthographicSize = Mathf.Lerp(initialOrthoSize, initOrthoSize, elapsedTime / _cameraZoomSpeed);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _globalCamera.m_Lens.OrthographicSize = initOrthoSize;
         onComplete?.Invoke();
     }
 

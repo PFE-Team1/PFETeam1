@@ -90,7 +90,8 @@ public class PaintingController : MonoBehaviour
                 else
                 {
                     SFX_GrabToile.Invoke();
-                    transform.SetParent(player.transform);
+                    transform.SetParent(playerC.PaintingTransform);
+                    transform.position = playerC.PaintingTransform.position;
                     isHeld = true;
                     playerC.heldObject = gameObject;
                 }

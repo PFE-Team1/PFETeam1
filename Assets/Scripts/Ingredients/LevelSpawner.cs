@@ -68,7 +68,6 @@ public class LevelSpawner : MonoBehaviour
     {
         if (isInRange)
         {
-            
             if (!isAlreadySpawned)
             {
                 if (_playerC.IsInteracting&&_playerC.heldObject!=null)
@@ -86,6 +85,11 @@ public class LevelSpawner : MonoBehaviour
                     _playerC.IsInteracting = false;
                     SFX_DisparitionToile.Invoke();
                 }
+            }
+
+            if (_playerC.IsInteracting && _playerC.heldObject != null)
+            {
+                Debug.Log($"_playerC.heldObject : {_playerC.heldObject}");
             }
         }
     }
