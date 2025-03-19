@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PaintingController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class PaintingController : MonoBehaviour
     private Clone playerC;
     bool isInRange = false;
     bool isHeld = false;
+
+    [SerializeField] private UnityEvent SFX_GrabToile;
+    [SerializeField] private UnityEvent SFX_PoseToile;
 
     void OnTriggerEnter(Collider other)
     {
@@ -47,6 +51,7 @@ public class PaintingController : MonoBehaviour
                 playerC.IsInteracting = false;
                 if (isHeld)
                 {
+                    SFX_PoseToile.Invoke();
                     Vector3 releasePosition = transform.position;
                     RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
 
@@ -84,6 +89,7 @@ public class PaintingController : MonoBehaviour
                 }
                 else
                 {
+                    SFX_GrabToile.Invoke();
                     transform.SetParent(player.transform);
                     isHeld = true;
                     playerC.heldObject = gameObject;

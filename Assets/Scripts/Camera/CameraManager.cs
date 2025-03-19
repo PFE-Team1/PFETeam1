@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Unity.VisualScripting;
+using UnityEngine.Events;
 
 public class CameraManager : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
     [SerializeField] private GameObject _compositeParent;
     private List<CinemachineVirtualCamera> _allCameras = new List<CinemachineVirtualCamera>();
+    [SerializeField] private UnityEvent SFX_Dezoom;
+    [SerializeField] private UnityEvent SFX_Zoom;
 
     private Bounds _cameraBounds;
-    private Camera _globalCamera;
+    private CinemachineVirtualCamera _globalCamera;
 
     public float _cameraZoomSpeed = 1f;
     public float _cameraMoveSpeed = 1f;
@@ -52,11 +55,13 @@ public class CameraManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
+            SFX_Dezoom.Invoke();
             SeeAllLevels();
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
+            SFX_Zoom.Invoke();
             FocusCamera();
         }
     }
@@ -99,8 +104,7 @@ public class CameraManager : MonoBehaviour
     {
         if (_globalCamera != null) return;
 
-        _globalCamera = new GameObject("Global Camera").AddComponent<Camera>();
-        _globalCamera.orthographic = false;        
+        _globalCamera = new GameObject("Global Camera").AddComponent<CinemachineVirtualCamera>();
 
         Bounds combinedBounds = new Bounds();
         foreach (var level in _levels)
@@ -113,19 +117,16 @@ public class CameraManager : MonoBehaviour
 
         float worldWidth = combinedBounds.size.x;
         float worldHeight = combinedBounds.size.y;
-        float aspectRatio = _globalCamera.aspect;
 
-        _globalCamera.clearFlags = CameraClearFlags.SolidColor;
-        _globalCamera.backgroundColor = Color.black;
-
-        float distance = Mathf.Max(worldWidth / (2 * aspectRatio), worldHeight / 2) / Mathf.Tan(Mathf.Deg2Rad * _globalCamera.fieldOfView / 2);
+        _globalCamera.m_Lens.Orthographic = true;
+        _globalCamera.m_Lens.OrthographicSize = Mathf.Max(worldWidth / (2 * _mainCamera.m_Lens.Aspect), worldHeight / 2);
 
         if (_zoomCoroutine != null) return;
-        _dezoomCoroutine = StartCoroutine(DezoomEffect(combinedBounds.center, distance, () =>
+        _dezoomCoroutine = StartCoroutine(DezoomEffect(combinedBounds.center, _globalCamera.m_Lens.OrthographicSize, () =>
         {
             _dezoomCoroutine = null;
         }));
-        }
+    }
 
     private IEnumerator DezoomEffect(Vector3 targetPosition, float targetDistance, System.Action onComplete)
     {
@@ -167,7 +168,7 @@ public class CameraManager : MonoBehaviour
         if (_globalCamera != null)
         {
             if (_dezoomCoroutine != null) return;
-            _zoomCoroutine = StartCoroutine(ZoomEffect(_mainCamera.transform.position, _globalCamera.transform.position.z, () =>
+            _zoomCoroutine = StartCoroutine(ZoomEffect(() =>
             {
                 Destroy(_globalCamera.gameObject);
                 _globalCamera = null;
@@ -176,37 +177,30 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ZoomEffect(Vector3 targetPosition, float initialDistance, System.Action onComplete)
+    private IEnumerator ZoomEffect(System.Action onComplete)
     {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < _cameraZoomSpeed)
-        {
-            float currentDistance = Mathf.Lerp(initialDistance, _mainCamera.transform.position.z, elapsedTime / _cameraZoomSpeed);
-            _globalCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, currentDistance);
-            _globalCamera.transform.LookAt(targetPosition);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        _globalCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, _mainCamera.transform.position.z);
-        _globalCamera.transform.LookAt(targetPosition);
-
+        _globalCamera.Priority = 0;
+        yield return null;
         onComplete?.Invoke();
+    }
+
+    public void DefineCameraBounds()
+    {
+        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
     }
 
     public void AddNewLevel(GameObject newLevel)
     {
         _levels.Add(newLevel);
-        _mainCamera.GetComponent<CinemachineConfiner2D>().InvalidateCache();
         CalculateWorldBounds();
+        DefineCameraBounds();
         CalculateCameraBounds();
     }
 
     public void RemoveLevel(GameObject level)
     {
         _levels.Remove(level);
-        _mainCamera.GetComponent<CinemachineConfiner2D>().InvalidateCache();
+        DefineCameraBounds();
         CalculateWorldBounds();
         CalculateCameraBounds();
     }
