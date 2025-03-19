@@ -146,8 +146,19 @@ public class CameraManager : MonoBehaviour
 
         _globalCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, -targetDistance);
         _globalCamera.transform.LookAt(targetPosition);
-
         onComplete?.Invoke(); 
+    }
+
+    public void ShowNewLevel()
+    {
+        StartCoroutine(ShowAndHideLevel());
+    }
+
+    IEnumerator ShowAndHideLevel()
+    {
+        SeeAllLevels();
+        yield return new WaitForSeconds(1f);
+        FocusCamera();
     }
 
     public void SwitchToCamera(int index)
@@ -181,17 +192,9 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator ZoomEffect(System.Action onComplete)
     {
-        float initialOrthoSize = _globalCamera.m_Lens.OrthographicSize;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < _cameraZoomSpeed)
-        {
-            _globalCamera.m_Lens.OrthographicSize = Mathf.Lerp(initialOrthoSize, initOrthoSize, elapsedTime / _cameraZoomSpeed);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        _globalCamera.m_Lens.OrthographicSize = initOrthoSize;
+        _globalCamera.Priority = 0;
+        _mainCamera.Priority = 10;
+        yield return null;
         onComplete?.Invoke();
     }
 

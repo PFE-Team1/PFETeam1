@@ -17,6 +17,9 @@ public class PaintingController : MonoBehaviour
 
     [SerializeField] private UnityEvent SFX_GrabToile;
     [SerializeField] private UnityEvent SFX_PoseToile;
+    [SerializeField] private ParticleSystem VFX_GrabToile;
+    [SerializeField] private ParticleSystem VFX_PoseToile;
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -52,6 +55,7 @@ public class PaintingController : MonoBehaviour
                 if (isHeld)
                 {
                     SFX_PoseToile.Invoke();
+                    Destroy(Instantiate(VFX_GrabToile, transform), 1f);
                     Vector3 releasePosition = transform.position;
                     RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
 
@@ -90,6 +94,7 @@ public class PaintingController : MonoBehaviour
                 else
                 {
                     SFX_GrabToile.Invoke();
+                    Destroy(Instantiate(VFX_GrabToile, transform), 1f);
                     transform.SetParent(playerC.PaintingTransform);
                     transform.position = playerC.PaintingTransform.position;
                     isHeld = true;
