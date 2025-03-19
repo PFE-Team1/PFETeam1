@@ -14,7 +14,6 @@ public class LevelSpawner : MonoBehaviour
     private GameObject _player;
     private GameObject _paint;
     private Clone _playerC;
-
     [SerializeField] private UnityEvent OnRemovePainting;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     
@@ -24,12 +23,11 @@ public class LevelSpawner : MonoBehaviour
 
     public bool isSoawnOnStart;
     public bool isFixed;
-    [SerializeField] private GameObject _levelToSpawn;
     [SerializeField] private UnityEvent SFX_ApparitionToile;
     [SerializeField] private UnityEvent SFX_DisparitionToile;
     [SerializeField] private UnityEvent SFX_DécalageToile;
 
-    private GameObject newLevel;
+    private GameObject _newlevel;
     public bool isSpawnOnStart;
     [SerializeField] private GameObject levelToSpawn;
     
@@ -96,11 +94,11 @@ public class LevelSpawner : MonoBehaviour
     public void SpawnLevelOnStart()
     {
         _paint = transform.GetChild(0).gameObject;
-        newLevel = Instantiate(levelToSpawn, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
-        newLevel.name = levelToSpawn.name;
-        CameraManager.Instance.AddNewLevel(newLevel);
+        _newlevel = Instantiate(levelToSpawn, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
+        _newlevel.name = levelToSpawn.name;
+        CameraManager.Instance.AddNewLevel(_newlevel);
 
-        var newLevelBounds = newLevel.GetComponent<SpriteRenderer>().bounds.size;
+        var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
         SetDirection(newLevelBounds, currentLevelBounds);
     }
@@ -114,14 +112,14 @@ public class LevelSpawner : MonoBehaviour
 
         if (!CameraManager.Instance.Levels.Exists(level => level.name == newLevelPrefab.name))
         {
-            newLevel = Instantiate(newLevelPrefab, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
-            newLevel.name = newLevelPrefab.name;
-            CameraManager.Instance.AddNewLevel(newLevel);
+            _newlevel = Instantiate(newLevelPrefab, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
+            _newlevel.name = newLevelPrefab.name;
+            CameraManager.Instance.AddNewLevel(_newlevel);
         }
         else
         {
-            newLevel = CameraManager.Instance.Levels.Find(level => level.name == newLevelPrefab.name);
-            newLevel.SetActive(true);
+            _newlevel = CameraManager.Instance.Levels.Find(level => level.name == newLevelPrefab.name);
+            _newlevel.SetActive(true);
         }
 
         _heldObject.transform.SetParent(transform);
@@ -129,12 +127,12 @@ public class LevelSpawner : MonoBehaviour
         _paint = _playerC.heldObject;
         _player.GetComponent<Clone>().heldObject = null;
 
-        var newLevelBounds = _newLevel.GetComponent<SpriteRenderer>().bounds.size;
+        var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
 
         SetDirection(newLevelBounds, currentLevelBounds);
 
-        if (CanBePlaced(newLevel))
+        if (CanBePlaced(_newlevel))
         {
             SetDirection(newLevelBounds, currentLevelBounds);
         }
@@ -152,13 +150,13 @@ public class LevelSpawner : MonoBehaviour
         int maxAttempts = 50; // On limite à 50 essais pour éviter une boucle infinie
         int attempts = 0;
 
-        while (!CanBePlaced(newLevel) && attempts < maxAttempts)
+        while (!CanBePlaced(_newlevel) && attempts < maxAttempts)
         {
             foreach (var level in CameraManager.Instance.Levels)
             {
-                if (level == newLevel) continue;
+                if (level == _newlevel) continue;
 
-                if (level.TryGetComponent(out SpriteRenderer sr) && newLevel.TryGetComponent(out SpriteRenderer newSr))
+                if (level.TryGetComponent(out SpriteRenderer sr) && _newlevel.TryGetComponent(out SpriteRenderer newSr))
                 {
                     Bounds newLevelBounds = newSr.bounds;
                     Bounds existingBounds = sr.bounds;
@@ -167,7 +165,7 @@ public class LevelSpawner : MonoBehaviour
                     {
                         Vector2 offset = GetCollisionOffset(newLevelBounds, existingBounds);
 
-                        newLevel.transform.position -= new Vector3(offset.x, offset.y, 0);
+                        _newlevel.transform.position -= new Vector3(offset.x, offset.y, 0);
                     }
                 }
             }
@@ -211,29 +209,29 @@ public class LevelSpawner : MonoBehaviour
         switch (_direction)
         {
             case Direction.Up:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y + currentLevelBounds.y / 2 + newLevelBounds.y / 2, 0);
+                _newlevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y + currentLevelBounds.y / 2 + newLevelBounds.y / 2, 0);
                 break;
             case Direction.Down:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y - currentLevelBounds.y / 2 - newLevelBounds.y / 2, 0);
+                _newlevel.transform.position = new Vector3(_currentLevel.transform.position.x, _currentLevel.transform.position.y - currentLevelBounds.y / 2 - newLevelBounds.y / 2, 0);
                 break;
             case Direction.Left:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x - currentLevelBounds.x / 2 - newLevelBounds.x / 2, _currentLevel.transform.position.y, 0);
+                _newlevel.transform.position = new Vector3(_currentLevel.transform.position.x - currentLevelBounds.x / 2 - newLevelBounds.x / 2, _currentLevel.transform.position.y, 0);
                 break;
             case Direction.Right:
-                newLevel.transform.position = new Vector3(_currentLevel.transform.position.x + currentLevelBounds.x / 2 + newLevelBounds.x / 2, _currentLevel.transform.position.y, 0);
+                _newlevel.transform.position = new Vector3(_currentLevel.transform.position.x + currentLevelBounds.x / 2 + newLevelBounds.x / 2, _currentLevel.transform.position.y, 0);
                 break;
         }
     }
 
-    private Vector2? TouchingBounds(GameObject newLevel)
+    private Vector2? TouchingBounds(GameObject _newlevel)
     {
         foreach (var level in CameraManager.Instance.Levels)
         {
-            if (level == newLevel) continue;
+            if (level == _newlevel) continue;
 
             if (level.TryGetComponent(out SpriteRenderer sr))
             {
-                if (newLevel.TryGetComponent(out SpriteRenderer newSr))
+                if (_newlevel.TryGetComponent(out SpriteRenderer newSr))
                 {
                     Bounds newLevelBounds = newSr.bounds;
                     newLevelBounds.Expand(-0.1f);
@@ -271,15 +269,15 @@ public class LevelSpawner : MonoBehaviour
         return touchingBounds;
     }
 
-    private bool CanBePlaced(GameObject newLevel)
+    private bool CanBePlaced(GameObject _newlevel)
     {
         foreach (var level in CameraManager.Instance.Levels)
         {
-            if (level == newLevel) continue;
+            if (level == _newlevel) continue;
 
             if (level.TryGetComponent(out SpriteRenderer sr))
             {
-                if (newLevel.TryGetComponent(out SpriteRenderer newSr))
+                if (_newlevel.TryGetComponent(out SpriteRenderer newSr))
                 {
                     Bounds newLevelBounds = newSr.bounds;
                     newLevelBounds.Expand(-0.1f);

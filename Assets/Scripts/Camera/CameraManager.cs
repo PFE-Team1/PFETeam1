@@ -186,7 +186,7 @@ public class CameraManager : MonoBehaviour
 
     public void DefineCameraBounds()
     {
-        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+        _mainCamera.GetComponent<CinemachineConfiner2D>().InvalidateCache();
     }
 
     public void AddNewLevel(GameObject newLevel)
