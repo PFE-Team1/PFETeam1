@@ -302,4 +302,6 @@ public class LevelSpawner : MonoBehaviour
         _newLevel.SetActive(false);
         CameraManager.Instance?.RemoveLevel(_newLevel);
     }
+    
+  
 }

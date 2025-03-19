@@ -24,14 +24,20 @@ public class CloneManager : MonoBehaviour
 
     public void Switch(int charID)
     {
-        if (_characters.Count <= 0)
+        bool mustSkip = true;
+        if (_characters.Count <= 1)
         {
             return;
         }
-        charID++;
-        if (charID >= _characters.Count)
+        
+        while (mustSkip == true)
         {
-            charID = 0;
+            charID++;
+            if (charID >= _characters.Count)
+            {
+                charID = 0;
+            }
+            mustSkip = Skip(charID);
         }
         _characters[charID].Switchup(true);
         _currentPlayer = charID;
@@ -47,5 +53,14 @@ public class CloneManager : MonoBehaviour
                 c.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
             }
         }
+    }
+    private bool Skip(int charID)
+    {
+        bool mustSkip = true;
+        if (_characters[charID].transform.parent.gameObject.activeInHierarchy)
+        {
+            mustSkip = false;
+        }
+        return mustSkip;
     }
 }

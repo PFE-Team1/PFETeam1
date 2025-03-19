@@ -24,9 +24,10 @@ public class Clone : MonoBehaviour
         CVC.Follow = transform;
         _playerInput = GetComponent<PlayerInput>();
         _charID = CloneManager.instance.Characters.Count;
+        ChangeParent();
         CloneManager.instance.Characters.Add(this);
         CloneManager.instance.Switch(_charID - 1);
-        ChangeParent();
+  
     }
     public void Cloned(GameObject spawnPoint)// mettre dans des états pour la state machine
     {
@@ -37,10 +38,12 @@ public class Clone : MonoBehaviour
     {
         if (context.performed)
         {
+            ChangeParent();
             _isInteracting = true;
         }
         if (context.canceled)
         {
+            ChangeParent();
             _isInteracting = false;
         }
     }
@@ -58,6 +61,7 @@ public class Clone : MonoBehaviour
         if (isEnable)
         {
             CVC.Follow = transform;
+            CVC.transform.position = transform.position;
         }
         else
         {
