@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        GameObject audioObject = Instantiate(new GameObject());
+        GameObject audioObject = new GameObject();
         audioObject.name = clip.name;
         AudioSource audioSource = audioObject.AddComponent<AudioSource>();
         audioSource.clip = clip;
@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySoundLoop(AudioClip clip)
     {
-        GameObject audioObject = Instantiate(new GameObject());
+        GameObject audioObject = new GameObject();
         AudioSource audioSource = audioObject.AddComponent<AudioSource>();
         audioSource.clip = clip;
         audioSource.loop = true;
