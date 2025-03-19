@@ -53,17 +53,6 @@ public class PlayerMovementParameters : ScriptableObject
     [Tooltip("Temps que prend le joueur a Accélerer")] public float accelerationTime = 5;
     [Range(0, 10)]
     [Tooltip("Temps que prend le joueur a Décélérer")] public float decelerationTime = 5;
-
-    [Range(0, 10)]
-    [Tooltip("Temps que prend le joueur a Accélerer en tournant")] public float turnAccelerationTime = 5;
-    [Range(0, 10)]
-    [Tooltip("Temps que prend le joueur a Décélérer en tournant")] public float turnDecelerationTime = 5;
-
-    [Range(0, 10)]
-    [Tooltip("A quel point le joueur peut prendre une pente pentue")] public float slideSlopeThresHold = 5;
-    [Range(0, 10)]
-    [Tooltip("Boost de vitesse lorsque le joueur descend les slopes")] public float SpeedBoostOnSlope = 5;
-
     #endregion
 
 

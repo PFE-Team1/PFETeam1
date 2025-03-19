@@ -36,16 +36,22 @@ public class PlayerStateMachine : MonoBehaviour
     #region privateStates
     private IdlePlayerState _idleState { get; } = new IdlePlayerState();
     private FallingPlayerState _fallingState { get; } = new FallingPlayerState();
+    private RunningPlayerState _runningState { get; } = new RunningPlayerState();
+    private JumpingPlayerState _jumpingState { get; } = new JumpingPlayerState();
     #endregion
 
     #region Accessors
     public IdlePlayerState IdleState => _idleState;
     public FallingPlayerState FallingState => _fallingState;
+    public RunningPlayerState RunningState => _runningState;
+    public JumpingPlayerState JumpingState => _jumpingState;
     #endregion
     public PlayerState[] AllStates => new PlayerState[]
     {
         _idleState,
         _fallingState,
+        _runningState,
+        _jumpingState,
     };
 
     #endregion

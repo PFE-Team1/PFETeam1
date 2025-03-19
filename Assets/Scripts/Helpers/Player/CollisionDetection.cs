@@ -54,12 +54,6 @@ namespace CollisionHelper
 
             // Sauvegarder les informations mises à jour - TRÈS IMPORTANT
             collisionData[instanceID] = info;
-
-            // Log pour débogage
-            if (info.isCollidingBelow)
-            {
-                Debug.Log("CollisionDetector: Contact avec le sol détecté pour " + gameObject.name);
-            }
         }
 
         // Méthode pour mettre à jour les informations de collision horizontale

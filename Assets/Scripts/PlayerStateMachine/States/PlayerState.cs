@@ -3,10 +3,16 @@ using UnityEngine;
 public abstract class PlayerState
 {
     public PlayerStateMachine StateMachine { get; private set; }
+
+    protected float _timeSinceEnteredState = 0;
     protected InputsManager _inputsManager => StateMachine.InputsManager;
     protected PlayerMovementParameters _playerMovementParameters => StateMachine.PlayerMovementParameters;
     protected void ChangeState(PlayerState state) => StateMachine.ChangeState(state);
-    public void StateEnter(PlayerState previousState) => OnStateEnter(previousState);
+    public void StateEnter(PlayerState previousState)
+    {
+        _timeSinceEnteredState = 0;
+        OnStateEnter(previousState);
+    }
     public void StateExit(PlayerState nextState) => OnStateExit(nextState);
 
     public void Init(PlayerStateMachine stateMachine)

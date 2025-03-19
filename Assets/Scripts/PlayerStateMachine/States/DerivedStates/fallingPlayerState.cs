@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FallingPlayerState : PlayerState
 {
-    private float _timeSinceEnteredState;
     protected override void OnStateInit()
     {
     }
@@ -24,6 +23,11 @@ public class FallingPlayerState : PlayerState
         #region StateChange
         if (StateMachine.CollisionInfo.isCollidingBelow)
         {
+            if (_inputsManager.MoveX != 0)
+            {
+                StateMachine.ChangeState(StateMachine.RunningState);
+                return;
+            }
             StateMachine.ChangeState(StateMachine.IdleState);
             return;
         }
@@ -36,7 +40,6 @@ public class FallingPlayerState : PlayerState
 
         StateMachine.Velocity.y += g * Time.deltaTime;
         StateMachine.Velocity.y = Mathf.Clamp(StateMachine.Velocity.y, -_playerMovementParameters.maxFallSpeed, _playerMovementParameters.maxFallSpeed);
-        //StateMachine.velocity.y =- _movementParams.gravityScale; 
         #endregion
 
         #region Xvelocity
@@ -47,10 +50,10 @@ public class FallingPlayerState : PlayerState
         _timeSinceEnteredState += Time.deltaTime * _inputsManager.MoveX;
         _timeSinceEnteredState = Mathf.Clamp(_timeSinceEnteredState, -accelerationTime, accelerationTime);
 
-        StateMachine.Velocity.x = Mathf.Abs((_timeSinceEnteredState / accelerationTime) * airMaxSpeed) * _inputsManager.MoveX; ;
+        StateMachine.Velocity.x = Mathf.Abs((_timeSinceEnteredState / accelerationTime) * airMaxSpeed) * _inputsManager.MoveX;
         StateMachine.Velocity.x = Mathf.Clamp(StateMachine.Velocity.x, -airMaxSpeed, airMaxSpeed);
 
-        if (_inputsManager.MoveX == 0)
+        if (_inputsManager.MoveX == 0 && _playerMovementParameters.instantXStop)
         {
             StateMachine.Velocity.x = 0;
         }

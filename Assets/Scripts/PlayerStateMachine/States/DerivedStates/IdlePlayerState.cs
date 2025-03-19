@@ -10,7 +10,7 @@ public class IdlePlayerState : PlayerState
 
     protected override void OnStateEnter(PlayerState previousState)
     {
-        StateMachine.Velocity = Vector2.zero;
+        StateMachine.Velocity = new Vector2(0, -0.1f);
         MonoBehaviour.print("Entering Idle");
     }
 
@@ -26,5 +26,18 @@ public class IdlePlayerState : PlayerState
             StateMachine.ChangeState(StateMachine.FallingState);
             return;
         }
+
+        if (_inputsManager.MoveX != 0)
+        {
+            StateMachine.ChangeState(StateMachine.RunningState);
+            return;
+        }
+
+        if (_inputsManager.InputJumping)
+        {
+            StateMachine.ChangeState(StateMachine.JumpingState);
+            return;
+        }
+
     }
 }
