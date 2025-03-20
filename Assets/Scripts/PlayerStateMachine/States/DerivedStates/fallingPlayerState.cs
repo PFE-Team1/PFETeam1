@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class FallingPlayerState : PlayerState
         {
             if (_inputsManager.MoveX != 0)
             {
+                StateMachine.Velocity.y = -0.1f;
                 StateMachine.ChangeState(StateMachine.RunningState);
                 return;
             }
@@ -44,20 +46,41 @@ public class FallingPlayerState : PlayerState
         #endregion
 
         #region Xvelocity
+            float targetValue = 0;
+            if (_inputsManager.MoveX != 0)
+            {
+                targetValue = _playerMovementParameters.fallAccelerationTime * _inputsManager.MoveX;
+            }
 
-        float accelerationTime = _playerMovementParameters.fallAccelerationTime;
-        float airMaxSpeed = _playerMovementParameters.fallMaxSpeedX;
+            // Déterminer si nous accélérons ou décélérons
+            bool isAccelerating = ((_timeSinceEnteredState >= 0 && targetValue > _timeSinceEnteredState) ||
+                                   (_timeSinceEnteredState <= 0 && targetValue < _timeSinceEnteredState));
 
-        _timeSinceEnteredState += Time.deltaTime * _inputsManager.MoveX;
-        _timeSinceEnteredState = Mathf.Clamp(_timeSinceEnteredState, -accelerationTime, accelerationTime);
 
-        StateMachine.Velocity.x = Mathf.Abs((_timeSinceEnteredState / accelerationTime) * airMaxSpeed) * _inputsManager.MoveX;
-        StateMachine.Velocity.x = Mathf.Clamp(StateMachine.Velocity.x, -airMaxSpeed, airMaxSpeed);
+            // Choisir le bon pas d'interpolation en fonction de si on accélère ou décélère
+            float step;
+            if (isAccelerating)
+            {
+                step = Time.deltaTime / _playerMovementParameters.fallAccelerationTime;
+            }
+            else
+            {
+                step = Time.deltaTime / _playerMovementParameters.fallDecelerationTime;
+            }
 
-        if (_inputsManager.MoveX == 0 && _playerMovementParameters.instantXStop)
-        {
-            StateMachine.Velocity.x = 0;
-        }
+            // Appliquer l'interpolation
+            if (_timeSinceEnteredState < targetValue)
+            {
+                _timeSinceEnteredState = Mathf.Min(_timeSinceEnteredState + step, targetValue);
+            }
+            else if (_timeSinceEnteredState > targetValue)
+            {
+                _timeSinceEnteredState = Mathf.Max(_timeSinceEnteredState - step, targetValue);
+            }
+
+            // Calcul de la vitesse en fonction du temps écoulé
+            float speedRatio = _timeSinceEnteredState / _playerMovementParameters.fallAccelerationTime;
+            StateMachine.Velocity.x = speedRatio * _playerMovementParameters.fallMaxSpeedX;
         #endregion
     }
 }

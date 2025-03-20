@@ -44,7 +44,7 @@ public class RunningPlayerState : PlayerState
         float targetValue = 0;
         if (_inputsManager.MoveX != 0)
         {
-            targetValue = _playerMovementParameters.accelerationTime * _inputsManager.MoveX;
+            targetValue = _playerMovementParameters.fallAccelerationTime * _inputsManager.MoveX;
         }
 
         // Déterminer si nous accélérons ou décélérons
@@ -56,7 +56,7 @@ public class RunningPlayerState : PlayerState
         float step;
         if (isAccelerating)
         {
-            step = Time.deltaTime / _playerMovementParameters.accelerationTime;
+            step = Time.deltaTime / _playerMovementParameters.fallAccelerationTime;
         }
         else
         {
@@ -74,8 +74,8 @@ public class RunningPlayerState : PlayerState
         }
 
         // Calcul de la vitesse en fonction du temps écoulé
-        float speedRatio = _timeSinceEnteredState / _playerMovementParameters.accelerationTime;
-        StateMachine.Velocity.x = speedRatio * _playerMovementParameters.maxSpeed;
+        float speedRatio = _timeSinceEnteredState / _playerMovementParameters.fallAccelerationTime;
+        StateMachine.Velocity.x = speedRatio * _playerMovementParameters.maxFallSpeed;
 
     }
 

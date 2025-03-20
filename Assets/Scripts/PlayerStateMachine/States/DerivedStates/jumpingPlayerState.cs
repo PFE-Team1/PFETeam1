@@ -29,6 +29,7 @@ public class JumpingPlayerState : PlayerState
     {
         if (StateMachine.Velocity.y < 0 || StateMachine.CollisionInfo.isCollidingAbove)
         {
+            StateMachine.Velocity.y = 0;
             StateMachine.ChangeState(StateMachine.FallingState);
             return;
         }
