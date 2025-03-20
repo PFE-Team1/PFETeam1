@@ -62,7 +62,16 @@ public class JumpingPlayerState : PlayerState
         _timeSinceEnteredState = Mathf.Clamp(_timeSinceEnteredState, -accelerationTime, accelerationTime);
 
         StateMachine.Velocity.x = (_timeSinceEnteredState / accelerationTime) * airMaxSpeed;
+
+        if (_inputsManager.MoveX != 0 && _playerMovementParameters.instantTurnAroundInAir)
+        {
+            StateMachine.Velocity.x =Mathf.Abs(StateMachine.Velocity.x)  * _inputsManager.MoveX;
+        }
         StateMachine.Velocity.x = Mathf.Clamp(StateMachine.Velocity.x, -airMaxSpeed, airMaxSpeed);
+        if (_inputsManager.MoveX == 0 && _playerMovementParameters.instantXStop)
+        {
+            StateMachine.Velocity.x = 0;
+        }
         #endregion
     }
 }
