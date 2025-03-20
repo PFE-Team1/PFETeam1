@@ -68,12 +68,17 @@ public class LevelSpawner : MonoBehaviour
     {
         if (isInRange)
         {
-            
+            if (_playerC.IsInteracting && _playerC.heldObject != null)
+            {
+                Debug.Log($"_playerC.heldObject : {_playerC.heldObject}");
+            }
+
             if (!isAlreadySpawned)
             {
                 if (_playerC.IsInteracting&&_playerC.heldObject!=null)
                 {
                     SpawnNewLevel();
+                    CameraManager.Instance.ShowNewLevel();
                     _playerC.IsInteracting = false;
                     SFX_ApparitionToile.Invoke();
                 }
