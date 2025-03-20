@@ -8,7 +8,7 @@ public class Clone : MonoBehaviour
 {
     [SerializeField] private GameObject _clone;
     [SerializeField] private int _charID;
-    [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private PlayerStateMachine _playerInput;
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
     private bool _isInteracting;
@@ -24,7 +24,7 @@ public class Clone : MonoBehaviour
     {
         CVC = FindObjectOfType<CinemachineVirtualCamera>();
         CVC.Follow = transform;
-        _playerInput = GetComponent<PlayerInput>();
+        _playerInput = GetComponent<PlayerStateMachine>();
         _charID = CloneManager.instance.Characters.Count;
         ChangeParent();
         CloneManager.instance.Characters.Add(this);
