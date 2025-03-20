@@ -55,7 +55,7 @@ public class PaintingController : MonoBehaviour
                 if (isHeld)
                 {
                     SFX_PoseToile.Invoke();
-                    Destroy(Instantiate(VFX_PoseToile, transform), 1f);
+                    Destroy(Instantiate(VFX_GrabToile, transform), 1f);
                     Vector3 releasePosition = transform.position;
                     RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
 

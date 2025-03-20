@@ -26,7 +26,6 @@ public class LevelSpawner : MonoBehaviour
     [SerializeField] private UnityEvent SFX_ApparitionToile;
     [SerializeField] private UnityEvent SFX_DisparitionToile;
     [SerializeField] private UnityEvent SFX_DécalageToile;
-    [SerializeField] private UnityEvent CameraShake;
 
     private GameObject _newlevel;
     public bool isSpawnOnStart;
@@ -105,7 +104,7 @@ public class LevelSpawner : MonoBehaviour
             {
                 if (_playerC.IsInteracting)
                 {
-                    CameraManager.Instance.CameraShake(1,1);
+                    EventManager.instance.CameraShake.Invoke();
                     RemoveNewLevel();
                     _playerC.IsInteracting = false;
                     SFX_DisparitionToile.Invoke();
@@ -163,6 +162,7 @@ public class LevelSpawner : MonoBehaviour
         {
             SetDirection(newLevelBounds, currentLevelBounds);
             SetNewPosition();
+            EventManager.instance.CameraShake.Invoke();
         }
 
         isAlreadySpawned = true;

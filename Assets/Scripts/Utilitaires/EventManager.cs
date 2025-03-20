@@ -19,7 +19,12 @@ public class EventManager : MonoBehaviour
     #endregion
     [Header("Personage")]
     public UnityEvent Feur;
-    [Header("Toile")]
-    public UnityEvent Oui;
+    
+    [Header("Camera")]
+    public UnityEvent CameraZoom;
+    public UnityEvent CameraDezoom;
+    public UnityEvent CameraShake;
+    public float shakeDuration;
+    public float shakeMagnitude;   
 
 }

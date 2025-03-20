@@ -59,13 +59,13 @@ public class CameraManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             SFX_Dezoom.Invoke();
-            SeeAllLevels();
+            EventManager.instance.CameraDezoom.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
             SFX_Zoom.Invoke();
-            FocusCamera();
+            EventManager.instance.CameraZoom.Invoke();
         }
     }
 
@@ -103,7 +103,7 @@ public class CameraManager : MonoBehaviour
         );
     }
 
-    public void SeeAllLevels()
+    public void CameraDeZoom()
     {
         if (_globalCamera != null) return;
         initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
@@ -156,27 +156,17 @@ public class CameraManager : MonoBehaviour
 
     IEnumerator ShowAndHideLevel()
     {
-        SeeAllLevels();
+        CameraDeZoom();
         yield return new WaitForSeconds(2f);
-        FocusCamera();
+        CameraZoom();
     }
 
-    public void SwitchToCamera(int index)
+    public void CameraShake()
     {
-        for (int i = 0; i < _allCameras.Count; i++)
-        {
-            if (i == index)
-            {
-                _allCameras[i].Priority = 10;
-            }
-            else
-            {
-                _allCameras[i].Priority = 0;
-            }
-        }
+        CameraShake(EventManager.instance.shakeDuration, EventManager.instance.shakeMagnitude);
     }
 
-    public void CameraShake(float time, float intensity)
+    void CameraShake(float time, float intensity)
     {   
         _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
         StartCoroutine(StopShake(time));
@@ -188,7 +178,7 @@ public class CameraManager : MonoBehaviour
         _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
     }
 
-    public void FocusCamera()
+    public void CameraZoom()
     {
         if (_globalCamera != null)
         {
