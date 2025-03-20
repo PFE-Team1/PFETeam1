@@ -10,7 +10,7 @@ public class JumpingPlayerState : PlayerState
 
     protected override void OnStateEnter(PlayerState previousState)
     {
-        _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.airMaxSpeedX * _playerMovementParameters.JumpAccelerationTime;
+        _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.jumpMaxSpeedX * _playerMovementParameters.jumpAccelerationTime;
 
         float h = _playerMovementParameters.jumpMaxHeight;
         float th = _playerMovementParameters.jumpDuration / 2;
@@ -55,15 +55,41 @@ public class JumpingPlayerState : PlayerState
         #endregion
 
         #region Xvelocity
+        float targetValue = 0;
+        if (_inputsManager.MoveX != 0)
+        {
+            targetValue = _playerMovementParameters.jumpAccelerationTime * _inputsManager.MoveX;
+        }
 
-        float accelerationTime = _playerMovementParameters.JumpAccelerationTime;
-        float airMaxSpeed = _playerMovementParameters.airMaxSpeedX;
+        // Déterminer si nous accélérons ou décélérons
+        bool isAccelerating = ((_timeSinceEnteredState >= 0 && targetValue > _timeSinceEnteredState) ||
+                               (_timeSinceEnteredState <= 0 && targetValue < _timeSinceEnteredState));
 
-        _timeSinceEnteredState += Time.deltaTime * _inputsManager.MoveX;
-        _timeSinceEnteredState = Mathf.Clamp(_timeSinceEnteredState, -accelerationTime, accelerationTime);
 
-        StateMachine.Velocity.x = (_timeSinceEnteredState / accelerationTime) * airMaxSpeed;
-        StateMachine.Velocity.x = Mathf.Clamp(StateMachine.Velocity.x, -airMaxSpeed, airMaxSpeed);
+        // Choisir le bon pas d'interpolation en fonction de si on accélère ou décélère
+        float step;
+        if (isAccelerating)
+        {
+            step = Time.deltaTime / _playerMovementParameters.jumpAccelerationTime;
+        }
+        else
+        {
+            step = Time.deltaTime / _playerMovementParameters.fallDecelerationTime;
+        }
+
+        // Appliquer l'interpolation
+        if (_timeSinceEnteredState < targetValue)
+        {
+            _timeSinceEnteredState = Mathf.Min(_timeSinceEnteredState + step, targetValue);
+        }
+        else if (_timeSinceEnteredState > targetValue)
+        {
+            _timeSinceEnteredState = Mathf.Max(_timeSinceEnteredState - step, targetValue);
+        }
+
+        // Calcul de la vitesse en fonction du temps écoulé
+        float speedRatio = _timeSinceEnteredState / _playerMovementParameters.jumpAccelerationTime;
+        StateMachine.Velocity.x = speedRatio * _playerMovementParameters.jumpMaxSpeedX;
         #endregion
     }
 }
