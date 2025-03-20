@@ -157,6 +157,8 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShowAndHideLevel()
     {
         SeeAllLevels();
+        yield return new WaitForSeconds(_cameraZoomSpeed);
+        CameraShake();
         yield return new WaitForSeconds(2f);
         FocusCamera();
     }
@@ -174,6 +176,18 @@ public class CameraManager : MonoBehaviour
                 _allCameras[i].Priority = 0;
             }
         }
+    }
+
+    public void CameraShake()
+    {
+        _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 1f;
+        StartCoroutine(StopShake());
+    }
+
+    IEnumerator StopShake()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
     }
 
     public void FocusCamera()

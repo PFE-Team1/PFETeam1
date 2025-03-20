@@ -94,6 +94,7 @@ public class PaintingController : MonoBehaviour
                 else
                 {
                     SFX_GrabToile.Invoke();
+                    CameraManager.Instance.CameraShake();
                     Destroy(Instantiate(VFX_GrabToile, transform), 1f);
                     transform.SetParent(playerC.PaintingTransform);
                     transform.position = playerC.PaintingTransform.position;

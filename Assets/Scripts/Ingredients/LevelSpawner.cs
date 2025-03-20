@@ -9,6 +9,7 @@ public class LevelSpawner : MonoBehaviour
     enum Direction { Up, Down, Left, Right };
     [SerializeField] private GameObject _currentLevel;
     [SerializeField] private Direction _direction;
+    [SerializeField] private Sprite[] _sprites;
     private GameObject _newLevelPrefab;
     private GameObject _heldObject;
     private GameObject _player;
@@ -61,6 +62,22 @@ public class LevelSpawner : MonoBehaviour
         if (isAlreadySpawned)
         {
             SpawnLevelOnStart();
+        }
+
+        switch (_direction)
+        {
+            case Direction.Up:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = _sprites[0];
+                break;
+            case Direction.Down:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = _sprites[1];
+                break;
+            case Direction.Left:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = _sprites[2];
+                break;
+            case Direction.Right:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = _sprites[3];
+                break;
         }
     }
 
