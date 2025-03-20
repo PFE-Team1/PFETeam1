@@ -12,14 +12,16 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Set Start Time
+        shell: bash
         run: echo "START_TIME=$(TZ=":Europe/Paris" date +'%H:%M le %d-%m-%Y')" >> $GITHUB_ENV
 
       - name: Set Random Image URL
         id: random-image
+        shell: bash
         run: |
           IMAGES=(
             "https://i.pinimg.com/originals/63/b7/77/63b7778a45cac5a7a6e040b9486e1947.gif"
@@ -31,11 +33,9 @@ jobs:
             "https://i.pinimg.com/originals/4c/d8/23/4cd8232cb57595f2e78ba1c7b45c2147.gif"
             "https://64.media.tumblr.com/c84350e2219a437037ae93ac4ee545f5/7066839b40f816a9-3a/s400x600/815423ea8483da5bc8b737568251586796a87108.gifv"
             "https://i.pinimg.com/originals/d3/e2/5b/d3e25b1c8264790ba329e6d3576dba24.gif"
-            
-
-
           )
-          RANDOM_IMAGE=${IMAGES[$((RANDOM % ${#IMAGES[@]}))]}
+          RANDOM_INDEX=$(( RANDOM % ${#IMAGES[@]} ))
+          RANDOM_IMAGE="${IMAGES[$RANDOM_INDEX]}"
           echo "random_image_url=$RANDOM_IMAGE" >> $GITHUB_OUTPUT
 
       - name: Checking out Git
@@ -45,11 +45,13 @@ jobs:
 
       - name: Get last successful build date
         id: last-build
+        shell: bash
         run: |
           echo "LAST_BUILD_DATE=$(git log --pretty=format:'%cd' -1 --date=iso)" >> $GITHUB_ENV
 
       - name: Get commits since last build
         id: commits
+        shell: bash
         run: |
           COMMITS=$(git log --pretty=format:'- [%h](https://github.com/${{ github.repository }}/commit/%h) - %s - %an' --since="${{ env.LAST_BUILD_DATE }}")
           echo "COMMITS<<EOF" >> $GITHUB_ENV
@@ -57,10 +59,12 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Set Build Name
+        shell: bash
         run: echo "BUILD_NAME=PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Build execution time - start
         id: build-execution-time-start
+        shell: bash
         run: echo "start_time=$(date +%s)" >> $GITHUB_ENV
 
       - name: Caching
@@ -82,8 +86,10 @@ jobs:
           targetPlatform: StandaloneWindows64
           allowDirtyBuild: true
         continue-on-error: true
+
       - name: Build execution time - end
         id: build-execution-time
+        shell: bash
         run: |
           end_time=$(date +%s)
           duration=$((end_time - ${{ env.start_time }}))
@@ -91,6 +97,7 @@ jobs:
 
       - name: Storing Build Artefact
         id: build-upload
+        if: ${{ steps.project-build.outcome == 'success' }}
         uses: actions/upload-artifact@v4.3.3
         with:
           name: ${{ env.BUILD_NAME }}
@@ -98,10 +105,30 @@ jobs:
           retention-days: 14
 
       - name: List files in Builds directory (Debug)
-        run: ls -R ${{ github.workspace }}/Builds
+        shell: bash
+        run: |
+          # Utilisation de la syntaxe de chemin compatible avec bash sur Windows
+          BUILD_PATH="${GITHUB_WORKSPACE}/Builds"
+          # Convertir le chemin Windows en chemin bash
+          BUILD_PATH=$(echo "$BUILD_PATH" | sed 's/\\/\//g')
+          # Vérifier si le répertoire existe
+          if [ -d "$BUILD_PATH" ]; then
+            ls -la "$BUILD_PATH"
+            if [ -d "$BUILD_PATH/StandaloneWindows64" ]; then
+              ls -la "$BUILD_PATH/StandaloneWindows64"
+            else
+              echo "Le répertoire StandaloneWindows64 n'existe pas"
+            fi
+          else
+            echo "Le répertoire Builds n'existe pas"
+            # Lister le contenu du répertoire racine pour déboguer
+            ls -la "${GITHUB_WORKSPACE}"
+          fi
 
       - name: Get build artifact URL
         id: build-artifact-url
+        if: ${{ steps.project-build.outcome == 'success' }}
+        shell: bash
         run: |
           ARTIFACT_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
@@ -110,6 +137,8 @@ jobs:
 
       - name: Get logs artifact URL
         id: logs-artifact-url
+        if: ${{ steps.project-build.outcome == 'success' }}
+        shell: bash
         run: |
           ARTIFACT_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
@@ -118,6 +147,7 @@ jobs:
 
       - name: Set build status
         id: build-status
+        shell: bash
         run: |
           if [ "${{ steps.project-build.outputs.engineExitCode }}" -eq "0" ]; then
             echo "STATUS=Réussie ✅ 🙉" >> $GITHUB_ENV
@@ -129,6 +159,7 @@ jobs:
           
       - name: Set empty artifact URL if build failed
         if: ${{ steps.project-build.outcome != 'success' }}
+        shell: bash
         run: echo "BUILD_ARTIFACT_URL=Non disponible (échec de la compilation)" >> $GITHUB_ENV
         
       - name: Send Discord notification
