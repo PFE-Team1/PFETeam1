@@ -11,20 +11,6 @@
 
 namespace AK
 {
-    namespace EVENTS
-    {
-        static const AkUniqueID PLAY_TOILE_1_PC = 4192545069U;
-    } // namespace EVENTS
-
-    namespace BANKS
-    {
-        static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID AMB_SBK = 3702631076U;
-        static const AkUniqueID FOL_SBK = 2606446995U;
-        static const AkUniqueID MUS_SBK = 552161325U;
-        static const AkUniqueID SFX_SBK = 4254072057U;
-    } // namespace BANKS
-
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
