@@ -31,7 +31,7 @@ jobs:
             "https://i.gifer.com/3FGw.gif"
             "https://ww2.kqed.org/pop/wp-content/uploads/sites/12/2015/12/02-smile-abu.gif"
             "https://i.pinimg.com/originals/4c/d8/23/4cd8232cb57595f2e78ba1c7b45c2147.gif"
-            "https://64.media.tumblr.com/c84350e2219a437037ae93ac4ee545f5/7066839b40f816a9-3a/s400x600/815423ea8483da5bc8b737568251586796a87108.gifv"
+            "https://img.buzzfeed.com/buzzfeed-static/static/2017-10/24/17/asset/buzzfeed-prod-fastlane-03/anigif_sub-buzz-18243-1508879490-7.gif"
             "https://i.pinimg.com/originals/d3/e2/5b/d3e25b1c8264790ba329e6d3576dba24.gif"
           )
           RANDOM_INDEX=$(( RANDOM % ${#IMAGES[@]} ))
@@ -153,7 +153,7 @@ jobs:
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
           username: "Abbuild 🐒🔧"
-          avatar-url: "https://avatarfiles.alphacoders.com/999/99923.jpg"
+          avatar-url: "https://media.discordapp.net/attachments/1314208057806426152/1346476105367814228/Abbu_3.png?ex=67c85317&is=67c70197&hm=c7c88ce931b72cf8e68da0792d2091a2e4b5f2e57e348f87d3ed36c5f1b792b5&=&format=webp&quality=lossless"
           embed-image-url: ${{ steps.random-image.outputs.random_image_url }}
           embed-title: "Build Unity - ${{ env.START_TIME }} - ${{ env.STATUS }}"
           embed-description: |
