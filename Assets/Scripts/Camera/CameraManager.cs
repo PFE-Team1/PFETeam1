@@ -176,15 +176,15 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    public void CameraShake()
-    {
-        _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 1f;
-        StartCoroutine(StopShake());
+    public void CameraShake(float time, float intensity)
+    {   
+        _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
+        StartCoroutine(StopShake(time));
     }
 
-    IEnumerator StopShake()
+    IEnumerator StopShake(float time)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(time);
         _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
     }
 
@@ -213,7 +213,7 @@ public class CameraManager : MonoBehaviour
         
         yield return new WaitForSeconds(0.1f);
         Destroy(_globalCamera);
-        
+
         while (elapsedTime < _cameraZoomSpeed)
         {
             _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(_mainCamera.m_Lens.OrthographicSize, initOrthoSize, elapsedTime / _cameraZoomSpeed);
