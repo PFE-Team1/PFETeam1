@@ -4,7 +4,6 @@ using System.Drawing;
 using CollisionHelper;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Color = UnityEngine.Color;
@@ -73,7 +72,7 @@ public class PlayerStateMachine : MonoBehaviour
         style.fontSize = 14;
         style.fontStyle = FontStyle.Bold;
 
-        // Créer le fond
+        // Crï¿½er le fond
         GUI.backgroundColor = new Color(0, 0, 0, 0.7f);
         GUI.Box(new Rect(10, 10, 200, 160), "");
 
@@ -104,24 +103,24 @@ public class PlayerStateMachine : MonoBehaviour
     }
     private void Update()
     {
-        // Réinitialiser les collisions horizontales à chaque frame
+        // Rï¿½initialiser les collisions horizontales ï¿½ chaque frame
         CollisionDetector.ResetFrameCollisions(gameObject);
     }
     private void FixedUpdate()
     {
-        // Obtenir l'état actuel des collisions
+        // Obtenir l'ï¿½tat actuel des collisions
         CollisionInfo = CollisionDetector.GetCollisionInfo(gameObject);
 
-        // Mise à jour de l'état actuel
+        // Mise ï¿½ jour de l'ï¿½tat actuel
         CurrentState.StateUpdate();
 
         // Appliquer le mouvement et obtenir les flags de collision
         CollisionFlags collisionFlags = _CharacterController.Move(Velocity * Time.fixedDeltaTime);
 
-        // IMPORTANT: Mettre à jour les informations de collision basées sur les flags
+        // IMPORTANT: Mettre ï¿½ jour les informations de collision basï¿½es sur les flags
         CollisionDetector.UpdateCollisionFlags(gameObject, collisionFlags);
 
-        // Mettre à jour l'information de collision après le mouvement
+        // Mettre ï¿½ jour l'information de collision aprï¿½s le mouvement
         CollisionInfo = CollisionDetector.GetCollisionInfo(gameObject);
     }
 

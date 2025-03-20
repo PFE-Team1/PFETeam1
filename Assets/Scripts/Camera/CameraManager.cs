@@ -16,7 +16,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private UnityEvent SFX_Zoom;
 
     private Bounds _cameraBounds;
-    private CinemachineVirtualCamera _globalCamera;
+    public CinemachineVirtualCamera _globalCamera;
 
     public float _cameraZoomSpeed = 1f;
     public float _cameraMoveSpeed = 1f;
@@ -49,6 +49,8 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
+        _playerTransform = _mainCamera.transform;
+        initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
         CalculateCameraBounds();
         _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
         _allCameras.AddRange(_mainCamera.GetComponentsInChildren<CinemachineVirtualCamera>());
@@ -106,10 +108,8 @@ public class CameraManager : MonoBehaviour
     public void SeeAllLevels()
     {
         if (_globalCamera != null) return;
-        initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
-        _playerTransform = _mainCamera.transform;
         _globalCamera = new GameObject("Global Camera").AddComponent<CinemachineVirtualCamera>();
-
+        
         Bounds combinedBounds = new Bounds();
         foreach (var level in _levels)
         {
@@ -125,6 +125,8 @@ public class CameraManager : MonoBehaviour
         _globalCamera.m_Lens.Orthographic = true;
         _globalCamera.m_Lens.OrthographicSize = Mathf.Max(worldWidth / (2 * _mainCamera.m_Lens.Aspect), worldHeight / 2);
 
+        _globalCamera.transform.position = new Vector3(combinedBounds.center.x, combinedBounds.center.y, _mainCamera.transform.position.z);
+
         if (_zoomCoroutine != null) return;
         _dezoomCoroutine = StartCoroutine(DezoomEffect(combinedBounds.center, _globalCamera.m_Lens.OrthographicSize, () =>
         {
@@ -135,6 +137,7 @@ public class CameraManager : MonoBehaviour
     private IEnumerator DezoomEffect(Vector3 targetPosition, float targetDistance, System.Action onComplete)
     {
         float initialDistance = _mainCamera.transform.position.z;
+        
         float elapsedTime = 0f;
 
         while (elapsedTime < _cameraZoomSpeed)
@@ -145,7 +148,7 @@ public class CameraManager : MonoBehaviour
             yield return null;
         }
 
-        _globalCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, -targetDistance);
+        _globalCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, _mainCamera.transform.position.z);
         onComplete?.Invoke(); 
     }
 
@@ -159,21 +162,6 @@ public class CameraManager : MonoBehaviour
         SeeAllLevels();
         yield return new WaitForSeconds(2f);
         FocusCamera();
-    }
-
-    public void SwitchToCamera(int index)
-    {
-        for (int i = 0; i < _allCameras.Count; i++)
-        {
-            if (i == index)
-            {
-                _allCameras[i].Priority = 10;
-            }
-            else
-            {
-                _allCameras[i].Priority = 0;
-            }
-        }
     }
 
     public void CameraShake(float time, float intensity)
@@ -194,11 +182,8 @@ public class CameraManager : MonoBehaviour
         {
             if (_dezoomCoroutine != null) return;
             
-            Vector3 playerPosition = _playerTransform != null ? _playerTransform.position : GlobalsCamera.WorldBounds.center;
-
             _zoomCoroutine = StartCoroutine(ZoomEffect(() =>
             {
-                _globalCamera = null;
                 _zoomCoroutine = null;
             }));
         }
@@ -210,9 +195,9 @@ public class CameraManager : MonoBehaviour
         _mainCamera.m_Lens.OrthographicSize = _globalCamera.m_Lens.OrthographicSize;
         _mainCamera.transform.position = _globalCamera.transform.position;
 
-        
         yield return new WaitForSeconds(0.1f);
-        Destroy(_globalCamera);
+        Destroy(_globalCamera.gameObject);
+        _globalCamera = null;
 
         while (elapsedTime < _cameraZoomSpeed)
         {

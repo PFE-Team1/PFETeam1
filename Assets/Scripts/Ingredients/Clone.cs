@@ -23,7 +23,7 @@ public class Clone : MonoBehaviour
 
     private void Start()
     {
-        CVC = FindObjectOfType<CinemachineVirtualCamera>();
+        CVC = CameraManager.Instance.MainCamera;
         CVC.Follow = transform;
         _inputs = InputsManager.instance;
         _inputs._playerInputs.actions["Interact"].performed += Interact;
@@ -55,8 +55,6 @@ public class Clone : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext context)
     {
-
-
         if (context.performed)
         {
             ChangeParent();
@@ -78,11 +76,11 @@ public class Clone : MonoBehaviour
     }
     public void Switchup(bool isEnable)
     {
-           _playerInput.enabled = isEnable;
+        _playerInput.enabled = isEnable;
         if (isEnable)
         {
-            CVC.Follow = transform;
-            CVC.transform.position = transform.position;
+            CVC.Follow = gameObject.transform;
+            //CVC.transform.position = transform.position;
         }
         else
         {
