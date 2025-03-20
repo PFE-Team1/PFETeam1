@@ -16,10 +16,12 @@ jobs:
 
     steps:
       - name: Set Start Time
+        shell: bash
         run: echo "START_TIME=$(TZ=":Europe/Paris" date +'%H:%M le %d-%m-%Y')" >> $GITHUB_ENV
 
       - name: Set Random Image URL
         id: random-image
+        shell: bash
         run: |
           IMAGES=(
             "https://media3.giphy.com/media/PSnWg72p9ed3i/giphy.gif?cid=6c09b95251my7wnigieofx0orvcqelkbw39vrlotqdha2891&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g"
@@ -28,7 +30,8 @@ jobs:
             "https://media3.giphy.com/media/gm70vZBCSQtnW/giphy.gif?cid=6c09b952z8glguq0gc291mu24ug8nqqxky2a4qrs1kr9en36&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g"
             "https://gifdb.com/images/high/wall-e-498-x-498-gif-ilywdmuywv6ayu7u.gif"
           )
-          RANDOM_IMAGE=${IMAGES[$((RANDOM % ${#IMAGES[@]}))]}
+          RANDOM_INDEX=$(( RANDOM % ${#IMAGES[@]} ))
+          RANDOM_IMAGE="${IMAGES[$RANDOM_INDEX]}"
           echo "random_image_url=$RANDOM_IMAGE" >> $GITHUB_OUTPUT
 
       - name: Checking out Git
@@ -38,11 +41,13 @@ jobs:
 
       - name: Get last successful build date
         id: last-build
+        shell: bash
         run: |
           echo "LAST_BUILD_DATE=$(git log --pretty=format:'%cd' -1 --date=iso)" >> $GITHUB_ENV
 
       - name: Get commits since last build
         id: commits
+        shell: bash
         run: |
           COMMITS=$(git log --pretty=format:'- [%h](https://github.com/${{ github.repository }}/commit/%h) - %s - %an' --since="${{ env.LAST_BUILD_DATE }}")
           echo "COMMITS<<EOF" >> $GITHUB_ENV
@@ -50,10 +55,12 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Set Build Name
+        shell: bash
         run: echo "BUILD_NAME=PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Build execution time - start
         id: build-execution-time-start
+        shell: bash
         run: echo "start_time=$(date +%s)" >> $GITHUB_ENV
 
       - name: Caching
@@ -78,6 +85,7 @@ jobs:
 
       - name: Build execution time - end
         id: build-execution-time
+        shell: bash
         run: |
           end_time=$(date +%s)
           duration=$((end_time - ${{ env.start_time }}))
@@ -94,11 +102,13 @@ jobs:
 
       - name: List files in Builds directory (Debug)
         if: ${{ steps.project-build.outcome == 'success' }}
+        shell: bash
         run: ls -R ${{ github.workspace }}/Builds
 
       - name: Set build artifact URL
         id: build-artifact-url
         if: ${{ steps.project-build.outcome == 'success' }}
+        shell: bash
         run: |
           ARTIFACT_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
@@ -107,10 +117,12 @@ jobs:
 
       - name: Set empty artifact URL if build failed
         if: ${{ steps.project-build.outcome != 'success' }}
+        shell: bash
         run: echo "BUILD_ARTIFACT_URL=Non disponible (échec de la compilation)" >> $GITHUB_ENV
 
       - name: Set build status
         id: build-status
+        shell: bash
         run: |
           if [ "${{ steps.project-build.outcome }}" == "success" ]; then
             echo "STATUS=Réussie ✅ 🤖" >> $GITHUB_ENV
