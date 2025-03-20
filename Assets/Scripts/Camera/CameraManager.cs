@@ -22,6 +22,7 @@ public class CameraManager : MonoBehaviour
     public float _cameraMoveSpeed = 1f;
 
     float initOrthoSize;
+    Transform _playerTransform;
 
     private Coroutine _zoomCoroutine;
     private Coroutine _dezoomCoroutine;
@@ -106,6 +107,7 @@ public class CameraManager : MonoBehaviour
     {
         if (_globalCamera != null) return;
         initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
+        _playerTransform = _mainCamera.transform;
         _globalCamera = new GameObject("Global Camera").AddComponent<CinemachineVirtualCamera>();
 
         Bounds combinedBounds = new Bounds();
@@ -139,13 +141,11 @@ public class CameraManager : MonoBehaviour
         {
             float currentDistance = Mathf.Lerp(initialDistance, -targetDistance, elapsedTime / _cameraZoomSpeed);
             _globalCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, currentDistance);
-            _globalCamera.transform.LookAt(targetPosition);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         _globalCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, -targetDistance);
-        _globalCamera.transform.LookAt(targetPosition);
         onComplete?.Invoke(); 
     }
 
@@ -157,7 +157,7 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShowAndHideLevel()
     {
         SeeAllLevels();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         FocusCamera();
     }
 
@@ -181,9 +181,11 @@ public class CameraManager : MonoBehaviour
         if (_globalCamera != null)
         {
             if (_dezoomCoroutine != null) return;
+            
+            Vector3 playerPosition = _playerTransform != null ? _playerTransform.position : GlobalsCamera.WorldBounds.center;
+
             _zoomCoroutine = StartCoroutine(ZoomEffect(() =>
             {
-                Destroy(_globalCamera.gameObject);
                 _globalCamera = null;
                 _zoomCoroutine = null;
             }));
@@ -192,10 +194,21 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator ZoomEffect(System.Action onComplete)
     {
-        _globalCamera.Priority = 0;
-        _mainCamera.Priority = 10;
-        yield return null;
-        onComplete?.Invoke();
+        float elapsedTime = 0f;
+        _mainCamera.m_Lens.OrthographicSize = _globalCamera.m_Lens.OrthographicSize;
+        _mainCamera.transform.position = _globalCamera.transform.position;
+
+        Destroy(_globalCamera);
+        yield return new WaitForSeconds(0.1f);
+
+        while (elapsedTime < _cameraZoomSpeed)
+        {
+            _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(_mainCamera.m_Lens.OrthographicSize, initOrthoSize, elapsedTime / _cameraZoomSpeed);
+            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, _playerTransform.position, elapsedTime / _cameraZoomSpeed);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        onComplete?.Invoke(); 
     }
 
     public void DefineCameraBounds()
