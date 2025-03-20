@@ -103,7 +103,24 @@ jobs:
       - name: List files in Builds directory (Debug)
         if: ${{ steps.project-build.outcome == 'success' }}
         shell: bash
-        run: ls -R ${{ github.workspace }}/Builds
+        run: |
+          # Utilisation de la syntaxe de chemin compatible avec bash sur Windows
+          BUILD_PATH="${GITHUB_WORKSPACE}/Builds"
+          # Convertir le chemin Windows en chemin bash
+          BUILD_PATH=$(echo "$BUILD_PATH" | sed 's/\\/\//g')
+          # Vérifier si le répertoire existe
+          if [ -d "$BUILD_PATH" ]; then
+            ls -la "$BUILD_PATH"
+            if [ -d "$BUILD_PATH/StandaloneWindows64" ]; then
+              ls -la "$BUILD_PATH/StandaloneWindows64"
+            else
+              echo "Le répertoire StandaloneWindows64 n'existe pas"
+            fi
+          else
+            echo "Le répertoire Builds n'existe pas"
+            # Lister le contenu du répertoire racine pour déboguer
+            ls -la "${GITHUB_WORKSPACE}"
+          fi
 
       - name: Set build artifact URL
         id: build-artifact-url
