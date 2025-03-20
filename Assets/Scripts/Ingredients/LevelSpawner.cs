@@ -104,6 +104,7 @@ public class LevelSpawner : MonoBehaviour
             {
                 if (_playerC.IsInteracting)
                 {
+                    CameraManager.Instance.CameraShake();
                     RemoveNewLevel();
                     _playerC.IsInteracting = false;
                     SFX_DisparitionToile.Invoke();

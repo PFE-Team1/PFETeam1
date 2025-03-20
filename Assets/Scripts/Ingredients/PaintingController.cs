@@ -49,13 +49,13 @@ public class PaintingController : MonoBehaviour
     {
         if (isInRange)
         {
-            if (playerC.IsInteracting&&!playerC.IsInSocleRange)
+            if (playerC.IsInteracting && !playerC.IsInSocleRange)
             {
                 playerC.IsInteracting = false;
                 if (isHeld)
                 {
                     SFX_PoseToile.Invoke();
-                    Destroy(Instantiate(VFX_GrabToile, transform), 1f);
+                    Destroy(Instantiate(VFX_PoseToile, transform), 1f);
                     Vector3 releasePosition = transform.position;
                     RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
 
@@ -94,7 +94,6 @@ public class PaintingController : MonoBehaviour
                 else
                 {
                     SFX_GrabToile.Invoke();
-                    CameraManager.Instance.CameraShake();
                     Destroy(Instantiate(VFX_GrabToile, transform), 1f);
                     transform.SetParent(playerC.PaintingTransform);
                     transform.position = playerC.PaintingTransform.position;

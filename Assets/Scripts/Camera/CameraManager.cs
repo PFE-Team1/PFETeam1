@@ -157,8 +157,6 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShowAndHideLevel()
     {
         SeeAllLevels();
-        yield return new WaitForSeconds(_cameraZoomSpeed);
-        CameraShake();
         yield return new WaitForSeconds(2f);
         FocusCamera();
     }
@@ -186,7 +184,7 @@ public class CameraManager : MonoBehaviour
 
     IEnumerator StopShake()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
     }
 
