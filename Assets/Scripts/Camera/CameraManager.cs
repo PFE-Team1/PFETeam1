@@ -210,9 +210,10 @@ public class CameraManager : MonoBehaviour
         _mainCamera.m_Lens.OrthographicSize = _globalCamera.m_Lens.OrthographicSize;
         _mainCamera.transform.position = _globalCamera.transform.position;
 
-        Destroy(_globalCamera);
+        
         yield return new WaitForSeconds(0.1f);
-
+        Destroy(_globalCamera);
+        
         while (elapsedTime < _cameraZoomSpeed)
         {
             _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(_mainCamera.m_Lens.OrthographicSize, initOrthoSize, elapsedTime / _cameraZoomSpeed);
