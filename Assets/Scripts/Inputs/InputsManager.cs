@@ -23,7 +23,7 @@ public class InputsManager : MonoBehaviour
 
     public bool InputZooming { get => _inputZooming;}
     public bool InputDezooming { get => _inputDezooming;}
-    public bool InputSwitching { get => _inputSwitching; }
+    public bool InputSwitching { get => _inputSwitching; set => _inputSwitching = value; }
     public bool InputPausing { get => _inputPausing;}
     public bool InputRestarting { get => _inputRestarting;}
     public float MoveX { get => _moveX; }
@@ -123,10 +123,7 @@ public class InputsManager : MonoBehaviour
         _lookaround = context.ReadValue<Vector2>();
     }
     #endregion
-    #region Singleton
-    private static InputsManager instance = null;
-    public static InputsManager Instance => instance;
-
+    public static InputsManager instance = null;
 
     private void Awake()
     {
@@ -140,18 +137,14 @@ public class InputsManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
+        SetupInputs();
 
         // Initialisation du Game Manager...
     }
-    #endregion
-    #region Init/InputAction
-    private PlayerInput _playerInputs;
-    [SerializeField] private InputActionAsset _inputActionAsset;
-    private void Start()
-    {
-        SetupInputs();
-    }
 
+    #region Init/InputAction
+    public PlayerInput _playerInputs;
+    [SerializeField] private InputActionAsset _inputActionAsset;
     private void SetupInputs()
     {
         _playerInputs = gameObject.AddComponent<PlayerInput>();

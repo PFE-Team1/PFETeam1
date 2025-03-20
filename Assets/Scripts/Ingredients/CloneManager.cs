@@ -11,6 +11,7 @@ public class CloneManager : MonoBehaviour
     [SerializeField] int _currentPlayer = 0;
     
     public List<Clone> Characters { get => _characters; set => _characters = value; }
+    public int CurrentPlayer { get => _currentPlayer; }
 
     public static CloneManager instance;
     private void Awake()
@@ -24,6 +25,7 @@ public class CloneManager : MonoBehaviour
 
     public void Switch(int charID)
     {
+        print("f");
         bool mustSkip = true;
         if (_characters.Count <= 1)
         {
@@ -40,7 +42,6 @@ public class CloneManager : MonoBehaviour
             mustSkip = Skip(charID);
         }
         _characters[charID].Switchup(true);
-        _currentPlayer = charID;
         foreach (Clone c in _characters)
         {
             if (c.CharID != charID)
@@ -53,6 +54,7 @@ public class CloneManager : MonoBehaviour
                 c.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
             }
         }
+        _currentPlayer = charID;
     }
     private bool Skip(int charID)
     {
@@ -63,4 +65,5 @@ public class CloneManager : MonoBehaviour
         }
         return mustSkip;
     }
+    
 }

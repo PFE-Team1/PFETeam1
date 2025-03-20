@@ -92,7 +92,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Start()
     {
-        InputsManager = InputsManager.Instance;
+        InputsManager = InputsManager.instance;
         _InitAllStates();
         _InitStateMachine();
     }

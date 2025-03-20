@@ -11,6 +11,7 @@ public class Clone : MonoBehaviour
     [SerializeField] private PlayerStateMachine _playerInput;
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
+    private InputsManager _inputs;
     private bool _isInteracting;
     private bool _isInSocleRange=false;
     private GameObject _heldObject;
@@ -24,6 +25,12 @@ public class Clone : MonoBehaviour
     {
         CVC = FindObjectOfType<CinemachineVirtualCamera>();
         CVC.Follow = transform;
+        _inputs = InputsManager.instance;
+        _inputs._playerInputs.actions["Interact"].performed += Interact;
+        _inputs._playerInputs.actions["Interact"].canceled += Interact;
+        _inputs._playerInputs.actions["Interact"].Enable();
+        _inputs._playerInputs.actions["Switch"].performed += Switch;
+        _inputs._playerInputs.actions["Switch"].Enable();
         _playerInput = GetComponent<PlayerStateMachine>();
         _charID = CloneManager.instance.Characters.Count;
         ChangeParent();
@@ -34,6 +41,11 @@ public class Clone : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer==_charID)
+        {
+            CloneManager.instance.Switch(_charID);
+            _inputs.InputSwitching = false;
+        }
     }
 
     public void Cloned(GameObject spawnPoint)// mettre dans des �tats pour la state machine
@@ -43,6 +55,8 @@ public class Clone : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext context)
     {
+
+
         if (context.performed)
         {
             ChangeParent();
@@ -56,15 +70,15 @@ public class Clone : MonoBehaviour
     }
     public void Switch(InputAction.CallbackContext context)// mettre dans des �tats pour la state machine
     {
-        if (context.performed)
+        if (context.performed && CloneManager.instance.CurrentPlayer == _charID);
         {
-            CloneManager.instance.Switch(_charID);
+           
 
         }
     }
     public void Switchup(bool isEnable)
     {
-        _playerInput.enabled = isEnable;
+           _playerInput.enabled = isEnable;
         if (isEnable)
         {
             CVC.Follow = transform;
