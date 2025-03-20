@@ -44,6 +44,7 @@ public class PlayerMovementParameters : ScriptableObject
     [Range(0, 10)]
     [Tooltip("fall max X Speed")] public float instantFallingTurnAround = 5;
     [Tooltip("should the player instantly stop when releasing X inputs")] public bool instantXStop = true;
+    [Tooltip("instantly turn around in the air ?")] public bool instantTurnAroundInAir = true;
 
 
     #endregion

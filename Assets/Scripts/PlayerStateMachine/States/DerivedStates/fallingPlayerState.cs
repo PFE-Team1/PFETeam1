@@ -51,7 +51,11 @@ public class FallingPlayerState : PlayerState
         _timeSinceEnteredState += Time.deltaTime * _inputsManager.MoveX;
         _timeSinceEnteredState = Mathf.Clamp(_timeSinceEnteredState, -accelerationTime, accelerationTime);
 
-        StateMachine.Velocity.x = Mathf.Abs((_timeSinceEnteredState / accelerationTime) * airMaxSpeed) * _inputsManager.MoveX;
+        StateMachine.Velocity.x = Mathf.Abs((_timeSinceEnteredState / accelerationTime) * airMaxSpeed);
+        if (_inputsManager.MoveX != 0 && _playerMovementParameters.instantTurnAroundInAir)
+        {
+            StateMachine.Velocity.x *= _inputsManager.MoveX;
+        }
         StateMachine.Velocity.x = Mathf.Clamp(StateMachine.Velocity.x, -airMaxSpeed, airMaxSpeed);
 
         if (_inputsManager.MoveX == 0 && _playerMovementParameters.instantXStop)
