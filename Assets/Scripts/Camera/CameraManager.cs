@@ -16,10 +16,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private UnityEvent SFX_Zoom;
 
     private Bounds _cameraBounds;
-    public CinemachineVirtualCamera _globalCamera;
+    CinemachineVirtualCamera _globalCamera;
 
     public float _cameraZoomSpeed = 1f;
-    public float _cameraMoveSpeed = 1f;
 
     float initOrthoSize;
     Transform _playerTransform;
@@ -134,22 +133,28 @@ public class CameraManager : MonoBehaviour
         }));
     }
 
-    private IEnumerator DezoomEffect(Vector3 targetPosition, float targetDistance, System.Action onComplete)
+    private IEnumerator DezoomEffect(Vector3 targetPosition, float targetOrthoSize, System.Action onComplete)
     {
-        float initialDistance = _mainCamera.transform.position.z;
-        
         float elapsedTime = 0f;
+
+        Vector3 startPosition = _mainCamera.transform.position;
+        float startOrthoSize = _mainCamera.m_Lens.OrthographicSize;
 
         while (elapsedTime < _cameraZoomSpeed)
         {
-            float currentDistance = Mathf.Lerp(initialDistance, -targetDistance, elapsedTime / _cameraZoomSpeed);
-            _globalCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, currentDistance);
+            float t = elapsedTime / _cameraZoomSpeed;
+
+            _mainCamera.transform.position = Vector3.Lerp(startPosition, new Vector3(targetPosition.x, targetPosition.y, startPosition.z), t);
+            _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, t);
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        _globalCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, _mainCamera.transform.position.z);
-        onComplete?.Invoke(); 
+        _mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, startPosition.z);
+        _mainCamera.m_Lens.OrthographicSize = targetOrthoSize;
+
+        onComplete?.Invoke();
     }
 
     public void ShowNewLevel()
@@ -192,22 +197,33 @@ public class CameraManager : MonoBehaviour
     private IEnumerator ZoomEffect(System.Action onComplete)
     {
         float elapsedTime = 0f;
-        _mainCamera.m_Lens.OrthographicSize = _globalCamera.m_Lens.OrthographicSize;
-        _mainCamera.transform.position = _globalCamera.transform.position;
 
-        yield return new WaitForSeconds(0.1f);
+        Vector3 startPosition = _mainCamera.transform.position;
+        float startOrthoSize = _mainCamera.m_Lens.OrthographicSize;
+
+        Vector3 targetPosition = _playerTransform.position;
+        float targetOrthoSize = initOrthoSize;
+
         Destroy(_globalCamera.gameObject);
         _globalCamera = null;
 
         while (elapsedTime < _cameraZoomSpeed)
         {
-            _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(_mainCamera.m_Lens.OrthographicSize, initOrthoSize, elapsedTime / _cameraZoomSpeed);
-            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, _playerTransform.position, elapsedTime / _cameraZoomSpeed);
+            float t = elapsedTime / _cameraZoomSpeed;
+
+            _mainCamera.transform.position = Vector3.Lerp(startPosition, new Vector3(targetPosition.x, targetPosition.y, startPosition.z), t);
+            _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, t);
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        onComplete?.Invoke(); 
+
+        _mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, startPosition.z);
+        _mainCamera.m_Lens.OrthographicSize = targetOrthoSize;
+
+        onComplete?.Invoke();
     }
+
 
     public void DefineCameraBounds()
     {
