@@ -8,7 +8,7 @@ public class Clone : MonoBehaviour
 {
     [SerializeField] private GameObject _clone;
     [SerializeField] private int _charID;
-    [SerializeField] private PlayerStateMachine _playerInput;
+    [SerializeField] private PlayerStateMachine _playerStateMachine;
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
     private InputsManager _inputs;
@@ -31,7 +31,7 @@ public class Clone : MonoBehaviour
         _inputs._playerInputs.actions["Interact"].Enable();
         _inputs._playerInputs.actions["Switch"].performed += Switch;
         _inputs._playerInputs.actions["Switch"].Enable();
-        _playerInput = GetComponent<PlayerStateMachine>();
+        _playerStateMachine = GetComponent<PlayerStateMachine>();
         _charID = CloneManager.instance.Characters.Count;
         ChangeParent();
         CloneManager.instance.Characters.Add(this);
@@ -76,7 +76,7 @@ public class Clone : MonoBehaviour
     }
     public void Switchup(bool isEnable)
     {
-        _playerInput.enabled = isEnable;
+        _playerStateMachine.IsMovementLocked = !isEnable;
         if (isEnable)
         {
             CVC.Follow = gameObject.transform;

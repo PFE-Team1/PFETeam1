@@ -21,6 +21,7 @@ public class IdlePlayerState : PlayerState
 
     protected override void OnStateUpdate()
     {
+        if (StateMachine.IsMovementLocked) return;
         if (!StateMachine.CollisionInfo.isCollidingBelow)
         {
             StateMachine.ChangeState(StateMachine.FallingState);

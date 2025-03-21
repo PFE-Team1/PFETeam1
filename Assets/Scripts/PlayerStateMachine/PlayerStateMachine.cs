@@ -24,6 +24,8 @@ public class PlayerStateMachine : MonoBehaviour
     [HideInInspector]
     public Vector2 Velocity;
     [HideInInspector]
+    public bool IsMovementLocked;
+    [HideInInspector]
     public InputsManager InputsManager { get; private set; }
     #endregion
     #endregion
