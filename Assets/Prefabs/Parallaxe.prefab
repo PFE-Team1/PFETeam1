@@ -232,6 +232,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3082443763647865914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 133058932386955405}
+  m_Layer: 0
+  m_Name: L21-251
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &133058932386955405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3082443763647865914}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -5.66, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3736669346324323259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3477203731150803477
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,8 +591,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3736669346324323259}
-  - component: {fileID: 2406882998296530156}
   - component: {fileID: 6400070961320610627}
+  - component: {fileID: 4163351379058302832}
   m_Layer: 0
   m_Name: Parallaxe
   m_TagString: Untagged
@@ -587,32 +618,9 @@ Transform:
   - {fileID: 2693017561719291013}
   - {fileID: 4835243879830927297}
   - {fileID: 2046901469022886116}
+  - {fileID: 133058932386955405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2406882998296530156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6786702380063780280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b322e0a06dd8646ba446054bf4f07c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _layers:
-  - {fileID: 5477576786538947920}
-  - {fileID: 2377244746864378765}
-  - {fileID: 3477203731150803477}
-  - {fileID: 1740483690444801647}
-  - {fileID: 6876340022255483464}
-  _vertical: 1
-  _horizontal: 1
-  _bounds: {fileID: 6400070961320610627}
-  _strengthY: 0.5
-  _strengthX: 0.5
-  fallOff: 0.2
 --- !u!61 &6400070961320610627
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -658,6 +666,44 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &4163351379058302832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6786702380063780280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7904ddbdbe6a44ba3110ed8301e0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vertical: 0
+  _horizontal: 0
+  _bounds: {fileID: 6400070961320610627}
+  _strengthY: 0.01
+  _strengthX: 0.01
+  _layers:
+  - name: Layer1
+    layer: {fileID: 5477576786538947920}
+    strengthY: 0.01
+    strengthX: 0.01
+  - name: Layer2
+    layer: {fileID: 2377244746864378765}
+    strengthY: 0.01
+    strengthX: 0.01
+  - name: Layer3
+    layer: {fileID: 3477203731150803477}
+    strengthY: 0.01
+    strengthX: 0.01
+  - name: Layer4
+    layer: {fileID: 1740483690444801647}
+    strengthY: 0.01
+    strengthX: 0.01
+  - name: Layer5
+    layer: {fileID: 6876340022255483464}
+    strengthY: 0.01
+    strengthX: 0.01
 --- !u!1 &6876340022255483464
 GameObject:
   m_ObjectHideFlags: 0
