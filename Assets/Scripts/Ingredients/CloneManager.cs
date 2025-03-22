@@ -1,0 +1,69 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+
+public class CloneManager : MonoBehaviour
+{
+    // poura être utiliser pour appliquer un état à tout les personnages en même temps ou d'autres choses dans le futur.
+    [SerializeField] List<Clone> _characters=new List<Clone>();
+    [SerializeField] int _currentPlayer = 0;
+    
+    public List<Clone> Characters { get => _characters; set => _characters = value; }
+    public int CurrentPlayer { get => _currentPlayer; }
+
+    public static CloneManager instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else Destroy(this);
+    }
+
+    public void Switch(int charID)
+    {
+        print("f");
+        bool mustSkip = true;
+        if (_characters.Count <= 1)
+        {
+            return;
+        }
+        
+        while (mustSkip == true)
+        {
+            charID++;
+            if (charID >= _characters.Count)
+            {
+                charID = 0;
+            }
+            mustSkip = Skip(charID);
+        }
+        _characters[charID].Switchup(true);
+        foreach (Clone c in _characters)
+        {
+            if (c.CharID != charID)
+            {
+                c.gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
+                c.Switchup(false);
+            }
+            else
+            {
+                c.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+            }
+        }
+        _currentPlayer = charID;
+    }
+    private bool Skip(int charID)
+    {
+        bool mustSkip = true;
+        if (_characters[charID].transform.parent.gameObject.activeInHierarchy)
+        {
+            mustSkip = false;
+        }
+        return mustSkip;
+    }
+    
+}
