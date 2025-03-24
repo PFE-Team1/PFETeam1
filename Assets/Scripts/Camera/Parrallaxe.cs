@@ -10,6 +10,7 @@ public class Parrallaxe : MonoBehaviour
     [SerializeField] private bool _horizontal;
     private Camera _mainCamera;
     [SerializeField]private BoxCollider2D _bounds;
+    [SerializeField]private Transform _removed;
     [SerializeField]private float _strengthY=0.01f;
     [SerializeField]private float _strengthX=0.01f;
     #region Layers
@@ -31,6 +32,18 @@ public class Parrallaxe : MonoBehaviour
         }
         Layer newLayer = new Layer(newLayerObject, _layers[_layers.Count - 1].name + "1");
         _layers.Add(newLayer);
+    }
+    [Button(enabledMode: EButtonEnableMode.Editor)]
+    private void RemoveLayer()
+    {
+        Layer oldLayer = _layers[_layers.Count - 1];
+        GameObject oldLayerObject = oldLayer.layer;
+        _layers.RemoveAt(_layers.Count - 1);
+        foreach(Transform child in oldLayerObject.transform)
+        {
+            child.SetParent(_removed);
+        }
+        DestroyImmediate(oldLayerObject);
     }
 #endif
     #endregion
