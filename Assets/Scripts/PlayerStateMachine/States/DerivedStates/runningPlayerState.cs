@@ -12,6 +12,7 @@ public class RunningPlayerState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         MonoBehaviour.print("Entering Run");
+        _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.maxSpeed * _playerMovementParameters.accelerationTime;
     }
 
     protected override void OnStateExit(PlayerState nextState)
