@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6460284520661139652}
   - component: {fileID: 4868908111671251076}
   - component: {fileID: 7906316366294773195}
-  - component: {fileID: 3690309496286138621}
+  - component: {fileID: 5421946527502736386}
   m_Layer: 0
   m_Name: Socle
   m_TagString: Untagged
@@ -121,10 +121,13 @@ MonoBehaviour:
   "SFX_D\xE9calageToile":
     m_PersistentCalls:
       m_Calls: []
+  CameraShake:
+    m_PersistentCalls:
+      m_Calls: []
   isSpawnOnStart: 0
   levelToSpawn: {fileID: 0}
---- !u!135 &3690309496286138621
-SphereCollider:
+--- !u!65 &5421946527502736386
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -142,5 +145,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Size: {x: 1.2, y: 1.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
