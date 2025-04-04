@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Parrallaxe : MonoBehaviour
 {
@@ -21,8 +22,8 @@ public class Parrallaxe : MonoBehaviour
     private void AddLayer()
     {
         GameObject newLayerObject = new GameObject();
-        newLayerObject.transform.parent = transform;
-        if(_layers[_layers.Count - 1]?.layer)
+        newLayerObject.transform.parent = transform;     
+        if (_layers[_layers.Count - 1]?.layer)
         {
             newLayerObject.name = _layers[_layers.Count - 1].layer.name + "1";
         }
@@ -30,20 +31,25 @@ public class Parrallaxe : MonoBehaviour
         {
             newLayerObject.name = "new layer uwu";
         }
+        Undo.RegisterCreatedObjectUndo(newLayerObject, newLayerObject.name);
         Layer newLayer = new Layer(newLayerObject, _layers[_layers.Count - 1].name + "1");
         _layers.Add(newLayer);
+        Undo.IncrementCurrentGroup();
     }
     [Button(enabledMode: EButtonEnableMode.Editor)]
     private void RemoveLayer()
     {
         Layer oldLayer = _layers[_layers.Count - 1];
         GameObject oldLayerObject = oldLayer.layer;
+        Undo.RegisterCompleteObjectUndo(oldLayerObject, oldLayerObject.name);
         _layers.RemoveAt(_layers.Count - 1);
         foreach(Transform child in oldLayerObject.transform)
         {
             child.SetParent(_removed);
+            
         }
         DestroyImmediate(oldLayerObject);
+        Undo.IncrementCurrentGroup();
     }
 #endif
     #endregion
