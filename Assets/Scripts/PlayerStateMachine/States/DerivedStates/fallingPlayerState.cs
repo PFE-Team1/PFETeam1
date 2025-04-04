@@ -12,12 +12,10 @@ public class FallingPlayerState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.fallMaxSpeedX * _playerMovementParameters.fallAccelerationTime;
-        MonoBehaviour.print("Entering Fall");
     }
 
     protected override void OnStateExit(PlayerState nextState)
     {
-        MonoBehaviour.print("Exiting Fall");
     }
 
     protected override void OnStateUpdate()
