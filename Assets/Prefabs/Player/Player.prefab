@@ -129,8 +129,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 1
-  PlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
+  BasePlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
   Velocity: {x: 0, y: 0}
+  IsMovementLocked: 0
+  PlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
 --- !u!136 &737445869535654141
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -168,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clone: {fileID: 434292973231471639, guid: 7cf6d0cc8a1592443bce99d053f2626e, type: 3}
   _charID: 0
-  _playerInput: {fileID: 3480778595104812033}
+  _playerStateMachine: {fileID: 0}
   _paintingTransform: {fileID: 532975740336723945}
 --- !u!1 &6700865436177754771
 GameObject:
