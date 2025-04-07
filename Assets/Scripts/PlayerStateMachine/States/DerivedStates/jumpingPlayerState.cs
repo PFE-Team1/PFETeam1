@@ -17,12 +17,12 @@ public class JumpingPlayerState : PlayerState
 
         StateMachine.Velocity.x *= _playerMovementParameters.inertieLoss;
         StateMachine.Velocity.y = 2 * h / th;
-        MonoBehaviour.print("Entering Jump");
+        //MonoBehaviour.print("Entering Jump");
     }
 
     protected override void OnStateExit(PlayerState nextState)
     {
-        MonoBehaviour.print("Exiting Jump");
+        //MonoBehaviour.print("Exiting Jump");
     }
 
     protected override void OnStateUpdate()
@@ -61,12 +61,12 @@ public class JumpingPlayerState : PlayerState
             targetValue = _playerMovementParameters.jumpAccelerationTime * _inputsManager.MoveX;
         }
 
-        // Déterminer si nous accélérons ou décélérons
+        // Dï¿½terminer si nous accï¿½lï¿½rons ou dï¿½cï¿½lï¿½rons
         bool isAccelerating = ((_timeSinceEnteredState >= 0 && targetValue > _timeSinceEnteredState) ||
                                (_timeSinceEnteredState <= 0 && targetValue < _timeSinceEnteredState));
 
 
-        // Choisir le bon pas d'interpolation en fonction de si on accélère ou décélère
+        // Choisir le bon pas d'interpolation en fonction de si on accï¿½lï¿½re ou dï¿½cï¿½lï¿½re
         float step;
         if (isAccelerating)
         {
@@ -87,7 +87,7 @@ public class JumpingPlayerState : PlayerState
             _timeSinceEnteredState = Mathf.Max(_timeSinceEnteredState - step, targetValue);
         }
 
-        // Calcul de la vitesse en fonction du temps écoulé
+        // Calcul de la vitesse en fonction du temps ï¿½coulï¿½
         float speedRatio = _timeSinceEnteredState / _playerMovementParameters.jumpAccelerationTime;
         StateMachine.Velocity.x = speedRatio * _playerMovementParameters.jumpMaxSpeedX;
         #endregion

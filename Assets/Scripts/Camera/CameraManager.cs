@@ -12,8 +12,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
     [SerializeField] private GameObject _compositeParent;
     private List<CinemachineVirtualCamera> _allCameras = new List<CinemachineVirtualCamera>();
-    [SerializeField] private UnityEvent SFX_Dezoom;
-    [SerializeField] private UnityEvent SFX_Zoom;
+    [SerializeField] private AK.Wwise.Event SFX_Dezoom;
+    [SerializeField] private AK.Wwise.Event SFX_Zoom;
 
     private Bounds _cameraBounds;
     CinemachineVirtualCamera _globalCamera;
@@ -59,13 +59,13 @@ public class CameraManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            SFX_Dezoom.Invoke();
+            SFX_Dezoom.Post(gameObject);
             SeeAllLevels();
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            SFX_Zoom.Invoke();
+            SFX_Zoom.Post(gameObject);
             FocusCamera();
         }
     }

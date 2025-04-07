@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [SerializeField] private UnityEvent MSC_Niveau1;
+    [SerializeField] private AK.Wwise.Event MSC_Niveau1;
 
     void Awake()
     {
@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        MSC_Niveau1.Invoke();
+        MSC_Niveau1.Post(gameObject);
     }
 
     public void PlaySound(AudioClip clip)

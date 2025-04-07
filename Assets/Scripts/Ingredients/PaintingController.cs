@@ -3,42 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PaintingController : MonoBehaviour
+public class PaintingController : Interactable
 {
     [SerializeField] private GameObject _newLevelPrefab;
     [SerializeField] private GameObject _spawnPoint;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
-    private GameObject player;
     private GameObject tableau;
-    private Clone playerC;
-    bool isInRange = false;
     bool isHeld = false;
 
-    [SerializeField] private UnityEvent SFX_GrabToile;
-    [SerializeField] private UnityEvent SFX_PoseToile;
+    [SerializeField] private AK.Wwise.Event SFX_GrabToile;
+    [SerializeField] private AK.Wwise.Event SFX_PoseToile;
     [SerializeField] private ParticleSystem VFX_GrabToile;
     [SerializeField] private ParticleSystem VFX_PoseToile;
-
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            player = other.gameObject;
-            playerC = player.GetComponent<Clone>();
-            isInRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            player = null;
-            isInRange = false;
-        }
-    }
 
     void Start()
     {
@@ -47,14 +24,14 @@ public class PaintingController : MonoBehaviour
 
     void Update()
     {
-        if (isInRange)
+        if (IsInRange)
         {
-            if (playerC.IsInteracting && !playerC.IsInSocleRange)
+            if (PlayerC.IsInteracting && !PlayerC.IsInSocleRange)
             {
-                playerC.IsInteracting = false;
+                PlayerC.IsInteracting = false;
                 if (isHeld)
                 {
-                    SFX_PoseToile.Invoke();
+                    SFX_PoseToile.Post(gameObject);
                     Destroy(Instantiate(VFX_PoseToile, transform), 1f);
                     Vector3 releasePosition = transform.position;
                     RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
@@ -80,7 +57,7 @@ public class PaintingController : MonoBehaviour
                                         if (levelBounds.Intersects(paintingBounds))
                                         {
                                             transform.SetParent(child.transform);
-                                            playerC.heldObject = null;
+                                            PlayerC.heldObject = null;
                                             isHeld = false;
                                             return;
                                         }
@@ -93,12 +70,12 @@ public class PaintingController : MonoBehaviour
                 }
                 else
                 {
-                    SFX_GrabToile.Invoke();
+                    SFX_GrabToile.Post(gameObject);
                     Destroy(Instantiate(VFX_GrabToile, transform), 1f);
-                    transform.SetParent(playerC.PaintingTransform);
-                    transform.position = playerC.PaintingTransform.position;
+                    transform.SetParent(PlayerC.PaintingTransform);
+                    transform.position = PlayerC.PaintingTransform.position;
                     isHeld = true;
-                    playerC.heldObject = gameObject;
+                    PlayerC.heldObject = gameObject;
                 }
             }
         }
