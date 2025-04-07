@@ -11,8 +11,6 @@ public class Parrallaxe : MonoBehaviour
     private Camera _mainCamera;
     [SerializeField]private BoxCollider2D _bounds;
     [SerializeField]private Transform _removed;
-    [SerializeField]private float _strengthY=0.01f;
-    [SerializeField]private float _strengthX=0.01f;
     #region Layers
 
     [SerializeField] private List<Layer> _layers;
