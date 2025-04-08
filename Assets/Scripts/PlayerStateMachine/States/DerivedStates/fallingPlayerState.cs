@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FallingPlayerState : PlayerState
 {
+    private float _coyoteWindow = 0f;
     protected override void OnStateInit()
     {
     }
@@ -13,6 +14,9 @@ public class FallingPlayerState : PlayerState
     {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.fallMaxSpeedX * _playerMovementParameters.fallAccelerationTime;
         MonoBehaviour.print("Entering Fall");
+        MonoBehaviour.print(previousState);
+        if (previousState is not JumpingPlayerState) _coyoteWindow = _playerMovementParameters.CoyoteWindow;
+        else _coyoteWindow = 0f;
     }
 
     protected override void OnStateExit(PlayerState nextState)
@@ -86,6 +90,15 @@ public class FallingPlayerState : PlayerState
             // Calcul de la vitesse en fonction du temps écoulé
             float speedRatio = _timeSinceEnteredState / _playerMovementParameters.fallAccelerationTime;
             StateMachine.Velocity.x = speedRatio * _playerMovementParameters.fallMaxSpeedX;
+
+            if (StateMachine.JumpBuffer > 0 && _coyoteWindow > 0f)
+            {
+                StateMachine.JumpBuffer = 0;
+                StateMachine.ChangeState(StateMachine.JumpingState);
+                return;
+            }
+
+        _coyoteWindow -= Time.deltaTime;
         #endregion
     }
 }

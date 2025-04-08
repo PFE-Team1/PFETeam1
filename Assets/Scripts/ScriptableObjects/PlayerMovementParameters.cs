@@ -27,8 +27,8 @@ public class PlayerMovementParameters : ScriptableObject
     [Range(0, 3)]
     [Tooltip("Jump Buffer")] public float jumpBuffer = 2f;
 
-    //[Range(0, 10)]
-    //[Tooltip("Temps alloué au joueur pour sauter alors qu'il n'est plus sur la plateforme")] public float CoyoteWindow = 5f;
+    [Range(0, 3)]
+    [Tooltip("Temps alloué au joueur pour sauter alors qu'il n'est plus sur la plateforme")] public float CoyoteWindow = 2f;
 
     #endregion
 
