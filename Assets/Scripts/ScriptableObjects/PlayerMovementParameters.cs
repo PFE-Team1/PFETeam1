@@ -45,8 +45,6 @@ public class PlayerMovementParameters : ScriptableObject
     [Tooltip("Fall speed acceleration time")] public float fallDecelerationTime = 5;
     [Range(0, 50)]
     [Tooltip("fall max X Speed")] public float fallMaxSpeedX = 5;
-    [Tooltip("should the player instantly stop when releasing X inputs")] public bool instantXStop = true;
-    [Tooltip("instantly turn around in the air ?")] public bool instantTurnAroundInAir = true;
 
 
     #endregion

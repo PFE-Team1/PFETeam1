@@ -34,8 +34,9 @@ public class IdlePlayerState : PlayerState
             return;
         }
 
-        if (_inputsManager.InputJumping)
+        if (_inputsManager.InputJumping && StateMachine.IsJumpInputEaten)
         {
+            StateMachine.IsJumpInputEaten = false;
             StateMachine.ChangeState(StateMachine.JumpingState);
             return;
         }

@@ -27,6 +27,9 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsMovementLocked;
     [HideInInspector]
     public InputsManager InputsManager { get; private set; }
+    [HideInInspector] 
+    public bool IsJumpInputEaten = false;
+
     #endregion
     #endregion
     #region PrivateVariables
@@ -107,14 +110,17 @@ public class PlayerStateMachine : MonoBehaviour
     {
         // R�initialiser les collisions horizontales � chaque frame
         CollisionDetector.ResetFrameCollisions(gameObject);
+        // Mettre � jour l'entr�e de l'utilisateur
+        if (!InputsManager.InputJumping)
+        {
+            IsJumpInputEaten = true;
+        }
     }
     private void FixedUpdate()
     {
         // Obtenir l'�tat actuel des collisions
         CollisionInfo = CollisionDetector.GetCollisionInfo(gameObject);
 
-        // Mise � jour de l'�tat actuel
-        CurrentState.StateUpdate();
 
         // Appliquer le mouvement et obtenir les flags de collision
         CollisionFlags collisionFlags = _CharacterController.Move(Velocity * Time.fixedDeltaTime);
@@ -124,6 +130,9 @@ public class PlayerStateMachine : MonoBehaviour
 
         // Mettre � jour l'information de collision apr�s le mouvement
         CollisionInfo = CollisionDetector.GetCollisionInfo(gameObject);
+
+        // Mise � jour de l'�tat actuel
+        CurrentState.StateUpdate();
     }
 
     private void _InitAllStates()

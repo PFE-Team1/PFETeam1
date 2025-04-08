@@ -34,6 +34,11 @@ public class FallingPlayerState : PlayerState
             StateMachine.ChangeState(StateMachine.IdleState);
             return;
         }
+
+        if (StateMachine.CollisionInfo.isCollidingLeft || StateMachine.CollisionInfo.isCollidingRight)
+        {
+            _timeSinceEnteredState = 0;
+        }
         #endregion
 
         #region Yvelocity
