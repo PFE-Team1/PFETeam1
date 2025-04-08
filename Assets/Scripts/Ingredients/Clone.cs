@@ -87,7 +87,7 @@ public class Clone : MonoBehaviour
             ChangeParent();
         }
     }
-    private void ChangeParent()
+    public void ChangeParent()
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.back);
         foreach (var hit in hits)
