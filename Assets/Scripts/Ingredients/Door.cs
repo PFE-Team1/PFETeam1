@@ -15,13 +15,13 @@ public class Door : MonoBehaviour
     {
         _collider.isTrigger = true;
         _sprite.enabled = false;
-        _VfxOpen.SetActive(true);
+        //_VfxOpen.SetActive(true);
     }
     public  void Close()
     {
         _collider.isTrigger = false;
         _sprite.enabled = true;
-        _VfxOpen.SetActive(false);
+        //_VfxOpen.SetActive(false);
 
     }
     private void OnTriggerEnter(Collider other)
