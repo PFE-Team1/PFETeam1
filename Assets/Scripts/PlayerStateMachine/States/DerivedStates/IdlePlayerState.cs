@@ -11,12 +11,12 @@ public class IdlePlayerState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         StateMachine.Velocity = new Vector2(0, -0.1f);
-        MonoBehaviour.print("Entering Idle");
+        //MonoBehaviour.print("Entering Idle");
     }
 
     protected override void OnStateExit(PlayerState nextState)
     {
-        MonoBehaviour.print("Exiting Idle");
+        //MonoBehaviour.print("Exiting Idle");
     }
 
     protected override void OnStateUpdate()

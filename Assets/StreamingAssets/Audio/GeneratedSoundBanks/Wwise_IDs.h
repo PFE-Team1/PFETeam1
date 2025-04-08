@@ -13,6 +13,9 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID PLAY_CREATECLONE_RC = 772483901U;
+        static const AkUniqueID PLAY_SUI_CLIQUEVALIDATIONBOUTON_RC = 129827151U;
+        static const AkUniqueID PLAY_SUI_SURVOLBOUTON_RC_01 = 2589902834U;
         static const AkUniqueID PLAY_TOILE_1_PC = 4192545069U;
     } // namespace EVENTS
 
@@ -23,6 +26,7 @@ namespace AK
         static const AkUniqueID FOL_SBK = 2606446995U;
         static const AkUniqueID MUS_SBK = 552161325U;
         static const AkUniqueID SFX_SBK = 4254072057U;
+        static const AkUniqueID UI_SBK = 3630591588U;
     } // namespace BANKS
 
     namespace BUSSES

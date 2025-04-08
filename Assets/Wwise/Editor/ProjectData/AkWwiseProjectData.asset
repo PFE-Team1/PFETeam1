@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 734f4be9fe62f948b89f9989702d4be4
     GuidInternal: 
-    m_lastTime: -8584591177849071972
+    m_lastTime: -8584575811228593314
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: 0d0f153d6dae8a42a94c3627e019c690
     GuidInternal: 
-    m_lastTime: -8584591177849147541
+    m_lastTime: -8584575811233903532
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 5b1a7e0c34ee414e9dc1f3835973309b
     GuidInternal: 
-    m_lastTime: -8584591165674230724
+    m_lastTime: -8584575806616119676
     List:
     - name: AMB_SBK
       guid: fdc9988257980740ab1f040c6bb35c2e
@@ -124,6 +124,20 @@ MonoBehaviour:
         ObjectType: 7
         guid: f5ebf4ac2f5b004f87f52a8c349f43b6
       Path: SoundBanks\Default Work Unit\SFX_SBK
+    - name: UI_SBK
+      guid: 5786cd6627bbbf4aa6e7231484986b7d
+      id: 3630591588
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 5b1a7e0c34ee414e9dc1f3835973309b
+      - ElementName: UI_SBK
+        ObjectType: 7
+        guid: 5786cd6627bbbf4aa6e7231484986b7d
+      Path: SoundBanks\Default Work Unit\UI_SBK
   EventWwu:
   - PhysicalPath: Events\AMB_WU.wwu
     PathAndIcons:
@@ -136,7 +150,7 @@ MonoBehaviour:
     ParentPath: Events\AMB_WU
     guid: a1ca8aaa1c5cba408a3bf1bc2c8e9b1b
     GuidInternal: 
-    m_lastTime: -8584591199092915626
+    m_lastTime: -8584575811238663540
     List: []
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -149,7 +163,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: ad58fff510fe01409612fab3b9f4cc31
     GuidInternal: 
-    m_lastTime: -8584591177849182617
+    m_lastTime: -8584575811238663540
     List: []
   - PhysicalPath: Events\FOL_WU.wwu
     PathAndIcons:
@@ -162,7 +176,7 @@ MonoBehaviour:
     ParentPath: Events\FOL_WU
     guid: 0288738f62aa1b4c9fa9527139f62dc6
     GuidInternal: 
-    m_lastTime: -8584591199092915626
+    m_lastTime: -8584575811238653575
     List: []
   - PhysicalPath: Events\MUS_WU.wwu
     PathAndIcons:
@@ -175,7 +189,7 @@ MonoBehaviour:
     ParentPath: Events\MUS_WU
     guid: 95f36ea541cd1f499d6e1f5174a625d0
     GuidInternal: 
-    m_lastTime: -8584591199092915626
+    m_lastTime: -8584575811238653575
     List:
     - name: Play_Toile_1_PC
       guid: 7e5112db7ccbce4b8f14d066a54551d0
@@ -205,8 +219,72 @@ MonoBehaviour:
     ParentPath: Events\SFX_WU
     guid: a48179c86af39c48af681069ba57db04
     GuidInternal: 
-    m_lastTime: -8584591199092905659
-    List: []
+    m_lastTime: -8584575806616369668
+    List:
+    - name: Play_CreateClone_RC
+      guid: 8544e16211c67d46a4f210149d2a3529
+      id: 772483901
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: SFX_WU
+        ObjectType: 12
+        guid: a48179c86af39c48af681069ba57db04
+      - ElementName: Play_CreateClone_RC
+        ObjectType: 3
+        guid: 8544e16211c67d46a4f210149d2a3529
+      Path: Events\SFX_WU\Play_CreateClone_RC
+      maxAttenuation: 0
+      maxDuration: 1.2370498
+      minDuration: 1.1676195
+  - PhysicalPath: Events\UI_WU.wwu
+    PathAndIcons:
+    - ElementName: Events
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: UI_WU
+      ObjectType: 12
+      guid: ab9be2386fd8504d917a5c99d0da3795
+    ParentPath: Events\UI_WU
+    guid: ab9be2386fd8504d917a5c99d0da3795
+    GuidInternal: 
+    m_lastTime: -8584575806616369668
+    List:
+    - name: Play_SUI_CliqueValidationBouton_RC
+      guid: cba854d5bb76a140a653f4d96ee48528
+      id: 129827151
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: UI_WU
+        ObjectType: 12
+        guid: ab9be2386fd8504d917a5c99d0da3795
+      - ElementName: Play_SUI_CliqueValidationBouton_RC
+        ObjectType: 3
+        guid: cba854d5bb76a140a653f4d96ee48528
+      Path: Events\UI_WU\Play_SUI_CliqueValidationBouton_RC
+      maxAttenuation: 0
+      maxDuration: 0.45130613
+      minDuration: 0.2505945
+    - name: Play_SUI_SurvolBouton_RC_01
+      guid: 7d334bedb11a87479152b84dc5fd1300
+      id: 2589902834
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: UI_WU
+        ObjectType: 12
+        guid: ab9be2386fd8504d917a5c99d0da3795
+      - ElementName: Play_SUI_SurvolBouton_RC_01
+        ObjectType: 3
+        guid: 7d334bedb11a87479152b84dc5fd1300
+      Path: Events\UI_WU\Play_SUI_SurvolBouton_RC_01
+      maxAttenuation: 0
+      maxDuration: 0.08163654
+      minDuration: 0.07705463
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -219,7 +297,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 4bebea56ecd8fe41a63933e2e22105aa
     GuidInternal: 
-    m_lastTime: -8584591177849182617
+    m_lastTime: -8584575811238633577
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
@@ -233,7 +311,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: ade3c0f59ebd6c47bb373552589cde30
     GuidInternal: 
-    m_lastTime: -8584591177849087100
+    m_lastTime: -8584575811228623526
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -247,7 +325,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: b6926168816fd842a37c9db1ce550862
     GuidInternal: 
-    m_lastTime: -8584591177849082024
+    m_lastTime: -8584575811228613579
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
@@ -261,10 +339,10 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: d6fc9323de57134fa822eb568d71be21
     GuidInternal: 
-    m_lastTime: -8584591177849082024
+    m_lastTime: -8584575811228603578
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 060000000a000000
+  ExpandedWaapiItemIds: 0200000005000000060000000a0000000b0000000e000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

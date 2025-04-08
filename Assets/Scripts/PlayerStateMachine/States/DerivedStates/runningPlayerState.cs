@@ -11,12 +11,13 @@ public class RunningPlayerState : PlayerState
 
     protected override void OnStateEnter(PlayerState previousState)
     {
-        MonoBehaviour.print("Entering Run");
+        //MonoBehaviour.print("Entering Run");
+        AudioManager.Instance.FOL_Pas.Post(null);
     }
 
     protected override void OnStateExit(PlayerState nextState)
     {
-        MonoBehaviour.print("Exiting Run");
+        //MonoBehaviour.print("Exiting Run");
     }
 
     protected override void OnStateUpdate()
@@ -47,12 +48,12 @@ public class RunningPlayerState : PlayerState
             targetValue = _playerMovementParameters.accelerationTime * _inputsManager.MoveX;
         }
 
-        // Déterminer si nous accélérons ou décélérons
+        // Dï¿½terminer si nous accï¿½lï¿½rons ou dï¿½cï¿½lï¿½rons
         bool isAccelerating = ((_timeSinceEnteredState >= 0 && targetValue > _timeSinceEnteredState) ||
                                (_timeSinceEnteredState <= 0 && targetValue < _timeSinceEnteredState));
 
 
-        // Choisir le bon pas d'interpolation en fonction de si on accélère ou décélère
+        // Choisir le bon pas d'interpolation en fonction de si on accï¿½lï¿½re ou dï¿½cï¿½lï¿½re
         float step;
         if (isAccelerating)
         {
@@ -73,7 +74,7 @@ public class RunningPlayerState : PlayerState
             _timeSinceEnteredState = Mathf.Max(_timeSinceEnteredState - step, targetValue);
         }
 
-        // Calcul de la vitesse en fonction du temps écoulé
+        // Calcul de la vitesse en fonction du temps ï¿½coulï¿½
         float speedRatio = _timeSinceEnteredState / _playerMovementParameters.accelerationTime;
         StateMachine.Velocity.x = speedRatio * _playerMovementParameters.maxSpeed;
 

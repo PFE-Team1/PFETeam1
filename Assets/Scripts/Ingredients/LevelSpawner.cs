@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.Events;
 
-public class LevelSpawner : MonoBehaviour
+public class LevelSpawner : Interactable
 {
     enum Direction { Up, Down, Left, Right };
     [SerializeField] private GameObject _currentLevel;
@@ -12,51 +12,18 @@ public class LevelSpawner : MonoBehaviour
     [SerializeField] private Sprite[] _sprites;
     private GameObject _newLevelPrefab;
     private GameObject _heldObject;
-    private GameObject _player;
     private GameObject _paint;
-    private Clone _playerC;
-    [SerializeField] private UnityEvent OnRemovePainting;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     
-    public bool isInRange = false;
     public bool isAlreadySpawned = false;
 
-    public bool isSoawnOnStart;
+    public bool isSawnOnStart;
     public bool isFixed;
-    [SerializeField] private UnityEvent SFX_ApparitionToile;
-    [SerializeField] private UnityEvent SFX_DisparitionToile;
-    [SerializeField] private UnityEvent SFX_DécalageToile;
-    [SerializeField] private UnityEvent CameraShake;
+
 
     private GameObject _newlevel;
     public bool isSpawnOnStart;
     [SerializeField] private GameObject levelToSpawn;
-    
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (isSoawnOnStart && isFixed) return;
-        if (other.tag == "Player")
-        {
-            _playerC = other.GetComponent<Clone>();
-            _playerC.IsInSocleRange = true;
-            _heldObject = _playerC.heldObject;
-            _player = other.gameObject;
-            isInRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (isSoawnOnStart && isFixed) return;
-        if (other.tag == "Player")
-        {
-            _playerC.IsInSocleRange = false;
-            _heldObject = null;
-            _player = null;
-            isInRange = false;
-        }
-    }
 
     private void Start()
     {
@@ -84,31 +51,33 @@ public class LevelSpawner : MonoBehaviour
 
     void Update()
     {
-        if (isInRange)
+        if (PlayerC != null)
         {
-            if (_playerC.IsInteracting && _playerC.heldObject != null)
-            {
-                Debug.Log($"_playerC.heldObject : {_playerC.heldObject}");
-            }
-
+            _heldObject = PlayerC.heldObject;
+        }
+        if (IsInRange)
+        {
+            if (isSpawnOnStart && isFixed) return;
+            PlayerC.IsInSocleRange = true;
             if (!isAlreadySpawned)
             {
-                if (_playerC.IsInteracting&&_playerC.heldObject!=null)
+                Debug.Log($"PlayerC.heldObject : {PlayerC.heldObject}");
+                if (PlayerC.IsInteracting && PlayerC.heldObject!=null)
                 {
                     SpawnNewLevel();
                     CameraManager.Instance.ShowNewLevel();
-                    _playerC.IsInteracting = false;
-                    SFX_ApparitionToile.Invoke();
+                    PlayerC.IsInteracting = false;
+                    AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
                 }
             }
             else if (isAlreadySpawned)
             {
-                if (_playerC.IsInteracting)
+                if (PlayerC.IsInteracting)
                 {
                     CameraManager.Instance.CameraShake(1,1);
                     RemoveNewLevel();
-                    _playerC.IsInteracting = false;
-                    SFX_DisparitionToile.Invoke();
+                    PlayerC.IsInteracting = false;
+                    AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
                 }
             }
         }
@@ -147,8 +116,8 @@ public class LevelSpawner : MonoBehaviour
 
         _heldObject.transform.SetParent(transform);
         _heldObject.transform.localPosition = Vector3.zero;
-        _paint = _playerC.heldObject;
-        _player.GetComponent<Clone>().heldObject = null;
+        _paint = PlayerC.heldObject;
+        Player.GetComponent<Clone>().heldObject = null;
 
         var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
@@ -195,7 +164,7 @@ public class LevelSpawner : MonoBehaviour
             attempts++;
         }
 
-        SFX_DécalageToile.Invoke();
+        AudioManager.Instance.SFX_DécalageToile.Post(gameObject);
 
         if (attempts >= maxAttempts)
         {
@@ -319,8 +288,8 @@ public class LevelSpawner : MonoBehaviour
     {
         //OnRemovePainting.Invoke();
         isAlreadySpawned = false;
-        _paint.transform.SetParent(_player.transform);
-        _playerC.heldObject = _paint;
+        _paint.transform.SetParent(Player.transform);
+        PlayerC.heldObject = _paint;
         _paint = null;
         _newlevel.SetActive(false);
         CameraManager.Instance?.RemoveLevel(_newlevel);
