@@ -51,7 +51,7 @@ public class Clone : MonoBehaviour
     public void Cloned(GameObject spawnPoint)// mettre dans des �tats pour la state machine
     {
         GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
-        
+        AudioManager.Instance.SFX_CreateClone.Post(gameObject);
     }
     public void Interact(InputAction.CallbackContext context)
     {

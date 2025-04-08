@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class CloneManager : MonoBehaviour
 {
-    // poura être utiliser pour appliquer un état à tout les personnages en même temps ou d'autres choses dans le futur.
+    // poura ï¿½tre utiliser pour appliquer un ï¿½tat ï¿½ tout les personnages en mï¿½me temps ou d'autres choses dans le futur.
     [SerializeField] List<Clone> _characters=new List<Clone>();
     [SerializeField] int _currentPlayer = 0;
     
@@ -26,6 +26,7 @@ public class CloneManager : MonoBehaviour
     public void Switch(int charID)
     {
         print("f");
+        AudioManager.Instance.SFX_SwitchClone.Post(gameObject);
         bool mustSkip = true;
         if (_characters.Count <= 1)
         {

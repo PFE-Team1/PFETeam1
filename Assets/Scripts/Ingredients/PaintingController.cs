@@ -12,8 +12,6 @@ public class PaintingController : Interactable
     private GameObject tableau;
     bool isHeld = false;
 
-    [SerializeField] private AK.Wwise.Event SFX_GrabToile;
-    [SerializeField] private AK.Wwise.Event SFX_PoseToile;
     [SerializeField] private ParticleSystem VFX_GrabToile;
     [SerializeField] private ParticleSystem VFX_PoseToile;
 
@@ -31,7 +29,7 @@ public class PaintingController : Interactable
                 PlayerC.IsInteracting = false;
                 if (isHeld)
                 {
-                    SFX_PoseToile.Post(gameObject);
+                    AudioManager.Instance.SFX_PoseToile.Post(gameObject);
                     Destroy(Instantiate(VFX_PoseToile, transform), 1f);
                     Vector3 releasePosition = transform.position;
                     RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
@@ -70,7 +68,7 @@ public class PaintingController : Interactable
                 }
                 else
                 {
-                    SFX_GrabToile.Post(gameObject);
+                    AudioManager.Instance.SFX_GrabToile.Post(gameObject);
                     Destroy(Instantiate(VFX_GrabToile, transform), 1f);
                     transform.SetParent(PlayerC.PaintingTransform);
                     transform.position = PlayerC.PaintingTransform.position;

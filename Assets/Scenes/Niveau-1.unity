@@ -878,14 +878,6 @@ MonoBehaviour:
   - {fileID: 1350361014}
   _mainCamera: {fileID: 1832736596}
   _compositeParent: {fileID: 1187207151}
-  SFX_Dezoom:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  SFX_Zoom:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
   _cameraZoomSpeed: 1
 --- !u!4 &1420256532
 Transform:
@@ -1200,6 +1192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955860202}
   - component: {fileID: 1955860201}
+  - component: {fileID: 1955860203}
   m_Layer: 0
   m_Name: EventManager
   m_TagString: Untagged
@@ -1240,6 +1233,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1955860203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955860200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f847fdeb7e57e0245a7e08cf315ab12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WalkSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  JumpSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  LandSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  SFX_Zoom:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  SFX_Dezoom:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  _createCloneSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  _switchSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  OnRemovePainting:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  SFX_ApparitionToile:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  SFX_DisparitionToile:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  "SFX_D\xE9calageToile":
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  CameraShake:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  SFX_GrabToile:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  SFX_PoseToile:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
 --- !u!1001 &5723980221663169325
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class RunningPlayerState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         //MonoBehaviour.print("Entering Run");
+        AudioManager.Instance.FOL_Pas.Post(null);
     }
 
     protected override void OnStateExit(PlayerState nextState)

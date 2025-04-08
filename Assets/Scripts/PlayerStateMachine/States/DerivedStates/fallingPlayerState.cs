@@ -13,6 +13,7 @@ public class FallingPlayerState : PlayerState
     {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.fallMaxSpeedX * _playerMovementParameters.fallAccelerationTime;
         //MonoBehaviour.print("Entering Fall");
+        AudioManager.Instance.FOL_Atterissage.Post(null);
     }
 
     protected override void OnStateExit(PlayerState nextState)

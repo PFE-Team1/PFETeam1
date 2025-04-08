@@ -13,17 +13,13 @@ public class LevelSpawner : Interactable
     private GameObject _newLevelPrefab;
     private GameObject _heldObject;
     private GameObject _paint;
-    [SerializeField] private AK.Wwise.Event OnRemovePainting;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     
     public bool isAlreadySpawned = false;
 
     public bool isSawnOnStart;
     public bool isFixed;
-    [SerializeField] private AK.Wwise.Event SFX_ApparitionToile;
-    [SerializeField] private AK.Wwise.Event SFX_DisparitionToile;
-    [SerializeField] private AK.Wwise.Event SFX_DécalageToile;
-    [SerializeField] private AK.Wwise.Event CameraShake;
+
 
     private GameObject _newlevel;
     public bool isSpawnOnStart;
@@ -71,7 +67,7 @@ public class LevelSpawner : Interactable
                     SpawnNewLevel();
                     CameraManager.Instance.ShowNewLevel();
                     PlayerC.IsInteracting = false;
-                    SFX_ApparitionToile.Post(gameObject);
+                    AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
                 }
             }
             else if (isAlreadySpawned)
@@ -81,7 +77,7 @@ public class LevelSpawner : Interactable
                     CameraManager.Instance.CameraShake(1,1);
                     RemoveNewLevel();
                     PlayerC.IsInteracting = false;
-                    SFX_DisparitionToile.Post(gameObject);
+                    AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
                 }
             }
         }
@@ -168,7 +164,7 @@ public class LevelSpawner : Interactable
             attempts++;
         }
 
-        SFX_DécalageToile.Post(gameObject);
+        AudioManager.Instance.SFX_DécalageToile.Post(gameObject);
 
         if (attempts >= maxAttempts)
         {
