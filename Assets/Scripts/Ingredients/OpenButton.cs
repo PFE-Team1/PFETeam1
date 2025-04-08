@@ -2,39 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenButton : MonoBehaviour
+public class OpenButton : Interactable
 {
     [SerializeField] GameObject _toRemove;
-    private Clone _playerC;
-    public bool isInRange;
-
-    // Start is called before the first frame update
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            _playerC = other.GetComponent<Clone>();
-            isInRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            _playerC = null;
-            isInRange = false;
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (isInRange)
+        if (IsInRange)
         {
-            if (_playerC.IsInteracting && _playerC.heldObject == null)
+            if (PlayerC.IsInteracting && PlayerC.heldObject == null)
             {
-                _playerC.IsInteracting = false;
+                PlayerC.IsInteracting = false;
                 Destroy(_toRemove);
                 Destroy(gameObject);
             }
