@@ -8,10 +8,10 @@ public abstract class PlayerState
     protected InputsManager _inputsManager => StateMachine.InputsManager;
     protected PlayerMovementParameters _playerMovementParameters => StateMachine.PlayerMovementParameters;
     protected void ChangeState(PlayerState state) => StateMachine.ChangeState(state);
-    public void StateEnter(PlayerState previousState)
+    public void StateEnter(PlayerState state)
     {
         _timeSinceEnteredState = 0;
-        OnStateEnter(previousState);
+        OnStateEnter(StateMachine.PreviousState);
     }
     public void StateExit(PlayerState nextState) => OnStateExit(nextState);
 

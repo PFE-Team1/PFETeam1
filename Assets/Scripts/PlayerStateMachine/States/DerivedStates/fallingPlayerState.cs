@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FallingPlayerState : PlayerState
 {
+    private float _coyoteWindow = 0f;
     protected override void OnStateInit()
     {
     }
@@ -12,13 +13,15 @@ public class FallingPlayerState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.fallMaxSpeedX * _playerMovementParameters.fallAccelerationTime;
-        //MonoBehaviour.print("Entering Fall");
-        AudioManager.Instance.FOL_Atterissage.Post(null);
+        MonoBehaviour.print("Entering Fall");
+        MonoBehaviour.print(previousState);
+        if (previousState is not JumpingPlayerState) _coyoteWindow = _playerMovementParameters.CoyoteWindow;
+        else _coyoteWindow = 0f;
     }
 
     protected override void OnStateExit(PlayerState nextState)
     {
-        //MonoBehaviour.print("Exiting Fall");
+        MonoBehaviour.print("Exiting Fall");
     }
 
     protected override void OnStateUpdate()
@@ -34,6 +37,11 @@ public class FallingPlayerState : PlayerState
             }
             StateMachine.ChangeState(StateMachine.IdleState);
             return;
+        }
+
+        if (StateMachine.CollisionInfo.isCollidingLeft || StateMachine.CollisionInfo.isCollidingRight)
+        {
+            _timeSinceEnteredState = 0;
         }
         #endregion
 
@@ -53,12 +61,12 @@ public class FallingPlayerState : PlayerState
                 targetValue = _playerMovementParameters.fallAccelerationTime * _inputsManager.MoveX;
             }
 
-            // Dï¿½terminer si nous accï¿½lï¿½rons ou dï¿½cï¿½lï¿½rons
+            // Déterminer si nous accélérons ou décélérons
             bool isAccelerating = ((_timeSinceEnteredState >= 0 && targetValue > _timeSinceEnteredState) ||
                                    (_timeSinceEnteredState <= 0 && targetValue < _timeSinceEnteredState));
 
 
-            // Choisir le bon pas d'interpolation en fonction de si on accï¿½lï¿½re ou dï¿½cï¿½lï¿½re
+            // Choisir le bon pas d'interpolation en fonction de si on accélère ou décélère
             float step;
             if (isAccelerating)
             {
@@ -79,9 +87,18 @@ public class FallingPlayerState : PlayerState
                 _timeSinceEnteredState = Mathf.Max(_timeSinceEnteredState - step, targetValue);
             }
 
-            // Calcul de la vitesse en fonction du temps ï¿½coulï¿½
+            // Calcul de la vitesse en fonction du temps écoulé
             float speedRatio = _timeSinceEnteredState / _playerMovementParameters.fallAccelerationTime;
             StateMachine.Velocity.x = speedRatio * _playerMovementParameters.fallMaxSpeedX;
+
+            if (StateMachine.JumpBuffer > 0 && _coyoteWindow > 0f)
+            {
+                StateMachine.JumpBuffer = 0;
+                StateMachine.ChangeState(StateMachine.JumpingState);
+                return;
+            }
+
+        _coyoteWindow -= Time.deltaTime;
         #endregion
     }
 }

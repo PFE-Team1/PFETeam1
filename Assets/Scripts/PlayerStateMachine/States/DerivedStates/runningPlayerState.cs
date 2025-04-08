@@ -23,8 +23,9 @@ public class RunningPlayerState : PlayerState
     protected override void OnStateUpdate()
     {
 
-        if (_inputsManager.InputJumping)
+        if (StateMachine.JumpBuffer > 0)
         {
+            StateMachine.JumpBuffer = 0;
             StateMachine.ChangeState(StateMachine.JumpingState);
             return;
         }

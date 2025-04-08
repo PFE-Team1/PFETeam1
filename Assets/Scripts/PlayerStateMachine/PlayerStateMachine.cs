@@ -27,6 +27,12 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsMovementLocked;
     [HideInInspector]
     public InputsManager InputsManager { get; private set; }
+    [HideInInspector] 
+    public bool IsJumpInputEaten = false;
+    [HideInInspector]
+    public float JumpBuffer = 0f;
+    [HideInInspector]
+    public float CoyoteWindow = 0f;
     #endregion
     #endregion
     #region PrivateVariables
@@ -60,7 +66,8 @@ public class PlayerStateMachine : MonoBehaviour
     #region CurrentStates
     private PlayerState StartState => _idleState;
     private PlayerState CurrentState { get; set; }
-    private PlayerState PreviousState { get; set; }
+    [HideInInspector]
+    public PlayerState PreviousState { get; set; }
 
     #endregion
 
@@ -82,6 +89,7 @@ public class PlayerStateMachine : MonoBehaviour
         debugText += "Current State: " + CurrentState.GetType().Name + "\n";
         debugText += "Move X: " + InputsManager.MoveX + "\n";
         debugText += "Velocity: " + Velocity.ToString("F2") + "\n";
+        debugText += "Jump Buffer: " + JumpBuffer.ToString("F2") + "\n";
         debugText += "\n";
         debugText += "Gauche: " + CollisionInfo.isCollidingLeft + "\n";
         debugText += "Droite: " + CollisionInfo.isCollidingRight + "\n";
@@ -107,14 +115,17 @@ public class PlayerStateMachine : MonoBehaviour
     {
         // R�initialiser les collisions horizontales � chaque frame
         CollisionDetector.ResetFrameCollisions(gameObject);
+        // Mettre � jour l'entr�e de l'utilisateur
+        UpdateJumpBuffer();
+
+
+
     }
     private void FixedUpdate()
     {
         // Obtenir l'�tat actuel des collisions
         CollisionInfo = CollisionDetector.GetCollisionInfo(gameObject);
 
-        // Mise � jour de l'�tat actuel
-        CurrentState.StateUpdate();
 
         // Appliquer le mouvement et obtenir les flags de collision
         CollisionFlags collisionFlags = _CharacterController.Move(Velocity * Time.fixedDeltaTime);
@@ -124,6 +135,9 @@ public class PlayerStateMachine : MonoBehaviour
 
         // Mettre � jour l'information de collision apr�s le mouvement
         CollisionInfo = CollisionDetector.GetCollisionInfo(gameObject);
+
+        // Mise � jour de l'�tat actuel
+        CurrentState.StateUpdate();
     }
 
     private void _InitAllStates()
@@ -145,5 +159,21 @@ public class PlayerStateMachine : MonoBehaviour
         {
             CurrentState.StateEnter(state);
         }
+    }
+
+    private void UpdateJumpBuffer()
+    {
+        if (!InputsManager.InputJumping)
+        {
+            IsJumpInputEaten = true;
+        }
+
+        if (InputsManager.InputJumping && IsJumpInputEaten)
+        {
+            IsJumpInputEaten = false;
+            JumpBuffer = PlayerMovementParameters.jumpBuffer;
+        }
+
+        JumpBuffer = Mathf.Clamp(JumpBuffer - Time.deltaTime, 0, PlayerMovementParameters.jumpBuffer);
     }
 }

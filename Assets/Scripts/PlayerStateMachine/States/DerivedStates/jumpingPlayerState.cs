@@ -35,6 +35,7 @@ public class JumpingPlayerState : PlayerState
             return;
         }
 
+
         #region Yvelocity
 
         float h;
@@ -50,6 +51,12 @@ public class JumpingPlayerState : PlayerState
             h = _playerMovementParameters.jumpMaxHeight;
             th = _playerMovementParameters.jumpDuration / 2;
         }
+
+        if (StateMachine.CollisionInfo.isCollidingLeft || StateMachine.CollisionInfo.isCollidingRight)
+        {
+            _timeSinceEnteredState = 0;
+        }
+
         g = (-2 * h) / Mathf.Pow(th, 2);
 
         StateMachine.Velocity.y += g * Time.deltaTime;

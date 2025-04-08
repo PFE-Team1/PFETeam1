@@ -34,8 +34,9 @@ public class IdlePlayerState : PlayerState
             return;
         }
 
-        if (_inputsManager.InputJumping)
+        if (StateMachine.JumpBuffer > 0)
         {
+            StateMachine.JumpBuffer = 0;
             StateMachine.ChangeState(StateMachine.JumpingState);
             return;
         }
