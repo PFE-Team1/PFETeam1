@@ -24,8 +24,8 @@ public class PlayerMovementParameters : ScriptableObject
     [Range(0, 50)]
     [Tooltip("Air max Speed X")] public float jumpMaxSpeedX = 5;
 
-    //[Range(0, 10)]
-    //[Tooltip("Jump Buffer")] public float jumpBuffer = 5f;
+    [Range(0, 3)]
+    [Tooltip("Jump Buffer")] public float jumpBuffer = 2f;
 
     //[Range(0, 10)]
     //[Tooltip("Temps alloué au joueur pour sauter alors qu'il n'est plus sur la plateforme")] public float CoyoteWindow = 5f;
