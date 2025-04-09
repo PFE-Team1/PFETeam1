@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3049459012460121757}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +131,10 @@ MonoBehaviour:
   DebugMode: 1
   PlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
   Velocity: {x: 0, y: 0}
+  IsMovementLocked: 0
+  IsJumpInputEaten: 0
+  JumpBuffer: 0
+  CoyoteWindow: 0
 --- !u!136 &737445869535654141
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -168,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clone: {fileID: 434292973231471639, guid: 7cf6d0cc8a1592443bce99d053f2626e, type: 3}
   _charID: 0
-  _playerInput: {fileID: 3480778595104812033}
+  _playerStateMachine: {fileID: 3480778595104812033}
   _paintingTransform: {fileID: 532975740336723945}
 --- !u!1 &6700865436177754771
 GameObject:
