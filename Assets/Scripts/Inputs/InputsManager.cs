@@ -103,7 +103,7 @@ public class InputsManager : MonoBehaviour
             _inputRestarting = false;
         }
     }
-    public void OnPauseResume(InputAction.CallbackContext context)
+    public void OnPause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
