@@ -62,21 +62,21 @@ public class LevelSpawner : Interactable
             if (!isAlreadySpawned)
             {
                 Debug.Log($"PlayerC.heldObject : {PlayerC.heldObject}");
-                if (PlayerC.IsInteracting && PlayerC.heldObject!=null)
+                if (PlayerC.IsInteracting && PlayerC.heldObject!=null&&!PlayerC.HasInteracted)
                 {
                     SpawnNewLevel();
                     CameraManager.Instance.ShowNewLevel();
-                    PlayerC.IsInteracting = false;
+                    PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
                 }
             }
             else if (isAlreadySpawned)
             {
-                if (PlayerC.IsInteracting)
+                if (PlayerC.IsInteracting && !PlayerC.HasInteracted)
                 {
                     CameraManager.Instance.CameraShake(1,1);
                     RemoveNewLevel();
-                    PlayerC.IsInteracting = false;
+                    PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
                 }
             }

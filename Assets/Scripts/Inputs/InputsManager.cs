@@ -43,7 +43,7 @@ public class InputsManager : MonoBehaviour
             _inputJumping = false;
         }
     }
-    public void OnInterract(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
         {

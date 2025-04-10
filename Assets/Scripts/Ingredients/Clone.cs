@@ -13,6 +13,7 @@ public class Clone : MonoBehaviour
     private CinemachineVirtualCamera CVC;
     private InputsManager _inputs;
     private bool _isInteracting;
+    private bool _hasInteracted;
     private bool _isInSocleRange=false;
     private GameObject _heldObject;
     public GameObject heldObject { get => _heldObject; set => _heldObject = value; }
@@ -20,17 +21,13 @@ public class Clone : MonoBehaviour
     public Transform PaintingTransform { get => _paintingTransform; set => _paintingTransform = value; }
     public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
     public bool IsInSocleRange { get => _isInSocleRange; set => _isInSocleRange = value; }
+    public bool HasInteracted { get => _hasInteracted; set => _hasInteracted = value; }
 
     private void Start()
     {
         CVC = CameraManager.Instance.MainCamera;
         CVC.Follow = transform;
         _inputs = InputsManager.instance;
-        _inputs._playerInputs.actions["Interact"].performed += Interact;
-        _inputs._playerInputs.actions["Interact"].canceled += Interact;
-        _inputs._playerInputs.actions["Interact"].Enable();
-        _inputs._playerInputs.actions["Switch"].performed += Switch;
-        _inputs._playerInputs.actions["Switch"].Enable();
         _playerStateMachine = GetComponent<PlayerStateMachine>();
         _charID = CloneManager.instance.Characters.Count;
         ChangeParent();
@@ -41,7 +38,21 @@ public class Clone : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer==_charID)
+        if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer == _charID)
+        {
+            CloneManager.instance.Switch(_charID);
+            _inputs.InputSwitching = false;
+        }
+        if (_inputs.InputInteract&&!_isInteracting)
+        {
+            _isInteracting = true;
+        }
+        if (!_inputs.InputInteract&&_hasInteracted)
+        {
+            _isInteracting = false;
+            _hasInteracted = false;
+        }
+        if (_inputs.InputSwitching)
         {
             CloneManager.instance.Switch(_charID);
             _inputs.InputSwitching = false;
@@ -52,27 +63,6 @@ public class Clone : MonoBehaviour
     {
         GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
         AudioManager.Instance.SFX_CreateClone.Post(gameObject);
-    }
-    public void Interact(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            ChangeParent();
-            _isInteracting = true;
-        }
-        if (context.canceled)
-        {
-            ChangeParent();
-            _isInteracting = false;
-        }
-    }
-    public void Switch(InputAction.CallbackContext context)// mettre dans des �tats pour la state machine
-    {
-        if (context.performed && CloneManager.instance.CurrentPlayer == _charID);
-        {
-           
-
-        }
     }
     public void Switchup(bool isEnable)
     {
