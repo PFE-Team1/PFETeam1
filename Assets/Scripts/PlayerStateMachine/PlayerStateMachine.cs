@@ -39,6 +39,7 @@ public class PlayerStateMachine : MonoBehaviour
     #endregion
     #region PrivateVariables
     private CharacterController _CharacterController => GetComponent<CharacterController>();
+    private SphereCollider _SphereCollider;
     #endregion
     #region States
 
@@ -126,9 +127,6 @@ public class PlayerStateMachine : MonoBehaviour
         CollisionDetector.ResetFrameCollisions(gameObject);
         // Mettre � jour l'entr�e de l'utilisateur
         UpdateJumpBuffer();
-
-
-
     }
     private void FixedUpdate()
     {
@@ -185,4 +183,5 @@ public class PlayerStateMachine : MonoBehaviour
 
         JumpBuffer = Mathf.Clamp(JumpBuffer - Time.deltaTime, 0, PlayerMovementParameters.jumpBuffer);
     }
+
 }

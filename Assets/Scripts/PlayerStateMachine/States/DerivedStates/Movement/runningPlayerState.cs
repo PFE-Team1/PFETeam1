@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class RunningPlayerState : PlayerState
 {
+    private float _timeSinceInAir = 0f;
     protected override void OnStateInit()
     {
     }
 
     protected override void OnStateEnter(PlayerState previousState)
-    {
+    { 
+        _timeSinceInAir = 0f;
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.maxSpeed * _playerMovementParameters.accelerationTime;
         //MonoBehaviour.print("Entering Run");
         AudioManager.Instance.FOL_Pas.Post(null);
@@ -32,9 +34,14 @@ public class RunningPlayerState : PlayerState
 
         if (!StateMachine.CollisionInfo.isCollidingBelow)
         {
-            StateMachine.ChangeState(StateMachine.FallingState);
-            return;
+            _timeSinceInAir += Time.deltaTime;
+            if (_timeSinceInAir > 0.25f)
+            {
+                StateMachine.ChangeState(StateMachine.FallingState);
+                return;
+            }
         }
+        else _timeSinceInAir = 0f;
 
         if (Mathf.Abs(StateMachine.Velocity.x) <= 0 && _inputsManager.MoveX == 0)
         {
@@ -81,7 +88,12 @@ public class RunningPlayerState : PlayerState
 
 
         #region Yvelocity
-        StateMachine.Velocity.y = -10;
+        float h = _playerMovementParameters.jumpMaxHeight;
+        float th = _playerMovementParameters.fallDuration / 2;
+        float g = -(2 * h) / Mathf.Pow(th, 2);
+
+        StateMachine.Velocity.y += g * Time.deltaTime;
+        StateMachine.Velocity.y = Mathf.Clamp(StateMachine.Velocity.y, -_playerMovementParameters.maxFallSpeed, _playerMovementParameters.maxFallSpeed);
         #endregion
     }
 
