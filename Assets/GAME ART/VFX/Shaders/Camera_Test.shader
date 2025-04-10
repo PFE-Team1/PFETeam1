@@ -15,11 +15,12 @@ Shader "Camera_Test"
 		_D_Line_Mask("D_Line_Mask", Range( 0 , 1)) = 0
 		_B_Line_Mask("B_Line_Mask", Range( 0 , 1)) = 0
 		_H_Line_Mask("H_Line_Mask", Range( 0 , 1)) = 0
-		_G_Degrade("G_Degrade", Range( 0 , 1)) = 0.3
+		_G_Degrade("G_Degrade", Range( 0 , 1)) = 0
 		_D_Degrade("D_Degrade", Range( 0 , 1)) = 0.3
 		_B_Degrade("B_Degrade", Range( 0 , 1)) = 0.27
 		_H_Degrade("H_Degrade", Range( 0 , 1)) = 0.24
 		_Cadre_Tex("Cadre_Tex", 2D) = "white" {}
+		_MainTex("MainTex", 2D) = "white" {}
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 		[HideInInspector][NoScaleOffset] unity_Lightmaps("unity_Lightmaps", 2DArray) = "" {}
@@ -100,6 +101,7 @@ Shader "Camera_Test"
 
 			
 
+			sampler2D _MainTex;
 			sampler2D _TextureSample3;
 			sampler2D _TextureSample4;
 			sampler2D _TextureSample5;
@@ -108,6 +110,7 @@ Shader "Camera_Test"
 			sampler2D _Sampler6032;
 			sampler2D _Cadre_Tex;
 			CBUFFER_START( UnityPerMaterial )
+			float4 _MainTex_ST;
 			float4 _TextureSample3_ST;
 			float4 _TextureSample4_ST;
 			float4 _TextureSample5_ST;
@@ -191,6 +194,7 @@ Shader "Camera_Test"
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
+				float2 uv_MainTex = IN.texCoord0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				float2 texCoord7 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult33 = smoothstep( _G_Line_Mask , _G_Degrade , ( ( texCoord7.x - -0.12 ) * step( ( texCoord7.x - 1.24 ) , 0.15 ) ));
 				float2 uv_TextureSample3 = IN.texCoord0.xy * _TextureSample3_ST.xy + _TextureSample3_ST.zw;
@@ -220,7 +224,7 @@ Shader "Camera_Test"
 				float2 appendResult58_g1 = (float2((panner54_g1).x , (panner55_g1).y));
 				float2 uv_Cadre_Tex = IN.texCoord0.xy * _Cadre_Tex_ST.xy + _Cadre_Tex_ST.zw;
 				
-				float4 Color = saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( tex2D( _TextureSample1, ( ( (tex2D( _Sampler6032, ( appendResult10_g1 + appendResult24_g1 ) )).rg * 1.0 ) + ( float2( -1.36,0.35 ) * appendResult58_g1 ) ) ) * tex2D( _Cadre_Tex, uv_Cadre_Tex ).r ) ) );
+				float4 Color = saturate( ( tex2D( _MainTex, uv_MainTex ) * ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( tex2D( _TextureSample1, ( ( (tex2D( _Sampler6032, ( appendResult10_g1 + appendResult24_g1 ) )).rg * 1.0 ) + ( float2( -1.36,0.35 ) * appendResult58_g1 ) ) ) * tex2D( _Cadre_Tex, uv_Cadre_Tex ).r ) ) ) );
 
 				#if ETC1_EXTERNAL_ALPHA
 					float4 alpha = SAMPLE_TEXTURE2D(_AlphaTex, sampler_AlphaTex, IN.texCoord0.xy);
@@ -303,6 +307,7 @@ Shader "Camera_Test"
 
 			
 
+			sampler2D _MainTex;
 			sampler2D _TextureSample3;
 			sampler2D _TextureSample4;
 			sampler2D _TextureSample5;
@@ -311,6 +316,7 @@ Shader "Camera_Test"
 			sampler2D _Sampler6032;
 			sampler2D _Cadre_Tex;
 			CBUFFER_START( UnityPerMaterial )
+			float4 _MainTex_ST;
 			float4 _TextureSample3_ST;
 			float4 _TextureSample4_ST;
 			float4 _TextureSample5_ST;
@@ -394,6 +400,7 @@ Shader "Camera_Test"
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
+				float2 uv_MainTex = IN.texCoord0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				float2 texCoord7 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult33 = smoothstep( _G_Line_Mask , _G_Degrade , ( ( texCoord7.x - -0.12 ) * step( ( texCoord7.x - 1.24 ) , 0.15 ) ));
 				float2 uv_TextureSample3 = IN.texCoord0.xy * _TextureSample3_ST.xy + _TextureSample3_ST.zw;
@@ -423,7 +430,7 @@ Shader "Camera_Test"
 				float2 appendResult58_g1 = (float2((panner54_g1).x , (panner55_g1).y));
 				float2 uv_Cadre_Tex = IN.texCoord0.xy * _Cadre_Tex_ST.xy + _Cadre_Tex_ST.zw;
 				
-				float4 Color = saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( tex2D( _TextureSample1, ( ( (tex2D( _Sampler6032, ( appendResult10_g1 + appendResult24_g1 ) )).rg * 1.0 ) + ( float2( -1.36,0.35 ) * appendResult58_g1 ) ) ) * tex2D( _Cadre_Tex, uv_Cadre_Tex ).r ) ) );
+				float4 Color = saturate( ( tex2D( _MainTex, uv_MainTex ) * ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( tex2D( _TextureSample1, ( ( (tex2D( _Sampler6032, ( appendResult10_g1 + appendResult24_g1 ) )).rg * 1.0 ) + ( float2( -1.36,0.35 ) * appendResult58_g1 ) ) ) * tex2D( _Cadre_Tex, uv_Cadre_Tex ).r ) ) ) );
 
 				#if ETC1_EXTERNAL_ALPHA
 					float4 alpha = SAMPLE_TEXTURE2D( _AlphaTex, sampler_AlphaTex, IN.texCoord0.xy );
@@ -495,6 +502,7 @@ Shader "Camera_Test"
 
 			
 
+			sampler2D _MainTex;
 			sampler2D _TextureSample3;
 			sampler2D _TextureSample4;
 			sampler2D _TextureSample5;
@@ -503,6 +511,7 @@ Shader "Camera_Test"
 			sampler2D _Sampler6032;
 			sampler2D _Cadre_Tex;
 			CBUFFER_START( UnityPerMaterial )
+			float4 _MainTex_ST;
 			float4 _TextureSample3_ST;
 			float4 _TextureSample4_ST;
 			float4 _TextureSample5_ST;
@@ -572,6 +581,7 @@ Shader "Camera_Test"
 
 			half4 frag(VertexOutput IN) : SV_TARGET
 			{
+				float2 uv_MainTex = IN.ase_texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				float2 texCoord7 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult33 = smoothstep( _G_Line_Mask , _G_Degrade , ( ( texCoord7.x - -0.12 ) * step( ( texCoord7.x - 1.24 ) , 0.15 ) ));
 				float2 uv_TextureSample3 = IN.ase_texcoord.xy * _TextureSample3_ST.xy + _TextureSample3_ST.zw;
@@ -601,7 +611,7 @@ Shader "Camera_Test"
 				float2 appendResult58_g1 = (float2((panner54_g1).x , (panner55_g1).y));
 				float2 uv_Cadre_Tex = IN.ase_texcoord.xy * _Cadre_Tex_ST.xy + _Cadre_Tex_ST.zw;
 				
-				float4 Color = saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( tex2D( _TextureSample1, ( ( (tex2D( _Sampler6032, ( appendResult10_g1 + appendResult24_g1 ) )).rg * 1.0 ) + ( float2( -1.36,0.35 ) * appendResult58_g1 ) ) ) * tex2D( _Cadre_Tex, uv_Cadre_Tex ).r ) ) );
+				float4 Color = saturate( ( tex2D( _MainTex, uv_MainTex ) * ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( tex2D( _TextureSample1, ( ( (tex2D( _Sampler6032, ( appendResult10_g1 + appendResult24_g1 ) )).rg * 1.0 ) + ( float2( -1.36,0.35 ) * appendResult58_g1 ) ) ) * tex2D( _Cadre_Tex, uv_Cadre_Tex ).r ) ) ) );
 
 				half4 outColor = half4(_ObjectId, _PassValue, 1.0, 1.0);
 				return outColor;
@@ -653,6 +663,7 @@ Shader "Camera_Test"
 
         	
 
+			sampler2D _MainTex;
 			sampler2D _TextureSample3;
 			sampler2D _TextureSample4;
 			sampler2D _TextureSample5;
@@ -661,6 +672,7 @@ Shader "Camera_Test"
 			sampler2D _Sampler6032;
 			sampler2D _Cadre_Tex;
 			CBUFFER_START( UnityPerMaterial )
+			float4 _MainTex_ST;
 			float4 _TextureSample3_ST;
 			float4 _TextureSample4_ST;
 			float4 _TextureSample5_ST;
@@ -729,6 +741,7 @@ Shader "Camera_Test"
 
 			half4 frag(VertexOutput IN ) : SV_TARGET
 			{
+				float2 uv_MainTex = IN.ase_texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				float2 texCoord7 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult33 = smoothstep( _G_Line_Mask , _G_Degrade , ( ( texCoord7.x - -0.12 ) * step( ( texCoord7.x - 1.24 ) , 0.15 ) ));
 				float2 uv_TextureSample3 = IN.ase_texcoord.xy * _TextureSample3_ST.xy + _TextureSample3_ST.zw;
@@ -758,7 +771,7 @@ Shader "Camera_Test"
 				float2 appendResult58_g1 = (float2((panner54_g1).x , (panner55_g1).y));
 				float2 uv_Cadre_Tex = IN.ase_texcoord.xy * _Cadre_Tex_ST.xy + _Cadre_Tex_ST.zw;
 				
-				float4 Color = saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( tex2D( _TextureSample1, ( ( (tex2D( _Sampler6032, ( appendResult10_g1 + appendResult24_g1 ) )).rg * 1.0 ) + ( float2( -1.36,0.35 ) * appendResult58_g1 ) ) ) * tex2D( _Cadre_Tex, uv_Cadre_Tex ).r ) ) );
+				float4 Color = saturate( ( tex2D( _MainTex, uv_MainTex ) * ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( tex2D( _TextureSample1, ( ( (tex2D( _Sampler6032, ( appendResult10_g1 + appendResult24_g1 ) )).rg * 1.0 ) + ( float2( -1.36,0.35 ) * appendResult58_g1 ) ) ) * tex2D( _Cadre_Tex, uv_Cadre_Tex ).r ) ) ) );
 				half4 outColor = _SelectionID;
 				return outColor;
 			}
@@ -797,7 +810,7 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;23;-2848,1072;Inherit;True;2;2;0;F
 Node;AmplifyShaderEditor.RangedFloatNode;25;-2752,608;Inherit;False;Property;_D_Line_Mask;D_Line_Mask;6;0;Create;True;0;0;0;False;0;False;0;0.12;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;26;-2864,1328;Inherit;False;Property;_B_Line_Mask;B_Line_Mask;7;0;Create;True;0;0;0;False;0;False;0;0.12;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;27;-2672,2064;Inherit;False;Property;_H_Line_Mask;H_Line_Mask;8;0;Create;True;0;0;0;False;0;False;0;0.12;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;28;-2848,-256;Inherit;False;Property;_G_Degrade;G_Degrade;9;0;Create;True;0;0;0;False;0;False;0.3;0.34;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;28;-2848,-256;Inherit;False;Property;_G_Degrade;G_Degrade;9;0;Create;True;0;0;0;False;0;False;0;0.34;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;24;-2848,-352;Inherit;False;Property;_G_Line_Mask;G_Line_Mask;5;0;Create;True;0;0;0;False;0;False;0.12;0.12;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;29;-2720,736;Inherit;False;Property;_D_Degrade;D_Degrade;10;0;Create;True;0;0;0;False;0;False;0.3;0.34;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;30;-2816,1424;Inherit;False;Property;_B_Degrade;B_Degrade;11;0;Create;True;0;0;0;False;0;False;0.27;0.34;0;1;0;1;FLOAT;0
@@ -820,9 +833,11 @@ Node;AmplifyShaderEditor.SamplerNode;45;-1536,-560;Inherit;True;Property;_Textur
 Node;AmplifyShaderEditor.SamplerNode;46;-1296,688;Inherit;True;Property;_TextureSample7;Texture Sample 7;1;0;Create;True;0;0;0;False;0;False;-1;61ac4bb5c5276264580c988b076dcd09;61ac4bb5c5276264580c988b076dcd09;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;47;-1616,304;Inherit;True;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;48;-944,512;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SimpleAddOpNode;49;-576,32;Inherit;True;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SaturateNode;50;-288,0;Inherit;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;61;0,0;Float;False;True;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;15;Camera_Test;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit;0;0;Sprite Unlit;4;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=Universal2D;False;False;0;;0;0;Standard;3;Vertex Position;1;0;Debug Display;0;0;External Alpha;0;0;0;4;True;True;True;True;False;;False;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;49;-560,32;Inherit;True;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SamplerNode;67;-640,-336;Inherit;True;Property;_MainTex;MainTex;14;0;Create;True;0;0;0;False;0;False;-1;4105820baba65b14eb1db704702d3af8;4105820baba65b14eb1db704702d3af8;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;66;-272,32;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SaturateNode;50;32,32;Inherit;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;61;320,32;Float;False;True;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;15;Camera_Test;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit;0;0;Sprite Unlit;4;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=Universal2D;False;False;0;;0;0;Standard;3;Vertex Position;1;0;Debug Display;0;0;External Alpha;0;0;0;4;True;True;True;True;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;62;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit Forward;0;1;Sprite Unlit Forward;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;63;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;SceneSelectionPass;0;2;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=SceneSelectionPass;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;64;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;ScenePickingPass;0;3;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;;0;0;Standard;0;False;0
@@ -876,7 +891,9 @@ WireConnection;48;0;45;0
 WireConnection;48;1;46;1
 WireConnection;49;0;47;0
 WireConnection;49;1;48;0
-WireConnection;50;0;49;0
+WireConnection;66;0;67;0
+WireConnection;66;1;49;0
+WireConnection;50;0;66;0
 WireConnection;61;1;50;0
 ASEEND*/
-//CHKSM=5A53FB76627100781A1122AEB115FFC666DA4C3C
+//CHKSM=22E3CB8E7D5809DAE21E3B5157BDF9BA9BC92804
