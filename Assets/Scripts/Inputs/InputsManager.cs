@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputsManager : MonoBehaviour
 {
-    // permet de récup les inputs bools/float ou vector2 partout dans le code
+    // permet de rï¿½cup les inputs bools/float ou vector2 partout dans le code
     #region InputVariables
     private bool _inputJumping;
     private bool _inputInteract;
@@ -17,7 +17,7 @@ public class InputsManager : MonoBehaviour
     private float _moveX;
     private Vector2 _lookaround;
     #endregion
-    #region InputPropriétés 
+    #region InputPropriï¿½tï¿½s 
     public bool InputJumping { get => _inputJumping;}
     public bool InputInteract { get => _inputInteract; }
 
@@ -29,6 +29,7 @@ public class InputsManager : MonoBehaviour
     public float MoveX { get => _moveX; }
     public Vector2 Lookaround { get => _lookaround;}
     #endregion
+
     #region InputMethodes
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -102,7 +103,7 @@ public class InputsManager : MonoBehaviour
             _inputRestarting = false;
         }
     }
-    public void OnPauseResume(InputAction.CallbackContext context)
+    public void OnPause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -142,43 +143,36 @@ public class InputsManager : MonoBehaviour
         // Initialisation du Game Manager...
     }
 
+    private void InvokeInputMethod(string methodName, InputAction.CallbackContext context)
+    {
+        var method = GetType().GetMethod(methodName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
+        if (method != null)
+        {
+            method.Invoke(this, new object[] { context });
+        }
+        else
+        {
+            Debug.LogWarning($"MÃ©thode {methodName} introuvable dans InputsManager.");
+        }
+    }
+
     #region Init/InputAction
     public PlayerInput _playerInputs;
     [SerializeField] private InputActionAsset _inputActionAsset;
+
     private void SetupInputs()
     {
         _playerInputs = gameObject.AddComponent<PlayerInput>();
         _playerInputs.camera = FindFirstObjectByType<Camera>();
         _playerInputs.notificationBehavior = PlayerNotifications.InvokeUnityEvents;
         _playerInputs.actions = _inputActionAsset;
-        _playerInputs.actions["Interact"].performed += OnInterract;
-        _playerInputs.actions["Interact"].canceled += OnInterract;
-        _playerInputs.actions["Interact"].Enable();
-        _playerInputs.actions["Move"].performed += OnMove;
-        _playerInputs.actions["Move"].canceled += OnMove;
-        _playerInputs.actions["Move"].Enable();
-        _playerInputs.actions["Jump"].performed += OnJump;
-        _playerInputs.actions["Jump"].canceled += OnJump;
-        _playerInputs.actions["Jump"].Enable();
-        _playerInputs.actions["Switch"].performed += OnSwitch;
-        _playerInputs.actions["Switch"].canceled += OnSwitch;
-        _playerInputs.actions["Switch"].Enable();
-        _playerInputs.actions["Restart"].performed += OnRestart;
-        _playerInputs.actions["Restart"].canceled += OnRestart;
-        _playerInputs.actions["Restart"].Enable() ;
-        _playerInputs.actions["Pause"].performed += OnPauseResume;
-        _playerInputs.actions["Pause"].canceled += OnPauseResume;
-        _playerInputs.actions["Pause"].Enable();
-        _playerInputs.actions["Zoom"].performed += OnZoom;
-        _playerInputs.actions["Zoom"].canceled += OnZoom;
-        _playerInputs.actions["Zoom"].Enable();
-        _playerInputs.actions["Dezoom"].performed += OnDezoom;
-        _playerInputs.actions["Dezoom"].canceled += OnDezoom;
-        _playerInputs.actions["Dezoom"].Enable();
-        _playerInputs.actions["Look"].performed += OnLook;
-        _playerInputs.actions["Look"].canceled += OnLook;
-        _playerInputs.actions["Look"].Enable();
 
+        foreach (var action in _playerInputs.actions)
+        {
+            action.performed += ctx => InvokeInputMethod($"On{action.name}", ctx);
+            action.canceled += ctx => InvokeInputMethod($"On{action.name}", ctx);
+            action.Enable();
+        }
     }
     #endregion
 }
