@@ -11,11 +11,13 @@ public class ShatteringPlatform : MonoBehaviour
 
     public float _shatterTimer;
     private bool _isShattering = false;
+    private SpriteRenderer _spriterenderer;
 
     // Make a shattering platform that shatters after a certain time when player is on it
     private void Start()
     {
         _shatterTimer = TimeToShatter;
+        _spriterenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -35,6 +37,7 @@ public class ShatteringPlatform : MonoBehaviour
                 _shatterTimer = Mathf.Clamp(_shatterTimer + Time.deltaTime, 0, TimeToShatter);
             }
         }
+        _spriterenderer.color = Color.Lerp(Color.white, Color.black, 1 - (_shatterTimer / TimeToShatter));
     }
 
     // detect when colliding
