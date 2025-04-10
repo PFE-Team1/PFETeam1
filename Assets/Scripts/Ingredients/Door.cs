@@ -16,14 +16,14 @@ public class Door : MonoBehaviour
     {
         _collider.isTrigger = true;
         _sprite.enabled = false;
-        _vfxOpen.SetActive(true);
+        //_vfxOpen.SetActive(true);
         _groundOpen.SetActive(true);
     }
     public  void Close()
     {
         _collider.isTrigger = false;
         _sprite.enabled = true;
-        _vfxOpen.SetActive(false);
+        //_vfxOpen.SetActive(false);
         _groundOpen.SetActive(false);
 
     }
