@@ -14,6 +14,15 @@ public class ScenesManager : MonoBehaviour
     {
         instance = this;
     }
+    private void Update()
+    {
+        if (InputsManager.instance.InputRestarting)
+        {
+            InputsManager.instance.InputRestarting = false;
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            StartCoroutine(Deload());
+        }
+    }
     public void loadNextScene()
     {
         SceneManager.LoadSceneAsync(_nextScene);
