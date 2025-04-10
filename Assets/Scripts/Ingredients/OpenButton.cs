@@ -23,9 +23,9 @@ public class OpenButton : Interactable
     {
         if (IsInRange)
         {
-            if (PlayerC.IsInteracting && _isRespawning==false)
+            if (PlayerC.IsInteracting && _isRespawning==false&&!PlayerC.HasInteracted)
             {
-                PlayerC.IsInteracting = false;
+                PlayerC.HasInteracted = true;
                 _toRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
                _spriteRenderer.sprite=null;
                 _isRespawning = true;
