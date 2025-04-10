@@ -79,6 +79,10 @@ public class RunningPlayerState : PlayerState
         float speedRatio = _timeSinceEnteredState / _playerMovementParameters.accelerationTime;
         StateMachine.Velocity.x = speedRatio * _playerMovementParameters.maxSpeed;
 
+
+        #region Yvelocity
+        StateMachine.Velocity.y = -10;
+        #endregion
     }
 
-    }
+}

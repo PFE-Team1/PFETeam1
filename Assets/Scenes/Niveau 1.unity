@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,395 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e4e62906ddae845a8733ff11657fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixerGroup: {fileID: 24300002, guid: e7de63300607ff244b8b5be9742a73b8, type: 2}
-  audioMixer: {fileID: 24100000, guid: e7de63300607ff244b8b5be9742a73b8, type: 2}
-  sounds:
-  - name: Drill
-    clips: []
-    clip: {fileID: 8300000, guid: 8590ec5f3d8ba0341bbe6d00133bffc9, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 1
-    Oneshot: 0
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Click
-    clips:
-    - {fileID: 8300000, guid: 802254c170fe72f4db30825ba7c2ce23, type: 3}
-    - {fileID: 8300000, guid: 5a39d7a1a7caf0a4bb8f1ad3b3f7c172, type: 3}
-    - {fileID: 8300000, guid: 70e43e6fcdb294747afc2fd0d631ebb0, type: 3}
-    - {fileID: 8300000, guid: df3e939075bd003448b166084ebd89b1, type: 3}
-    clip: {fileID: 8300000, guid: cc0921a0c9eb04d4597e0d588122f12c, type: 3}
-    volume: 0.25
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: click Menu 1
-    clips:
-    - {fileID: 0}
-    clip: {fileID: 8300000, guid: 802254c170fe72f4db30825ba7c2ce23, type: 3}
-    volume: 0.25
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: start game
-    clips: []
-    clip: {fileID: 8300000, guid: 9bd17a3265b9da0428b09fccce556d30, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: death
-    clips: []
-    clip: {fileID: 8300000, guid: 23c493c94f1a50f4b8919295b6049711, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: bounce
-    clips:
-    - {fileID: 8300000, guid: 95b0bf1f82be56b44a159561a73d3748, type: 3}
-    - {fileID: 8300000, guid: 9a3cdbc8e05bdc74dba003e263737cb3, type: 3}
-    - {fileID: 8300000, guid: 6cedd1a64208dd74ead4c2e6e5d5cd7c, type: 3}
-    - {fileID: 8300000, guid: e4da5d4f1aad6dd4a89327852213e23b, type: 3}
-    - {fileID: 8300000, guid: bd0df2a42410a1c47ba2cfdba492a609, type: 3}
-    - {fileID: 8300000, guid: 68baf0eaa2417de4ba90c16c653f3e34, type: 3}
-    - {fileID: 8300000, guid: 4b0116a039d72cf4093f69f4bd48dc47, type: 3}
-    clip: {fileID: 8300000, guid: 95b0bf1f82be56b44a159561a73d3748, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: land
-    clips:
-    - {fileID: 8300000, guid: 7551d1b377b973e4aaee5d801b4a3c9a, type: 3}
-    - {fileID: 8300000, guid: ef537cfc036d2e649be5816ca86b855a, type: 3}
-    - {fileID: 8300000, guid: 534cc04e938e9cd4bb5c2b1053e3d9f7, type: 3}
-    - {fileID: 8300000, guid: 9aa0ec5bad566634ea2ad9127ab1062b, type: 3}
-    - {fileID: 8300000, guid: 3ade565be0dd3714780a9c0f81cca743, type: 3}
-    clip: {fileID: 8300000, guid: 7551d1b377b973e4aaee5d801b4a3c9a, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Round Win
-    clips: []
-    clip: {fileID: 8300000, guid: acb2b1e41c4d7c0479e3ad2eb6f3609b, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Switch Menu
-    clips:
-    - {fileID: 8300000, guid: cff5a24ba49d7464f9405bc82679dc9d, type: 3}
-    - {fileID: 8300000, guid: df23adaa1aec9ee418500594083bfe7d, type: 3}
-    - {fileID: 8300000, guid: 16b39a02c6962e84093229ee4b1c86da, type: 3}
-    - {fileID: 8300000, guid: 1ad2adea3085aae48b15ec5c7ede1561, type: 3}
-    clip: {fileID: 8300000, guid: cff5a24ba49d7464f9405bc82679dc9d, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Win
-    clips: []
-    clip: {fileID: 8300000, guid: 3cfb7974318d53b4a91c4e4323bc8101, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Nope
-    clips: []
-    clip: {fileID: 8300000, guid: 4854fe44706838c48b3738b37341882d, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Valid
-    clips: []
-    clip: {fileID: 8300000, guid: 522a84a93bc0fcf49bf5c8cea26988d3, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Step
-    clips:
-    - {fileID: 8300000, guid: 87888f55083fb9d49a3dd2473141ed41, type: 3}
-    - {fileID: 8300000, guid: c5f394a1c7cda72498990267cf964ab8, type: 3}
-    - {fileID: 8300000, guid: c2f0efd2e25297c4f810fa328721d2b9, type: 3}
-    - {fileID: 8300000, guid: 5cf7639dc87dd12409bfae4f94e053df, type: 3}
-    - {fileID: 8300000, guid: ee1d29d30a740d14d858c0f7393cadb5, type: 3}
-    - {fileID: 8300000, guid: bcab6a733c781f1499662fd0d486d40f, type: 3}
-    clip: {fileID: 8300000, guid: 87888f55083fb9d49a3dd2473141ed41, type: 3}
-    volume: 0.205
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 1
-    delay: 0.15
-    source: {fileID: 0}
-  - name: Jump
-    clips:
-    - {fileID: 8300000, guid: 9df5e3e9875dc534b80b7a595d3788e2, type: 3}
-    - {fileID: 8300000, guid: 9972c59da07c7324693906bf26088f17, type: 3}
-    - {fileID: 8300000, guid: 3ed0375600e1ce94ba3b23ce96fe495f, type: 3}
-    - {fileID: 8300000, guid: daa321c7281a38149baa0346ccb22c17, type: 3}
-    - {fileID: 8300000, guid: 738ccd8a9cb575c4cbab12a8aecb0f03, type: 3}
-    clip: {fileID: 8300000, guid: 9df5e3e9875dc534b80b7a595d3788e2, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Spawn
-    clips:
-    - {fileID: 8300000, guid: 6d6c194ab709f474c9a3eed76822e344, type: 3}
-    - {fileID: 8300000, guid: 62150422e86eb7a48bc97758e092b444, type: 3}
-    - {fileID: 8300000, guid: 1271c0bdd6d1a9c4bb3366da773bc2b7, type: 3}
-    - {fileID: 8300000, guid: 7ec6a4a0c42737f4f89f55fd3d316238, type: 3}
-    clip: {fileID: 8300000, guid: 6d6c194ab709f474c9a3eed76822e344, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Wall Scratch
-    clips: []
-    clip: {fileID: 8300000, guid: e0b43f19d0336ca4baa58cdae0492b24, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Pet Cast
-    clips:
-    - {fileID: 8300000, guid: e467c8dd8d81a6644b452bc2e2bce284, type: 3}
-    - {fileID: 8300000, guid: 05c5a62a4475e0e4bbc30e18438433fd, type: 3}
-    - {fileID: 8300000, guid: 9d02b6c6cc37dfc449e5d8c6efe19027, type: 3}
-    - {fileID: 8300000, guid: 12c466aeb53f74740baed65f8ff7c15b, type: 3}
-    clip: {fileID: 8300000, guid: e467c8dd8d81a6644b452bc2e2bce284, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Pet Kiss
-    clips:
-    - {fileID: 8300000, guid: f0fd8e7338d928749a1629ce4277682b, type: 3}
-    clip: {fileID: 8300000, guid: f0fd8e7338d928749a1629ce4277682b, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Pet Move
-    clips: []
-    clip: {fileID: 8300000, guid: 9399cbcaaffc7c94baaf641c496c0c58, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Pet rotate
-    clips: []
-    clip: {fileID: 8300000, guid: bcbc12fee9949574fafe45e217e269aa, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Pet Return
-    clips:
-    - {fileID: 8300000, guid: e467c8dd8d81a6644b452bc2e2bce284, type: 3}
-    - {fileID: 8300000, guid: 05c5a62a4475e0e4bbc30e18438433fd, type: 3}
-    - {fileID: 8300000, guid: 9d02b6c6cc37dfc449e5d8c6efe19027, type: 3}
-    - {fileID: 8300000, guid: 12c466aeb53f74740baed65f8ff7c15b, type: 3}
-    clip: {fileID: 8300000, guid: c93be251d4b4e8f4cb218caad30a4ee2, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Narrator post
-    clips:
-    - {fileID: 8300000, guid: b872ae851be3b154facfb5ffa4798c5b, type: 3}
-    - {fileID: 8300000, guid: f953453927970ad4097db9032c702205, type: 3}
-    - {fileID: 8300000, guid: 50cdd303c532ca3408e25d38a1a2ad08, type: 3}
-    - {fileID: 8300000, guid: 262568099cdfeda46a16ff8d55dac91e, type: 3}
-    - {fileID: 8300000, guid: a061b53b39d73cc4b9b47fcaf731c39d, type: 3}
-    - {fileID: 8300000, guid: 06759f097414f3e4b861ca9d9d0744b2, type: 3}
-    - {fileID: 8300000, guid: e01d3bfdea1b4ba4e8f49d8d01c6a108, type: 3}
-    - {fileID: 8300000, guid: 9ab3bf8dd00aa7747ab0875e0c325d47, type: 3}
-    - {fileID: 8300000, guid: 6dcd03a9653dad244b409e616e254009, type: 3}
-    - {fileID: 8300000, guid: 093351b9d97d3d94dae347ecce4dc66b, type: 3}
-    - {fileID: 8300000, guid: 5f143a70b7f332044a1796566480795b, type: 3}
-    - {fileID: 8300000, guid: 5a3c26d6aa10aaf41893c915dc83da61, type: 3}
-    clip: {fileID: 8300000, guid: b872ae851be3b154facfb5ffa4798c5b, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Narrator pre
-    clips:
-    - {fileID: 8300000, guid: ed82195785d528541aa605c087e396ed, type: 3}
-    - {fileID: 8300000, guid: d2d2ef2b2c8760d499a0c59618d364d0, type: 3}
-    - {fileID: 8300000, guid: 90aff213c5dd3d44db71e3dff8adb148, type: 3}
-    - {fileID: 8300000, guid: 54b6a7a6c0fbd9b468ba4976fba19120, type: 3}
-    - {fileID: 8300000, guid: c81ddd14c7b64c44f8115bbb156c148f, type: 3}
-    - {fileID: 8300000, guid: 08865dc7e43f3994f977de5345cdf44a, type: 3}
-    - {fileID: 8300000, guid: 90a8b8e399c1c66488093f34cc047974, type: 3}
-    - {fileID: 8300000, guid: 9748f471b67ea3d4b968cca95dbea0ad, type: 3}
-    clip: {fileID: 8300000, guid: ed82195785d528541aa605c087e396ed, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  - name: Narrator death
-    clips:
-    - {fileID: 8300000, guid: 1d0dba38e3874844698f7011fe3178a4, type: 3}
-    - {fileID: 8300000, guid: 6123c489621778c429aefdd81f085f43, type: 3}
-    - {fileID: 8300000, guid: 561b58729f50c584297484712b464f24, type: 3}
-    - {fileID: 8300000, guid: 3cc4dac766eeb1d4e85ae67e6062df69, type: 3}
-    - {fileID: 8300000, guid: 7c18bc54ec393d64f972b9b717beae08, type: 3}
-    - {fileID: 8300000, guid: 6b0b03c2d9eb7404096246307aaa4540, type: 3}
-    - {fileID: 8300000, guid: ab140a045d2c1124a9bc111102e284a5, type: 3}
-    - {fileID: 8300000, guid: 23485d432003d024aa58a14029c5ff37, type: 3}
-    - {fileID: 8300000, guid: 1c0769eb16dddb845b9517c13996e4c9, type: 3}
-    - {fileID: 8300000, guid: fdac512149fdacc428143adfbc99939c, type: 3}
-    - {fileID: 8300000, guid: 18a484d9de23be442a57ed93db884c0e, type: 3}
-    - {fileID: 8300000, guid: e89f6ea8c8ae522458088c03f9d8cc7b, type: 3}
-    - {fileID: 8300000, guid: d4411e255686df74caaf8643a2ad6777, type: 3}
-    - {fileID: 8300000, guid: 9a8fc86a2987f9e4395d99724ccd5e06, type: 3}
-    - {fileID: 8300000, guid: a45f9ba928d475a4c8334d0c061ec789, type: 3}
-    - {fileID: 8300000, guid: 2dd87f551e27e8a4aa54f6dd4ab5b610, type: 3}
-    clip: {fileID: 8300000, guid: 1d0dba38e3874844698f7011fe3178a4, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    Oneshot: 1
-    playeOnAwake: 0
-    playOneAfterAnother: 0
-    delay: 0
-    source: {fileID: 0}
-  bgMusics:
-  - name: Round Vocals
-    Music: {fileID: 8300000, guid: 01f80681129c07c4cbc29fa757a6ac36, type: 3}
-    Drums: {fileID: 8300000, guid: 5417e235aa3e357429987fb6d1a9a152, type: 3}
-    Vocals: {fileID: 8300000, guid: 46c40ca965e19434cb30df69699f02bb, type: 3}
-    Bass: {fileID: 8300000, guid: 57ffaeb0034311c44a01d4e292592dee, type: 3}
-    volume: 0.5
-    pitch: 1
-    sources: []
-  - name: Round Rythmic
-    Music: {fileID: 8300000, guid: c16f0116a0784134eb21e9330b80645d, type: 3}
-    Drums: {fileID: 8300000, guid: fbbbb0e3f49352b4cbe2b6e10939417d, type: 3}
-    Vocals: {fileID: 8300000, guid: 14914d9f9e8abee47b7c2a9d17772b2b, type: 3}
-    Bass: {fileID: 8300000, guid: c6850f252721b2442a277e161ebb31a1, type: 3}
-    volume: 0.5
-    pitch: 1
-    sources: []
-  - name: Round Melodic
-    Music: {fileID: 8300000, guid: b603950d3ed5bf642beb7a0aa6b3808e, type: 3}
-    Drums: {fileID: 8300000, guid: 06afdbe3c88d7474ca37d33ff8daa4e6, type: 3}
-    Vocals: {fileID: 8300000, guid: 88f6417ce64ea0a4286f1215f4f3cbd8, type: 3}
-    Bass: {fileID: 8300000, guid: 78daa3a0c8a6d9446a02cfc6777aa5a3, type: 3}
-    volume: 0.5
-    pitch: 1
-    sources: []
-  - name: Round Energic
-    Music: {fileID: 8300000, guid: 0eba98b300f40824d9f0df14bc04f723, type: 3}
-    Drums: {fileID: 8300000, guid: 19107828ee31f904fabf406c46f898d0, type: 3}
-    Vocals: {fileID: 8300000, guid: 120ec9319946e054fa9337bdaa52610f, type: 3}
-    Bass: {fileID: 8300000, guid: 996113efb79f83a41916efab9dd1c536, type: 3}
-    volume: 0.5
-    pitch: 1
-    sources: []
-  - name: Yad
-    Music: {fileID: 8300000, guid: 1de7313d5ebb90544b2b4dbf0736371d, type: 3}
-    Drums: {fileID: 8300000, guid: 798dc99a132aa6a498be9b54a2d91b97, type: 3}
-    Vocals: {fileID: 8300000, guid: 27ba4e71b06fef24280a6aed0fc373b8, type: 3}
-    Bass: {fileID: 8300000, guid: 7d14e98b6945a9049a2814ea5c59bbea, type: 3}
-    volume: 0.5
-    pitch: 1
-    sources: []
 --- !u!4 &190853713
 Transform:
   m_ObjectHideFlags: 0
@@ -568,6 +179,8 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585550}
+  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -719,6 +332,46 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049a64b3638934c42856beef6dd899fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  bOverrideScalingFactor: 0
+  scalingFactor: -1
+  listenerId: 0
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f88b35b6234e0143a8b2eed54de9c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  usePositionOffsetData: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  scalingFactor: 1
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &377267910
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +483,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9131445013983157566, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
   m_PrefabInstance: {fileID: 1815491907}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &454755992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 454755994}
+  - component: {fileID: 454755993}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &454755993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454755992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ecbc9c7526da334b81484084efe34de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: fa294369037f8fa47a27934394783bbc, type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!4 &454755994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454755992}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &536534586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1822,7 +1532,6 @@ MonoBehaviour:
   _mainCamera: {fileID: 7695131169365075174}
   _compositeParent: {fileID: 1691748759}
   _cameraZoomSpeed: 1
-  _cameraMoveSpeed: 1
 --- !u!4 &1420256532
 Transform:
   m_ObjectHideFlags: 0
@@ -1900,6 +1609,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1046887136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1527464302
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 434292973231471639, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
 --- !u!1 &1537897822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2250,15 +2016,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3453f20a0cf603241825a3c86e460d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInRange: 0
   _currentLevel: {fileID: 7859655166057531403}
   _direction: 3
-  OnRemovePainting:
-    m_PersistentCalls:
-      m_Calls: []
-  isInRange: 0
+  _sprites: []
   isAlreadySpawned: 0
-  isSoawnOnStart: 0
+  isSawnOnStart: 0
   isFixed: 0
+  isSpawnOnStart: 0
   levelToSpawn: {fileID: 0}
 --- !u!212 &1949011442
 SpriteRenderer:
@@ -2730,8 +2495,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06adb5b59c2414f47933136b6d5c77ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInRange: 0
   _newLevelPrefab: {fileID: 3958665638566288639, guid: 0544bba3bed0928499195efd0e7f647d, type: 3}
   _spawnPoint: {fileID: 0}
+  VFX_GrabToile: {fileID: 0}
+  VFX_PoseToile: {fileID: 0}
 --- !u!212 &5449350779817269947
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3000,15 +2768,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3453f20a0cf603241825a3c86e460d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInRange: 0
   _currentLevel: {fileID: 7859655166057531403}
   _direction: 0
-  OnRemovePainting:
-    m_PersistentCalls:
-      m_Calls: []
-  isInRange: 0
+  _sprites: []
   isAlreadySpawned: 0
-  isSoawnOnStart: 0
+  isSawnOnStart: 0
   isFixed: 0
+  isSpawnOnStart: 0
   levelToSpawn: {fileID: 0}
 --- !u!1 &7859655166057531403
 GameObject:
@@ -3097,3 +2864,5 @@ SceneRoots:
   - {fileID: 1876751827}
   - {fileID: 8878888854726054571}
   - {fileID: 536534586}
+  - {fileID: 454755994}
+  - {fileID: 1527464302}

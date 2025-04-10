@@ -8,7 +8,7 @@ public class Clone : MonoBehaviour
 {
     [SerializeField] private GameObject _clone;
     [SerializeField] private int _charID;
-    [SerializeField] private PlayerStateMachine _playerStateMachine;
+    private PlayerStateMachine _playerStateMachine;
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
     private InputsManager _inputs;
@@ -76,7 +76,7 @@ public class Clone : MonoBehaviour
     }
     public void Switchup(bool isEnable)
     {
-        _playerStateMachine.IsMovementLocked = !isEnable;
+        _playerStateMachine.ChangeState(_playerStateMachine.CloneState);
         if (isEnable)
         {
             CVC.Follow = gameObject.transform;

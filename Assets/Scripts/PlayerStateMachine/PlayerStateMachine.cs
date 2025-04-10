@@ -45,6 +45,8 @@ public class PlayerStateMachine : MonoBehaviour
     private FallingPlayerState _fallingState { get; } = new FallingPlayerState();
     private RunningPlayerState _runningState { get; } = new RunningPlayerState();
     private JumpingPlayerState _jumpingState { get; } = new JumpingPlayerState();
+
+    private cloneState _cloneState { get; } = new cloneState();
     #endregion
 
     #region Accessors
@@ -52,6 +54,8 @@ public class PlayerStateMachine : MonoBehaviour
     public FallingPlayerState FallingState => _fallingState;
     public RunningPlayerState RunningState => _runningState;
     public JumpingPlayerState JumpingState => _jumpingState;
+
+    public cloneState CloneState => _cloneState;
     #endregion
     public PlayerState[] AllStates => new PlayerState[]
     {
@@ -59,6 +63,7 @@ public class PlayerStateMachine : MonoBehaviour
         _fallingState,
         _runningState,
         _jumpingState,
+        _cloneState
     };
 
     #endregion
