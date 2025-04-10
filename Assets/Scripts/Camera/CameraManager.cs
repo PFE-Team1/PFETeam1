@@ -4,6 +4,8 @@ using UnityEngine;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine.Events;
+using DG.Tweening.Core.Easing;
+using DG.Tweening;
 
 public class CameraManager : MonoBehaviour
 {
@@ -14,7 +16,6 @@ public class CameraManager : MonoBehaviour
     private List<CinemachineVirtualCamera> _allCameras = new List<CinemachineVirtualCamera>();
     private Bounds _cameraBounds;
     CinemachineVirtualCamera _globalCamera;
-
     public float _cameraZoomSpeed = 1f;
 
     float initOrthoSize;
