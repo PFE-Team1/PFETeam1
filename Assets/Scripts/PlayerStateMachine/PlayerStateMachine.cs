@@ -15,7 +15,7 @@ public class PlayerStateMachine : MonoBehaviour
     #region InspectorVariables
 
     public bool DebugMode = true;
-    public PlayerMovementParameters PlayerMovementParameters;
+    public PlayerMovementParameters BasePlayerMovementParameters;
 
     #endregion
     #region NonInspectorVariables
@@ -27,6 +27,8 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsMovementLocked;
     [HideInInspector]
     public InputsManager InputsManager { get; private set; }
+    [HideInInspector]
+    public PlayerMovementParameters PlayerMovementParameters;
     [HideInInspector] 
     public bool IsJumpInputEaten = false;
     [HideInInspector]
@@ -91,6 +93,7 @@ public class PlayerStateMachine : MonoBehaviour
         GUI.Box(new Rect(10, 10, 200, 160), "");
 
         string debugText = "";
+        debugText += "Current Profile Name: " + PlayerMovementParameters.name + "\n";
         debugText += "Current State: " + CurrentState.GetType().Name + "\n";
         debugText += "Move X: " + InputsManager.MoveX + "\n";
         debugText += "Velocity: " + Velocity.ToString("F2") + "\n";
@@ -113,6 +116,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void _InitStateMachine()
     {
+        PlayerMovementParameters = BasePlayerMovementParameters;
         CollisionDetector.InitializeCollisionTracking(gameObject);
         ChangeState(StartState);
     }

@@ -17,13 +17,11 @@ public class JumpingPlayerState : PlayerState
 
         StateMachine.Velocity.x *= _playerMovementParameters.inertieLoss;
         StateMachine.Velocity.y = 2 * h / th;
-        //MonoBehaviour.print("Entering Jump");
         AudioManager.Instance.FOL_Saut.Post(null);
     }
 
     protected override void OnStateExit(PlayerState nextState)
     {
-        //MonoBehaviour.print("Exiting Jump");
     }
 
     protected override void OnStateUpdate()
