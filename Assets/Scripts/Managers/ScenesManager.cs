@@ -14,11 +14,6 @@ public class ScenesManager : MonoBehaviour
     {
         instance = this;
     }
-    private void Start()
-    {
-        SceneManager.LoadSceneAsync(_nextScene);
-        StartCoroutine(Deload());
-    }
     public void loadNextScene()
     {
         SceneManager.LoadSceneAsync(_nextScene);
