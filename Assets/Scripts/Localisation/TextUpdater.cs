@@ -12,4 +12,9 @@ public class TextUpdater : MonoBehaviour
     {
         GetComponent<TextMeshProUGUI>().text = LanguageManager.instance.Find_Key(_key);
     }
+
+    public void UpdateText()
+    {
+        GetComponent<TextMeshProUGUI>().text = LanguageManager.instance.Find_Key(_key);
+    }
 }

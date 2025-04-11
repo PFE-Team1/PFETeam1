@@ -8,17 +8,21 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _landingMenu;
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _settingsMenu;
-    [SerializeField] private TMP_Dropdown resolutionDropDown;
-    [SerializeField] private TMP_Dropdown screenTypeDropDown;
+    [SerializeField] private TMP_Dropdown _resolutionDropDown;
+    [SerializeField] private TMP_Dropdown _screenTypeDropDown;
+    bool wantParallax = true;
+    bool wantScreenShake = true;
     bool isMainMenuActive = false;
     Resolution[] resolutions;
-    
+
+    public bool WantParallax { get => wantParallax; set => wantParallax = value; }
+    public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
     
     void Start()
     {
         resolutions = Screen.resolutions;
 
-        resolutionDropDown.ClearOptions();
+        _resolutionDropDown.ClearOptions();
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
@@ -34,9 +38,9 @@ public class SettingsManager : MonoBehaviour
             }
         }
 
-        resolutionDropDown.AddOptions(options);
-        resolutionDropDown.value = currentResolutionIndex;
-        resolutionDropDown.RefreshShownValue();
+        _resolutionDropDown.AddOptions(options);
+        _resolutionDropDown.value = currentResolutionIndex;
+        _resolutionDropDown.RefreshShownValue();
     }
 
     void Update()
@@ -51,14 +55,14 @@ public class SettingsManager : MonoBehaviour
 
     public void SetResolution()
     {
-        int resolutionIndex = resolutionDropDown.value;
+        int resolutionIndex = _resolutionDropDown.value;
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
     }
 
     public void SetScreenType()
     {
-        int screenTypes = screenTypeDropDown.value;
+        int screenTypes = _screenTypeDropDown.value;
         
         switch (screenTypes)
         {
@@ -72,6 +76,16 @@ public class SettingsManager : MonoBehaviour
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                 break;
         }
+    }
+
+    public void SetParallax()
+    {
+        wantParallax = !wantParallax;
+    }
+
+    public void SetScreenShake()
+    {
+        wantScreenShake = !wantScreenShake;
     }
 
     public void QuitGame()
