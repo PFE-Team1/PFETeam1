@@ -87,6 +87,8 @@ public class LevelSpawner : Interactable
         _newlevel.name = levelToSpawn.name;
         CameraManager.Instance.AddNewLevel(_newlevel);
 
+        CameraManager.Instance.DefineCameraBounds();
+
         var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
         SetDirection(newLevelBounds + Vector3.one * offset, currentLevelBounds + Vector3.one * offset);
