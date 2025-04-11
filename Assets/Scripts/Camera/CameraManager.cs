@@ -13,7 +13,6 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private List<GameObject> _levels; 
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
     [SerializeField] private GameObject _compositeParent;
-    private List<CinemachineVirtualCamera> _allCameras = new List<CinemachineVirtualCamera>();
     private Bounds _cameraBounds;
     CinemachineVirtualCamera _globalCamera;
     public float _cameraZoomSpeed = 1f;
@@ -25,7 +24,6 @@ public class CameraManager : MonoBehaviour
     private Coroutine _dezoomCoroutine;
 
     public CinemachineVirtualCamera MainCamera { get => _mainCamera; set => _mainCamera = value; }
-    public List<CinemachineVirtualCamera> AllCameras { get => _allCameras; set => _allCameras = value; }
     public GameObject CompositeParent { get => _compositeParent; set => _compositeParent = value; }
     public List<GameObject> Levels { get => _levels; set => _levels = value; }
 
@@ -50,7 +48,6 @@ public class CameraManager : MonoBehaviour
         initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
         CalculateCameraBounds();
         _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
-        _allCameras.AddRange(_mainCamera.GetComponentsInChildren<CinemachineVirtualCamera>());
     }
 
     void Update()
@@ -65,6 +62,16 @@ public class CameraManager : MonoBehaviour
         {
             AudioManager.Instance.SFX_Zoom.Post(gameObject);
             FocusCamera();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            SeeCurrentLevel(_levels[0]);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            CameraShake(0.5f, 1f);
         }
     }
 
@@ -100,6 +107,25 @@ public class CameraManager : MonoBehaviour
             new Vector3(minX, minY, 0),
             new Vector3(maxX, maxY, 0)
         );
+    }
+
+    public void SeeCurrentLevel(GameObject level)
+    {
+        if (_globalCamera != null) return;
+        _globalCamera = new GameObject("Global Camera").AddComponent<CinemachineVirtualCamera>();
+        
+        if (level.TryGetComponent(out SpriteRenderer sr))
+        {
+            _globalCamera.m_Lens.Orthographic = true;
+            _globalCamera.m_Lens.OrthographicSize = sr.bounds.size.y / 2;
+            _globalCamera.transform.position = new Vector3(sr.bounds.center.x, sr.bounds.center.y, _mainCamera.transform.position.z);
+        }
+
+        if (_zoomCoroutine != null) return;
+        _dezoomCoroutine = StartCoroutine(DezoomEffect(_globalCamera.transform.position, _globalCamera.m_Lens.OrthographicSize, () =>
+        {
+            _dezoomCoroutine = null;
+        }));
     }
 
     public void SeeAllLevels()
@@ -141,6 +167,7 @@ public class CameraManager : MonoBehaviour
         while (elapsedTime < _cameraZoomSpeed)
         {
             float t = elapsedTime / _cameraZoomSpeed;
+            Debug.Log($"{t}");
 
             _mainCamera.transform.position = Vector3.Lerp(startPosition, new Vector3(targetPosition.x, targetPosition.y, startPosition.z), t);
             _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, t);
