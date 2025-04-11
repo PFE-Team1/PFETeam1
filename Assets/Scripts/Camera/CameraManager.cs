@@ -133,7 +133,6 @@ public class CameraManager : MonoBehaviour
     {
         if (_globalCamera != null) return;
 
-        // Bounds combinés de tous les niveaux actifs
         Bounds combinedBounds = new Bounds();
         bool hasBounds = false;
 
@@ -245,7 +244,7 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShowAndHideLevel()
     {
         SeeAllLevels();
-        yield return new WaitForSeconds(_cameraDezoomTime);
+        yield return new WaitForSeconds(2f);
         FocusCamera();
     }
 
