@@ -15,6 +15,7 @@ public class ScenesManager : MonoBehaviour
     }
     private void Update()
     {
+        if (InputsManager.instance == null) return;
         if (InputsManager.instance.InputRestarting)
         {
             InputsManager.instance.InputRestarting = false;
