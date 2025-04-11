@@ -13,15 +13,21 @@ public class RandomBg : MonoBehaviour
     [SerializeField] private int _spawnChance;
     [SerializeField] private int _xRange;
     [SerializeField] private int _yRange;
+    private GameObject _contenant;
 
     [Button]
     private void BackGround()
     {
-        foreach(Transform child in transform)
+
+        if (_contenant)
         {
-            DestroyImmediate(child.gameObject);
+            DestroyImmediate(_contenant);
         }
-        for(int i =-_xRange;i<= _xRange; i++)
+        _contenant = new GameObject();
+        _contenant.transform.parent = transform;
+        _contenant.transform.localScale = Vector3.one;
+        _contenant.transform.name = "contenant";
+        for (int i =-_xRange;i<= _xRange; i++)
         {
             for (int j = -_yRange; j <= _yRange; j++)
             {
@@ -31,7 +37,7 @@ public class RandomBg : MonoBehaviour
                 {
                     int rand2 = Random.Range(0, _sprites.Count);
                     GameObject good = new GameObject();
-                    good.transform.parent = transform;
+                    good.transform.parent = _contenant.transform;
                     good.AddComponent<SpriteRenderer>();
                     good.GetComponent<SpriteRenderer>().sprite = _sprites[rand2];
                     good.GetComponent<SpriteRenderer>().sortingOrder=-5;
