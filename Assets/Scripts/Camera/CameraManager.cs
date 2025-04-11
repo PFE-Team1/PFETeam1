@@ -13,9 +13,10 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private List<GameObject> _levels; 
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
     [SerializeField] private GameObject _compositeParent;
+    [SerializeField] private float _cameraZoomTime;
+    [SerializeField] private float _cameraDezoomTime;
     private Bounds _cameraBounds;
     CinemachineVirtualCamera _globalCamera;
-    public float _cameraZoomSpeed = 1f;
 
     float initOrthoSize;
     Transform _playerTransform;
@@ -131,30 +132,82 @@ public class CameraManager : MonoBehaviour
     public void SeeAllLevels()
     {
         if (_globalCamera != null) return;
-        _globalCamera = new GameObject("Global Camera").AddComponent<CinemachineVirtualCamera>();
-        
+
+        // Bounds combinés de tous les niveaux actifs
         Bounds combinedBounds = new Bounds();
+        bool hasBounds = false;
+
         foreach (var level in _levels)
         {
             if (level.activeInHierarchy && level.TryGetComponent(out SpriteRenderer sr))
             {
-                combinedBounds.Encapsulate(sr.bounds);
+                if (!hasBounds)
+                {
+                    combinedBounds = sr.bounds;
+                    hasBounds = true;
+                }
+                else
+                {
+                    combinedBounds.Encapsulate(sr.bounds);
+                }
             }
         }
 
-        float worldWidth = combinedBounds.size.x;
-        float worldHeight = combinedBounds.size.y;
+        if (!hasBounds) return;
+
+        GameObject globalCamObj = new GameObject("Global Camera");
+        _globalCamera = globalCamObj.AddComponent<CinemachineVirtualCamera>();
+
+        _globalCamera.m_Lens = _mainCamera.m_Lens;
+        _globalCamera.Priority = _mainCamera.Priority - 1;
+
+        CopyCinemachineComponents(_mainCamera, _globalCamera);
 
         _globalCamera.m_Lens.Orthographic = true;
-        _globalCamera.m_Lens.OrthographicSize = Mathf.Max(worldWidth / (2 * _mainCamera.m_Lens.Aspect), worldHeight / 2);
+        _globalCamera.m_Lens.OrthographicSize = Mathf.Max(
+            combinedBounds.size.x / (2f * _mainCamera.m_Lens.Aspect),
+            combinedBounds.size.y / 2f
+        );
 
-        _globalCamera.transform.position = new Vector3(combinedBounds.center.x, combinedBounds.center.y, _mainCamera.transform.position.z);
+        _globalCamera.transform.position = new Vector3(
+            combinedBounds.center.x,
+            combinedBounds.center.y,
+            _mainCamera.transform.position.z
+        );
 
         if (_zoomCoroutine != null) return;
-        _dezoomCoroutine = StartCoroutine(DezoomEffect(combinedBounds.center, _globalCamera.m_Lens.OrthographicSize, () =>
+
+        _dezoomCoroutine = StartCoroutine(DezoomEffect(
+            _globalCamera.transform.position,
+            _globalCamera.m_Lens.OrthographicSize,
+            () => {
+                _dezoomCoroutine = null;
+            }
+        ));
+    }
+
+    private void CopyCinemachineComponents(CinemachineVirtualCamera source, CinemachineVirtualCamera target)
+    {
+        foreach (var comp in target.GetComponents<CinemachineComponentBase>())
         {
-            _dezoomCoroutine = null;
-        }));
+            DestroyImmediate(comp);
+        }
+
+        foreach (var sourceComp in source.GetComponents<CinemachineComponentBase>())
+        {
+            var type = sourceComp.GetType();
+            var method = typeof(CinemachineVirtualCamera).GetMethod("AddCinemachineComponent", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+            var genericMethod = method.MakeGenericMethod(type);
+            var targetComp = genericMethod.Invoke(target, null) as CinemachineComponentBase;
+
+            foreach (var field in type.GetFields())
+            {
+                if (field.IsPublic && field.CanWrite())
+                {
+                    field.SetValue(targetComp, field.GetValue(sourceComp));
+                }
+            }
+        }
     }
 
     private IEnumerator DezoomEffect(Vector3 targetPosition, float targetOrthoSize, System.Action onComplete)
@@ -164,10 +217,9 @@ public class CameraManager : MonoBehaviour
         Vector3 startPosition = _mainCamera.transform.position;
         float startOrthoSize = _mainCamera.m_Lens.OrthographicSize;
 
-        while (elapsedTime < _cameraZoomSpeed)
+        while (elapsedTime < _cameraDezoomTime)
         {
-            float t = elapsedTime / _cameraZoomSpeed;
-            Debug.Log($"{t}");
+            float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsedTime / _cameraDezoomTime));
 
             _mainCamera.transform.position = Vector3.Lerp(startPosition, new Vector3(targetPosition.x, targetPosition.y, startPosition.z), t);
             _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, t);
@@ -179,8 +231,11 @@ public class CameraManager : MonoBehaviour
         _mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, startPosition.z);
         _mainCamera.m_Lens.OrthographicSize = targetOrthoSize;
 
+        Debug.Log("📷 Dezoom terminé. Tous les niveaux sont visibles.");
+
         onComplete?.Invoke();
     }
+
 
     public void ShowNewLevel()
     {
@@ -190,7 +245,7 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShowAndHideLevel()
     {
         SeeAllLevels();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_cameraDezoomTime);
         FocusCamera();
     }
 
@@ -232,15 +287,17 @@ public class CameraManager : MonoBehaviour
         Destroy(_globalCamera.gameObject);
         _globalCamera = null;
 
-        while (elapsedTime < _cameraZoomSpeed)
+        while (elapsedTime < _cameraZoomTime)
         {
-            float t = elapsedTime / _cameraZoomSpeed;
+            float t = elapsedTime / _cameraZoomTime;
 
             _mainCamera.transform.position = Vector3.Lerp(startPosition, new Vector3(targetPosition.x, targetPosition.y, startPosition.z), t);
             _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, t);
 
             elapsedTime += Time.deltaTime;
             yield return null;
+
+            Debug.Log($"Elapsed Time: {elapsedTime}, t: {t}");
         }
 
         _mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, startPosition.z);
