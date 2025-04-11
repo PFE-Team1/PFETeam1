@@ -26,7 +26,8 @@ public class OpenButton : Interactable
             if (PlayerC.IsInteracting && _isRespawning==false)
             {
                 PlayerC.IsInteracting = false;
-                _toRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+                _toRemove.GetComponent<Collider>().enabled=false;
+                _toRemove.GetComponent<SpriteRenderer>().enabled=false;//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
                _spriteRenderer.sprite=null;
                 _isRespawning = true;
                 if (_isRespawnable == true)
@@ -46,7 +47,8 @@ public class OpenButton : Interactable
             //Shader de resolve progressif sur la durée (time/respawnTime)
 
         }
-        _toRemove.SetActive(true);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+        _toRemove.GetComponent<Collider>().enabled = true;
+        _toRemove.GetComponent<SpriteRenderer>().enabled = true;//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
         _spriteRenderer.sprite = _sprite;
         _isRespawning = false;
         yield return null;
