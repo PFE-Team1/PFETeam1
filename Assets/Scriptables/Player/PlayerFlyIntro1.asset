@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1e02341088fa5c498765089c04cb4fc, type: 3}
-  m_Name: PlayerFlyIntroMovement1
+  m_Name: PlayerFlyIntro1
   m_EditorClassIdentifier: 
-  jumpMaxHeight: 2.05
-  jumpDuration: 0
-  minJump: 0
-  inertieLoss: 0
-  jumpAccelerationTime: 0
-  jumpDecelerationTime: 0
-  jumpMaxSpeedX: 0
+  jumpMaxHeight: 4
+  jumpDuration: 1
+  minJump: 1.9
+  inertieLoss: 1
+  jumpAccelerationTime: 0.35
+  jumpDecelerationTime: 0.6
+  jumpMaxSpeedX: 8
   jumpBuffer: 0
-  CoyoteWindow: 0
+  CoyoteWindow: 0.1
   fallDuration: 0.9
-  maxFallSpeed: 15
-  fallAccelerationTime: 0.06
-  fallDecelerationTime: 0.8
+  maxFallSpeed: 13
+  fallAccelerationTime: 0.35
+  fallDecelerationTime: 0.6
   fallMaxSpeedX: 8
-  maxSpeed: 0
-  accelerationTime: 0.75
-  decelerationTime: 0.75
+  maxSpeed: 8
+  accelerationTime: 0.25
+  decelerationTime: 10
