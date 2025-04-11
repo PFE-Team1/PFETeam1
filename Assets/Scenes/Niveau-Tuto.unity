@@ -1038,6 +1038,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: d50ae58275d6c4d4ea93747e80583985, type: 3}
+    - target: {fileID: 3386285065532744087, guid: 87bbcee386764fb48a651e15b6d92299, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3903466
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386285065532744087, guid: 87bbcee386764fb48a651e15b6d92299, type: 3}
+      propertyPath: m_Center.x
+      value: -7.9403384e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386285065532744087, guid: 87bbcee386764fb48a651e15b6d92299, type: 3}
+      propertyPath: m_Center.y
+      value: 0.19517311
+      objectReference: {fileID: 0}
     - target: {fileID: 3587929162436857840, guid: 87bbcee386764fb48a651e15b6d92299, type: 3}
       propertyPath: m_Name
       value: Door-L
@@ -1105,8 +1117,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3985262694942896078, guid: 87bbcee386764fb48a651e15b6d92299, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 28871049181456499}
   m_SourcePrefab: {fileID: 100100000, guid: 87bbcee386764fb48a651e15b6d92299, type: 3}
+--- !u!1 &28871049181456498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3985262694942896078, guid: 87bbcee386764fb48a651e15b6d92299, type: 3}
+  m_PrefabInstance: {fileID: 28871049181456497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &28871049181456499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28871049181456498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf33ac17fec8b94da40ef2dc58ec48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanRepairItself: 0
+  CanShatteringBeCancelled: 0
+  TimeToShatter: 0
+  TimeToRepair: 0
+  _shatterTimer: 0
 --- !u!1 &3759241400857859840
 GameObject:
   m_ObjectHideFlags: 0
