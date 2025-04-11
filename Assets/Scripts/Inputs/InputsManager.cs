@@ -25,7 +25,7 @@ public class InputsManager : MonoBehaviour
     public bool InputDezooming { get => _inputDezooming;}
     public bool InputSwitching { get => _inputSwitching; set => _inputSwitching = value; }
     public bool InputPausing { get => _inputPausing;}
-    public bool InputRestarting { get => _inputRestarting;}
+    public bool InputRestarting { get => _inputRestarting; set => _inputRestarting = value; }
     public float MoveX { get => _moveX; }
     public Vector2 Lookaround { get => _lookaround;}
     #endregion
@@ -43,7 +43,7 @@ public class InputsManager : MonoBehaviour
             _inputJumping = false;
         }
     }
-    public void OnInterract(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
         {

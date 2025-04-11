@@ -15,7 +15,8 @@ public class EndProto : Interactable
             if (PlayerC.IsInteracting)
             {
                 PlayerC.IsInteracting = false;
-                Application.Quit();
+                //Application.Quit();
+                ScenesManager.instance.loadNextScene();
                 //SceneManager.LoadScene(_sceneToLoad);
             }
         }

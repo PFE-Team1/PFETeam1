@@ -24,9 +24,9 @@ public class PaintingController : Interactable
     {
         if (IsInRange)
         {
-            if (PlayerC.IsInteracting && !PlayerC.IsInSocleRange)
+            if (PlayerC.IsInteracting && !PlayerC.IsInSocleRange && !PlayerC.HasInteracted)
             {
-                PlayerC.IsInteracting = false;
+                PlayerC.HasInteracted = true;
                 if (isHeld)
                 {
                     AudioManager.Instance.SFX_PoseToile.Post(gameObject);
