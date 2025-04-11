@@ -1136,7 +1136,7 @@ GameObject:
   - component: {fileID: 641416586}
   - component: {fileID: 641416585}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2113,7 +2113,8 @@ MonoBehaviour:
   - {fileID: 0}
   _mainCamera: {fileID: 1832736596}
   _compositeParent: {fileID: 0}
-  _cameraZoomSpeed: 1
+  _cameraZoomTime: 0
+  _cameraDezoomTime: 0
 --- !u!4 &1420256532
 Transform:
   m_ObjectHideFlags: 0
@@ -4346,10 +4347,11 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1069512340}
   - {fileID: 1257507058}
-  - {fileID: 1720736838}
+  - {fileID: 1069512340}
   - {fileID: 845125177}
+  - {fileID: 1720736838}
+  - {fileID: 641416586}
   - {fileID: 5723980221663169325}
   - {fileID: 1563504827}
   - {fileID: 223913202}
@@ -4376,7 +4378,6 @@ SceneRoots:
   - {fileID: 1744683378}
   - {fileID: 1864336239}
   - {fileID: 657150333}
-  - {fileID: 641416586}
   - {fileID: 208253647}
   - {fileID: 6269842753826137905}
   - {fileID: 4635271134678573146}
