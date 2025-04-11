@@ -721,7 +721,8 @@ MonoBehaviour:
   - {fileID: 2575388283027714714}
   _mainCamera: {fileID: 1832736596}
   _compositeParent: {fileID: 8557619756277782912}
-  _cameraZoomSpeed: 1
+  _cameraZoomTime: 0
+  _cameraDezoomTime: 0
 --- !u!4 &1420256532
 Transform:
   m_ObjectHideFlags: 0
@@ -1245,10 +1246,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4948441537697136533, guid: 05007e63d9b1b5b498905c953f1e67b0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5118275892743396031, guid: 05007e63d9b1b5b498905c953f1e67b0, type: 3}
       propertyPath: m_Name
       value: Level-Tuto
       objectReference: {fileID: 0}
+    - target: {fileID: 6764527610049080596, guid: 05007e63d9b1b5b498905c953f1e67b0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675633111157965530, guid: 05007e63d9b1b5b498905c953f1e67b0, type: 3}
+      propertyPath: _currentLevel
+      value: 
+      objectReference: {fileID: 2575388283027714714}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
