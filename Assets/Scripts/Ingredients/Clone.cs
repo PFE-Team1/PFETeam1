@@ -33,6 +33,7 @@ public class Clone : MonoBehaviour
         ChangeParent();
         CloneManager.instance.Characters.Add(this);
         CloneManager.instance.Switch(_charID - 1);
+        gameObject.layer = transform.parent.gameObject.layer;
     }
 
     void Update()

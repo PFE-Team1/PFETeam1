@@ -7,19 +7,35 @@ public class VFXManager : MonoBehaviour
 {
     // Start is called before the first frame update
     private List<GameObject> _visualEffects=new List<GameObject>();
-    void Start()
+    private List<GameObject> _activeEffects=new List<GameObject>();
+    public VFXManager instance;
+    private void Awake()
     {
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+        }
     }
     public void PlayVFXAt(Vector3 where,int id)
     {
         if (id>=_visualEffects.Count) return;
         GameObject vfx=Instantiate(_visualEffects[id], where, transform.rotation);
         vfx.GetComponent<VisualEffect>().Play();
+        _activeEffects.Add(vfx);
+    }
+    public void StopVFXAt( int id)
+    {
+        foreach(GameObject effectToRemove in _activeEffects)
+        {
+            if (effectToRemove.name == _visualEffects[id].name)
+            {
+                Destroy(effectToRemove);
+            }
+        }
     }
 }
