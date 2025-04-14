@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Unity.VisualScripting;
-using UnityEngine.Events;
-using DG.Tweening.Core.Easing;
 using DG.Tweening;
 
 public class CameraManager : MonoBehaviour
@@ -15,6 +13,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject _compositeParent;
     [SerializeField] private float _cameraZoomTime;
     [SerializeField] private float _cameraDezoomTime;
+    [SerializeField] private Ease _cameraDezoomEase = Ease.OutBack;
+    [SerializeField] private Ease _cameraZoomEase = Ease.OutBack;
     private Bounds _cameraBounds;
     CinemachineVirtualCamera _globalCamera;
 
@@ -218,7 +218,7 @@ public class CameraManager : MonoBehaviour
 
         while (elapsedTime < _cameraDezoomTime)
         {
-            float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsedTime / _cameraDezoomTime));
+            float t = DOVirtual.EasedValue(0f, 1f, elapsedTime / _cameraDezoomTime, _cameraDezoomEase);
 
             _mainCamera.transform.position = Vector3.Lerp(startPosition, new Vector3(targetPosition.x, targetPosition.y, startPosition.z), t);
             _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, t);
@@ -288,7 +288,7 @@ public class CameraManager : MonoBehaviour
 
         while (elapsedTime < _cameraZoomTime)
         {
-            float t = elapsedTime / _cameraZoomTime;
+            float t = DOVirtual.EasedValue(0f, 1f, elapsedTime / _cameraZoomTime, _cameraZoomEase);
 
             _mainCamera.transform.position = Vector3.Lerp(startPosition, new Vector3(targetPosition.x, targetPosition.y, startPosition.z), t);
             _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, t);
@@ -314,6 +314,10 @@ public class CameraManager : MonoBehaviour
     public void AddNewLevel(GameObject newLevel)
     {
         _levels.Add(newLevel);
+    }
+
+    public void SetNewLevel(GameObject newLevel)
+    {
         CalculateWorldBounds();
         DefineCameraBounds();
         CalculateCameraBounds();
