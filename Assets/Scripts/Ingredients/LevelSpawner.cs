@@ -59,21 +59,21 @@ public class LevelSpawner : Interactable
             PlayerC.IsInSocleRange = true;
             if (!isAlreadySpawned)
             {
-                if (PlayerC.IsInteracting && PlayerC.heldObject!=null)
+                if (!PlayerC.HasInteracted && PlayerC.heldObject != null && PlayerC.IsInteracting)
                 {
                     SpawnNewLevel();
                     CameraManager.Instance.ShowNewLevel();
-                    PlayerC.IsInteracting = false;
+                    PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
                 }
             }
             else if (isAlreadySpawned)
             {
-                if (PlayerC.IsInteracting)
+                if (!PlayerC.HasInteracted && PlayerC.IsInteracting)
                 {
                     CameraManager.Instance.CameraShake(1,1);
                     RemoveNewLevel();
-                    PlayerC.IsInteracting = false;
+                    PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
                 }
             }
@@ -86,6 +86,8 @@ public class LevelSpawner : Interactable
         _newlevel = Instantiate(levelToSpawn, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
         _newlevel.name = levelToSpawn.name;
         CameraManager.Instance.AddNewLevel(_newlevel);
+
+        CameraManager.Instance.DefineCameraBounds();
 
         var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
