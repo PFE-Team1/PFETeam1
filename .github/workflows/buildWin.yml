@@ -1,36 +1,171 @@
-# This is a basic workflow to help you get started with Actions
+name: Building CI on Unity for Team 1 PFE
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  PROJECT_NAME: PFE_CI # Définir le nom du projet comme variable d'environnement
+
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - name: Set Start Time
+        shell: bash
+        run: echo "START_TIME=$(TZ=":Europe/Paris" date +'%H:%M le %d-%m-%Y')" >> $GITHUB_ENV
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Set Random Image URL
+        id: random-image
+        shell: bash
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          IMAGES=(
+            "https://i.pinimg.com/originals/63/b7/77/63b7778a45cac5a7a6e040b9486e1947.gif"
+            "https://pa1.aminoapps.com/6415/0ef06d84eaad1dd5a9eec4ce34eef24cabafff53_hq.gif"
+            "https://i.gifer.com/1Qs4.gif"
+            "https://i.pinimg.com/originals/09/26/01/09260106b02bdfecddb010cc8022300e.gif"
+            "https://i.gifer.com/3FGw.gif"
+            "https://ww2.kqed.org/pop/wp-content/uploads/sites/12/2015/12/02-smile-abu.gif"
+            "https://i.pinimg.com/originals/4c/d8/23/4cd8232cb57595f2e78ba1c7b45c2147.gif"
+            "https://img.buzzfeed.com/buzzfeed-static/static/2017-10/24/17/asset/buzzfeed-prod-fastlane-03/anigif_sub-buzz-18243-1508879490-7.gif"
+            "https://i.pinimg.com/originals/d3/e2/5b/d3e25b1c8264790ba329e6d3576dba24.gif"
+          )
+          RANDOM_INDEX=$(( RANDOM % ${#IMAGES[@]} ))
+          RANDOM_IMAGE="${IMAGES[$RANDOM_INDEX]}"
+          echo "random_image_url=$RANDOM_IMAGE" >> $GITHUB_OUTPUT
+      - name: Checking out Git
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get last successful build date
+        id: last-build
+        shell: bash
+        run: |
+          echo "LAST_BUILD_DATE=$(git log --pretty=format:'%cd' -1 --date=iso)" >> $GITHUB_ENV
+      - name: Get commits since last build
+        id: commits
+        shell: bash
+        run: |
+          COMMITS=$(git log --pretty=format:'- [%h](https://github.com/${{ github.repository }}/commit/%h) - %s - %an' --since="${{ env.LAST_BUILD_DATE }}")
+          echo "COMMITS<<EOF" >> $GITHUB_ENV
+          echo "$COMMITS" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      - name: Set Build Name
+        shell: bash
+        run: echo "BUILD_NAME=PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}" >> $GITHUB_ENV
+
+      - name: Build execution time - start
+        id: build-execution-time-start
+        shell: bash
+        run: echo "start_time=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Caching
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library   
+
+      - name: Building Game
+        id: project-build
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          buildName: ${{ env.BUILD_NAME }}
+          buildsPath: Builds
+          targetPlatform: StandaloneWindows64
+          allowDirtyBuild: true
+        continue-on-error: true
+
+      - name: Build execution time - end
+        id: build-execution-time
+        shell: bash
+        run: |
+          end_time=$(date +%s)
+          duration=$((end_time - ${{ env.start_time }}))
+          echo "duration=$duration" >> $GITHUB_OUTPUT
+      - name: Storing Build Artefact
+        id: build-upload
+        if: ${{ steps.project-build.outcome == 'success' }}
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: ${{ env.BUILD_NAME }}
+          path: Builds/StandaloneWindows64
+          retention-days: 14
+
+      - name: List files in Builds directory (Debug)
+        if: ${{ steps.project-build.outcome == 'success' }}
+        shell: bash
+        run: |
+          # Utilisation de la syntaxe de chemin compatible avec bash sur Windows
+          BUILD_PATH="${GITHUB_WORKSPACE}/Builds"
+          # Convertir le chemin Windows en chemin bash
+          BUILD_PATH=$(echo "$BUILD_PATH" | sed 's/\\/\//g')
+          # Vérifier si le répertoire existe
+          if [ -d "$BUILD_PATH" ]; then
+            ls -la "$BUILD_PATH"
+            if [ -d "$BUILD_PATH/StandaloneWindows64" ]; then
+              ls -la "$BUILD_PATH/StandaloneWindows64"
+            else
+              echo "Le répertoire StandaloneWindows64 n'existe pas"
+            fi
+          else
+            echo "Le répertoire Builds n'existe pas"
+            # Lister le contenu du répertoire racine pour déboguer
+            ls -la "${GITHUB_WORKSPACE}"
+          fi
+      - name: Set build artifact URL
+        id: build-artifact-url
+        if: ${{ steps.project-build.outcome == 'success' }}
+        shell: bash
+        run: |
+          ARTIFACT_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+            | jq -r '.artifacts[] | select(.name == "${{ env.BUILD_NAME }}") | .id')
+          echo "BUILD_ARTIFACT_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ARTIFACT_ID" >> $GITHUB_ENV
+      - name: Set empty artifact URL if build failed
+        if: ${{ steps.project-build.outcome != 'success' }}
+        shell: bash
+        run: echo "BUILD_ARTIFACT_URL=Non disponible (échec de la compilation)" >> $GITHUB_ENV
+
+      - name: Set build status
+        id: build-status
+        shell: bash
+        run: |
+          if [ "${{ steps.project-build.outcome }}" == "success" ]; then
+            echo "STATUS=Réussie ✅ 🙉" >> $GITHUB_ENV
+            echo "COLOR=65280" >> $GITHUB_ENV
+            echo "EXIT_CODE=${{ steps.project-build.outputs.engineExitCode || '0' }}" >> $GITHUB_ENV
+          else
+            echo "STATUS=Échouée ❌ 🙊" >> $GITHUB_ENV
+            echo "COLOR=16711680" >> $GITHUB_ENV
+            echo "EXIT_CODE=1" >> $GITHUB_ENV
+          fi
+      - name: Send Discord notification
+        uses: tsickert/discord-webhook@v6.0.0
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          username: "Abbuild 🐒🔧"
+          avatar-url: "https://media.discordapp.net/attachments/1314208057806426152/1346476105367814228/Abbu_3.png?ex=67c85317&is=67c70197&hm=c7c88ce931b72cf8e68da0792d2091a2e4b5f2e57e348f87d3ed36c5f1b792b5&=&format=webp&quality=lossless"
+          embed-image-url: ${{ steps.random-image.outputs.random_image_url }}
+          embed-title: "Build Unity - ${{ env.START_TIME }} - ${{ env.STATUS }}"
+          embed-description: |
+            **Détails de la build:**
+            - **Nom:** PFE1-WIN-${{ vars.MAJOR_VER }}.${{ vars.MINOR_VER }}.${{ github.run_number }}
+            - **Plateforme:** StandaloneWindows64
+            - **Durée d'exécution:** ${{ steps.build-execution-time.outputs.duration }} secondes
+            - **Code de sortie:** ${{ env.EXIT_CODE }}
+            **Dernier commit depuis la dernière build:**
+            ${{ env.COMMITS }}
+            **Liens Utiles:**
+            - [Télécharger la build](${{ env.BUILD_ARTIFACT_URL }})
+            - [Détails du workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          embed-color: ${{ env.COLOR }}
+          embed-footer-text: "Team 1 PFE - Build générée à ${{ env.START_TIME }}"
