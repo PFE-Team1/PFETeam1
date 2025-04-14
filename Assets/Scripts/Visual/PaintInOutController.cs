@@ -8,22 +8,31 @@ public class PaintInOutController : MonoBehaviour
     private Material _material;
     [SerializeField]float _duration=0.2f;
     [SerializeField]GameObject _firstPaint;
+    [SerializeField] GameObject _raw;
     RectTransform _rectTransform;
     RawImage _image;
 
     private void Awake()
     {
-        _material = GetComponent<RawImage>().material;
-        _rectTransform = GetComponent<RectTransform>();
-        _image = GetComponent<RawImage>();
+
+        _rectTransform = _raw.GetComponent<RectTransform>();
+        _image = _raw.GetComponent<RawImage>();
+        _material = _image.material;
     }
     private void Start()
     {
+        CameraManager.Instance.SeeCurrentLevel(_firstPaint);
         PaintIn(_firstPaint);
     }
-    private void PaintIn(GameObject paint)// objet , position taille
+    public  void PaintIn(GameObject paint)// objet , position taille
     {
-        _rectTransform = paint.GetComponent<RectTransform>();
+        RectTransform paintRect = paint.GetComponent<RectTransform>();
+        _rectTransform.anchorMin =paintRect.anchorMin;
+        _rectTransform.anchorMax =paintRect.anchorMax;
+        _rectTransform.anchoredPosition = paintRect.anchoredPosition;
+        _rectTransform.sizeDelta = paintRect.sizeDelta;
+        _rectTransform.localScale = paintRect.localScale;
+        transform.position = paintRect.position;
         _image.enabled = true;
         StartCoroutine(ShaderIn(paint));
     }
@@ -32,7 +41,7 @@ public class PaintInOutController : MonoBehaviour
         float timer = 0;
         while (timer < _duration)
         {
-            _material.SetFloat("_Fade", timer/10);
+            _material.SetFloat("_Fade", (timer/_duration)*1.5f);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -41,6 +50,7 @@ public class PaintInOutController : MonoBehaviour
         {
             child.gameObject.layer = 0;
         }
+        CameraManager.Instance.FocusCamera();
         _image.enabled = false;
         yield return null;
     }
