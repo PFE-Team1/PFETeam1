@@ -85,13 +85,12 @@ public class LevelSpawner : Interactable
         _paint = transform.GetChild(0).gameObject;
         _newlevel = Instantiate(levelToSpawn, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
         _newlevel.name = levelToSpawn.name;
-        CameraManager.Instance.AddNewLevel(_newlevel);
-
-        CameraManager.Instance.DefineCameraBounds();
-
+        
         var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
         SetDirection(newLevelBounds + Vector3.one * offset, currentLevelBounds + Vector3.one * offset);
+        CameraManager.Instance.AddNewLevel(_newlevel);
+        CameraManager.Instance.SetNewLevel(_newlevel);
     }
 
     public void SpawnNewLevel()
@@ -132,6 +131,8 @@ public class LevelSpawner : Interactable
             SetDirection(newLevelBounds + Vector3.one * offset, currentLevelBounds + Vector3.one * offset);
             SetNewPosition();
         }
+
+        CameraManager.Instance.SetNewLevel(_newlevel);
 
         isAlreadySpawned = true;
     }
