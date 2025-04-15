@@ -21,19 +21,20 @@ public class VFXManager : MonoBehaviour
             instance = this;
         }
     }
-    public void PlayVFXAt(Vector3 where,int id)
+    public void PlayVFXAt(Vector3 where, int id, string name)
     {
         if (id>=_visualEffects.Count) return;
         GameObject vfx=Instantiate(_visualEffects[id], where, transform.rotation);
         vfx.GetComponent<VisualEffect>().Play();
         _activeEffects.Add(vfx);
     }
-    public void StopVFXAt( int id)
+    public void StopVFX(string name)
     {
         foreach(GameObject effectToRemove in _activeEffects)
         {
-            if (effectToRemove.name == _visualEffects[id].name)
+            if (effectToRemove.name == name)
             {
+                _activeEffects.Remove(effectToRemove);
                 Destroy(effectToRemove);
             }
         }
