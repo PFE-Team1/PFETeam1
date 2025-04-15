@@ -39,6 +39,10 @@ public class Clone : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        if (!_inputs.InputInteract)
+        {
+            _isInteracting = false;
+        }
         if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer == _charID)
         {
             CloneManager.instance.Switch(_charID);
@@ -52,11 +56,6 @@ public class Clone : MonoBehaviour
         {
             _isInteracting = false;
             _hasInteracted = false;
-        }
-        if (_inputs.InputSwitching)
-        {
-            CloneManager.instance.Switch(_charID);
-            _inputs.InputSwitching = false;
         }
     }
 
