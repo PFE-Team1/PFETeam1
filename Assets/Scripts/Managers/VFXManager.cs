@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 public class VFXManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    private List<GameObject> _visualEffects=new List<GameObject>();
+    [SerializeField]private List<GameObject> _visualEffects=new List<GameObject>();
     private List<GameObject> _activeEffects=new List<GameObject>();
     public VFXManager instance;
     private void Awake()
