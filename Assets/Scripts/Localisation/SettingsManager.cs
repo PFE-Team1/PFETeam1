@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using AK.Wwise;
+using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -12,6 +14,11 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private TMP_Dropdown _resolutionDropDown;
     [SerializeField] private TMP_Dropdown _screenTypeDropDown;
+    [SerializeField] private Slider _masterVolumeSlider;
+    [SerializeField] private Slider _ambianceVolumeSlider;
+    [SerializeField] private Slider _musicVolumeSlider;
+    [SerializeField] private Slider _sfxVolumeSlider;
+    [SerializeField] private Slider _uiVolumeSlider;
     bool wantParallax = true;
     bool wantScreenShake = true;
     bool isMainMenuActive = false;
@@ -90,6 +97,27 @@ public class SettingsManager : MonoBehaviour
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                 break;
         }
+    }
+
+    public void ChangeMasterVolume()
+    {
+        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
+    }
+    public void ChangeAmbianceVolume()
+    {
+        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
+    }
+    public void ChangeMusicVolume()
+    {
+        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
+    }
+    public void ChangeSFXVolume()
+    {
+        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
+    }
+    public void ChangeUIVolume()
+    {
+        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
     }
 
     public void RestartGame()
