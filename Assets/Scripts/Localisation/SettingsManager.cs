@@ -101,23 +101,23 @@ public class SettingsManager : MonoBehaviour
 
     public void ChangeMasterVolume()
     {
-        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
+        AkSoundEngine.SetRTPCValue("Volume", _masterVolumeSlider.value);
     }
     public void ChangeAmbianceVolume()
     {
-        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
+        AkSoundEngine.SetRTPCValue("Volume", _ambianceVolumeSlider.value);
     }
     public void ChangeMusicVolume()
     {
-        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
+        AkSoundEngine.SetRTPCValue("Volume", _musicVolumeSlider.value);
     }
     public void ChangeSFXVolume()
     {
-        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
+        AkSoundEngine.SetRTPCValue("Volume", _sfxVolumeSlider.value);
     }
     public void ChangeUIVolume()
     {
-        AkSoundEngine.SetRTPCValue("Volume", PlayerPrefs.GetFloat("Volume"));
+        AkSoundEngine.SetRTPCValue("Volume", _uiVolumeSlider.value);
     }
 
     public void RestartGame()
