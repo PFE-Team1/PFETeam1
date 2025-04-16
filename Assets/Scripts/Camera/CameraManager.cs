@@ -15,6 +15,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float _cameraDezoomTime;
     [SerializeField] private Ease _cameraDezoomEase = Ease.OutBack;
     [SerializeField] private Ease _cameraZoomEase = Ease.OutBack;
+    private PaintInOutController _paintInOutController;
     private Bounds _cameraBounds;
     CinemachineVirtualCamera _globalCamera;
 
@@ -41,6 +42,7 @@ public class CameraManager : MonoBehaviour
         }
 
         CalculateWorldBounds();
+        _paintInOutController = FindObjectOfType<PaintInOutController>();
     }
 
     void Start()
@@ -296,7 +298,7 @@ public class CameraManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
 
-            Debug.Log($"Elapsed Time: {elapsedTime}, t: {t}");
+           // Debug.Log($"Elapsed Time: {elapsedTime}, t: {t}");
         }
 
         _mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, startPosition.z);
@@ -318,6 +320,11 @@ public class CameraManager : MonoBehaviour
 
     public void SetNewLevel(GameObject newLevel)
     {
+        if (!newLevel.GetComponent<Level>().WasAlreadySpawned)
+        {
+            _paintInOutController.PaintIn(newLevel);
+            newLevel.GetComponent<Level>().WasAlreadySpawned = true;
+        }
         CalculateWorldBounds();
         DefineCameraBounds();
         CalculateCameraBounds();
