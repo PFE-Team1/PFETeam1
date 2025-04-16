@@ -5,12 +5,26 @@ using TMPro;
 
 public class SettingsManager : MonoBehaviour
 {
+    public static SettingsManager Instance { get; private set; }
     [SerializeField] private GameObject _landingMenu;
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private TMP_Dropdown _resolutionDropDown;
     [SerializeField] private TMP_Dropdown _screenTypeDropDown;
     bool wantParallax = true;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     bool wantScreenShake = true;
     bool isMainMenuActive = false;
     Resolution[] resolutions;
