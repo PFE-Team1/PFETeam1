@@ -20,10 +20,13 @@ public class ScenesManager : MonoBehaviour
     public void loadNextScene()
     {
         SceneManager.LoadSceneAsync(_nextScene);
-        if (InputsManager.instance.InputRestarting)
+        if (InputsManager.instance != null)
         {
-            InputsManager.instance.InputRestarting = false;
-            StartCoroutine(Deload());
+            if (InputsManager.instance.InputRestarting)
+            {
+                InputsManager.instance.InputRestarting = false;
+                StartCoroutine(Deload());
+            }
         }
     }
 
