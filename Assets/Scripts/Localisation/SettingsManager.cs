@@ -12,6 +12,11 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown _resolutionDropDown;
     [SerializeField] private TMP_Dropdown _screenTypeDropDown;
     bool wantParallax = true;
+    bool wantScreenShake = true;
+    bool isMainMenuActive = false;
+    Resolution[] resolutions;
+    public bool WantParallax { get => wantParallax; set => wantParallax = value; }
+    public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
 
     void Awake()
     {
@@ -25,12 +30,6 @@ public class SettingsManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    bool wantScreenShake = true;
-    bool isMainMenuActive = false;
-    Resolution[] resolutions;
-
-    public bool WantParallax { get => wantParallax; set => wantParallax = value; }
-    public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
     
     void Start()
     {
