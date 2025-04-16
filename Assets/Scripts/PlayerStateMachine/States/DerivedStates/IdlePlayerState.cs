@@ -11,16 +11,15 @@ public class IdlePlayerState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         StateMachine.Velocity = new Vector2(0, -0.1f);
-        MonoBehaviour.print("Entering Idle");
     }
 
     protected override void OnStateExit(PlayerState nextState)
     {
-        MonoBehaviour.print("Exiting Idle");
     }
 
     protected override void OnStateUpdate()
     {
+        if (StateMachine.IsMovementLocked) return;
         if (!StateMachine.CollisionInfo.isCollidingBelow)
         {
             StateMachine.ChangeState(StateMachine.FallingState);
@@ -33,8 +32,9 @@ public class IdlePlayerState : PlayerState
             return;
         }
 
-        if (_inputsManager.InputJumping)
+        if (StateMachine.JumpBuffer > 0)
         {
+            StateMachine.JumpBuffer = 0;
             StateMachine.ChangeState(StateMachine.JumpingState);
             return;
         }

@@ -1,14 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class EndProto : MonoBehaviour
+public class EndProto : Interactable
 {
-    private void OnTriggerEnter(Collider other)
+
+    private string _sceneToLoad;
+    // Update is called once per frame
+    void Update()
     {
-        if (other.CompareTag("Player"))
+        if (IsInRange)
         {
-            Application.Quit();
+            if (PlayerC.IsInteracting)
+            {
+                PlayerC.IsInteracting = false;
+                //Application.Quit();
+                ScenesManager.instance.loadNextScene();
+                //SceneManager.LoadScene(_sceneToLoad);
+            }
         }
     }
 }
+

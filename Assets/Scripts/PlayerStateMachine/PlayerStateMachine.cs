@@ -15,7 +15,7 @@ public class PlayerStateMachine : MonoBehaviour
     #region InspectorVariables
 
     public bool DebugMode = true;
-    public PlayerMovementParameters PlayerMovementParameters;
+    public PlayerMovementParameters BasePlayerMovementParameters;
 
     #endregion
     #region NonInspectorVariables
@@ -24,11 +24,22 @@ public class PlayerStateMachine : MonoBehaviour
     [HideInInspector]
     public Vector2 Velocity;
     [HideInInspector]
+    public bool IsMovementLocked;
+    [HideInInspector]
     public InputsManager InputsManager { get; private set; }
+    [HideInInspector]
+    public PlayerMovementParameters PlayerMovementParameters;
+    [HideInInspector] 
+    public bool IsJumpInputEaten = false;
+    [HideInInspector]
+    public float JumpBuffer = 0f;
+    [HideInInspector]
+    public float CoyoteWindow = 0f;
     #endregion
     #endregion
     #region PrivateVariables
     private CharacterController _CharacterController => GetComponent<CharacterController>();
+    private SphereCollider _SphereCollider;
     #endregion
     #region States
 
@@ -37,6 +48,8 @@ public class PlayerStateMachine : MonoBehaviour
     private FallingPlayerState _fallingState { get; } = new FallingPlayerState();
     private RunningPlayerState _runningState { get; } = new RunningPlayerState();
     private JumpingPlayerState _jumpingState { get; } = new JumpingPlayerState();
+
+    private cloneState _cloneState { get; } = new cloneState();
     #endregion
 
     #region Accessors
@@ -44,6 +57,8 @@ public class PlayerStateMachine : MonoBehaviour
     public FallingPlayerState FallingState => _fallingState;
     public RunningPlayerState RunningState => _runningState;
     public JumpingPlayerState JumpingState => _jumpingState;
+
+    public cloneState CloneState => _cloneState;
     #endregion
     public PlayerState[] AllStates => new PlayerState[]
     {
@@ -51,6 +66,7 @@ public class PlayerStateMachine : MonoBehaviour
         _fallingState,
         _runningState,
         _jumpingState,
+        _cloneState
     };
 
     #endregion
@@ -58,7 +74,8 @@ public class PlayerStateMachine : MonoBehaviour
     #region CurrentStates
     private PlayerState StartState => _idleState;
     private PlayerState CurrentState { get; set; }
-    private PlayerState PreviousState { get; set; }
+    [HideInInspector]
+    public PlayerState PreviousState { get; set; }
 
     #endregion
 
@@ -77,9 +94,11 @@ public class PlayerStateMachine : MonoBehaviour
         GUI.Box(new Rect(10, 10, 200, 160), "");
 
         string debugText = "";
+        debugText += "Current Profile Name: " + PlayerMovementParameters.name + "\n";
         debugText += "Current State: " + CurrentState.GetType().Name + "\n";
         debugText += "Move X: " + InputsManager.MoveX + "\n";
         debugText += "Velocity: " + Velocity.ToString("F2") + "\n";
+        debugText += "Jump Buffer: " + JumpBuffer.ToString("F2") + "\n";
         debugText += "\n";
         debugText += "Gauche: " + CollisionInfo.isCollidingLeft + "\n";
         debugText += "Droite: " + CollisionInfo.isCollidingRight + "\n";
@@ -98,6 +117,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void _InitStateMachine()
     {
+        PlayerMovementParameters = BasePlayerMovementParameters;
         CollisionDetector.InitializeCollisionTracking(gameObject);
         ChangeState(StartState);
     }
@@ -105,14 +125,14 @@ public class PlayerStateMachine : MonoBehaviour
     {
         // R�initialiser les collisions horizontales � chaque frame
         CollisionDetector.ResetFrameCollisions(gameObject);
+        // Mettre � jour l'entr�e de l'utilisateur
+        UpdateJumpBuffer();
     }
     private void FixedUpdate()
     {
         // Obtenir l'�tat actuel des collisions
         CollisionInfo = CollisionDetector.GetCollisionInfo(gameObject);
 
-        // Mise � jour de l'�tat actuel
-        CurrentState.StateUpdate();
 
         // Appliquer le mouvement et obtenir les flags de collision
         CollisionFlags collisionFlags = _CharacterController.Move(Velocity * Time.fixedDeltaTime);
@@ -122,6 +142,9 @@ public class PlayerStateMachine : MonoBehaviour
 
         // Mettre � jour l'information de collision apr�s le mouvement
         CollisionInfo = CollisionDetector.GetCollisionInfo(gameObject);
+
+        // Mise � jour de l'�tat actuel
+        CurrentState.StateUpdate();
     }
 
     private void _InitAllStates()
@@ -144,4 +167,21 @@ public class PlayerStateMachine : MonoBehaviour
             CurrentState.StateEnter(state);
         }
     }
+
+    private void UpdateJumpBuffer()
+    {
+        if (!InputsManager.InputJumping)
+        {
+            IsJumpInputEaten = true;
+        }
+
+        if (InputsManager.InputJumping && IsJumpInputEaten)
+        {
+            IsJumpInputEaten = false;
+            JumpBuffer = PlayerMovementParameters.jumpBuffer;
+        }
+
+        JumpBuffer = Mathf.Clamp(JumpBuffer - Time.deltaTime, 0, PlayerMovementParameters.jumpBuffer);
+    }
+
 }

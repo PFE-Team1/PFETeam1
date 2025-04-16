@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -24,11 +25,11 @@ public class PlayerMovementParameters : ScriptableObject
     [Range(0, 50)]
     [Tooltip("Air max Speed X")] public float jumpMaxSpeedX = 5;
 
-    //[Range(0, 10)]
-    //[Tooltip("Jump Buffer")] public float jumpBuffer = 5f;
+    [Range(0, 3)]
+    [Tooltip("Jump Buffer")] public float jumpBuffer = 2f;
 
-    //[Range(0, 10)]
-    //[Tooltip("Temps alloué au joueur pour sauter alors qu'il n'est plus sur la plateforme")] public float CoyoteWindow = 5f;
+    [Range(0, 3)]
+    [Tooltip("Temps alloué au joueur pour sauter alors qu'il n'est plus sur la plateforme")] public float CoyoteWindow = 2f;
 
     #endregion
 
@@ -45,8 +46,6 @@ public class PlayerMovementParameters : ScriptableObject
     [Tooltip("Fall speed acceleration time")] public float fallDecelerationTime = 5;
     [Range(0, 50)]
     [Tooltip("fall max X Speed")] public float fallMaxSpeedX = 5;
-    [Tooltip("should the player instantly stop when releasing X inputs")] public bool instantXStop = true;
-    [Tooltip("instantly turn around in the air ?")] public bool instantTurnAroundInAir = true;
 
 
     #endregion

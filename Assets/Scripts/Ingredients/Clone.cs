@@ -8,75 +8,67 @@ public class Clone : MonoBehaviour
 {
     [SerializeField] private GameObject _clone;
     [SerializeField] private int _charID;
-    [SerializeField] private PlayerStateMachine _playerInput;
+    private PlayerStateMachine _playerStateMachine;
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
     private InputsManager _inputs;
     private bool _isInteracting;
-    private bool _isInSocleRange=false;
+    private bool _hasInteracted;
+    [SerializeField] private bool _isInSocleRange = false;
     private GameObject _heldObject;
     public GameObject heldObject { get => _heldObject; set => _heldObject = value; }
-    public int CharID { get => _charID;}
+    public int CharID { get => _charID; }
     public Transform PaintingTransform { get => _paintingTransform; set => _paintingTransform = value; }
     public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
     public bool IsInSocleRange { get => _isInSocleRange; set => _isInSocleRange = value; }
+    public bool HasInteracted { get => _hasInteracted; set => _hasInteracted = value; }
 
     private void Start()
     {
         CVC = CameraManager.Instance.MainCamera;
         CVC.Follow = transform;
         _inputs = InputsManager.instance;
-        _inputs._playerInputs.actions["Interact"].performed += Interact;
-        _inputs._playerInputs.actions["Interact"].canceled += Interact;
-        _inputs._playerInputs.actions["Interact"].Enable();
-        _inputs._playerInputs.actions["Switch"].performed += Switch;
-        _inputs._playerInputs.actions["Switch"].Enable();
-        _playerInput = GetComponent<PlayerStateMachine>();
+        _playerStateMachine = GetComponent<PlayerStateMachine>();
         _charID = CloneManager.instance.Characters.Count;
         ChangeParent();
         CloneManager.instance.Characters.Add(this);
         CloneManager.instance.Switch(_charID - 1);
+        gameObject.layer = transform.parent.gameObject.layer;
     }
 
     void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer==_charID)
+
+        if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer == _charID)
         {
             CloneManager.instance.Switch(_charID);
             _inputs.InputSwitching = false;
+        }
+        if (!_inputs.InputInteract)
+        {
+            _isInteracting = false;
+        }
+        if (_inputs.InputInteract && !_isInteracting)
+        {
+            _isInteracting = true;
+            _inputs.InputInteract = false;
+        }
+        if (_hasInteracted)
+        {
+            _isInteracting = false;
+            _hasInteracted = false;
         }
     }
 
     public void Cloned(GameObject spawnPoint)// mettre dans des �tats pour la state machine
     {
         GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
-        
-    }
-    public void Interact(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            ChangeParent();
-            _isInteracting = true;
-        }
-        if (context.canceled)
-        {
-            ChangeParent();
-            _isInteracting = false;
-        }
-    }
-    public void Switch(InputAction.CallbackContext context)// mettre dans des �tats pour la state machine
-    {
-        if (context.performed && CloneManager.instance.CurrentPlayer == _charID);
-        {
-           
-
-        }
+        AudioManager.Instance.SFX_CreateClone.Post(gameObject);
     }
     public void Switchup(bool isEnable)
     {
-        _playerInput.enabled = isEnable;
+        _playerStateMachine.ChangeState(_playerStateMachine.CloneState);
         if (isEnable)
         {
             CVC.Follow = gameObject.transform;
@@ -87,7 +79,7 @@ public class Clone : MonoBehaviour
             ChangeParent();
         }
     }
-    private void ChangeParent()
+    public void ChangeParent()
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.back);
         foreach (var hit in hits)
