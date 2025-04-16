@@ -9,6 +9,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _landingMenu;
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _settingsMenu;
+    [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private TMP_Dropdown _resolutionDropDown;
     [SerializeField] private TMP_Dropdown _screenTypeDropDown;
     bool wantParallax = true;
@@ -89,6 +90,17 @@ public class SettingsManager : MonoBehaviour
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                 break;
         }
+    }
+
+    public void RestartGame()
+    {
+        DisplayPauseMenu();
+        ScenesManager.instance.ReloadScene();
+    }
+
+    public void DisplayPauseMenu()
+    {
+        _pauseMenu.SetActive(!_pauseMenu.activeSelf);
     }
 
     public void SetParallax()
