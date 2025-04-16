@@ -683,6 +683,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1068917997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068917999}
+  - component: {fileID: 1068917998}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1068917998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068917997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ecbc9c7526da334b81484084efe34de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: fa294369037f8fa47a27934394783bbc, type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!4 &1068917999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068917997}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1069512337
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +887,8 @@ MonoBehaviour:
   _compositeParent: {fileID: 8557619756277782912}
   _cameraZoomTime: 1
   _cameraDezoomTime: 1
+  _cameraDezoomEase: 27
+  _cameraZoomEase: 27
 --- !u!4 &1420256532
 Transform:
   m_ObjectHideFlags: 0
@@ -1414,6 +1473,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7336634521055972309, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
+      propertyPath: FOL_Pas.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: af2a05cfbbb6f8f49a598818cc7aa89a, type: 2}
+    - target: {fileID: 7336634521055972309, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
+      propertyPath: FOL_Saut.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 5990b8d911ecca943a2f730bebd50fc6, type: 2}
+    - target: {fileID: 7336634521055972309, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
+      propertyPath: FOL_Atterissage.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 22d90f461222d324091250e6af7b15ed, type: 2}
+    - target: {fileID: 7336634521055972309, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
+      propertyPath: SFX_CreateClone.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a3e766e0e317da4e9fb2902d67c6bce, type: 2}
+    - target: {fileID: 7336634521055972309, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
+      propertyPath: SUI_SurvolBouton.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c427ae7e23036b45bf86c85543e6d57, type: 2}
+    - target: {fileID: 7336634521055972309, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
+      propertyPath: SUI_CliqueValidationBouton.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 8cc38453c2c6c7a408185510cc1fcb69, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1585,3 +1668,4 @@ SceneRoots:
   - {fileID: 657150333}
   - {fileID: 5768031130949384740}
   - {fileID: 591532618}
+  - {fileID: 1068917999}

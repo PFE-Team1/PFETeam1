@@ -14,10 +14,22 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID PLAY_CREATECLONE_RC = 772483901U;
+        static const AkUniqueID PLAY_FOL_ATTERISSAGE_RC = 4231866090U;
+        static const AkUniqueID PLAY_FOL_PAS_RC = 3168559986U;
+        static const AkUniqueID PLAY_FOL_SAUT_RC = 1819697263U;
         static const AkUniqueID PLAY_SUI_CLIQUEVALIDATIONBOUTON_RC = 129827151U;
         static const AkUniqueID PLAY_SUI_SURVOLBOUTON_RC_01 = 2589902834U;
         static const AkUniqueID PLAY_TOILE_1_PC = 4192545069U;
     } // namespace EVENTS
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID AMB_BUS_VOLUME_RTPC = 3484110713U;
+        static const AkUniqueID MASTER_VOLUME_RTPC = 2585960002U;
+        static const AkUniqueID MUS_BUS_VOLUME_RTPC = 2084185412U;
+        static const AkUniqueID SFX_BUS_VOLUME_RTPC = 141893488U;
+        static const AkUniqueID UI_BUS_VOLUME_RTPC = 4047153977U;
+    } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {
