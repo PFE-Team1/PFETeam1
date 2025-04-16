@@ -19,7 +19,7 @@ public class InputsManager : MonoBehaviour
     #endregion
     #region InputPropri�t�s 
     public bool InputJumping { get => _inputJumping;}
-    public bool InputInteract { get => _inputInteract; }
+    public bool InputInteract { get => _inputInteract; set => _inputInteract=value; }
 
     public bool InputZooming { get => _inputZooming;}
     public bool InputDezooming { get => _inputDezooming;}
