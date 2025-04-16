@@ -55,8 +55,8 @@ public class LevelSpawner : Interactable
         }
         if (IsInRange)
         {
-            if (isSpawnOnStart && isFixed) return;
             PlayerC.IsInSocleRange = true;
+            if (isSpawnOnStart && isFixed) return;
             if (!isAlreadySpawned)
             {
                 if (!PlayerC.HasInteracted && PlayerC.heldObject != null && PlayerC.IsInteracting)
@@ -295,5 +295,14 @@ public class LevelSpawner : Interactable
         _paint = null;
         _newlevel.SetActive(false);
         CameraManager.Instance?.RemoveLevel(_newlevel);
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            IsInRange = false;
+            PlayerC.IsInSocleRange = false;
+        }
     }
 }

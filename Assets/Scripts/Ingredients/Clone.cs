@@ -14,10 +14,10 @@ public class Clone : MonoBehaviour
     private InputsManager _inputs;
     private bool _isInteracting;
     private bool _hasInteracted;
-    private bool _isInSocleRange=false;
+    [SerializeField] private bool _isInSocleRange = false;
     private GameObject _heldObject;
     public GameObject heldObject { get => _heldObject; set => _heldObject = value; }
-    public int CharID { get => _charID;}
+    public int CharID { get => _charID; }
     public Transform PaintingTransform { get => _paintingTransform; set => _paintingTransform = value; }
     public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
     public bool IsInSocleRange { get => _isInSocleRange; set => _isInSocleRange = value; }
@@ -39,20 +39,22 @@ public class Clone : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        if (!_inputs.InputInteract)
-        {
-            _isInteracting = false;
-        }
+
         if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer == _charID)
         {
             CloneManager.instance.Switch(_charID);
             _inputs.InputSwitching = false;
         }
-        if (_inputs.InputInteract&&!_isInteracting)
+        if (!_inputs.InputInteract)
+        {
+            _isInteracting = false;
+        }
+        if (_inputs.InputInteract && !_isInteracting)
         {
             _isInteracting = true;
+            _inputs.InputInteract = false;
         }
-        if (!_inputs.InputInteract&&_hasInteracted)
+        if (_hasInteracted)
         {
             _isInteracting = false;
             _hasInteracted = false;
