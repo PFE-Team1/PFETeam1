@@ -45,13 +45,16 @@ public class CloneManager : MonoBehaviour
         _characters[charID].Switchup(true);
         foreach (Clone c in _characters)
         {
+            PlayerStateMachine playerStateMachine = c.GetComponent<PlayerStateMachine>();
             if (c.CharID != charID)
             {
+                playerStateMachine.ChangeState(playerStateMachine.CloneState);
                 c.gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
                 c.Switchup(false);
             }
             else
             {
+                playerStateMachine.ChangeState(playerStateMachine.IdleState);
                 c.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
             }
         }

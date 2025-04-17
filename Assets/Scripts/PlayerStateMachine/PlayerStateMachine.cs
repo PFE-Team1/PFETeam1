@@ -79,7 +79,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     #region CurrentStates
     private PlayerState StartState => _idleState;
-    private PlayerState CurrentState { get; set; }
+    public PlayerState CurrentState { get; set; }
     [HideInInspector]
     public PlayerState PreviousState { get; set; }
 
