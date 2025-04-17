@@ -16,16 +16,24 @@ public class ScenesManager : MonoBehaviour
     private void Update()
     {
         if (InputsManager.instance == null) return;
-        if (InputsManager.instance.InputRestarting)
-        {
-            InputsManager.instance.InputRestarting = false;
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-            StartCoroutine(Deload());
-        }
     }
     public void loadNextScene()
     {
         SceneManager.LoadSceneAsync(_nextScene);
+        if (InputsManager.instance != null)
+        {
+            if (InputsManager.instance.InputRestarting)
+            {
+                InputsManager.instance.InputRestarting = false;
+                StartCoroutine(Deload());
+            }
+        }
+    }
+
+    public void ReloadScene()
+    {
+        InputsManager.instance.InputRestarting = false;
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         StartCoroutine(Deload());
     }
     IEnumerator Deload()

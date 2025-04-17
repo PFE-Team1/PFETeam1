@@ -2,21 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using AK.Wwise;
+using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
+    public static SettingsManager Instance { get; private set; }
     [SerializeField] private GameObject _landingMenu;
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _settingsMenu;
+    [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private TMP_Dropdown _resolutionDropDown;
     [SerializeField] private TMP_Dropdown _screenTypeDropDown;
+    [SerializeField] private Slider _masterVolumeSlider;
+    [SerializeField] private Slider _ambianceVolumeSlider;
+    [SerializeField] private Slider _musicVolumeSlider;
+    [SerializeField] private Slider _sfxVolumeSlider;
+    [SerializeField] private Slider _uiVolumeSlider;
     bool wantParallax = true;
     bool wantScreenShake = true;
     bool isMainMenuActive = false;
     Resolution[] resolutions;
-
     public bool WantParallax { get => wantParallax; set => wantParallax = value; }
     public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     
     void Start()
     {
@@ -76,6 +97,38 @@ public class SettingsManager : MonoBehaviour
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                 break;
         }
+    }
+
+    public void ChangeMasterVolume()
+    {
+        AkSoundEngine.SetRTPCValue("MASTER_Volume_RTPC", _masterVolumeSlider.value);
+    }
+    public void ChangeAmbianceVolume()
+    {
+        AkSoundEngine.SetRTPCValue("AMB_BUS_Volume_RTPC", _ambianceVolumeSlider.value);
+    }
+    public void ChangeMusicVolume()
+    {
+        AkSoundEngine.SetRTPCValue("MUS_BUS_Volume_RTPC", _musicVolumeSlider.value);
+    }
+    public void ChangeSFXVolume()
+    {
+        AkSoundEngine.SetRTPCValue("SFX_BUS_Volume_RTPC", _sfxVolumeSlider.value);
+    }
+    public void ChangeUIVolume()
+    {
+        AkSoundEngine.SetRTPCValue("UI_BUS_Volume_RTPC", _uiVolumeSlider.value);
+    }
+
+    public void RestartGame()
+    {
+        DisplayPauseMenu();
+        ScenesManager.instance.ReloadScene();
+    }
+
+    public void DisplayPauseMenu()
+    {
+        _pauseMenu.SetActive(!_pauseMenu.activeSelf);
     }
 
     public void SetParallax()

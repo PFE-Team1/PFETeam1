@@ -55,6 +55,7 @@ public class Parrallaxe : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (SettingsManager.Instance.WantParallax == false) return;
         float distX = 0;
         float distY = 0;
         if (_vertical)

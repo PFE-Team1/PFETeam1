@@ -6,6 +6,41 @@
 				<Property Name="Color" Type="int16" Value="2"/>
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
+			<ChildrenList>
+				<Event Name="Play_FOL_Atterissage_RC" ID="{5FED10E9-33EE-4205-A970-F3C0819E04F3}">
+					<ChildrenList>
+						<Action Name="" ID="{36B86DFB-41AD-4FEB-BFC5-4E8AB3BDB642}" ShortID="993728088">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="FOL_Atterissage_RC" ID="{E484DF54-DD2E-4C37-98B8-FD5D9E4590B3}" WorkUnitID="{D21C34DF-A9EC-499B-8831-8F6F01DD021A}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_FOL_Pas_RC" ID="{61B7DB7B-05A2-4453-AE15-3A0DD51C8A4A}">
+					<ChildrenList>
+						<Action Name="" ID="{3CD0A2AB-3C90-4407-B61B-C6F8B32DDF36}" ShortID="811142904">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="FOL_Pas_RC" ID="{82E75245-A518-4055-9E1C-203E7CF109FC}" WorkUnitID="{D21C34DF-A9EC-499B-8831-8F6F01DD021A}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_FOL_Saut_RC" ID="{0844262C-495B-4C96-8F59-0B0045F4668C}">
+					<ChildrenList>
+						<Action Name="" ID="{8EE94EDD-FE4E-4574-9FDD-6439FCEF5266}" ShortID="602405578">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="FOL_Saut_RC" ID="{FEABAAAA-8CDC-486E-B06E-D79F57DEC379}" WorkUnitID="{D21C34DF-A9EC-499B-8831-8F6F01DD021A}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
 		</WorkUnit>
 	</Events>
 </WwiseDocument>
