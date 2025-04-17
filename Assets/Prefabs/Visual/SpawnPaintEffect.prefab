@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 202346910120831575}
-  - {fileID: 3694834068605935954}
+  - {fileID: 5801654693530936864}
   - {fileID: 4088254116866252925}
   - {fileID: 7285839767668838834}
   m_Father: {fileID: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   _duration: 5
   _firstPaint: {fileID: 0}
   _raw: {fileID: 4810678547168311586}
-  _mask: {fileID: 2489084612106903072}
+  _mask: {fileID: 3010147974281368902}
 --- !u!1 &1071168695934275223
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2.41
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -189,7 +189,7 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!1 &2489084612106903072
+--- !u!1 &3010147974281368902
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,38 +197,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3694834068605935954}
-  - component: {fileID: 1855216275047687318}
+  - component: {fileID: 5801654693530936864}
+  - component: {fileID: 1562992129156659162}
   m_Layer: 0
-  m_Name: Test_Emile
+  m_Name: Transitsion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3694834068605935954
+--- !u!4 &5801654693530936864
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2489084612106903072}
+  m_GameObject: {fileID: 3010147974281368902}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 110.66, y: 100, z: 0.06429267}
-  m_LocalScale: {x: 1.6276, y: 1.6276, z: 1.6276}
+  m_LocalPosition: {x: 105.67, y: 100, z: 0.08831452}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1241167160591862461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &1855216275047687318
+--- !u!120 &1562992129156659162
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2489084612106903072}
+  m_GameObject: {fileID: 3010147974281368902}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -242,7 +242,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: a3356550885fa3a4da242abd23cc3a8b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -264,27 +264,81 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 100
   m_Positions:
-  - {x: 0.15862942, y: 0.73492676, z: 0}
-  - {x: -3.7660677, y: 2.072357, z: 0}
-  - {x: -3.4783764, y: -1.3555446, z: 0}
-  - {x: -8.788841, y: 2.1057172, z: 0}
-  - {x: -7.9989967, y: -1.4902265, z: 0}
-  - {x: -12.143866, y: -0.05487421, z: 0}
+  - {x: -0.1874981, y: -0.33296567, z: 0}
+  - {x: -4.4184732, y: 4.364536, z: 0}
+  - {x: -2.1197085, y: -4.676942, z: 0}
+  - {x: -10.899704, y: 4.948631, z: 0}
+  - {x: -7.299752, y: -3.9464083, z: 0}
+  - {x: -11.655311, y: -1.0939533, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0
+    widthMultiplier: 2.4585824
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.053569794
-        value: 1
+        time: 0
+        value: 0.99609375
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.16333935
+        value: 0.55078125
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.32305
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.6860513
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.7277623
+        value: 0.5546875
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8659464
+        value: 0.72425455
+        inSlope: -0.12008234
+        outSlope: -0.12008234
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.5078125
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -318,11 +372,11 @@ LineRenderer:
       m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 6
+    numCapVertices: 4
     alignment: 0
-    textureMode: 0
-    textureScale: {x: 1, y: 1}
+    textureMode: 4
+    textureScale: {x: 0.03, y: 0.13}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
