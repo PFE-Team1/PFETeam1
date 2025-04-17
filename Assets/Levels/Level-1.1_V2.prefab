@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
-  _currentLevel: {fileID: 7230772840160989966, guid: fc2fb8f7ab91382419c99b00017d4c5f, type: 3}
+  _currentLevel: {fileID: 3953745434179357074}
   _direction: 3
   _sprites:
   - {fileID: 21300000, guid: 65b2b199adc105342b669b2ebf875e76, type: 3}
@@ -507,8 +507,7 @@ Transform:
   m_LocalPosition: {x: -16, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 4013957362166421551}
+  m_Children: []
   m_Father: {fileID: 3899002667573889527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5023766982730515669
@@ -576,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
-  _currentLevel: {fileID: 7230772840160989966, guid: fc2fb8f7ab91382419c99b00017d4c5f, type: 3}
+  _currentLevel: {fileID: 3953745434179357074}
   _direction: 2
   _sprites:
   - {fileID: 21300000, guid: 65b2b199adc105342b669b2ebf875e76, type: 3}
@@ -584,10 +583,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d50ae58275d6c4d4ea93747e80583985, type: 3}
   - {fileID: 21300000, guid: 4c77db403500dcd459b86a89f984382a, type: 3}
   offset: 17
-  isAlreadySpawned: 1
+  isAlreadySpawned: 0
   isFixed: 0
-  isSpawnOnStart: 1
-  levelToSpawn: {fileID: 7230772840160989966, guid: fc2fb8f7ab91382419c99b00017d4c5f, type: 3}
+  isSpawnOnStart: 0
+  levelToSpawn: {fileID: 0}
 --- !u!135 &6228090801721373218
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -661,11 +660,11 @@ Transform:
   m_GameObject: {fileID: 1978097897700220041}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.97, y: -10, z: 0}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4644338069587117695}
+  m_Father: {fileID: 3899002667573889527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4352215722367489074
 SpriteRenderer:
@@ -1407,6 +1406,7 @@ GameObject:
   - component: {fileID: 5042870374263678416}
   - component: {fileID: 5784559836531663272}
   - component: {fileID: 7307650331915188570}
+  - component: {fileID: 3407500587932806342}
   m_Layer: 0
   m_Name: Level-1.1_V2
   m_TagString: Untagged
@@ -1429,6 +1429,7 @@ RectTransform:
   - {fileID: 5176688660801423625}
   - {fileID: 1570776349926781583}
   - {fileID: 1315170764839736331}
+  - {fileID: 4013957362166421551}
   - {fileID: 4644338069587117695}
   - {fileID: 3406218097856420696}
   - {fileID: 6549631641273116126}
@@ -1631,6 +1632,18 @@ SortingGroup:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &3407500587932806342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3953745434179357074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa980aa6019621342a710a22a5aec92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4149581441218903122
 GameObject:
   m_ObjectHideFlags: 0

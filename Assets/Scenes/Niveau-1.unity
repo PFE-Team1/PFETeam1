@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
-  - {fileID: 0}
+  - {fileID: 1509582663}
   _mainCamera: {fileID: 1832736596}
   _compositeParent: {fileID: 8557619756277782912}
   _cameraZoomTime: 1
@@ -913,6 +913,11 @@ MonoBehaviour:
   scalingFactor: 1
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!1 &1509582663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3953745434179357074, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
+  m_PrefabInstance: {fileID: 2099485420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1663196104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,6 +1199,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5768031130949384740}
     m_Modifications:
+    - target: {fileID: 526952576340518070, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2212470227037657457, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
       propertyPath: m_Color.b
       value: 0.07075471
@@ -1302,6 +1311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level-1.1_V2
       objectReference: {fileID: 0}
+    - target: {fileID: 5183504653372397368, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
+      propertyPath: offset
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7716324111860246519, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -1358,20 +1371,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1815459059}
     m_ColliderPaths:
-    - - X: 200000000
-        Y: 112500000
-      - X: -200000000
-        Y: 112500000
-      - X: -200000000
-        Y: -112500000
-      - X: 200000000
-        Y: -112500000
+    - - X: 220000000
+        Y: 123750000
+      - X: -220000000
+        Y: 123750000
+      - X: -220000000
+        Y: -123750000
+      - X: 220000000
+        Y: -123750000
   m_CompositePaths:
     m_Paths:
-    - - {x: 19.999971, y: -11.25}
-      - {x: 19.999971, y: 11.25}
-      - {x: -20, y: 11.24997}
-      - {x: -19.999971, y: -11.25}
+    - - {x: 21.999971, y: -12.375}
+      - {x: 21.999971, y: 12.375}
+      - {x: -22, y: 12.37497}
+      - {x: -21.999971, y: -12.375}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
