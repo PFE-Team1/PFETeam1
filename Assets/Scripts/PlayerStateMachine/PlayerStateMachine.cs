@@ -35,7 +35,8 @@ public class PlayerStateMachine : MonoBehaviour
     public float JumpBuffer = 0f;
     [HideInInspector]
     public Animator Animator;
-    [HideInInspector] private SpriteRenderer SpriteRenderer;
+    [HideInInspector]
+    public MeshRenderer MeshRenderer;
     #endregion
     #endregion
     #region PrivateVariables
@@ -117,8 +118,8 @@ public class PlayerStateMachine : MonoBehaviour
     private void Start()
     {
         InputsManager = InputsManager.instance;
+        MeshRenderer = GetComponentInChildren<MeshRenderer>();
         Animator = GetComponentInChildren<Animator>();
-        SpriteRenderer = Animator.GetComponentInChildren<SpriteRenderer>(); 
         _InitAllStates();
         _InitStateMachine();
     }
@@ -199,7 +200,14 @@ public class PlayerStateMachine : MonoBehaviour
         Animator.SetFloat("VelocityY", Velocity.y);
         Animator.SetBool("Grounded", CollisionInfo.isCollidingBelow);
 
-        if (Velocity.x != 0) SpriteRenderer.flipX = !(Velocity.x > 0);
+        if (Velocity.x != 0)
+        {
+
+            // mulitply x scale by sign of velocity
+            Vector3 scale = MeshRenderer.transform.localScale;
+            scale.x = Mathf.Sign(Velocity.x) * Mathf.Abs(scale.x);
+            MeshRenderer.transform.localScale = scale;
+        }
     }
 
 }
