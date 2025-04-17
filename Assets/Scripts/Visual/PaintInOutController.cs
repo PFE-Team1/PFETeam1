@@ -59,9 +59,9 @@ public class PaintInOutController : MonoBehaviour
             yield return null;
         }
         paint.layer = 0;
-        foreach (Transform child in paint.transform)
+        foreach (GameObject child in AllChilds(paint))
         {
-            child.gameObject.layer = 0;
+            child.layer = 0;
         }
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;
