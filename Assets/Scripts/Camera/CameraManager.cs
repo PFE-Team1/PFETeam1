@@ -219,6 +219,8 @@ public class CameraManager : MonoBehaviour
         Vector3 startPosition = _mainCamera.transform.position;
         float startOrthoSize = _mainCamera.m_Lens.OrthographicSize;
 
+        Debug.Log($"{targetPosition - startPosition}");
+
         while (elapsedTime < _cameraDezoomTime)
         {
             float t = DOVirtual.EasedValue(0f, 1f, elapsedTime / _cameraDezoomTime, _cameraDezoomEase);
@@ -283,6 +285,8 @@ public class CameraManager : MonoBehaviour
 
         Vector3 targetPosition = _playerTransform.position;
         float targetOrthoSize = initOrthoSize;
+
+        Debug.Log($"{targetPosition - startPosition}");
 
         Destroy(_globalCamera.gameObject);
         _globalCamera = null;
