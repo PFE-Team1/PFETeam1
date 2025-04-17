@@ -62,6 +62,8 @@ public class SettingsManager : MonoBehaviour
         _resolutionDropDown.AddOptions(options);
         _resolutionDropDown.value = currentResolutionIndex;
         _resolutionDropDown.RefreshShownValue();
+
+        InitVolume();
     }
 
     void Update()
@@ -99,25 +101,98 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public void InitVolume()
+    {
+        if (PlayerPrefs.HasKey("MasterVolume"))
+        {
+            _masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+            AkSoundEngine.SetRTPCValue("MASTER_Volume_RTPC", _masterVolumeSlider.value);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("MasterVolume", 1f);
+            AkSoundEngine.SetRTPCValue("MASTER_Volume_RTPC", 1f);
+        }
+
+        if (PlayerPrefs.HasKey("AmbianceVolume"))
+        {
+            _ambianceVolumeSlider.value = PlayerPrefs.GetFloat("AmbianceVolume");
+            AkSoundEngine.SetRTPCValue("AMB_BUS_Volume_RTPC", _ambianceVolumeSlider.value);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("AmbianceVolume", 1f);
+            AkSoundEngine.SetRTPCValue("AMB_BUS_Volume_RTPC", 1f);
+        }
+
+        if (PlayerPrefs.HasKey("MusicVolume"))
+        {
+            _musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+            AkSoundEngine.SetRTPCValue("MUS_BUS_Volume_RTPC", _musicVolumeSlider.value);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("MusicVolume", 1f);
+            AkSoundEngine.SetRTPCValue("MUS_BUS_Volume_RTPC", 1f);
+        }
+
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            _sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+            AkSoundEngine.SetRTPCValue("SFX_BUS_Volume_RTPC", _sfxVolumeSlider.value);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("SFXVolume", 1f);
+            AkSoundEngine.SetRTPCValue("SFX_BUS_Volume_RTPC", 1f);
+        }
+
+        if (PlayerPrefs.HasKey("UIVolume"))
+        {
+            _uiVolumeSlider.value = PlayerPrefs.GetFloat("UIVolume");
+            AkSoundEngine.SetRTPCValue("UI_BUS_Volume_RTPC", _uiVolumeSlider.value);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("UIVolume", 1f);
+            AkSoundEngine.SetRTPCValue("UI_BUS_Volume_RTPC", 1f);
+        }
+    }
+
     public void ChangeMasterVolume()
     {
-        AkSoundEngine.SetRTPCValue("MASTER_Volume_RTPC", _masterVolumeSlider.value);
+        float volume = _masterVolumeSlider.value;
+        AkSoundEngine.SetRTPCValue("MASTER_Volume_RTPC",volume);
+        PlayerPrefs.SetFloat("MasterVolume", volume);
+        PlayerPrefs.Save();
     }
     public void ChangeAmbianceVolume()
     {
-        AkSoundEngine.SetRTPCValue("AMB_BUS_Volume_RTPC", _ambianceVolumeSlider.value);
+        float volume = _ambianceVolumeSlider.value;
+        AkSoundEngine.SetRTPCValue("AMB_BUS_Volume_RTPC", volume);
+        PlayerPrefs.SetFloat("AmbianceVolume", volume);
+        PlayerPrefs.Save();
     }
     public void ChangeMusicVolume()
     {
-        AkSoundEngine.SetRTPCValue("MUS_BUS_Volume_RTPC", _musicVolumeSlider.value);
+        float volume = _musicVolumeSlider.value;
+        AkSoundEngine.SetRTPCValue("MUS_BUS_Volume_RTPC", volume);
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+        PlayerPrefs.Save();
     }
     public void ChangeSFXVolume()
     {
-        AkSoundEngine.SetRTPCValue("SFX_BUS_Volume_RTPC", _sfxVolumeSlider.value);
+        float volume = _sfxVolumeSlider.value;
+        AkSoundEngine.SetRTPCValue("SFX_BUS_Volume_RTPC", volume);
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+        PlayerPrefs.Save();
     }
     public void ChangeUIVolume()
     {
-        AkSoundEngine.SetRTPCValue("UI_BUS_Volume_RTPC", _uiVolumeSlider.value);
+        float volume = _uiVolumeSlider.value;
+        AkSoundEngine.SetRTPCValue("UI_BUS_Volume_RTPC", volume);
+        PlayerPrefs.SetFloat("UIVolume", volume);
+        PlayerPrefs.Save();
     }
 
     public void RestartGame()
