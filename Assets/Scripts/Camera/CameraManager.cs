@@ -323,7 +323,7 @@ public class CameraManager : MonoBehaviour
     {
         if (!newLevel.GetComponent<Level>().WasAlreadySpawned)
         {
-            _paintInOutController.PaintIn(newLevel);
+            _paintInOutController?.PaintIn(newLevel);
             newLevel.GetComponent<Level>().WasAlreadySpawned = true;
         }
         CalculateWorldBounds();
