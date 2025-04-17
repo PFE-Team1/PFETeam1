@@ -250,7 +250,7 @@ public class CameraManager : MonoBehaviour
 
     public void CameraShake(float time, float intensity)
     {   
-        if (SettingsManager.Instance.WantScreenShake == false) return;
+        if (SettingsManager.Instance?.WantScreenShake == false) return;
         _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
         StartCoroutine(StopShake(time));
     }
