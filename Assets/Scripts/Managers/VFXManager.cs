@@ -26,6 +26,11 @@ public class VFXManager : MonoBehaviour
         GameObject vfx=Instantiate(_visualEffects[0], where, transform.rotation);
         StartCoroutine(StopVFX(vfx));
     }
+    public void PlayPickUpVFXAt(Vector3 where)
+    {
+        GameObject vfx = Instantiate(_visualEffects[1], where, transform.rotation);
+        StartCoroutine(StopVFX(vfx));
+    }
     IEnumerator  StopVFX(GameObject vfx)
     {
         yield return new WaitForSeconds(1);
