@@ -86,6 +86,9 @@ public class PlayerStateMachine : MonoBehaviour
 
     #endregion
 
+    Coroutine coroutine = null;
+    [SerializeField] private float walkingTime = 0.25f;
+
     #region Debug
     void OnGUI()
     {
@@ -155,6 +158,16 @@ public class PlayerStateMachine : MonoBehaviour
 
         // Mise � jour de l'�tat actuel
         CurrentState.StateUpdate();
+
+        switch (CurrentState)
+        {
+            case RunningPlayerState _:
+                if (coroutine == null)
+                {
+                    coroutine = StartCoroutine(CloneWalk());
+                }
+                break;
+        }
     }
 
     private void _InitAllStates()
@@ -176,6 +189,13 @@ public class PlayerStateMachine : MonoBehaviour
         {
             CurrentState.StateEnter(state);
         }
+    }
+
+    IEnumerator CloneWalk()
+    {
+        AudioManager.Instance.FOL_Pas.Post(gameObject);
+        yield return new WaitForSeconds(walkingTime);
+        coroutine = null;
     }
 
     private void UpdateJumpBuffer()

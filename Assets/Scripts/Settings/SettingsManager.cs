@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using AK.Wwise;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -19,6 +19,11 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Slider _musicVolumeSlider;
     [SerializeField] private Slider _sfxVolumeSlider;
     [SerializeField] private Slider _uiVolumeSlider;
+
+    [Header("Controls")]
+    [SerializeField] private GameObject _controlsPrefab;
+    [SerializeField] private Transform _controlsParent;
+
     bool wantParallax = true;
     bool wantScreenShake = true;
     bool isMainMenuActive = false;
@@ -64,6 +69,7 @@ public class SettingsManager : MonoBehaviour
         _resolutionDropDown.RefreshShownValue();
 
         InitVolume();
+        SetControls();
     }
 
     void Update()
@@ -74,6 +80,37 @@ public class SettingsManager : MonoBehaviour
             _mainMenu.SetActive(true);
             isMainMenuActive = true;
         }
+    }
+
+    public void SetControls()
+    {
+        var actions = InputsManager.instance._playerInputs;
+
+        foreach (var action in actions.actions)
+        {
+            if (action.bindings.Count > 0)
+            {
+                GameObject control = Instantiate(_controlsPrefab, _controlsParent);
+                control.GetComponent<TextUpdater>().Key = action.name;
+                control.GetComponent<TextMeshProUGUI>().text = action.name;
+                control.GetComponentsInChildren<TextMeshProUGUI>()[1].text = action.bindings[0].ToDisplayString();
+                control.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    Debug.Log($"{action.name} clicked !");
+                    action.PerformInteractiveRebinding()
+                        .WithControlsExcluding("<Mouse>/position")
+                        .WithCancelingThrough("<Keyboard>/escape")
+                        .OnComplete(operation => { operation.Dispose(); SetNewControls(); })
+                        .Start();
+                });
+                control.GetComponent<TextUpdater>().UpdateText();
+            }
+        }
+    }
+
+    public void SetNewControls()
+    {
+        Debug.Log($"New controls set !");
     }
 
     public void SetResolution()
