@@ -894,7 +894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
-  - {fileID: 0}
+  - {fileID: 1509582663}
   _mainCamera: {fileID: 1832736596}
   _compositeParent: {fileID: 8557619756277782912}
   _cameraZoomTime: 1
@@ -979,6 +979,11 @@ MonoBehaviour:
   scalingFactor: 1
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!1 &1509582663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3953745434179357074, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
+  m_PrefabInstance: {fileID: 2099485420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1663196104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1265,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5768031130949384740}
     m_Modifications:
+    - target: {fileID: 526952576340518070, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2212470227037657457, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
       propertyPath: m_Color.b
       value: 0.07075471
@@ -1367,6 +1376,10 @@ PrefabInstance:
     - target: {fileID: 3953745434179357074, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
       propertyPath: m_Name
       value: Level-1.1_V2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183504653372397368, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
+      propertyPath: offset
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7716324111860246519, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
       propertyPath: m_Color.b
