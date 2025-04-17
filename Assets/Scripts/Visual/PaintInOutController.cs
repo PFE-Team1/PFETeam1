@@ -59,9 +59,9 @@ public class PaintInOutController : MonoBehaviour
             yield return null;
         }
         paint.layer = 0;
-        foreach (Transform child in paint.transform)
+         foreach (GameObject child in AllChilds(paint))
         {
-            child.gameObject.layer = 0;
+            child.layer = 0;
         }
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;
@@ -76,10 +76,10 @@ public class PaintInOutController : MonoBehaviour
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }
-        paint.layer = 0;
+        paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
-            child.layer = 0;
+            child.layer = 6;
         }
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;

@@ -426,6 +426,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+--- !u!1 &691848261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3953745434179357074, guid: efa4baae998771a4786e0a10ec2d0c95, type: 3}
+  m_PrefabInstance: {fileID: 2099485420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &723654778
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +585,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1079
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -686,6 +691,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &948146562
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 528316560088180789, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_Name
+      value: SpawnPaintEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241167160591862461, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724484446913736363, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: _firstPaint
+      value: 
+      objectReference: {fileID: 691848261}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63628218e6ccae0469dec39db8055055, type: 3}
 --- !u!1 &1069512337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,20 +1424,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1815459059}
     m_ColliderPaths:
-    - - X: 200000000
-        Y: 112500000
-      - X: -200000000
-        Y: 112500000
-      - X: -200000000
-        Y: -112500000
-      - X: 200000000
-        Y: -112500000
+    - - X: 220000000
+        Y: 123750000
+      - X: -220000000
+        Y: 123750000
+      - X: -220000000
+        Y: -123750000
+      - X: 220000000
+        Y: -123750000
   m_CompositePaths:
     m_Paths:
-    - - {x: 19.999971, y: -11.25}
-      - {x: 19.999971, y: 11.25}
-      - {x: -20, y: 11.24997}
-      - {x: -19.999971, y: -11.25}
+    - - {x: 21.999971, y: -12.375}
+      - {x: 21.999971, y: 12.375}
+      - {x: -22, y: 12.37497}
+      - {x: -21.999971, y: -12.375}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -1624,5 +1690,6 @@ SceneRoots:
   - {fileID: 117614098}
   - {fileID: 5723980221663169325}
   - {fileID: 657150333}
+  - {fileID: 948146562}
   - {fileID: 5768031130949384740}
   - {fileID: 591532618}

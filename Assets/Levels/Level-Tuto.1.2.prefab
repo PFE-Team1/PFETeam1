@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1443729169642557746}
   - component: {fileID: 6786414733737383405}
   - component: {fileID: 6048507087562466795}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4272302822396893683}
   - component: {fileID: 774610066789838414}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6294158800171168681}
   - component: {fileID: 475297830310351592}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VFXBordTableau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 3443861780391571720}
   - component: {fileID: 336361854648492664}
   - component: {fileID: 7610033228596049964}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 2871603713141869592}
   - component: {fileID: 187014410752841172}
   - component: {fileID: 5196703778177859802}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 4439747241781501934}
   - component: {fileID: 1641072637364596857}
   - component: {fileID: 2614279555395269998}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,9 @@ GameObject:
   - component: {fileID: 7673728860334294226}
   - component: {fileID: 3237292274148927775}
   - component: {fileID: 8961619677310734288}
-  m_Layer: 0
+  - component: {fileID: 680317748204973100}
+  - component: {fileID: -6922972416465020893}
+  m_Layer: 6
   m_Name: Level-Tuto.1.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,6 +816,30 @@ SortingGroup:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &680317748204973100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225650997376922306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa980aa6019621342a710a22a5aec92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6922972416465020893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225650997376922306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa980aa6019621342a710a22a5aec92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7172021194889766328
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +852,7 @@ GameObject:
   - component: {fileID: 2018704801757380751}
   - component: {fileID: 7016916058079062321}
   - component: {fileID: 5116961653911560788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,7 +971,7 @@ GameObject:
   - component: {fileID: 3410416251989330591}
   - component: {fileID: 2954062039316873058}
   - component: {fileID: 1149566880737372271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1051,7 +1077,7 @@ GameObject:
   - component: {fileID: 520965243370394257}
   - component: {fileID: 3152210928199830192}
   - component: {fileID: 659448905777373350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,6 +1180,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3697707472305910892}
     m_Modifications:
+    - target: {fileID: 558373386545967400, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1489250270225033676, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5
@@ -1162,6 +1192,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3369198344174953686, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605001926625568960, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3902616276525789398, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_Size.x
       value: 12.5
@@ -1169,6 +1207,18 @@ PrefabInstance:
     - target: {fileID: 3902616276525789398, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_Center.x
       value: -6.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417517751527925573, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823821558341976448, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8251212683300708781, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9131445013983157566, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_LocalScale.x
