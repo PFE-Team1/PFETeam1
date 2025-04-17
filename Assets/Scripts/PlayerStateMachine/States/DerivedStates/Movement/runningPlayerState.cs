@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class RunningPlayerState : PlayerState
 {
-    private float _timeSinceInAir = 0f;
     protected override void OnStateInit()
     {
     }
 
     protected override void OnStateEnter(PlayerState previousState)
     { 
-        _timeSinceInAir = 0f;
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.maxSpeed * _playerMovementParameters.accelerationTime;
         //MonoBehaviour.print("Entering Run");
         AudioManager.Instance.FOL_Pas.Post(null);
@@ -28,20 +26,17 @@ public class RunningPlayerState : PlayerState
         if (StateMachine.JumpBuffer > 0)
         {
             StateMachine.JumpBuffer = 0;
-            StateMachine.ChangeState(StateMachine.JumpingState);
+            StateMachine.ChangeState(StateMachine.JumpStartState);
             return;
         }
 
-        if (!StateMachine.CollisionInfo.isCollidingBelow)
+        // afin d'éviter de faire les petits sauts dans les slopes
+        if (!StateMachine.CollisionInfo.isCollidingBelow && _timeSinceEnteredState>=0.15f)
         {
-            _timeSinceInAir += Time.deltaTime;
-            if (_timeSinceInAir > 0.25f)
-            {
-                StateMachine.ChangeState(StateMachine.FallingState);
-                return;
-            }
+            StateMachine.Velocity.y = -0.1f;
+            StateMachine.ChangeState(StateMachine.FallingState);
+            return;
         }
-        else _timeSinceInAir = 0f;
 
         if (Mathf.Abs(StateMachine.Velocity.x) <= 0 && _inputsManager.MoveX == 0)
         {
