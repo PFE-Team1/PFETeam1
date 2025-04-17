@@ -40,10 +40,6 @@ public class cloneState : PlayerState
 
             #region Xvelocity
             float targetValue = 0;
-            if (_inputsManager.MoveX != 0)
-            {
-                targetValue = _playerMovementParameters.fallAccelerationTime * _inputsManager.MoveX;
-            }
 
             // Déterminer si nous accélérons ou décélérons
             bool isAccelerating = ((_timeSinceEnteredState >= 0 && targetValue > _timeSinceEnteredState) ||
