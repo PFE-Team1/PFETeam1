@@ -50,7 +50,7 @@ public class CameraManager : MonoBehaviour
         _playerTransform = _mainCamera.transform;
         initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
         CalculateCameraBounds();
-        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+        DefineCameraBounds();
     }
 
     void Update()
@@ -115,6 +115,8 @@ public class CameraManager : MonoBehaviour
     public void SeeCurrentLevel(GameObject level)
     {
         if (_globalCamera != null) return;
+        if (_zoomCoroutine != null || _dezoomCoroutine != null) return;
+
         _globalCamera = new GameObject("Global Camera").AddComponent<CinemachineVirtualCamera>();
         
         if (level.TryGetComponent(out SpriteRenderer sr))
@@ -124,7 +126,6 @@ public class CameraManager : MonoBehaviour
             _globalCamera.transform.position = new Vector3(sr.bounds.center.x, sr.bounds.center.y, _mainCamera.transform.position.z);
         }
 
-        if (_zoomCoroutine != null) return;
         _dezoomCoroutine = StartCoroutine(DezoomEffect(_globalCamera.transform.position, _globalCamera.m_Lens.OrthographicSize, () =>
         {
             _dezoomCoroutine = null;
@@ -134,6 +135,7 @@ public class CameraManager : MonoBehaviour
     public void SeeAllLevels()
     {
         if (_globalCamera != null) return;
+        if (_zoomCoroutine != null || _dezoomCoroutine != null) return;
 
         Bounds combinedBounds = new Bounds();
         bool hasBounds = false;
@@ -176,8 +178,6 @@ public class CameraManager : MonoBehaviour
             _mainCamera.transform.position.z
         );
 
-        if (_zoomCoroutine != null) return;
-
         _dezoomCoroutine = StartCoroutine(DezoomEffect(
             _globalCamera.transform.position,
             _globalCamera.m_Lens.OrthographicSize,
@@ -218,6 +218,10 @@ public class CameraManager : MonoBehaviour
         Vector3 startPosition = _mainCamera.transform.position;
         float startOrthoSize = _mainCamera.m_Lens.OrthographicSize;
 
+        float decrease = targetOrthoSize - startOrthoSize;
+
+        _cameraDezoomTime = Mathf.Abs(decrease) / _cameraDezoomTime;
+
         while (elapsedTime < _cameraDezoomTime)
         {
             float t = DOVirtual.EasedValue(0f, 1f, elapsedTime / _cameraDezoomTime, _cameraDezoomEase);
@@ -231,9 +235,6 @@ public class CameraManager : MonoBehaviour
 
         _mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, startPosition.z);
         _mainCamera.m_Lens.OrthographicSize = targetOrthoSize;
-
-        Debug.Log("📷 Dezoom terminé. Tous les niveaux sont visibles.");
-
         onComplete?.Invoke();
     }
 
@@ -252,6 +253,7 @@ public class CameraManager : MonoBehaviour
 
     public void CameraShake(float time, float intensity)
     {   
+        if (SettingsManager.Instance?.WantScreenShake == false) return;
         _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
         StartCoroutine(StopShake(time));
     }
@@ -266,8 +268,7 @@ public class CameraManager : MonoBehaviour
     {
         if (_globalCamera != null)
         {
-            if (_dezoomCoroutine != null) return;
-            
+            if (_zoomCoroutine != null || _dezoomCoroutine != null) return;            
             _zoomCoroutine = StartCoroutine(ZoomEffect(() =>
             {
                 _zoomCoroutine = null;
@@ -285,6 +286,9 @@ public class CameraManager : MonoBehaviour
         Vector3 targetPosition = _playerTransform.position;
         float targetOrthoSize = initOrthoSize;
 
+        float increase = targetOrthoSize - startOrthoSize;
+        _cameraZoomTime = Mathf.Abs(increase) / _cameraZoomTime;
+
         Destroy(_globalCamera.gameObject);
         _globalCamera = null;
 
@@ -297,8 +301,6 @@ public class CameraManager : MonoBehaviour
 
             elapsedTime += Time.deltaTime;
             yield return null;
-
-           // Debug.Log($"Elapsed Time: {elapsedTime}, t: {t}");
         }
 
         _mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, startPosition.z);
@@ -322,7 +324,7 @@ public class CameraManager : MonoBehaviour
     {
         if (!newLevel.GetComponent<Level>().WasAlreadySpawned)
         {
-            _paintInOutController.PaintIn(newLevel);
+            _paintInOutController?.PaintIn(newLevel);
             newLevel.GetComponent<Level>().WasAlreadySpawned = true;
         }
         CalculateWorldBounds();
