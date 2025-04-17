@@ -13,6 +13,8 @@ public class RandomBg : MonoBehaviour
     [SerializeField] private int _spawnChance;
     [SerializeField] private int _xRange;
     [SerializeField] private int _yRange;
+    [SerializeField] private float _minOpacity;
+    [SerializeField] private float _maxOpacity;
     private GameObject _contenant;
 
     [Button]
@@ -44,6 +46,8 @@ public class RandomBg : MonoBehaviour
                     good.transform.position = new Vector2(i * _xSpace, j * _ySpace);
                     float randScale = Random.Range(_minRangeScale, _maxRangeScale)/transform.localScale.x;
                     good.transform.localScale = new Vector2(randScale, randScale);
+                    float randOpacity = Random.Range(_minOpacity, _maxOpacity);
+                    good.GetComponent<SpriteRenderer>().color = new Color(1,1,1, randOpacity);
                     float zRandRota = Random.Range(0, 360);
                     good.transform.RotateAround(good.transform.position,new Vector3(0, 0, 1), zRandRota);
 
