@@ -49,7 +49,7 @@ public class InputsManager : MonoBehaviour
         {
             _inputInteract = true;
         }
-
+        
         if (context.canceled)
         {
             _inputInteract = false;
@@ -108,6 +108,7 @@ public class InputsManager : MonoBehaviour
         if (context.performed)
         {
             _inputPausing = true;
+            SettingsManager.Instance.DisplayPauseMenu();
         }
 
         if (context.canceled)
@@ -123,6 +124,7 @@ public class InputsManager : MonoBehaviour
     {
         _lookaround = context.ReadValue<Vector2>();
     }
+
     #endregion
     public static InputsManager instance = null;
 

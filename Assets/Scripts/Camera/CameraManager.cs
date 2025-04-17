@@ -50,7 +50,8 @@ public class CameraManager : MonoBehaviour
         _playerTransform = _mainCamera.transform;
         initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
         CalculateCameraBounds();
-        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+        DefineCameraBounds();
+        //_mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
     }
 
     void Update()
@@ -231,9 +232,6 @@ public class CameraManager : MonoBehaviour
 
         _mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, startPosition.z);
         _mainCamera.m_Lens.OrthographicSize = targetOrthoSize;
-
-        Debug.Log("📷 Dezoom terminé. Tous les niveaux sont visibles.");
-
         onComplete?.Invoke();
     }
 
@@ -252,6 +250,7 @@ public class CameraManager : MonoBehaviour
 
     public void CameraShake(float time, float intensity)
     {   
+        if (SettingsManager.Instance.WantScreenShake == false) return;
         _mainCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
         StartCoroutine(StopShake(time));
     }
@@ -297,8 +296,6 @@ public class CameraManager : MonoBehaviour
 
             elapsedTime += Time.deltaTime;
             yield return null;
-
-           // Debug.Log($"Elapsed Time: {elapsedTime}, t: {t}");
         }
 
         _mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, startPosition.z);
@@ -322,7 +319,7 @@ public class CameraManager : MonoBehaviour
     {
         if (!newLevel.GetComponent<Level>().WasAlreadySpawned)
         {
-            _paintInOutController.PaintIn(newLevel);
+            _paintInOutController?.PaintIn(newLevel);
             newLevel.GetComponent<Level>().WasAlreadySpawned = true;
         }
         CalculateWorldBounds();
