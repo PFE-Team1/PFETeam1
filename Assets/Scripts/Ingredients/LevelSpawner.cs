@@ -83,6 +83,7 @@ public class LevelSpawner : Interactable
         _paint = transform.GetChild(0).gameObject;
         _newlevel = Instantiate(levelToSpawnOnStart, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
         _newlevel.name = levelToSpawnOnStart.name;
+        _paint.GetComponent<Collider>().enabled = false;
         
         var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
