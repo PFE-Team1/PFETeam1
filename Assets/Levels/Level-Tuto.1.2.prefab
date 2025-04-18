@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1443729169642557746}
   - component: {fileID: 6786414733737383405}
   - component: {fileID: 6048507087562466795}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6294158800171168681}
   - component: {fileID: 475297830310351592}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VFXBordTableau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 3443861780391571720}
   - component: {fileID: 336361854648492664}
   - component: {fileID: 7610033228596049964}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 2871603713141869592}
   - component: {fileID: 187014410752841172}
   - component: {fileID: 5196703778177859802}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 4439747241781501934}
   - component: {fileID: 1641072637364596857}
   - component: {fileID: 2614279555395269998}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 3237292274148927775}
   - component: {fileID: 8961619677310734288}
   - component: {fileID: 2436926290978013876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level-Tuto.1.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1740181652499196987}
   - component: {fileID: 458646723836801585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LevelTuto-1.1-BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,8 +770,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.798875, y: 0.798875, z: 0.798875}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3697707472305910892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -816,7 +816,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bfc5a7dc6df6b8940bb51020ec393e44, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1ea1c516bae7c740b6ba1e0a5ccfa03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 2018704801757380751}
   - component: {fileID: 7016916058079062321}
   - component: {fileID: 5116961653911560788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: 3410416251989330591}
   - component: {fileID: 2954062039316873058}
   - component: {fileID: 1149566880737372271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1064,7 @@ GameObject:
   - component: {fileID: 520965243370394257}
   - component: {fileID: 3152210928199830192}
   - component: {fileID: 659448905777373350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordure (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,6 +1167,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3697707472305910892}
     m_Modifications:
+    - target: {fileID: 558373386545967400, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1489250270225033676, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5
@@ -1175,6 +1179,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3369198344174953686, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605001926625568960, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3902616276525789398, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_Size.x
       value: 12.5
@@ -1182,6 +1194,18 @@ PrefabInstance:
     - target: {fileID: 3902616276525789398, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_Center.x
       value: -6.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417517751527925573, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823821558341976448, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8251212683300708781, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9131445013983157566, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_LocalScale.x
