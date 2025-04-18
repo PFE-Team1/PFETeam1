@@ -85,7 +85,7 @@ public class LevelSpawner : Interactable
         _paint = transform.GetChild(0).gameObject;
         _newlevel = Instantiate(levelToSpawn, Vector3.zero, Quaternion.identity, CameraManager.Instance.CompositeParent.transform);
         _newlevel.name = levelToSpawn.name;
-        
+        _paint.GetComponent<Collider>().enabled = false;
         var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
         SetDirection(newLevelBounds + Vector3.one * offset, currentLevelBounds + Vector3.one * offset);
@@ -98,6 +98,7 @@ public class LevelSpawner : Interactable
         if (_heldObject == null) return;
 
         var paintingController = _heldObject.GetComponent<PaintingController>();
+        _heldObject.GetComponent<Collider>().enabled = false;
         var newLevelPrefab = paintingController.newLevelPrefab;
 
         if (!CameraManager.Instance.Levels.Exists(level => level.name == newLevelPrefab.name))
@@ -291,6 +292,7 @@ public class LevelSpawner : Interactable
         //OnRemovePainting.Invoke();
         isAlreadySpawned = false;
         _paint.transform.SetParent(Player.transform);
+        _paint.GetComponent<Collider>().enabled = true ;
         PlayerC.heldObject = _paint;
         _paint = null;
         _newlevel.SetActive(false);
