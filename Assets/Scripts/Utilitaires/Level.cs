@@ -16,7 +16,7 @@ public class Level : MonoBehaviour
         Collider2D collider = GetComponent<Collider2D>();
         if (collider is BoxCollider2D boxCollider)
         {
-            boxCollider.size += new Vector2(offset * 2, offset * 2);
+            boxCollider.size += new Vector2(offset * 2.1f, offset * 2.1f);
         }
     }
 }
