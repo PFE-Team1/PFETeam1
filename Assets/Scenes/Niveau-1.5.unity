@@ -204,7 +204,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3699999, z: -10}
+  m_LocalPosition: {x: -0.000017173134, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -428,7 +428,7 @@ MonoBehaviour:
   isInRange: 0
   _toRemove: {fileID: 1432562884}
   _isRespawnable: 1
-  _respawnTime: 1500
+  _respawnTime: 6
   _respawnStartTime: 1
 --- !u!135 &615874150
 SphereCollider:
@@ -523,6 +523,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -6.04
       objectReference: {fileID: 0}
+    - target: {fileID: 3307761245574004468, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6176
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307761245574004468, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.4812
+      objectReference: {fileID: 0}
+    - target: {fileID: 3352252384219018063, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.218
+      objectReference: {fileID: 0}
+    - target: {fileID: 3352252384219018063, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.181
+      objectReference: {fileID: 0}
     - target: {fileID: 4334695110633243112, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -585,7 +601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4334695110633243112, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4334695110633243112, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -880,7 +896,7 @@ MonoBehaviour:
   isInRange: 0
   _toRemove: {fileID: 1781091244}
   _isRespawnable: 1
-  _respawnTime: 1500
+  _respawnTime: 3
   _respawnStartTime: 1
 --- !u!135 &1247060789
 SphereCollider:
@@ -1160,20 +1176,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 750122749}
     m_ColliderPaths:
-    - - X: 1002000000
-        Y: 125999992
-      - X: -1002000000
-        Y: 125999992
-      - X: -1002000000
-        Y: -125999992
-      - X: 1002000000
-        Y: -125999992
+    - - X: 835500032
+        Y: 105000000
+      - X: -834499968
+        Y: 105000000
+      - X: -834499968
+        Y: -105000000
+      - X: 835500032
+        Y: -105000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 100.19997, y: -12.599999}
-      - {x: 100.19997, y: 12.599999}
-      - {x: -100.200005, y: 12.59997}
-      - {x: -100.19997, y: -12.599999}
+    - - {x: 83.54997, y: -10.5}
+      - {x: 83.54997, y: 10.5}
+      - {x: -83.45, y: 10.49997}
+      - {x: -83.44997, y: -10.5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
