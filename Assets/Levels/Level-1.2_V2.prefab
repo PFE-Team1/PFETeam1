@@ -1198,14 +1198,14 @@ RectTransform:
   m_GameObject: {fileID: 3790709907523990935}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.015748}
-  m_LocalScale: {x: 0.39876097, y: 0.39876097, z: 0.47452554}
+  m_LocalScale: {x: 0.33894685, y: 0.39876097, z: 0.47452554}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2066141145632513184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.306, y: -1.7869}
+  m_AnchoredPosition: {x: 12.17, y: -2.89}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2911552420885108950
@@ -1279,7 +1279,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
+  m_Radius: 3.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8862874260156709135
 MonoBehaviour:
@@ -3101,6 +3101,10 @@ PrefabInstance:
     - target: {fileID: 3369198344174953686, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552897229061289274, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
+      propertyPath: m_Center.x
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3902616276525789398, guid: cca0eb954abc69e4cb6b764804d6fd8c, type: 3}
       propertyPath: m_Size.x
