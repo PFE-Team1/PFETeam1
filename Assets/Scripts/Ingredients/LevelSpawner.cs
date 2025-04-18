@@ -62,7 +62,7 @@ public class LevelSpawner : Interactable
                     SpawnNewLevel();
                     PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
-                    CameraManager.Instance.ShowNewLevel();
+                    
                 }
             }
             else if (isAlreadySpawned)
@@ -134,6 +134,7 @@ public class LevelSpawner : Interactable
         }
 
         CameraManager.Instance.SetNewLevel(_newlevel);
+        CameraManager.Instance.ShowNewLevel();
 
         isAlreadySpawned = true;
     }
