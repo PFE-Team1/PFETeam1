@@ -22,7 +22,7 @@ public class LevelSpawner : Interactable
 
     private void Start()
     {
-        appliedOffset = GetComponentInParent<Level>().Offset;
+        appliedOffset = GetComponentInParent<Level>().Offset;     
         if (isAlreadySpawned)
         {
             SpawnLevelOnStart();
