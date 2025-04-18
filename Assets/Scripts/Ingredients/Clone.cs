@@ -49,7 +49,7 @@ public class Clone : MonoBehaviour
         {
             _isInteracting = false;
         }
-        if (_inputs.InputInteract && !_isInteracting)
+        if (_inputs.InputInteract && !_isInteracting&&CloneManager.instance.CurrentPlayer == _charID)
         {
             _isInteracting = true;
             _inputs.InputInteract = false;
