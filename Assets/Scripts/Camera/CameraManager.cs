@@ -330,7 +330,6 @@ public class CameraManager : MonoBehaviour
         CalculateWorldBounds();
         DefineCameraBounds();
         CalculateCameraBounds();
-        ShowNewLevel();
     }
 
     public void RemoveLevel(GameObject level)
