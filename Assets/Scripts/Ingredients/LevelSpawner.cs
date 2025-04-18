@@ -134,7 +134,6 @@ public class LevelSpawner : Interactable
         }
 
         CameraManager.Instance.SetNewLevel(_newlevel);
-        CameraManager.Instance.ShowNewLevel();
 
         isAlreadySpawned = true;
     }
