@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
 [InitializeOnLoad]
 public class HierarchyHighlighterItemGUI
 {
@@ -85,3 +87,4 @@ public class HierarchyHighlighterItemGUI
         return result;
     }
 }
+#endif

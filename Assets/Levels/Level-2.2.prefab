@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 979910284480486656}
   - component: {fileID: 5981316067426959650}
   - component: {fileID: 720280360626530343}
-  - component: {fileID: 3352272682783664660}
+  - component: {fileID: 7361112720081773487}
   m_Layer: 0
   m_Name: Socle-R
   m_TagString: Untagged
@@ -877,8 +877,8 @@ MonoBehaviour:
   scalingFactor: 1
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!65 &3352272682783664660
-BoxCollider:
+--- !u!135 &7361112720081773487
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -892,12 +892,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.25, y: 1.45, z: 0.2}
-  m_Center: {x: 0.06, y: -0.1, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1312792390971327156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1206,7 @@ GameObject:
   - component: {fileID: 5023766982730515669}
   - component: {fileID: 5183504653372397368}
   - component: {fileID: 2503628294206299795}
-  - component: {fileID: 7295850581162165079}
+  - component: {fileID: 3659360392810128272}
   m_Layer: 0
   m_Name: Socle-L
   m_TagString: Untagged
@@ -1329,8 +1329,8 @@ MonoBehaviour:
   scalingFactor: 1
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!65 &7295850581162165079
-BoxCollider:
+--- !u!135 &3659360392810128272
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1344,12 +1344,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.25, y: 1.45, z: 0.2}
-  m_Center: {x: 0.06, y: -0.1, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1960353175939426845
 GameObject:
   m_ObjectHideFlags: 0
