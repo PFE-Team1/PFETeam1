@@ -10,7 +10,7 @@ public class LevelSpawner : Interactable
     [SerializeField] private GameObject _currentLevel;
     [SerializeField] private Direction _direction;
     [SerializeField] private Sprite[] _sprites;
-    [SerializeField] private int offset = 5;
+    [SerializeField] private float offset = 5;
     private GameObject _newLevelPrefab;
     private GameObject _heldObject;
     private GameObject _paint;
