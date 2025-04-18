@@ -24,6 +24,12 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _controlsPrefab;
     [SerializeField] private Transform _controlsParent;
 
+    [SerializeField] private AK.Wwise.RTPC _masterVolumeRTPC;
+    [SerializeField] private AK.Wwise.RTPC _ambianceVolumeRTPC;
+    [SerializeField] private AK.Wwise.RTPC _musicVolumeRTPC;
+    [SerializeField] private AK.Wwise.RTPC _sfxVolumeRTPC;
+    [SerializeField] private AK.Wwise.RTPC _uiVolumeRTPC;
+
     bool wantParallax = true;
     bool wantScreenShake = true;
     bool isMainMenuActive = false;
@@ -143,91 +149,91 @@ public class SettingsManager : MonoBehaviour
         if (PlayerPrefs.HasKey("MasterVolume"))
         {
             _masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
-            AkSoundEngine.SetRTPCValue("MASTER_Volume_RTPC", _masterVolumeSlider.value);
+            _masterVolumeRTPC.SetGlobalValue(_masterVolumeSlider.value);
         }
         else
         {
             PlayerPrefs.SetFloat("MasterVolume", 1f);
-            AkSoundEngine.SetRTPCValue("MASTER_Volume_RTPC", 1f);
+            _masterVolumeRTPC.SetGlobalValue(1f);
         }
 
         if (PlayerPrefs.HasKey("AmbianceVolume"))
         {
             _ambianceVolumeSlider.value = PlayerPrefs.GetFloat("AmbianceVolume");
-            AkSoundEngine.SetRTPCValue("AMB_BUS_Volume_RTPC", _ambianceVolumeSlider.value);
+            _ambianceVolumeRTPC.SetGlobalValue(_ambianceVolumeSlider.value);
         }
         else
         {
             PlayerPrefs.SetFloat("AmbianceVolume", 1f);
-            AkSoundEngine.SetRTPCValue("AMB_BUS_Volume_RTPC", 1f);
+            _ambianceVolumeRTPC.SetGlobalValue(1f);
         }
 
         if (PlayerPrefs.HasKey("MusicVolume"))
         {
             _musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-            AkSoundEngine.SetRTPCValue("MUS_BUS_Volume_RTPC", _musicVolumeSlider.value);
+            _musicVolumeRTPC.SetGlobalValue(_musicVolumeSlider.value);
         }
         else
         {
             PlayerPrefs.SetFloat("MusicVolume", 1f);
-            AkSoundEngine.SetRTPCValue("MUS_BUS_Volume_RTPC", 1f);
+            _musicVolumeRTPC.SetGlobalValue(1f);
         }
 
         if (PlayerPrefs.HasKey("SFXVolume"))
         {
             _sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
-            AkSoundEngine.SetRTPCValue("SFX_BUS_Volume_RTPC", _sfxVolumeSlider.value);
+            _sfxVolumeRTPC.SetGlobalValue(_sfxVolumeSlider.value);
         }
         else
         {
             PlayerPrefs.SetFloat("SFXVolume", 1f);
-            AkSoundEngine.SetRTPCValue("SFX_BUS_Volume_RTPC", 1f);
+            _sfxVolumeRTPC.SetGlobalValue(1f);
         }
 
         if (PlayerPrefs.HasKey("UIVolume"))
         {
             _uiVolumeSlider.value = PlayerPrefs.GetFloat("UIVolume");
-            AkSoundEngine.SetRTPCValue("UI_BUS_Volume_RTPC", _uiVolumeSlider.value);
+            _uiVolumeRTPC.SetGlobalValue(_uiVolumeSlider.value);
         }
         else
         {
             PlayerPrefs.SetFloat("UIVolume", 1f);
-            AkSoundEngine.SetRTPCValue("UI_BUS_Volume_RTPC", 1f);
+            _uiVolumeRTPC.SetGlobalValue(1f);
         }
     }
 
     public void ChangeMasterVolume()
     {
         float volume = _masterVolumeSlider.value;
-        AkSoundEngine.SetRTPCValue("MASTER_Volume_RTPC",volume);
+        _masterVolumeRTPC.SetGlobalValue(volume);
         PlayerPrefs.SetFloat("MasterVolume", volume);
         PlayerPrefs.Save();
     }
     public void ChangeAmbianceVolume()
     {
         float volume = _ambianceVolumeSlider.value;
-        AkSoundEngine.SetRTPCValue("AMB_BUS_Volume_RTPC", volume);
+        _ambianceVolumeRTPC.SetGlobalValue(volume);
         PlayerPrefs.SetFloat("AmbianceVolume", volume);
         PlayerPrefs.Save();
     }
     public void ChangeMusicVolume()
     {
         float volume = _musicVolumeSlider.value;
-        AkSoundEngine.SetRTPCValue("MUS_BUS_Volume_RTPC", volume);
+        _musicVolumeRTPC.SetGlobalValue(volume);
         PlayerPrefs.SetFloat("MusicVolume", volume);
         PlayerPrefs.Save();
     }
     public void ChangeSFXVolume()
     {
         float volume = _sfxVolumeSlider.value;
-        AkSoundEngine.SetRTPCValue("SFX_BUS_Volume_RTPC", volume);
+        _sfxVolumeRTPC.SetGlobalValue(volume);
         PlayerPrefs.SetFloat("SFXVolume", volume);
         PlayerPrefs.Save();
     }
     public void ChangeUIVolume()
     {
         float volume = _uiVolumeSlider.value;
-        AkSoundEngine.SetRTPCValue("UI_BUS_Volume_RTPC", volume);
+        _uiVolumeRTPC.SetGlobalValue(volume);
         PlayerPrefs.SetFloat("UIVolume", volume);
         PlayerPrefs.Save();
     }

@@ -49,14 +49,17 @@ public static class ToolbarDropdown
             }
         });
 
-        var editorWindow = EditorWindow.GetWindow<SceneView>();
-        var root = editorWindow.rootVisualElement;
-
-        if (root != null)
+        if (EditorWindow.HasOpenInstances<SceneView>())
         {
-            if (!root.Contains(dropdownContainer))
+            var editorWindow = EditorWindow.GetWindow<SceneView>();
+            var root = editorWindow.rootVisualElement;
+
+            if (root != null)
             {
-                root.Add(dropdownContainer);
+                if (!root.Contains(dropdownContainer))
+                {
+                    root.Add(dropdownContainer);
+                }
             }
         }
     }
