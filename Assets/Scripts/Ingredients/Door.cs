@@ -1,3 +1,4 @@
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,7 @@ public class Door : MonoBehaviour
         }
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<SpriteRenderer>().sortingLayerName = "Inter";
+            other.GetComponentInChildren<MeshRenderer>().sortingLayerName = "Inter";
             other.transform.parent=null;
         }
     }
@@ -45,7 +46,7 @@ public class Door : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+            other.GetComponentInChildren<MeshRenderer>().sortingLayerName= "Default";
             other.GetComponent<Clone>().ChangeParent();
         }
     }

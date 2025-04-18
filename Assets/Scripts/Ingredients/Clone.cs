@@ -49,7 +49,7 @@ public class Clone : MonoBehaviour
         {
             _isInteracting = false;
         }
-        if (_inputs.InputInteract && !_isInteracting)
+        if (_inputs.InputInteract && !_isInteracting&&CloneManager.instance.CurrentPlayer == _charID)
         {
             _isInteracting = true;
             _inputs.InputInteract = false;
@@ -63,12 +63,12 @@ public class Clone : MonoBehaviour
 
     public void Cloned(GameObject spawnPoint)// mettre dans des �tats pour la state machine
     {
+        _playerStateMachine.ChangeState(_playerStateMachine.CloneState);
         GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
         AudioManager.Instance.SFX_CreateClone.Post(gameObject);
     }
     public void Switchup(bool isEnable)
     {
-        _playerStateMachine.ChangeState(_playerStateMachine.CloneState);
         if (isEnable)
         {
             CVC.Follow = gameObject.transform;

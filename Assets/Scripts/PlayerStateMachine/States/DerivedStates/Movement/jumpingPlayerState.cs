@@ -17,7 +17,7 @@ public class JumpingPlayerState : PlayerState
 
         StateMachine.Velocity.x *= _playerMovementParameters.inertieLoss;
         StateMachine.Velocity.y = 2 * h / th;
-        AudioManager.Instance.FOL_Saut.Post(null);
+        AudioManager.Instance.FOL_Saut.Post(StateMachine.gameObject);
     }
 
     protected override void OnStateExit(PlayerState nextState)
