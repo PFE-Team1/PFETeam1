@@ -8,7 +8,7 @@ public class VFXManager : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]private List<GameObject> _visualEffects=new List<GameObject>();
     private List<GameObject> _activeEffects=new List<GameObject>();
-    public VFXManager instance;
+    public static VFXManager instance;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -21,22 +21,21 @@ public class VFXManager : MonoBehaviour
             instance = this;
         }
     }
-    public void PlayVFXAt(Vector3 where, int id, string name)
+    public void PlayJumpVFXAt(Vector3 where)
     {
-        if (id>=_visualEffects.Count) return;
-        GameObject vfx=Instantiate(_visualEffects[id], where, transform.rotation);
-        vfx.GetComponent<VisualEffect>().Play();
-        _activeEffects.Add(vfx);
+        GameObject vfx=Instantiate(_visualEffects[0], where, transform.rotation);
+        StartCoroutine(StopVFX(vfx));
     }
-    public void StopVFX(string name)
+    public void PlayPickUpVFXAt(Vector3 where)
     {
-        foreach(GameObject effectToRemove in _activeEffects)
-        {
-            if (effectToRemove.name == name)
-            {
-                _activeEffects.Remove(effectToRemove);
-                Destroy(effectToRemove);
-            }
-        }
+        GameObject vfx = Instantiate(_visualEffects[1], where, transform.rotation);
+        StartCoroutine(StopVFX(vfx));
     }
+    IEnumerator  StopVFX(GameObject vfx)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(vfx);
+        yield return null;
+    }
+
 }

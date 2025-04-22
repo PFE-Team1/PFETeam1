@@ -26,8 +26,8 @@ public class PaintInOutController : MonoBehaviour
         PaintIn(_firstPaint);
     }
     public  void PaintIn(GameObject paint)// objet , position taille
-    {
-        RectTransform paintRect = paint.GetComponent<RectTransform>();
+    {        RectTransform paintRect = paint.GetComponent<RectTransform>();
+
         _rectTransform.anchorMin =paintRect.anchorMin;
         _rectTransform.anchorMax =paintRect.anchorMax;
         //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
@@ -59,9 +59,9 @@ public class PaintInOutController : MonoBehaviour
             yield return null;
         }
         paint.layer = 0;
-        foreach (Transform child in paint.transform)
+         foreach (GameObject child in AllChilds(paint))
         {
-            child.gameObject.layer = 0;
+            child.layer = 0;
         }
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;
@@ -76,13 +76,37 @@ public class PaintInOutController : MonoBehaviour
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }
-        paint.layer = 0;
-        foreach (Transform child in paint.transform)
+        paint.layer = 6;
+        foreach (GameObject child in AllChilds(paint))
         {
-            child.gameObject.layer = 0;
+            child.layer = 6;
         }
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;
         yield return null;
+    }
+    private List<GameObject> AllChilds(GameObject root)
+    {
+        List<GameObject> result = new List<GameObject>();
+        if (root.transform.childCount > 0)
+        {
+            foreach (Transform VARIABLE in root.transform)
+            {
+                Searcher(result, VARIABLE.gameObject);
+            }
+        }
+        return result;
+    }
+
+    private void Searcher(List<GameObject> list, GameObject root)
+    {
+        list.Add(root);
+        if (root.transform.childCount > 0)
+        {
+            foreach (Transform VARIABLE in root.transform)
+            {
+                Searcher(list, VARIABLE.gameObject);
+            }
+        }
     }
 }
