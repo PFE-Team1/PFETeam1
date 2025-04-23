@@ -7,13 +7,2339 @@
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
 			<ChildrenList>
-				<ActorMixer Name="AMB_PAD" ID="{38FA335A-490E-4986-9F6B-250838D38324}" ShortID="952580132">
+				<ActorMixer Name="AMB_Niveau01" ID="{EF461785-3518-4E88-A3D8-00E4E2CCA730}" ShortID="786386335">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+							<ObjectRef Name="AMB" ID="{52B7FEAB-5548-47DB-AFB5-2A92C328A467}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<ActorMixer Name="AMB_Toile01" ID="{45E22DB8-2D38-4DC1-B826-63F0DB40ADD7}" ShortID="935384972">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<ActorMixer Name="AMB_RFX_Toile01" ID="{8D7E439C-A366-4D2E-B3B0-E1C677ECC8C9}" ShortID="797007142">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="AMB_RFX_Toile01_CraquementBois_RC" ID="{B923F646-94EA-42D0-9F28-43BABFF989FF}" ShortID="187232320">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+												<Property Name="OverridePositioning" Type="bool" Value="True"/>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{9F62702D-D898-4DA9-A84E-F62E32D9C17B}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="15">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{D1001A4D-4344-40FD-A9EB-8F5AA5871D80}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="4"/>
+																	<Property Name="Min" Type="Real64" Value="-4"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{49EF61EB-DFBC-4724-82C1-32344D26D006}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="ATT_10m" ID="{36F0B6F1-FA78-4C31-8F99-824F5112F585}" WorkUnitID="{2A2701FB-AD79-45C8-A0AE-F5A9818BBAC2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_01" ID="{1BD90432-5F7E-421E-B890-EE0D53A5A3DE}" ShortID="967230271">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_01" ID="{61DE64F1-A9D5-4881-B8F6-CE611A566990}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_CraquementBois_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="637733137"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_01" ID="{61DE64F1-A9D5-4881-B8F6-CE611A566990}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_02" ID="{0CA240F1-261C-46FA-A806-EE0A038C03D3}" ShortID="203344474">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_02" ID="{B4E7B7A0-C2A2-46CF-B9DE-80FE75A6970B}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_CraquementBois_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="671510075"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_02" ID="{B4E7B7A0-C2A2-46CF-B9DE-80FE75A6970B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_03" ID="{8D50F033-E44E-4BA7-BD72-12DE3C9BE409}" ShortID="578426537">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_03" ID="{589CE556-0378-46D6-B327-7989894CFF58}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_CraquementBois_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1060215015"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_03" ID="{589CE556-0378-46D6-B327-7989894CFF58}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_04" ID="{C905B056-EA31-4E80-9232-9084ADEB8D79}" ShortID="881304140">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_04" ID="{D2AE6E19-1A24-4D63-B075-667C4A04703A}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_CraquementBois_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="491600144"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_CraquementBois_04" ID="{D2AE6E19-1A24-4D63-B075-667C4A04703A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="AMB_RFX_Toile01_Oiseaux_RC" ID="{4A1F055F-965B-4BC5-B3C5-3323BCF676F3}" ShortID="428319971">
+											<PropertyList>
+												<Property Name="3DPosition" Type="int16" Value="1"/>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+												<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverridePositioning" Type="bool" Value="True"/>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{09FBCD02-C8B0-415F-8ADD-D7CFD9C83531}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="9">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{8B0B361D-A97F-4DA9-8B05-40E98342349F}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="2"/>
+																	<Property Name="Min" Type="Real64" Value="-4"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{CA609A86-8B29-4B6E-A482-F9B53BBD7F78}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="ATT_50m" ID="{4044B677-3C7A-4C5D-A1A7-EAAB8C190D0F}" WorkUnitID="{2A2701FB-AD79-45C8-A0AE-F5A9818BBAC2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<RandomSequenceContainer Name="AMB_RFX_Toile01_OiseauxA" ID="{E474D4C5-A4D4-44B3-AF70-668E2B36E05A}" ShortID="330580964">
+													<PropertyList>
+														<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+														<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="3"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_01" ID="{6C4E2A00-9995-4702-93B4-5AD6072EF07C}" ShortID="839523630">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_01" ID="{43A47330-DF43-4F07-AC0A-0FE115FD6624}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxA_01.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="1043444215"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_01" ID="{43A47330-DF43-4F07-AC0A-0FE115FD6624}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_02" ID="{999C9C4C-CF41-4448-9391-82CA7C8023FE}" ShortID="936385604">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_02" ID="{452B60A9-05D1-40FE-B0E2-6325797F8956}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxA_02.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="936287324"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_02" ID="{452B60A9-05D1-40FE-B0E2-6325797F8956}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_03" ID="{BC5A7CCB-3300-46DA-B522-65498B0B4FBC}" ShortID="728556685">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_03" ID="{CBA49063-7F8F-42FA-9C0D-DBEBC310F62B}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxA_03.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="313166604"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_03" ID="{CBA49063-7F8F-42FA-9C0D-DBEBC310F62B}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_04" ID="{68844981-D338-440E-B7E3-A4BAD6453572}" ShortID="233881778">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_04" ID="{8D251D65-9A3F-4752-BDAF-473C3B612E3E}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxA_04.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="785526290"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_04" ID="{8D251D65-9A3F-4752-BDAF-473C3B612E3E}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_05" ID="{283DDA1E-7FFB-4B81-B6F8-CF553B14010E}" ShortID="509103810">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_05" ID="{6BC5BF10-B6F6-47DB-B062-5E282EE69E52}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxA_05.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="477561082"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_05" ID="{6BC5BF10-B6F6-47DB-B062-5E282EE69E52}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_06" ID="{371973CC-D16E-4C0C-A389-E6B55C8BDC7A}" ShortID="52628616">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_06" ID="{11F2EAE2-0B00-4EE2-8F61-B03336C42C2F}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxA_06.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="192184305"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_06" ID="{11F2EAE2-0B00-4EE2-8F61-B03336C42C2F}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_07" ID="{86089230-752C-4172-A5CC-8E0DEE3B281E}" ShortID="577698218">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_07" ID="{2F8D795A-CA4E-4CB4-81F1-2BA5D1F5C08C}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxA_07.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="914205440"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_07" ID="{2F8D795A-CA4E-4CB4-81F1-2BA5D1F5C08C}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_08" ID="{6D1FBA08-51C4-4CAD-813D-8DBD99AEADB6}" ShortID="571052610">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_08" ID="{229EAD66-A33D-4D2D-8E03-15D7DEA29EFD}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxA_08.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="715161850"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxA_08" ID="{229EAD66-A33D-4D2D-8E03-15D7DEA29EFD}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+												</RandomSequenceContainer>
+												<RandomSequenceContainer Name="AMB_RFX_Toile01_OiseauxB" ID="{9DCBC090-D644-447E-BBC7-958EF048043E}" ShortID="351914652">
+													<PropertyList>
+														<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_01" ID="{ADDBDA73-C2F8-4E76-8F3B-750562927950}" ShortID="630742735">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_01" ID="{EC7E9878-0FBE-49AF-8D23-218D977C9761}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxB_01.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="240783448"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_01" ID="{EC7E9878-0FBE-49AF-8D23-218D977C9761}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_02" ID="{6C93613D-84F5-4EE6-8757-44C4426906C6}" ShortID="310106588">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_02" ID="{FF3C0BB3-A983-4A1A-9F1F-1752794A0C42}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxB_02.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="321288320"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_02" ID="{FF3C0BB3-A983-4A1A-9F1F-1752794A0C42}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_03" ID="{0BD0EB45-D6C1-45ED-89C4-08FC48FA54C1}" ShortID="949796847">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_03" ID="{5DCB741B-8B09-4F44-87F7-C20427D5FA57}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxB_03.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="95928205"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_03" ID="{5DCB741B-8B09-4F44-87F7-C20427D5FA57}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_04" ID="{B23AD68C-DBCF-424F-B451-74FCCED5C0CC}" ShortID="96372467">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_04" ID="{008A0C3D-EBC5-45FF-8641-5B3268C4895E}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxB_04.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="1053217628"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxB_04" ID="{008A0C3D-EBC5-45FF-8641-5B3268C4895E}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+												</RandomSequenceContainer>
+												<RandomSequenceContainer Name="AMB_RFX_Toile01_OiseauxC" ID="{87E1F50D-F641-4962-86A9-9E99423EE834}" ShortID="850342699">
+													<PropertyList>
+														<Property Name="Weight" Type="Real64">
+															<ValueList>
+																<Value>24</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxC_01" ID="{B6DB24D5-B326-4077-8AC8-F68DE7BD15E4}" ShortID="570291921">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxC_01" ID="{6ECF94CD-A852-4751-BEF1-E7C19104288B}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxC_01.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="45329485"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxC_01" ID="{6ECF94CD-A852-4751-BEF1-E7C19104288B}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxC_02" ID="{742ECD49-BEFF-492A-8823-F7D2D6DF68BD}" ShortID="519439525">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxC_02" ID="{5DD413D9-2BF8-4BF8-9232-4C00843E50C8}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxC_02.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="417770027"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxC_02" ID="{5DD413D9-2BF8-4BF8-9232-4C00843E50C8}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxC_03" ID="{24D4227A-73CC-4271-A08E-10E3F30D15B0}" ShortID="853810963">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxC_03" ID="{0D1B9F30-BCEF-412C-841B-6D78670B3969}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxC_03.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="337005590"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxC_03" ID="{0D1B9F30-BCEF-412C-841B-6D78670B3969}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+												</RandomSequenceContainer>
+												<RandomSequenceContainer Name="AMB_RFX_Toile01_OiseauxD" ID="{5D363829-9DCD-4B73-A8B3-79E2E8F89511}" ShortID="240897076">
+													<PropertyList>
+														<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+														<Property Name="Weight" Type="Real64">
+															<ValueList>
+																<Value>42</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_01" ID="{B3326673-0D8F-47E6-A4DC-7C131201A5C4}" ShortID="572790337">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_01" ID="{61B629E4-D586-4A8A-8DE6-7A7446C87B8A}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxD_01.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="189942076"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_01" ID="{61B629E4-D586-4A8A-8DE6-7A7446C87B8A}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_02" ID="{DD72F50A-64ED-4D33-AFD9-1F8F69804C95}" ShortID="703151369">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_02" ID="{330DE600-82A4-493C-AAFC-ECF5EC0A7836}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxD_02.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="855637446"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_02" ID="{330DE600-82A4-493C-AAFC-ECF5EC0A7836}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_03" ID="{EF67BBC8-606D-4444-AB7E-63232B8C29B9}" ShortID="663804316">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_03" ID="{50FE9010-6453-4331-8B3B-1DC8B08CACDF}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxD_03.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="558054664"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_03" ID="{50FE9010-6453-4331-8B3B-1DC8B08CACDF}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_04" ID="{4E64132D-5EDC-4C2D-A96E-5D33A2DDBA0C}" ShortID="235951473">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_04" ID="{3675ADF9-D853-45EF-A93B-AE98B78929FF}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile1_Niveau1_Rfx_OiseauxD_04.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="322997900"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_OiseauxD_04" ID="{3675ADF9-D853-45EF-A93B-AE98B78929FF}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+												</RandomSequenceContainer>
+											</ChildrenList>
+											<PositioningInfo>
+												<Position Name="" ID="{FF0D88C8-663F-42C0-B1DC-12B2BCDD6894}">
+													<PropertyList>
+														<Property Name="NewPathForEachSound" Type="bool" Value="True"/>
+														<Property Name="PlayMechanismRandomOrSequence" Type="int16" Value="1"/>
+													</PropertyList>
+													<ChildrenList>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path" ID="{25A20891-895C-44C3-B960-3F10913067FE}">
+															<PointList>
+																<Point>
+																	<XPos>-65.48223</XPos>
+																	<YPos>61.86441</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_01" ID="{37C68462-6527-497C-A345-DAB9851CD213}">
+															<PointList>
+																<Point>
+																	<XPos>-46.19289</XPos>
+																	<YPos>18.36158</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_02" ID="{8FCCF55E-ED88-4232-8AE3-4DE20C185B58}">
+															<PointList>
+																<Point>
+																	<XPos>-9.64467</XPos>
+																	<YPos>69.77401</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_03" ID="{D53A9705-B22E-472B-AD6C-F3FAA7FEE4A0}">
+															<PointList>
+																<Point>
+																	<XPos>45.68528</XPos>
+																	<YPos>70.33898</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_04" ID="{3C79F50C-5721-4E14-A220-074EF69C2BAD}">
+															<PointList>
+																<Point>
+																	<XPos>68.0203</XPos>
+																	<YPos>51.69492</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_05" ID="{6AFA4412-5215-46B0-917B-888CA88CC768}">
+															<PointList>
+																<Point>
+																	<XPos>-79.69543</XPos>
+																	<YPos>-25.70621</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_06" ID="{0AA235FB-A640-496C-AB8E-A08DA8624152}">
+															<PointList>
+																<Point>
+																	<XPos>-62.94416</XPos>
+																	<YPos>-42.0904</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_07" ID="{F45F03CC-4F9B-4325-801C-E9CEEA168ABD}">
+															<PointList>
+																<Point>
+																	<XPos>-29.94924</XPos>
+																	<YPos>-51.12994</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_08" ID="{9F663BE0-06ED-424F-B9CC-2E84E69027AB}">
+															<PointList>
+																<Point>
+																	<XPos>2.53807</XPos>
+																	<YPos>-58.47458</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_09" ID="{74D27F15-54C7-48CE-8974-1FE602569318}">
+															<PointList>
+																<Point>
+																	<XPos>48.22335</XPos>
+																	<YPos>-44.91525</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_10" ID="{C07EB8B3-8B02-4772-BE49-DDBC708D1C70}">
+															<PointList>
+																<Point>
+																	<XPos>69.54315</XPos>
+																	<YPos>-18.36158</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_11" ID="{FC2B5897-404E-401A-875B-C3932627C55A}">
+															<PointList>
+																<Point>
+																	<XPos>73.60406</XPos>
+																	<YPos>17.23164</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile01_Oiseaux_RC_Path_12" ID="{338301D6-AE95-4D97-BCE1-6C039A75A95D}">
+															<PointList>
+																<Point>
+																	<XPos>0</XPos>
+																	<YPos>50</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+													</ChildrenList>
+												</Position>
+											</PositioningInfo>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="AMB_RFX_Toile01_Vaguelettes_RC" ID="{C968AC0A-375A-4B03-A09E-D659FEA4E967}" ShortID="487702498">
+											<PropertyList>
+												<Property Name="3DPosition" Type="int16" Value="1"/>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="3"/>
+												<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverridePositioning" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{DD355AEC-9CE3-4B93-8EEC-2A65A37B2A3F}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="6.5"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{FE1DB377-FC28-47C2-B626-5E69D116B0FB}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="ATT_20m" ID="{12C6D138-75BC-42BF-8EAD-C6E61F7890F6}" WorkUnitID="{2A2701FB-AD79-45C8-A0AE-F5A9818BBAC2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_01" ID="{9D6A6406-B428-40CE-814B-B1551535F46F}" ShortID="251648401">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_01" ID="{23B4A1EF-4C03-4355-A67E-05D2172F3B02}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="161103098"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_01" ID="{23B4A1EF-4C03-4355-A67E-05D2172F3B02}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_02" ID="{71E50E93-4424-43B1-84B7-CE3873410EEC}" ShortID="72558279">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_02" ID="{27BE448A-D80D-4E03-957B-EF935BB67D64}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="970094234"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_02" ID="{27BE448A-D80D-4E03-957B-EF935BB67D64}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_03" ID="{8DF11EFE-45F5-412C-98DF-32E94C1E28A1}" ShortID="36179246">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_03" ID="{F97B43E3-B9E5-4718-9FEE-7F1589EEC1E4}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="709977649"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_03" ID="{F97B43E3-B9E5-4718-9FEE-7F1589EEC1E4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_04" ID="{9730ED34-E8B5-4871-AFAF-521C5D80F581}" ShortID="720894517">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_04" ID="{A599EBDD-208D-4167-B5D6-6357DE1376D8}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="854875580"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_04" ID="{A599EBDD-208D-4167-B5D6-6357DE1376D8}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_05" ID="{33880016-578D-42AC-AB25-82EA1558E6AF}" ShortID="847691096">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_05" ID="{D1069CF5-1CA8-45BC-911A-DFE5A7AD7CCB}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="919611704"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_05" ID="{D1069CF5-1CA8-45BC-911A-DFE5A7AD7CCB}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_06" ID="{4BA6C97C-0098-4CEB-87E7-A12022278255}" ShortID="952384895">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_06" ID="{87E8D006-2C88-4F6A-ADA6-A094DDB52AF7}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="13687616"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_06" ID="{87E8D006-2C88-4F6A-ADA6-A094DDB52AF7}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_07" ID="{E030F58C-38D0-46C7-ABD3-16AE9610FCDB}" ShortID="162902227">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_07" ID="{A5D75A07-341F-49DB-8EA2-C9541927B752}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1048460102"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_07" ID="{A5D75A07-341F-49DB-8EA2-C9541927B752}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_08" ID="{CF9D05C3-E9BA-47A9-86D1-0B5685C1B7B7}" ShortID="56793944">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_08" ID="{63936672-EEBA-4E30-88C6-F73AF7398A2D}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="849142369"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_08" ID="{63936672-EEBA-4E30-88C6-F73AF7398A2D}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_09" ID="{EEB48FB7-E854-4152-A618-F031C578E7BB}" ShortID="543985336">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_09" ID="{F333215C-74E2-429F-921C-84B140E2D353}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_09.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="200146633"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_09" ID="{F333215C-74E2-429F-921C-84B140E2D353}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_10" ID="{30E9B4DF-98D6-42D0-A89E-639B7E7416AF}" ShortID="292661398">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_10" ID="{52CE1729-7D2A-4D3B-9944-25319D133741}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_10.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="25284762"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_10" ID="{52CE1729-7D2A-4D3B-9944-25319D133741}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_11" ID="{81B61FCA-9A0F-4B85-AC82-46F648707476}" ShortID="158383061">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_11" ID="{F16FAC4C-F8B3-4649-A53D-68B5CA3399CF}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_11.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="4759863"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_11" ID="{F16FAC4C-F8B3-4649-A53D-68B5CA3399CF}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_12" ID="{5283E003-4DD4-461D-86F1-6C94563D2F2A}" ShortID="292022506">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_12" ID="{767E1412-C861-4A4C-B8F9-B43EF8258C16}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_12.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="523163219"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_12" ID="{767E1412-C861-4A4C-B8F9-B43EF8258C16}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_13" ID="{96E9384B-E38E-4278-9D9D-DF63409D5D9F}" ShortID="77460337">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_13" ID="{B20E83A6-B688-42DA-91B0-1D13FAEAE930}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_13.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="402303264"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_13" ID="{B20E83A6-B688-42DA-91B0-1D13FAEAE930}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_14" ID="{7851B5C0-85F9-4E8D-846D-92CE845A89CB}" ShortID="256417507">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_14" ID="{4F52DCA8-EAFA-4F56-815A-C0B7FDB7BC02}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_14.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="845762240"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_14" ID="{4F52DCA8-EAFA-4F56-815A-C0B7FDB7BC02}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_15" ID="{EA17940B-6367-477B-AC2C-1D598680655A}" ShortID="435315628">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_15" ID="{959A2E45-0922-4BF7-85DD-1B75FFA01CBD}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_15.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="434001594"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_15" ID="{959A2E45-0922-4BF7-85DD-1B75FFA01CBD}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_16" ID="{89818036-E3CD-4A07-A70D-96AC8C14E1AE}" ShortID="859385266">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_16" ID="{9EE15737-50B7-4FC6-808A-1A9405177A57}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_16.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="522179999"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_16" ID="{9EE15737-50B7-4FC6-808A-1A9405177A57}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_17" ID="{0A375127-0B5A-484B-AA46-0E9CF9B314B1}" ShortID="257036724">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_17" ID="{C26D9BAA-D597-4FE6-9088-D3ACE34BD3A6}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_17.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="664658924"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_17" ID="{C26D9BAA-D597-4FE6-9088-D3ACE34BD3A6}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_18" ID="{3A550C70-362B-432D-894D-254FE878C8AB}" ShortID="161149562">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_18" ID="{25369B0C-ACC4-4A8C-8E7E-034E488F2A69}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_18.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="906251574"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_18" ID="{25369B0C-ACC4-4A8C-8E7E-034E488F2A69}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_19" ID="{8254F8A4-8BA2-4606-A42E-B55AD1064C82}" ShortID="1041428554">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_19" ID="{77233FD6-BA28-4A9D-B20D-E5EAD0A1272F}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_19.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="350985327"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_19" ID="{77233FD6-BA28-4A9D-B20D-E5EAD0A1272F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_20" ID="{291BFC87-125E-4531-A4E1-439BD41AC236}" ShortID="983181147">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_20" ID="{49FF0DAE-0FC7-4E92-97F5-7E2BF0276697}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_20.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="638922921"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_20" ID="{49FF0DAE-0FC7-4E92-97F5-7E2BF0276697}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_21" ID="{DA2DD88D-25F3-49B0-8CF2-44202C2467AE}" ShortID="373061733">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_21" ID="{68419848-D595-453F-9F6D-849EEACAD895}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_21.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="53418293"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_21" ID="{68419848-D595-453F-9F6D-849EEACAD895}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_22" ID="{491B0FA7-7F19-4F02-AA8F-BB945D6F2C3E}" ShortID="939644629">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_22" ID="{0796D859-11DC-47B3-87EB-586EB1D82A39}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile1_Niveau1_Rfx_Vaguelette_22.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="981082251"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile1_Niveau1_Rfx_Vaguelette_22" ID="{0796D859-11DC-47B3-87EB-586EB1D82A39}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<PositioningInfo>
+												<Position Name="" ID="{F9B2A09D-2827-43A0-BC70-9D8F9B4EDDF1}">
+													<PropertyList>
+														<Property Name="PlayMechanismRandomOrSequence" Type="int16" Value="1"/>
+														<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+													</PropertyList>
+													<ChildrenList>
+														<Path2D Name="AMB_RFX_Toile01_Vaguelettes_RC_Path" ID="{36A4157F-AA50-4A2C-AD0B-80A57399E3A6}">
+															<PropertyList>
+																<Property Name="RandomX" Type="Real64" Value="33"/>
+															</PropertyList>
+															<PointList>
+																<Point>
+																	<XPos>0</XPos>
+																	<YPos>50</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+													</ChildrenList>
+												</Position>
+											</PositioningInfo>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</ActorMixer>
+								<Sound Name="AMB_Toile1_Niveau1_LP" ID="{85D1A1A7-AFA8-45D4-97E4-1AAEFE7EB8B9}" ShortID="792006482">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Toile1_Niveau1_LP" ID="{C0B2625A-6CB4-43F1-9C94-A69BFB1032AC}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Toile1_Niveau1_LP.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="132268826"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Toile1_Niveau1_LP" ID="{C0B2625A-6CB4-43F1-9C94-A69BFB1032AC}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</ActorMixer>
+						<ActorMixer Name="AMB_Toile02" ID="{2EB37A3E-63DA-4C10-A0D2-95EDA3410851}" ShortID="273913758">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<ActorMixer Name="AMB_RFX_Toile02" ID="{FFE1EC69-0F00-4232-8657-134C18477468}" ShortID="909260039">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="AMB_RFX_Toile02_Branche_RC" ID="{9DAE351F-E83A-4674-A90C-D34A84C69690}" ShortID="815268218">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+												<Property Name="OverridePositioning" Type="bool" Value="True"/>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{E7BFDC5D-B2E3-47E6-B520-0EF3B0E05333}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="15">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{CC1863BD-FB77-4E20-874A-8B2DBBD75453}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="4"/>
+																	<Property Name="Min" Type="Real64" Value="-4"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{52843FE3-C00F-4C6B-8158-34ADEED3C9FF}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="ATT_20m" ID="{12C6D138-75BC-42BF-8EAD-C6E61F7890F6}" WorkUnitID="{2A2701FB-AD79-45C8-A0AE-F5A9818BBAC2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Branches_01" ID="{BF0D11CD-4236-4DA5-AFF0-07FD3909E8B7}" ShortID="374286818">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Branches_01" ID="{648DFB68-E27B-46DA-99FE-1C254E8890CF}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Branches_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="199261597"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Branches_01" ID="{648DFB68-E27B-46DA-99FE-1C254E8890CF}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Branches_02" ID="{82160D71-C807-4B4A-8C44-F91020AB38C3}" ShortID="316808871">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Branches_02" ID="{5E018148-6733-4C3C-BBAE-E1DB2661EDE1}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Branches_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="914684787"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Branches_02" ID="{5E018148-6733-4C3C-BBAE-E1DB2661EDE1}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Branches_03" ID="{F2008E00-F746-4397-9A0C-43FE920C71C3}" ShortID="5419265">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Branches_03" ID="{77D79EF8-2579-4178-A3D4-AD3C57287E29}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Branches_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="514021556"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Branches_03" ID="{77D79EF8-2579-4178-A3D4-AD3C57287E29}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Branches_04" ID="{D56F4530-90B8-4846-B90E-428AFC1AD8AC}" ShortID="728770851">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Branches_04" ID="{F50F5C70-8842-4A96-8A2F-23D036FFA6C5}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Branches_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="325570441"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Branches_04" ID="{F50F5C70-8842-4A96-8A2F-23D036FFA6C5}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Branches_05" ID="{E65BE83D-87EA-4B5A-8319-BEDC632B9FC3}" ShortID="897445591">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Branches_05" ID="{07030CAF-0D4E-41D3-8B55-E08AE91FBAE3}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Branches_05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1054336332"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Branches_05" ID="{07030CAF-0D4E-41D3-8B55-E08AE91FBAE3}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Branches_06" ID="{3620E4C0-0E72-4429-BC22-46990645086C}" ShortID="703824620">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Branches_06" ID="{F014A28A-3F9C-4C8F-8DD5-1F7207D2C754}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Branches_06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="153098010"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Branches_06" ID="{F014A28A-3F9C-4C8F-8DD5-1F7207D2C754}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Branches_07" ID="{E8E1C9DA-A8A9-459F-B879-E22A45C537DF}" ShortID="311958329">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Branches_07" ID="{F114523E-21BF-4E25-874E-BF5D6A9356BC}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Branches_07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="471154466"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Branches_07" ID="{F114523E-21BF-4E25-874E-BF5D6A9356BC}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Branches_08" ID="{B18F781A-BDE2-4553-87EF-628FE0995313}" ShortID="197647499">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Branches_08" ID="{EBCE8B5E-0A72-4C72-81A6-44DF57CB85D0}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Branches_08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="112102811"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Branches_08" ID="{EBCE8B5E-0A72-4C72-81A6-44DF57CB85D0}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<PositioningInfo>
+												<Position Name="" ID="{70421819-0337-424D-A0E0-91094069934E}"/>
+											</PositioningInfo>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="AMB_RFX_Toile02_Chouettes_RC" ID="{AE4DD5E0-E7B3-4F1E-AFAD-48BCC586C0A8}" ShortID="712155923">
+											<PropertyList>
+												<Property Name="3DPosition" Type="int16" Value="1"/>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+												<Property Name="OverridePositioning" Type="bool" Value="True"/>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{E737BCE1-5B08-4F5B-A65A-4B25007CC1A3}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="15">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{0B7FD413-EEEF-4114-B319-EC176E31E150}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="4"/>
+																	<Property Name="Min" Type="Real64" Value="-4"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{E57523AD-D81F-4449-A212-CAF5586CB0F7}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="ATT_50m" ID="{4044B677-3C7A-4C5D-A1A7-EAAB8C190D0F}" WorkUnitID="{2A2701FB-AD79-45C8-A0AE-F5A9818BBAC2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<RandomSequenceContainer Name="AMB_RFX_Toile02_ChouettesA" ID="{FCC3062B-1983-4EBF-A6EC-3F58E419407B}" ShortID="442077433">
+													<PropertyList>
+														<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+														<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="3"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="AMB_Toile2_Niveau1_Rfx_ChouettesA_01" ID="{024875E1-37FF-4CF4-86D6-23CDC93669F9}" ShortID="754702919">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesA_01" ID="{A175BD76-8B02-4B45-80F4-E64AC05FB2E5}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile2_Niveau1_Rfx_ChouettesA_01.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="1000735124"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesA_01" ID="{A175BD76-8B02-4B45-80F4-E64AC05FB2E5}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile2_Niveau1_Rfx_ChouettesA_02" ID="{64CF4E9D-48AC-4C7D-A73E-B6B044A45742}" ShortID="487173296">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesA_02" ID="{1CF13FCD-AF5F-4A5D-8EFA-1F0D55AD69D1}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile2_Niveau1_Rfx_ChouettesA_02.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="42054104"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesA_02" ID="{1CF13FCD-AF5F-4A5D-8EFA-1F0D55AD69D1}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile2_Niveau1_Rfx_ChouettesA_03" ID="{DBACE17D-3CBC-497B-9957-6AD775D25EA7}" ShortID="1035436753">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesA_03" ID="{340233D8-C5C7-4C4E-9E4D-7BD30A54E48F}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile2_Niveau1_Rfx_ChouettesA_03.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="782689314"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesA_03" ID="{340233D8-C5C7-4C4E-9E4D-7BD30A54E48F}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+												</RandomSequenceContainer>
+												<RandomSequenceContainer Name="AMB_RFX_Toile02_ChouettesB" ID="{4CE22542-1A12-4048-977E-435B803C3D39}" ShortID="1055683996">
+													<PropertyList>
+														<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+														<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="3"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_01" ID="{881D3F19-45C4-4951-8270-AF1D52EB017F}" ShortID="99153811">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_01" ID="{8E694601-1E07-45D9-B002-C8720DC4D98D}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile2_Niveau1_Rfx_ChouettesB_01.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="586539621"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_01" ID="{8E694601-1E07-45D9-B002-C8720DC4D98D}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_02" ID="{3FD22279-2E9E-40D4-8776-07B6CB16869E}" ShortID="829377032">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_02" ID="{7F2783F6-09FA-4954-A6CF-94106E0CFCB3}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile2_Niveau1_Rfx_ChouettesB_02.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="519310495"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_02" ID="{7F2783F6-09FA-4954-A6CF-94106E0CFCB3}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_03" ID="{5B6B5375-3E96-4AEF-BAAA-6BDF0DD9CAF6}" ShortID="402614511">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_03" ID="{34B4117A-11E5-47FE-9827-DD4D3B284E21}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile2_Niveau1_Rfx_ChouettesB_03.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="967477158"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_03" ID="{34B4117A-11E5-47FE-9827-DD4D3B284E21}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_04" ID="{EB1A678F-1C7F-48FA-BFDF-1654A0B40333}" ShortID="944278662">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_04" ID="{0FE2A56E-F77B-42A7-B504-82A15F522A7E}">
+																	<Language>SFX</Language>
+																	<AudioFile>AMB_Toile2_Niveau1_Rfx_ChouettesB_04.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="1010630576"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_ChouettesB_04" ID="{0FE2A56E-F77B-42A7-B504-82A15F522A7E}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+												</RandomSequenceContainer>
+											</ChildrenList>
+											<PositioningInfo>
+												<Position Name="" ID="{165F6FF9-C209-40D8-B508-4EB8AE7DC363}">
+													<PropertyList>
+														<Property Name="NewPathForEachSound" Type="bool" Value="True"/>
+														<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+													</PropertyList>
+													<ChildrenList>
+														<Path2D Name="AMB_RFX_Toile02_Chouettes_RC_Path" ID="{D8B1977D-14D1-4729-A830-3AFC25BEC44C}">
+															<PropertyList>
+																<Property Name="RandomX" Type="Real64" Value="23"/>
+																<Property Name="RandomY" Type="Real64" Value="7"/>
+																<Property Name="RandomZ" Type="Real64" Value="7"/>
+															</PropertyList>
+															<PointList>
+																<Point>
+																	<XPos>0</XPos>
+																	<YPos>50</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+													</ChildrenList>
+												</Position>
+											</PositioningInfo>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="AMB_RFX_Toile02_FeuillesVent_RC" ID="{AF366BE8-4F3A-42B1-A74B-E3A570711EB0}" ShortID="285649646">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+												<Property Name="OverridePositioning" Type="bool" Value="True"/>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{BA3657CF-F668-4994-9AED-D79B40EA717D}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="15">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{12DB3618-0AA5-47C5-B48F-38BA7DC106E8}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="4"/>
+																	<Property Name="Min" Type="Real64" Value="-4"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{D60A9C24-7C8F-43FA-A1DF-8D3D6AD9E398}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="ATT_20m" ID="{12C6D138-75BC-42BF-8EAD-C6E61F7890F6}" WorkUnitID="{2A2701FB-AD79-45C8-A0AE-F5A9818BBAC2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_FeuillesVent_01" ID="{69758A9F-30F7-4D8C-9C61-5147B82E3254}" ShortID="631147376">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_FeuillesVent_01" ID="{B299ECBC-3ADF-424A-B3A9-76F0C8CBE752}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_FeuillesVent_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="439367695"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_FeuillesVent_01" ID="{B299ECBC-3ADF-424A-B3A9-76F0C8CBE752}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_FeuillesVent_02" ID="{18B38850-6F72-46D9-B467-6FF5EA321F65}" ShortID="808603828">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_FeuillesVent_02" ID="{5939E9DA-8C8B-4C4F-9664-3FE434D0BB5C}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_FeuillesVent_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="907605810"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_FeuillesVent_02" ID="{5939E9DA-8C8B-4C4F-9664-3FE434D0BB5C}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="AMB_RFX_Toile02_Loup_RC" ID="{23943DAD-B30E-4614-A574-B7E2358F09CB}" ShortID="74879851">
+											<PropertyList>
+												<Property Name="3DPosition" Type="int16" Value="1"/>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+												<Property Name="OverridePositioning" Type="bool" Value="True"/>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{19A0E000-803F-4606-A8C4-8F9142A06B8B}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="15">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{11EF5E66-6DD1-4DCC-81EF-34F568E144C1}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="4"/>
+																	<Property Name="Min" Type="Real64" Value="-4"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{549DB851-4CDF-488B-806C-89CC83E60EA5}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="ATT_50m" ID="{4044B677-3C7A-4C5D-A1A7-EAAB8C190D0F}" WorkUnitID="{2A2701FB-AD79-45C8-A0AE-F5A9818BBAC2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Loup_01" ID="{FD1F223D-A915-4CFA-B3C5-4548BA90494B}" ShortID="952765356">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Loup_01" ID="{47625FA7-E1E1-4054-B6D0-90171B9C0F35}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Loup_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="756409984"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Loup_01" ID="{47625FA7-E1E1-4054-B6D0-90171B9C0F35}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Loup_02" ID="{9FD5166B-61FA-4D50-AA20-4792EA680727}" ShortID="416673757">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Loup_02" ID="{AC0F8889-5489-4B31-894D-7AA32C3C09B9}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Loup_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="808074130"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Loup_02" ID="{AC0F8889-5489-4B31-894D-7AA32C3C09B9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Toile2_Niveau1_Rfx_Loup_03" ID="{38347AA4-8732-472F-82C1-7FEB6303B287}" ShortID="1039902254">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Toile2_Niveau1_Rfx_Loup_03" ID="{4C7E3275-FAB1-467D-B9A7-DB4D453E15E0}">
+															<Language>SFX</Language>
+															<AudioFile>AMB_Toile2_Niveau1_Rfx_Loup_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="351141183"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Toile2_Niveau1_Rfx_Loup_03" ID="{4C7E3275-FAB1-467D-B9A7-DB4D453E15E0}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<PositioningInfo>
+												<Position Name="" ID="{C26555EF-39D4-42D2-B08F-27429ADAA2EF}">
+													<PropertyList>
+														<Property Name="NewPathForEachSound" Type="bool" Value="True"/>
+														<Property Name="PlayMechanismRandomOrSequence" Type="int16" Value="1"/>
+													</PropertyList>
+													<ChildrenList>
+														<Path2D Name="AMB_RFX_Toile02_Loup_RC_Path" ID="{19EC1A62-B1C2-4B91-88C4-A8587A62637F}">
+															<PointList>
+																<Point>
+																	<XPos>63.95939</XPos>
+																	<YPos>-62.99436</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile02_Loup_RC_Path_01" ID="{4413EA0F-0157-47E8-A43E-4C8486FEECF8}">
+															<PointList>
+																<Point>
+																	<XPos>-67.00507</XPos>
+																	<YPos>60.73446</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+														<Path2D Name="AMB_RFX_Toile02_Loup_RC_Path_02" ID="{5F55E60B-35DA-48A8-8EB0-6D7CF2F7E8A9}">
+															<PointList>
+																<Point>
+																	<XPos>66.49746</XPos>
+																	<YPos>57.9096</YPos>
+																	<Flags>12</Flags>
+																	<Time>0</Time>
+																</Point>
+															</PointList>
+														</Path2D>
+													</ChildrenList>
+												</Position>
+											</PositioningInfo>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</ActorMixer>
+								<Sound Name="AMB_Toile2_Niveau01_LP" ID="{ADE2ACEC-7FC0-41BA-B121-741523F282B3}" ShortID="789405142">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Toile2_Niveau01_LP" ID="{98C5E86C-020A-4D74-B328-57ACBA1322F8}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Toile2_Niveau01_LP.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="407476129"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Toile2_Niveau01_LP" ID="{98C5E86C-020A-4D74-B328-57ACBA1322F8}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</ActorMixer>
+					</ChildrenList>
+				</ActorMixer>
+				<ActorMixer Name="AMB_Niveau02" ID="{A754B68D-EE8F-4179-9604-3D2CC5BA9EB1}" ShortID="535238470">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="AMB" ID="{52B7FEAB-5548-47DB-AFB5-2A92C328A467}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
 						</Reference>
 					</ReferenceList>
 				</ActorMixer>
