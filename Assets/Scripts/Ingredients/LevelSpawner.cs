@@ -188,13 +188,18 @@ public class LevelSpawner : Interactable
         Vector2 offsetLocal = Vector2.zero;
 
         if (minOverlap == leftOverlap)
-            offsetLocal.x = -leftOverlap; // Collision à gauche
-        else if (minOverlap == rightOverlap)
-            offsetLocal.x = rightOverlap; // Collision à droite
-        else if (minOverlap == bottomOverlap)
-            offsetLocal.y = -bottomOverlap; // Collision en bas
-        else if (minOverlap == topOverlap)
-            offsetLocal.y = topOverlap; // Collision en haut
+            offsetLocal.x += -leftOverlap; // Collision à gauche
+
+        if (minOverlap == rightOverlap)
+            offsetLocal.x += rightOverlap; // Collision à droite
+
+        if (minOverlap == bottomOverlap)
+            offsetLocal.y += -bottomOverlap; // Collision en bas
+
+        if (minOverlap == topOverlap)
+            offsetLocal.y += topOverlap; // Collision en haut
+
+        Debug.Log($"Collision detected! Offset: {offsetLocal} Left: {leftOverlap}, Right: {rightOverlap}, Bottom: {bottomOverlap}, Top: {topOverlap}, minOverlap: {minOverlap}");
 
         return offsetLocal;
     }
@@ -269,7 +274,7 @@ public class LevelSpawner : Interactable
         foreach (var level in CameraManager.Instance.Levels)
         {
             if (level == _newlevel) continue;
-
+            if (!level.activeInHierarchy) return true;
             if (level.TryGetComponent(out SpriteRenderer sr))
             {
                 if (_newlevel.TryGetComponent(out SpriteRenderer newSr))
