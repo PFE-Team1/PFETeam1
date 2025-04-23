@@ -204,7 +204,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3699999, z: -10}
+  m_LocalPosition: {x: 0.000011881642, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -603,6 +603,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4528432747214015447, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4982488872608868342, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_Size.x
       value: 167
@@ -614,6 +618,14 @@ PrefabInstance:
     - target: {fileID: 4982488872608868342, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_Offset.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982488872608868342, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 166.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982488872608868342, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 20.8
       objectReference: {fileID: 0}
     - target: {fileID: 6276300873509078382, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_Name
@@ -879,7 +891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInRange: 0
   _toRemove: {fileID: 1781091244}
-  _isRespawnable: 1
+  _isRespawnable: 0
   _respawnTime: 1500
   _respawnStartTime: 1
 --- !u!135 &1247060789
@@ -1160,20 +1172,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 750122749}
     m_ColliderPaths:
-    - - X: 1002000000
-        Y: 125999992
-      - X: -1002000000
-        Y: 125999992
-      - X: -1002000000
-        Y: -125999992
-      - X: 1002000000
-        Y: -125999992
+    - - X: 835000000
+        Y: 105000000
+      - X: -835000000
+        Y: 105000000
+      - X: -835000000
+        Y: -105000000
+      - X: 835000000
+        Y: -105000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 100.19997, y: -12.599999}
-      - {x: 100.19997, y: 12.599999}
-      - {x: -100.200005, y: 12.59997}
-      - {x: -100.19997, y: -12.599999}
+    - - {x: 83.49997, y: -10.5}
+      - {x: 83.49997, y: 10.5}
+      - {x: -83.5, y: 10.49997}
+      - {x: -83.49997, y: -10.5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
