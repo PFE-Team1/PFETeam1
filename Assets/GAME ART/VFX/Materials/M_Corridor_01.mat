@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Corridor
-  m_Shader: {fileID: 4800000, guid: e0f894c0f36b0c040ac0b555c0e666ef, type: 3}
+  m_Name: M_Corridor_01
+  m_Shader: {fileID: 4800000, guid: 543b0e0cf4e27b8409ea56b855c22dfa, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,7 +24,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _TextureCanvas:
-        m_Texture: {fileID: 2800000, guid: 142b52a64e1015a4dad1525d91ece09a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 70f6954470b3bfb4c9e6a72f82ed7b0e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 2800000, guid: 55ffaf31a043cb1458409983fc6cfe74, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample4:
+        m_Texture: {fileID: 2800000, guid: 55ffaf31a043cb1458409983fc6cfe74, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -42,12 +50,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
-    - _Deformation: 0.049
-    - _Float0: 1.66
+    - _Deformation: 0
+    - _Float0: 0.07431422
     - _Speed_HB: 0.23
-    - _Speed_XY: 0.18
+    - _Speed_XY: 0.12
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tilling: {r: 8.01, g: 1, b: 0, a: 0}
-    - _Trail_Speed: {r: 0.96, g: 0, b: 0, a: 0}
+    - _Tilling: {r: 1.44, g: 0.95, b: 0, a: 0}
+    - _Trail_Speed: {r: 0.36, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
