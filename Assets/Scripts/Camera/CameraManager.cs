@@ -220,7 +220,7 @@ public class CameraManager : MonoBehaviour
 
         float decrease = targetOrthoSize - startOrthoSize;
 
-        _cameraDezoomTime = Mathf.Abs(decrease) / _cameraDezoomTime;
+        //_cameraDezoomTime = Mathf.Abs(decrease) / _cameraDezoomTime;
 
         while (elapsedTime < _cameraDezoomTime)
         {
@@ -247,7 +247,7 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShowAndHideLevel()
     {
         SeeAllLevels();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_cameraDezoomTime);
         FocusCamera();
     }
 
@@ -287,7 +287,7 @@ public class CameraManager : MonoBehaviour
         float targetOrthoSize = initOrthoSize;
 
         float increase = targetOrthoSize - startOrthoSize;
-        _cameraZoomTime = Mathf.Abs(increase) / _cameraZoomTime;
+        //_cameraZoomTime = Mathf.Abs(increase) / _cameraZoomTime;
 
         Destroy(_globalCamera.gameObject);
         _globalCamera = null;
