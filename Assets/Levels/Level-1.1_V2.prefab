@@ -297,11 +297,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0dc52f6550a574d4ebb4c77e3f1d89ea, type: 3}
   - {fileID: 21300000, guid: d50ae58275d6c4d4ea93747e80583985, type: 3}
   - {fileID: 21300000, guid: 4c77db403500dcd459b86a89f984382a, type: 3}
-  offset: 2
+  levelToSpawnOnStart: {fileID: 0}
+  isSpawnOnStart: 0
   isAlreadySpawned: 0
   isFixed: 0
-  isSpawnOnStart: 0
-  levelToSpawn: {fileID: 0}
 --- !u!135 &2861433904829111570
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -667,11 +666,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0dc52f6550a574d4ebb4c77e3f1d89ea, type: 3}
   - {fileID: 21300000, guid: d50ae58275d6c4d4ea93747e80583985, type: 3}
   - {fileID: 21300000, guid: 4c77db403500dcd459b86a89f984382a, type: 3}
-  offset: 17
+  levelToSpawnOnStart: {fileID: 0}
+  isSpawnOnStart: 1
   isAlreadySpawned: 1
   isFixed: 0
-  isSpawnOnStart: 1
-  levelToSpawn: {fileID: 7230772840160989966, guid: fc2fb8f7ab91382419c99b00017d4c5f, type: 3}
 --- !u!135 &6228090801721373218
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1728,6 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa980aa6019621342a710a22a5aec92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: 2
 --- !u!1 &4149581441218903122
 GameObject:
   m_ObjectHideFlags: 0
