@@ -19,13 +19,13 @@ public class InputsManager : MonoBehaviour
     #endregion
     #region InputPropri�t�s 
     public bool InputJumping { get => _inputJumping;}
-    public bool InputInteract { get => _inputInteract; }
+    public bool InputInteract { get => _inputInteract; set => _inputInteract=value; }
 
     public bool InputZooming { get => _inputZooming;}
     public bool InputDezooming { get => _inputDezooming;}
     public bool InputSwitching { get => _inputSwitching; set => _inputSwitching = value; }
     public bool InputPausing { get => _inputPausing;}
-    public bool InputRestarting { get => _inputRestarting;}
+    public bool InputRestarting { get => _inputRestarting; set => _inputRestarting = value; }
     public float MoveX { get => _moveX; }
     public Vector2 Lookaround { get => _lookaround;}
     #endregion
@@ -43,13 +43,13 @@ public class InputsManager : MonoBehaviour
             _inputJumping = false;
         }
     }
-    public void OnInterract(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             _inputInteract = true;
         }
-
+        
         if (context.canceled)
         {
             _inputInteract = false;
@@ -108,6 +108,7 @@ public class InputsManager : MonoBehaviour
         if (context.performed)
         {
             _inputPausing = true;
+            SettingsManager.Instance.DisplayPauseMenu();
         }
 
         if (context.canceled)
@@ -123,6 +124,7 @@ public class InputsManager : MonoBehaviour
     {
         _lookaround = context.ReadValue<Vector2>();
     }
+
     #endregion
     public static InputsManager instance = null;
 

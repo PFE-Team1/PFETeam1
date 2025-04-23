@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -23,6 +24,9 @@ public class PlayerMovementParameters : ScriptableObject
     [Tooltip("Air Acceleration time")] public float jumpDecelerationTime = 5;
     [Range(0, 50)]
     [Tooltip("Air max Speed X")] public float jumpMaxSpeedX = 5;
+
+    [Range(0, 2)]
+    [Tooltip("Time to jump")] public float timeToJump = 0.25f;
 
     [Range(0, 3)]
     [Tooltip("Jump Buffer")] public float jumpBuffer = 2f;
