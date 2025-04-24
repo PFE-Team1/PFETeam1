@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerVFX : MonoBehaviour
 {
     [SerializeField] MeshRenderer _playerRenderer;
-    [SerializeField]GameObject JumpVFX;
-    [SerializeField]Vector3 relativePositionJumpVFX;
+    [SerializeField]GameObject _jumpVFX;
+    [SerializeField]Vector3 _relativePositionJumpVFX;
     private void OnEnable()
     {
         Enabling();
@@ -29,7 +29,7 @@ public class PlayerVFX : MonoBehaviour
     private void PlayJumpVFX()
     {
 
-        GameObject jump=Instantiate(JumpVFX,transform.position+relativePositionJumpVFX,transform.rotation);
+        GameObject jump=Instantiate(_jumpVFX,transform.position+_relativePositionJumpVFX,transform.rotation);
         ParticleSystemRenderer jumpParticlesRenderer = jump.GetComponent<ParticleSystemRenderer>();
         ParticleSystem jumpParticles = jump.GetComponent<ParticleSystem>();
         jumpParticlesRenderer.sortingLayerID = _playerRenderer.sortingLayerID;

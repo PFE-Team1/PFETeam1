@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,22 @@ public class LevelDoorManage : MonoBehaviour
     private void Start()
     {
         _doors.AddRange(GetComponentsInChildren<Door>());
+    }
+    public void UpdateDoor()
+    {
+        if (_doors.Find(x => x.GetComponent<DoorVFX>().IsDirection == true))
+        {
+            foreach (Door d in _doors)
+            {
+                DoorVFX vfx = d.GetComponent<DoorVFX>();
+                vfx.IsDirection = true;
+                if (vfx.OtherDoorVFX != null)
+                {
+                    vfx.OtherDoorVFX.IsDirection = false;
+                }
+            }
+        }
+
     }
     private void OnDisable()
     {
