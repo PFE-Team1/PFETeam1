@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2070,9 +2070,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1870654274147471391, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: _cameraZoomEase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870654274147471391, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
       propertyPath: _compositeParent
       value: 
       objectReference: {fileID: 8557619756277782912}
+    - target: {fileID: 1870654274147471391, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: _cameraDezoomEase
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 1870654274147471391, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
       propertyPath: _levels.Array.data[0]
       value: 
