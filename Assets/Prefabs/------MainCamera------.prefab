@@ -48,10 +48,10 @@ MonoBehaviour:
   - {fileID: 0}
   _mainCamera: {fileID: 7827062797230331775}
   _compositeParent: {fileID: 0}
-  _cameraZoomTime: 3.8219175
-  _cameraDezoomTime: 3.8219175
-  _cameraDezoomEase: 30
-  _cameraZoomEase: 30
+  _cameraZoomTime: 0.8
+  _cameraDezoomTime: 1
+  _cameraDezoomEase: 18
+  _cameraZoomEase: 18
 --- !u!1 &2553885113841226203
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +83,7 @@ Transform:
   m_GameObject: {fileID: 2553885113841226203}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.16, y: 0.15624905, z: -10}
+  m_LocalPosition: {x: -3.27775, y: 2.156248, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124,7 +124,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 6
+    OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
