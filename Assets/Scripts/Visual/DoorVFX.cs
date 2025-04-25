@@ -7,6 +7,8 @@ public class DoorVFX : MonoBehaviour
     [SerializeField] GameObject _doorVFXPrefab;
     [SerializeField]private GameObject _doorVFXInstance;
     [SerializeField] DoorVFX _otherDoorVFX;
+     [SerializeField] LevelDoorManage _levelDoorManager;
+     [SerializeField] AnimationCurve _curve;
 
     private bool _isSpawned=false;
     [SerializeField]private bool _isDirection=false;
@@ -15,15 +17,14 @@ public class DoorVFX : MonoBehaviour
     public GameObject DoorVFXInstance { get => _doorVFXInstance; set => _doorVFXInstance = value; }
     public bool IsDirection { get => _isDirection; set => _isDirection = value; }
     public DoorVFX OtherDoorVFX { get => _otherDoorVFX; set => _otherDoorVFX = value; }
+    public LevelDoorManage LevelDoorManager { get => _levelDoorManager; set => _levelDoorManager = value; }
 
     public void PlayDoorVFX(Door otherDoor)
     {
         _otherDoorVFX = otherDoor.GetComponent<DoorVFX>();
         _otherDoorVFX.OtherDoorVFX = this;
-        Debug.Log(IsDirection);
         if (IsDirection == true&&_doorVFXInstance==null)
         {
-            Debug.Log("feur");
             _doorVFXInstance = Instantiate(_doorVFXPrefab, (transform.position + otherDoor.transform.position) / 2, transform.rotation);
             _otherDoorVFX.DoorVFXInstance = _doorVFXInstance;
         }
@@ -37,5 +38,22 @@ public class DoorVFX : MonoBehaviour
         //_otherDoorVFX.OtherDoorVFX = null;
         _otherDoorVFX = null;
     }
-
+    public void SwitchDirection()
+    {
+       foreach(DoorMaterialInstance child in _doorVFXInstance.GetComponentsInChildren<DoorMaterialInstance>())
+        {
+            child.InversePath(_curve);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            print("in door " + IsDirection);
+            if (!IsDirection)
+            {
+                _levelDoorManager.UpdateDoor();
+            }
+        }
+    }
 }

@@ -6,31 +6,49 @@ public class DoorMaterialInstance : MonoBehaviour
 {
     private Material _material;
     [SerializeField]private Renderer _renderer;
+    float _oldTimeScale=0;
+    Coroutine _coroutine;
     // Start is called before the first frame update
     void Awake()
     {
         _material = _renderer.material;
     }
     
-    IEnumerator InversingPath()
+    IEnumerator InversingPath(AnimationCurve curve)
     {
-        yield return new WaitForSeconds(1);
-        Vector4 vector = _material.GetVector("_Trail_Speed");
-        Vector4 newVector=new Vector4();
-        float timer = 3;
-        while (timer > 0)
+        float timeScale = _material.GetFloat("_TimeScale");
+        float newTimeScale = timeScale;
+        _oldTimeScale = timeScale;
+        float timer = 0;
+        while (timer < 3)
         {
-            float val = Mathf.Lerp(-1, 1, timer / 3);
-            newVector = new Vector4(vector.x*val, 0, 0, 0);
-            _material.SetVector("_Trail_Speed", newVector);
-            timer -= Time.deltaTime;
+            float val = curve.Evaluate(timer / 3);
+            newTimeScale = Mathf.Lerp(timeScale, -timeScale, val );
+            _material.SetFloat("_TimeScale", newTimeScale);
+            timer += Time.deltaTime;
             yield return null;
         }
+        _material.SetFloat("_TimeScale", -timeScale);
+        _coroutine = null;
         yield return null;
     }
 
-public void InversePath()
+public void InversePath(AnimationCurve curve)
     {
-        StartCoroutine(InversingPath());
+        if (_coroutine!=null)
+        {
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+            float timeScale = _material.GetFloat("_TimeScale");
+            if (_oldTimeScale > timeScale)
+            {
+                _material.SetFloat("_TimeScale", -1);
+            }
+            else
+            {
+                _material.SetFloat("_TimeScale", 1);
+            }
+        }
+        _coroutine=StartCoroutine(InversingPath( curve));
     }
 }
