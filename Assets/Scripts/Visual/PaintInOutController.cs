@@ -54,7 +54,7 @@ public class PaintInOutController : MonoBehaviour
         float timer = 0;
         while (timer < _duration)
         {
-            _line.material.SetFloat("_Float_GP",(timer / _duration) * 3f);
+            _line.material.SetFloat("_CursorAppearance",(timer / _duration) * 3f);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
@@ -72,7 +72,7 @@ public class PaintInOutController : MonoBehaviour
         float timer = 0;
         while (timer < _duration)
         {
-            _line.material.SetFloat("_Float_GP",1-(timer / _duration)* 3f);
+            _line.material.SetFloat("_CursorAppearance", 1-(timer / _duration)* 3f);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }
