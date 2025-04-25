@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3480778595104812033}
   - component: {fileID: -7299320894898844267}
   - component: {fileID: 2640272305601102692}
+  - component: {fileID: 6817111380673421272}
   m_Layer: 0
   m_Name: Clone
   m_TagString: Player
@@ -137,6 +138,7 @@ MonoBehaviour:
   JumpBuffer: 0
   Animator: {fileID: 0}
   MeshRenderer: {fileID: 0}
+  walkingTime: 0.25
 --- !u!114 &-7299320894898844267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +178,19 @@ CapsuleCollider:
   m_Height: 2.7333333
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6817111380673421272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434292973231471639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a928a9824654a7549b7caa240b999eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpVFX: {fileID: 3217999206906799064, guid: a6a2e274b4a37564fab014209c92edf6, type: 3}
 --- !u!1 &6219913397573877819
 GameObject:
   m_ObjectHideFlags: 0
