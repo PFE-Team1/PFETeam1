@@ -22,7 +22,7 @@ public class LevelSpawner : Interactable
 
     private void Start()
     {
-        appliedOffset = GetComponentInParent<Level>().Offset;
+        appliedOffset = GetComponentInParent<Level>().Offset;     
         if (isAlreadySpawned)
         {
             SpawnLevelOnStart();
@@ -60,9 +60,9 @@ public class LevelSpawner : Interactable
                 if (!PlayerC.HasInteracted && PlayerC.heldObject != null && PlayerC.IsInteracting)
                 {
                     SpawnNewLevel();
+                    CameraManager.Instance.ShowNewLevel();
                     PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
-                    CameraManager.Instance.ShowNewLevel();
                 }
             }
             else if (isAlreadySpawned)
