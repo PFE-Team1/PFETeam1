@@ -10,19 +10,31 @@ public class LevelDoorManage : MonoBehaviour
     private void Start()
     {
         _doors.AddRange(GetComponentsInChildren<Door>());
+        foreach(Door door in _doors)
+        {
+            DoorVFX vfx = door.GetComponent<DoorVFX>();
+            vfx.LevelDoorManager = this;
+        }
     }
     public void UpdateDoor()
     {
-        if (_doors.Find(x => x.GetComponent<DoorVFX>().IsDirection == true))
+        if (_doors.Find(x => x.GetComponent<DoorVFX>().IsDirection == false))
         {
             foreach (Door d in _doors)
             {
                 DoorVFX vfx = d.GetComponent<DoorVFX>();
-                vfx.IsDirection = true;
-                if (vfx.OtherDoorVFX != null)
+                print(vfx.IsDirection);
+                if (!vfx.IsDirection)
                 {
-                    vfx.OtherDoorVFX.IsDirection = false;
+                    
+                    vfx.IsDirection = true;
+                    if (vfx.OtherDoorVFX != null)
+                    {
+                        vfx.SwitchDirection();
+                        vfx.OtherDoorVFX.IsDirection = false;
+                    }
                 }
+
             }
         }
 

@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 2, z: 1}
+  m_LocalScale: {x: 0.25000003, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 394105672772249527}
@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 9.997474, y: 1, z: 1}
+  m_Center: {x: 4.998737, y: 0, z: 0}
 --- !u!1 &3605001926625568960
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,8 +375,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 22.092077, y: 1, z: 1}
-  m_Center: {x: 10.15, y: 0, z: 0}
+  m_Size: {x: 14.965708, y: 1, z: 1}
+  m_Center: {x: 6.586808, y: 0, z: 0}
 --- !u!114 &3274110734104119222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,4 +434,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _doorVFXPrefab: {fileID: 1014635270673873550, guid: 4e316c4b8d5d60d43b7bca3f6d799982, type: 3}
+  _doorVFXInstance: {fileID: 0}
   _otherDoorVFX: {fileID: 0}
+  _levelDoorManager: {fileID: 0}
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3735735
+      value: 0.8810228
+      inSlope: 0.27643105
+      outSlope: 0.27643105
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.17002814
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _isDirection: 0
