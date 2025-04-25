@@ -48,14 +48,21 @@ public class Parrallaxe : MonoBehaviour
     private Vector2 _startPos;
     void Start()
     {
-        _mainCamera=FindObjectOfType<Camera>();
+        _mainCamera=GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         _startPos = transform.position;
     }
-
+	
+    public void UpdateParallaxePosition()
+    {
+	
+    }
+	
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (SettingsManager.Instance.WantParallax == false) return;
+	_startPos = transform.position;
+
+        //if (SettingsManager.Instance.WantParallax == false) return;
         float distX = 0;
         float distY = 0;
         if (_vertical)
