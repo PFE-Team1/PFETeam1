@@ -592,6 +592,46 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.15701675
       objectReference: {fileID: 0}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.data[1].RespawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.data[1].IsRespawnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.data[0].ObjectToRemove
+      value: 
+      objectReference: {fileID: 1505121010}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.data[1].ObjectToRemove
+      value: 
+      objectReference: {fileID: 1291262331}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.data[1]._isRespawnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.data[0]._objectToRemove
+      value: 
+      objectReference: {fileID: 1505121010}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.data[1]._objectToRemove
+      value: 
+      objectReference: {fileID: 1291262331}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.data[2]._objectToRemove
+      value: 
+      objectReference: {fileID: 1505121010}
+    - target: {fileID: 1438352330956938890, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: _objectsToRemove.Array.data[1].RespawnStartTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1564690402920859247, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.023097992
@@ -6109,6 +6149,11 @@ Transform:
   - {fileID: 1832736597}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1291262331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 570711349420949860, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+  m_PrefabInstance: {fileID: 107159900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1343017241
 GameObject:
   m_ObjectHideFlags: 0
@@ -6882,6 +6927,11 @@ BoxCollider2D:
 --- !u!224 &1502822978 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3899002667573889527, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+  m_PrefabInstance: {fileID: 107159900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1505121010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3785059217979294067, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
   m_PrefabInstance: {fileID: 107159900}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1516455112
