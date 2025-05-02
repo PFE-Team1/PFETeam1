@@ -26,27 +26,28 @@ public class PaintInOutController : MonoBehaviour
         PaintIn(_firstPaint);
     }
     public  void PaintIn(GameObject paint)// objet , position taille
-    {        RectTransform paintRect = paint.GetComponent<RectTransform>();
-
-        _rectTransform.anchorMin =paintRect.anchorMin;
-        _rectTransform.anchorMax =paintRect.anchorMax;
+    {
+        SpriteRenderer paintRect = paint.GetComponent<SpriteRenderer>();
+        _rectTransform.anchorMin = paintRect.bounds.min;
+        _rectTransform.anchorMax = paintRect.bounds.max;
         //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
-        _rectTransform.sizeDelta = paintRect.sizeDelta;
-        _rectTransform.localScale = paintRect.localScale;
-        transform.position = paintRect.position;
+        _rectTransform.sizeDelta = paintRect.bounds.size;
+        _rectTransform.localScale = paintRect.bounds.size;
+        transform.position = paintRect.bounds.center;
+        //transform.position = paintRect.position;
         _image.enabled = true;
         StartCoroutine(ShaderIn(paint));
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
         Debug.Log(paint.transform);
-        RectTransform paintRect = paint.GetComponent<RectTransform>();
-        _rectTransform.anchorMin = paintRect.anchorMin;
-        _rectTransform.anchorMax = paintRect.anchorMax;
+        SpriteRenderer paintRect = paint.GetComponent<SpriteRenderer>();
+        _rectTransform.anchorMin = paintRect.bounds.min;
+        _rectTransform.anchorMax = paintRect.bounds.max;
         //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
-        _rectTransform.sizeDelta = paintRect.sizeDelta;
-        _rectTransform.localScale = paintRect.localScale;
-        transform.position = paintRect.position;
+        _rectTransform.sizeDelta = paintRect.bounds.size;
+        _rectTransform.localScale = paintRect.bounds.size;
+        transform.position = paintRect.bounds.center;
         _image.enabled = true;
         StartCoroutine(ShaderOut(paint));
     }
@@ -77,6 +78,7 @@ public class PaintInOutController : MonoBehaviour
             child.layer = 6;
         }
         float timer = 0;
+      
         while (timer < _duration)
         {
             _line.material.SetFloat("_CursorAppearance", 1-(timer / _duration)* 3f);
@@ -84,8 +86,8 @@ public class PaintInOutController : MonoBehaviour
             yield return null;
         }
         CameraManager.Instance.FocusCamera();
-        _image.enabled = false;
         paint.SetActive(false);
+        _image.enabled = true;
         CameraManager.Instance.ReEvaluate();
         yield return null;
     }

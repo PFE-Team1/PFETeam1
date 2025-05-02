@@ -78,7 +78,7 @@ public class Clone : MonoBehaviour
             CVC.Follow = gameObject.transform;
             //CVC.transform.position = transform.position;
         }
-        _playerVFX.CanPlayVFX(isEnable);
+        //_playerVFX.CanPlayVFX(isEnable);
 
     }
     public void ChangeParent()

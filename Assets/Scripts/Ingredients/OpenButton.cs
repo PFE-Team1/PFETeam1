@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OpenButton : Interactable
 {
-    [SerializeField] GameObject _toRemove;
+    [SerializeField] List<GameObject> _objectsToRemove;
     [SerializeField] private bool _isRespawnable;
     [SerializeField] private float _respawnTime;
     [SerializeField] private float _respawnStartTime;
@@ -26,8 +26,11 @@ public class OpenButton : Interactable
             if (PlayerC.IsInteracting &&!PlayerC.HasInteracted)
             {
                 PlayerC.HasInteracted = true;
-                _toRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
-               _spriteRenderer.sprite=null;
+                foreach(GameObject toRemove in _objectsToRemove)
+                {
+                    toRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+                }
+                _spriteRenderer.sprite=null;
                 _isRespawning = true;
                 if (_isRespawnable == true)
                 {
@@ -46,7 +49,10 @@ public class OpenButton : Interactable
             //Shader de resolve progressif sur la durée (time/respawnTime)
             yield return null;
         }
-        _toRemove.SetActive(true);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+        foreach (GameObject toRemove in _objectsToRemove)
+        {
+            toRemove.SetActive(true);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+        }
         _spriteRenderer.sprite = _sprite;
         _isRespawning = false;
         yield return null;
