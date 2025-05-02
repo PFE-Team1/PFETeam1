@@ -57,7 +57,8 @@ public class PaintingController : Interactable
 
                                         if (levelBounds.Intersects(paintingBounds))
                                         {
-                                            transform.SetParent(child.transform);
+                                            
+                                            transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
                                             PlayerC.heldObject = null;
                                             isHeld = false;
                                             return;

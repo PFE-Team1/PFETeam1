@@ -7,6 +7,7 @@ public class PaintInOutController : MonoBehaviour
 {
     private LineRenderer _line;
     [SerializeField]float _duration=0.2f;
+    [SerializeField]float _durationOut=0.2f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField] GameObject _raw;
     [SerializeField] GameObject _mask;
@@ -71,16 +72,15 @@ public class PaintInOutController : MonoBehaviour
     IEnumerator ShaderOut(GameObject paint)
     {
         paint.layer = 6;
-        print("feur");
         foreach (GameObject child in AllChilds(paint))
         {
             child.layer = 6;
         }
         float timer = 0;
       
-        while (timer < _duration)
+        while (timer < _durationOut)
         {
-            _line.material.SetFloat("_CursorAppearance", 1-(timer / _duration)* 3f);
+            _line.material.SetFloat("_CursorAppearance", 1-(timer / _durationOut)*3);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }
