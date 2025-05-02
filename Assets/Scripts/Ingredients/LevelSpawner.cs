@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using Cinemachine;
 using UnityEngine.Events;
 
@@ -134,7 +135,7 @@ public class LevelSpawner : Interactable
         }
 
         CameraManager.Instance.SetNewLevel(_newlevel);
-
+        FindPlayer(true);
         isAlreadySpawned = true;
     }
 
@@ -289,13 +290,13 @@ public class LevelSpawner : Interactable
 
     public void RemoveNewLevel()
     {
+        FindPlayer(false);
         //OnRemovePainting.Invoke();
         isAlreadySpawned = false;
         _paint.transform.SetParent(Player.transform);
         _paint.GetComponent<Collider>().enabled = true ;
         PlayerC.heldObject = _paint;
         _paint = null;
-        _newlevel.SetActive(false);
         CameraManager.Instance?.RemoveLevel(_newlevel);
     }
 
@@ -305,6 +306,16 @@ public class LevelSpawner : Interactable
         {
             IsInRange = false;
             PlayerC.IsInSocleRange = false;
+        }
+    }
+
+    void FindPlayer(bool active)
+    {
+        List<Clone> clone = _newlevel.GetComponentsInChildren<Clone>(true).ToList();
+        foreach(Clone c in clone)
+        {
+            print("feur");
+            c.gameObject.SetActive(active);
         }
     }
 }

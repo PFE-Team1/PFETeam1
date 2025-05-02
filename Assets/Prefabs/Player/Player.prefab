@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3480778595104812033}
   - component: {fileID: 737445869535654141}
   - component: {fileID: 3049459012460121757}
+  - component: {fileID: 4515051955276103870}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -129,12 +130,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 1
-  PlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
+  BasePlayerMovementParameters: {fileID: 0}
   Velocity: {x: 0, y: 0}
   IsMovementLocked: 0
+  PlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
   IsJumpInputEaten: 0
   JumpBuffer: 0
-  CoyoteWindow: 0
+  Animator: {fileID: 0}
+  MeshRenderer: {fileID: 0}
+  walkingTime: 0.25
 --- !u!136 &737445869535654141
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -172,8 +176,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clone: {fileID: 434292973231471639, guid: 7cf6d0cc8a1592443bce99d053f2626e, type: 3}
   _charID: 0
-  _playerStateMachine: {fileID: 3480778595104812033}
+  _playerVFX: {fileID: 0}
   _paintingTransform: {fileID: 532975740336723945}
+  _isInSocleRange: 0
+--- !u!114 &4515051955276103870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434292973231471639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a928a9824654a7549b7caa240b999eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerRenderer: {fileID: 0}
+  JumpVFX: {fileID: 3217999206906799064, guid: a6a2e274b4a37564fab014209c92edf6, type: 3}
+  relativePositionJumpVFX: {x: 0, y: -1.26, z: 0}
 --- !u!1 &6700865436177754771
 GameObject:
   m_ObjectHideFlags: 0

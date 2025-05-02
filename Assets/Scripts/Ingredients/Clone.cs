@@ -8,6 +8,8 @@ public class Clone : MonoBehaviour
 {
     [SerializeField] private GameObject _clone;
     [SerializeField] private int _charID;
+    [SerializeField] private PlayerVFX _playerVFX;
+    [SerializeField] private GameObject _playerVisual;
     private PlayerStateMachine _playerStateMachine;
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
@@ -33,7 +35,8 @@ public class Clone : MonoBehaviour
         ChangeParent();
         CloneManager.instance.Characters.Add(this);
         CloneManager.instance.Switch(_charID - 1);
-        gameObject.layer = transform.parent.gameObject.layer;
+        _playerVisual.layer = transform.parent!=null? transform.parent.gameObject.layer:0;
+
     }
 
     void Update()
@@ -43,6 +46,7 @@ public class Clone : MonoBehaviour
         if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer == _charID)
         {
             CloneManager.instance.Switch(_charID);
+            EventManager.instance?.OnJump.Invoke();
             _inputs.InputSwitching = false;
         }
         if (!_inputs.InputInteract)
@@ -74,10 +78,8 @@ public class Clone : MonoBehaviour
             CVC.Follow = gameObject.transform;
             //CVC.transform.position = transform.position;
         }
-        else
-        {
-            ChangeParent();
-        }
+        //_playerVFX.CanPlayVFX(isEnable);
+
     }
     public void ChangeParent()
     {
@@ -102,7 +104,7 @@ public class Clone : MonoBehaviour
 
                             if (levelBounds.Intersects(paintingBounds))
                             {
-                                transform.SetParent(child.transform);
+                                transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
                                 return;
                             }
                         }
