@@ -330,7 +330,11 @@ public class CameraManager : MonoBehaviour
     {
         // _levels.Remove(level);
         _paintInOutController?.PaintOut(level);
-        
+        if (!_paintInOutController)
+        {
+            level.SetActive(false);
+        }
+        ReEvaluate();
     }
     public void ReEvaluate()
     {
