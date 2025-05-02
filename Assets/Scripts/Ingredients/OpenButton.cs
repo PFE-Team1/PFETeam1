@@ -1,13 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class OpenButton : Interactable
 {
-    [SerializeField] List<GameObject> _objectsToRemove;
-    [SerializeField] private bool _isRespawnable;
-    [SerializeField] private float _respawnTime;
-    [SerializeField] private float _respawnStartTime;
+    [SerializeField] private List<ObectToDestroy> _objectsToRemove = new List<ObectToDestroy>();
+
     private bool _isRespawning ;
     private Sprite _sprite ;
     private SpriteRenderer _spriteRenderer ;
@@ -25,36 +24,44 @@ public class OpenButton : Interactable
         {
             if (PlayerC.IsInteracting &&!PlayerC.HasInteracted)
             {
-                PlayerC.HasInteracted = true;
-                foreach(GameObject toRemove in _objectsToRemove)
-                {
-                    toRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
-                }
-                _spriteRenderer.sprite=null;
+                _spriteRenderer.sprite = null;
                 _isRespawning = true;
-                if (_isRespawnable == true)
+                PlayerC.HasInteracted = true;
+                foreach(ObectToDestroy toRemove in _objectsToRemove)
                 {
-                    StartCoroutine(Rebuilding());
+                    toRemove.ObjectToRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+                    if (toRemove.IsRespawnable == true)
+                    {
+                        StartCoroutine(Rebuilding(toRemove));
+                    }
                 }
+               
+
             }
         }
     }
-    IEnumerator Rebuilding()
+    IEnumerator Rebuilding(ObectToDestroy destroyed)
     {
         float time = 0;
-        yield return new WaitForSeconds(_respawnStartTime);
-        while (time < _respawnTime)
+        yield return new WaitForSeconds(destroyed.RespawnStartTime);
+        while (time < destroyed.RespawnTime)
         {
             time += Time.deltaTime;
             //Shader de resolve progressif sur la durée (time/respawnTime)
             yield return null;
         }
-        foreach (GameObject toRemove in _objectsToRemove)
-        {
-            toRemove.SetActive(true);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
-        }
+            destroyed.ObjectToRemove.SetActive(true);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+        
         _spriteRenderer.sprite = _sprite;
         _isRespawning = false;
         yield return null;
     }
+}
+[Serializable]
+struct ObectToDestroy
+{
+    public  GameObject ObjectToRemove;
+    public bool IsRespawnable;
+    public float RespawnTime;
+    public float RespawnStartTime;
 }
