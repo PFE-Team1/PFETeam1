@@ -26,28 +26,27 @@ public class PaintInOutController : MonoBehaviour
         PaintIn(_firstPaint);
     }
     public  void PaintIn(GameObject paint)// objet , position taille
-    {
-        SpriteRenderer paintRect = paint.GetComponent<SpriteRenderer>();
-        _rectTransform.anchorMin = paintRect.bounds.min;
-        _rectTransform.anchorMax = paintRect.bounds.max;
+    {        RectTransform paintRect = paint.GetComponent<RectTransform>();
+
+        _rectTransform.anchorMin =paintRect.anchorMin;
+        _rectTransform.anchorMax =paintRect.anchorMax;
         //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
-        _rectTransform.sizeDelta = paintRect.bounds.size;
-        _rectTransform.localScale = paintRect.bounds.size;
-        transform.position = paintRect.bounds.center;
-        //transform.position = paintRect.position;
+        _rectTransform.sizeDelta = paintRect.sizeDelta;
+        _rectTransform.localScale = paintRect.localScale;
+        transform.position = paintRect.position;
         _image.enabled = true;
         StartCoroutine(ShaderIn(paint));
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
-        Debug.Log(paint.transform);
-        SpriteRenderer paintRect = paint.GetComponent<SpriteRenderer>();
-        _rectTransform.anchorMin = paintRect.bounds.min;
-        _rectTransform.anchorMax = paintRect.bounds.max;
+        RectTransform paintRect = paint.GetComponent<RectTransform>();
+
+        _rectTransform.anchorMin = paintRect.anchorMin;
+        _rectTransform.anchorMax = paintRect.anchorMax;
         //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
-        _rectTransform.sizeDelta = paintRect.bounds.size;
-        _rectTransform.localScale = paintRect.bounds.size;
-        transform.position = paintRect.bounds.center;
+        _rectTransform.sizeDelta = paintRect.sizeDelta;
+        _rectTransform.localScale = paintRect.localScale;
+        transform.position = paintRect.position;
         _image.enabled = true;
         StartCoroutine(ShaderOut(paint));
     }
