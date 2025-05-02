@@ -295,7 +295,6 @@ public class LevelSpawner : Interactable
         _paint.GetComponent<Collider>().enabled = true ;
         PlayerC.heldObject = _paint;
         _paint = null;
-        _newlevel.SetActive(false);
         CameraManager.Instance?.RemoveLevel(_newlevel);
     }
 

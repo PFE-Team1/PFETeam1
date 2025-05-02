@@ -322,19 +322,18 @@ public class CameraManager : MonoBehaviour
 
     public void SetNewLevel(GameObject newLevel)
     {
-        if (!newLevel.GetComponent<Level>().WasAlreadySpawned)
-        {
-            _paintInOutController?.PaintIn(newLevel);
-            newLevel.GetComponent<Level>().WasAlreadySpawned = true;
-        }
-        CalculateWorldBounds();
-        DefineCameraBounds();
-        CalculateCameraBounds();
+        _paintInOutController?.PaintIn(newLevel);
+        ReEvaluate();
     }
 
     public void RemoveLevel(GameObject level)
     {
-       // _levels.Remove(level);
+        // _levels.Remove(level);
+        _paintInOutController?.PaintOut(level);
+        
+    }
+    public void ReEvaluate()
+    {
         DefineCameraBounds();
         CalculateWorldBounds();
         CalculateCameraBounds();

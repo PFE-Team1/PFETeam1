@@ -40,13 +40,13 @@ public class PaintInOutController : MonoBehaviour
     public void PaintOut(GameObject paint)// objet , position taille
     {
         Debug.Log(paint.transform);
-        SpriteRenderer paintRect = paint.GetComponent<SpriteRenderer>();
-        _rectTransform.anchorMin = paintRect.bounds.min;
-        _rectTransform.anchorMax = paintRect.bounds.max;
+        RectTransform paintRect = paint.GetComponent<RectTransform>();
+        _rectTransform.anchorMin = paintRect.anchorMin;
+        _rectTransform.anchorMax = paintRect.anchorMax;
         //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
-        //_rectTransform.sizeDelta = paintRect.bounds.size;
-        _rectTransform.localScale = paintRect.bounds.size;
-        transform.position = paintRect.bounds.center;
+        _rectTransform.sizeDelta = paintRect.sizeDelta;
+        _rectTransform.localScale = paintRect.localScale;
+        transform.position = paintRect.position;
         _image.enabled = true;
         StartCoroutine(ShaderOut(paint));
     }
@@ -70,6 +70,12 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderOut(GameObject paint)
     {
+        paint.layer = 6;
+        print("feur");
+        foreach (GameObject child in AllChilds(paint))
+        {
+            child.layer = 6;
+        }
         float timer = 0;
         while (timer < _duration)
         {
@@ -77,13 +83,10 @@ public class PaintInOutController : MonoBehaviour
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }
-        paint.layer = 6;
-        foreach (GameObject child in AllChilds(paint))
-        {
-            child.layer = 6;
-        }
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;
+        paint.SetActive(false);
+        CameraManager.Instance.ReEvaluate();
         yield return null;
     }
     private List<GameObject> AllChilds(GameObject root)
