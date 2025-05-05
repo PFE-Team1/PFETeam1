@@ -2,42 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenButton : MonoBehaviour
+public class OpenButton : Interactable
 {
     [SerializeField] GameObject _toRemove;
-    private Clone _playerC;
-    public bool isInRange;
+    [SerializeField] private bool _isRespawnable;
+    [SerializeField] private float _respawnTime;
+    [SerializeField] private float _respawnStartTime;
+    private bool _isRespawning ;
+    private Sprite _sprite ;
+    private SpriteRenderer _spriteRenderer ;
 
-    // Start is called before the first frame update
-    void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.tag == "Player")
-        {
-            _playerC = other.GetComponent<Clone>();
-            isInRange = true;
-        }
+        _isRespawning = false;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _sprite = _spriteRenderer.sprite;
     }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            _playerC = null;
-            isInRange = false;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (isInRange)
+        if (IsInRange)
         {
-            if (_playerC.IsInteracting && _playerC.heldObject == null)
+            if (PlayerC.IsInteracting &&!PlayerC.HasInteracted)
             {
-                _playerC.IsInteracting = false;
-                Destroy(_toRemove);
-                Destroy(gameObject);
+                PlayerC.HasInteracted = true;
+                _toRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+               _spriteRenderer.sprite=null;
+                _isRespawning = true;
+                if (_isRespawnable == true)
+                {
+                    StartCoroutine(Rebuilding());
+                }
             }
         }
+    }
+    IEnumerator Rebuilding()
+    {
+        float time = 0;
+        yield return new WaitForSeconds(_respawnStartTime);
+        while (time < _respawnTime)
+        {
+            time += Time.deltaTime;
+            //Shader de resolve progressif sur la durée (time/respawnTime)
+            yield return null;
+        }
+        _toRemove.SetActive(true);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+        _spriteRenderer.sprite = _sprite;
+        _isRespawning = false;
+        yield return null;
     }
 }
