@@ -15,7 +15,7 @@ public class PlayerStateMachine : MonoBehaviour
     #region InspectorVariables
 
     public bool DebugMode = true;
-    public PlayerMovementParameters PlayerMovementParameters;
+    public PlayerMovementParameters BasePlayerMovementParameters;
 
     #endregion
     #region NonInspectorVariables
@@ -27,16 +27,21 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsMovementLocked;
     [HideInInspector]
     public InputsManager InputsManager { get; private set; }
+    [HideInInspector]
+    public PlayerMovementParameters PlayerMovementParameters;
     [HideInInspector] 
     public bool IsJumpInputEaten = false;
     [HideInInspector]
     public float JumpBuffer = 0f;
     [HideInInspector]
-    public float CoyoteWindow = 0f;
+    public Animator Animator;
+    [HideInInspector]
+    public MeshRenderer MeshRenderer;
     #endregion
     #endregion
     #region PrivateVariables
     private CharacterController _CharacterController => GetComponent<CharacterController>();
+    private SphereCollider _SphereCollider;
     #endregion
     #region States
 
@@ -45,6 +50,10 @@ public class PlayerStateMachine : MonoBehaviour
     private FallingPlayerState _fallingState { get; } = new FallingPlayerState();
     private RunningPlayerState _runningState { get; } = new RunningPlayerState();
     private JumpingPlayerState _jumpingState { get; } = new JumpingPlayerState();
+
+    private cloneState _cloneState { get; } = new cloneState();
+
+    private JumpStartPlayerState _jumpStartState { get; } = new JumpStartPlayerState();
     #endregion
 
     #region Accessors
@@ -52,6 +61,10 @@ public class PlayerStateMachine : MonoBehaviour
     public FallingPlayerState FallingState => _fallingState;
     public RunningPlayerState RunningState => _runningState;
     public JumpingPlayerState JumpingState => _jumpingState;
+
+    public JumpStartPlayerState JumpStartState => _jumpStartState;
+
+    public cloneState CloneState => _cloneState;
     #endregion
     public PlayerState[] AllStates => new PlayerState[]
     {
@@ -59,13 +72,15 @@ public class PlayerStateMachine : MonoBehaviour
         _fallingState,
         _runningState,
         _jumpingState,
+        _cloneState,
+        _jumpStartState
     };
 
     #endregion
 
     #region CurrentStates
     private PlayerState StartState => _idleState;
-    private PlayerState CurrentState { get; set; }
+    public PlayerState CurrentState { get; set; }
     [HideInInspector]
     public PlayerState PreviousState { get; set; }
 
@@ -86,6 +101,7 @@ public class PlayerStateMachine : MonoBehaviour
         GUI.Box(new Rect(10, 10, 200, 160), "");
 
         string debugText = "";
+        debugText += "Current Profile Name: " + PlayerMovementParameters.name + "\n";
         debugText += "Current State: " + CurrentState.GetType().Name + "\n";
         debugText += "Move X: " + InputsManager.MoveX + "\n";
         debugText += "Velocity: " + Velocity.ToString("F2") + "\n";
@@ -102,12 +118,15 @@ public class PlayerStateMachine : MonoBehaviour
     private void Start()
     {
         InputsManager = InputsManager.instance;
+        MeshRenderer = GetComponentInChildren<MeshRenderer>();
+        Animator = GetComponentInChildren<Animator>();
         _InitAllStates();
         _InitStateMachine();
     }
 
     private void _InitStateMachine()
     {
+        PlayerMovementParameters = BasePlayerMovementParameters;
         CollisionDetector.InitializeCollisionTracking(gameObject);
         ChangeState(StartState);
     }
@@ -117,9 +136,7 @@ public class PlayerStateMachine : MonoBehaviour
         CollisionDetector.ResetFrameCollisions(gameObject);
         // Mettre � jour l'entr�e de l'utilisateur
         UpdateJumpBuffer();
-
-
-
+        UpdateAnimator();
     }
     private void FixedUpdate()
     {
@@ -176,4 +193,21 @@ public class PlayerStateMachine : MonoBehaviour
 
         JumpBuffer = Mathf.Clamp(JumpBuffer - Time.deltaTime, 0, PlayerMovementParameters.jumpBuffer);
     }
+
+    private void UpdateAnimator()
+    {
+        Animator.SetFloat("VelocityX", Mathf.Abs(Velocity.x));
+        Animator.SetFloat("VelocityY", Velocity.y);
+        Animator.SetBool("Grounded", CollisionInfo.isCollidingBelow);
+
+        if (Velocity.x != 0)
+        {
+
+            // mulitply x scale by sign of velocity
+            Vector3 scale = MeshRenderer.transform.localScale;
+            scale.x = Mathf.Sign(Velocity.x) * Mathf.Abs(scale.x);
+            MeshRenderer.transform.localScale = scale;
+        }
+    }
+
 }

@@ -129,9 +129,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  PlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
+  BasePlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
   Velocity: {x: 0, y: 0}
   IsMovementLocked: 0
+  PlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
+  IsJumpInputEaten: 0
+  JumpBuffer: 0
+  Animator: {fileID: 0}
+  MeshRenderer: {fileID: 0}
 --- !u!114 &-7299320894898844267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clone: {fileID: 434292973231471639}
   _charID: 0
-  _playerStateMachine: {fileID: 0}
   _paintingTransform: {fileID: 8416431028996980769}
+  _isInSocleRange: 0
 --- !u!136 &2640272305601102692
 CapsuleCollider:
   m_ObjectHideFlags: 0

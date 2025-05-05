@@ -6,22 +6,25 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Collider _collider;
     [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField]private Door _otherDoor;
-    [SerializeField]private GameObject _VfxOpen;
-    
+    [SerializeField] private Door _otherDoor;
+    [SerializeField] private GameObject _vfxOpen;
+    [SerializeField] private GameObject _groundOpen;
+
     public Door OtherDoor { get => _otherDoor; set => _otherDoor = null; }
 
     public void Open()
     {
         _collider.isTrigger = true;
         _sprite.enabled = false;
-        _VfxOpen.SetActive(true);
+        //_vfxOpen.SetActive(true);
+        _groundOpen.SetActive(true);
     }
     public  void Close()
     {
         _collider.isTrigger = false;
         _sprite.enabled = true;
-        _VfxOpen.SetActive(false);
+        //_vfxOpen.SetActive(false);
+        _groundOpen.SetActive(false);
 
     }
     private void OnTriggerEnter(Collider other)
