@@ -4,6 +4,7 @@ using System.Drawing;
 using CollisionHelper;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Color = UnityEngine.Color;
@@ -16,6 +17,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     public bool DebugMode = true;
     public PlayerMovementParameters BasePlayerMovementParameters;
+    public AnimatorController BaseAnimator;
+    public AnimatorController AnimatorWithPaint;
 
     #endregion
     #region NonInspectorVariables
@@ -37,6 +40,8 @@ public class PlayerStateMachine : MonoBehaviour
     public Animator Animator;
     [HideInInspector]
     public MeshRenderer MeshRenderer;
+    [HideInInspector]
+    public bool IsCarrying = false;
     #endregion
     #endregion
     #region PrivateVariables
@@ -52,6 +57,8 @@ public class PlayerStateMachine : MonoBehaviour
     private JumpingPlayerState _jumpingState { get; } = new JumpingPlayerState();
 
     private cloneState _cloneState { get; } = new cloneState();
+    private paintingGrabState _paintingGrabState { get; } = new paintingGrabState();
+    private paintingDropState _paintingDropState { get; } = new paintingDropState();
 
     private JumpStartPlayerState _jumpStartState { get; } = new JumpStartPlayerState();
     #endregion
@@ -65,6 +72,8 @@ public class PlayerStateMachine : MonoBehaviour
     public JumpStartPlayerState JumpStartState => _jumpStartState;
 
     public cloneState CloneState => _cloneState;
+    public paintingGrabState PaintingGrabState => _paintingGrabState;
+    public paintingDropState PaintingDropState => _paintingDropState;
     #endregion
     public PlayerState[] AllStates => new PlayerState[]
     {
@@ -73,7 +82,9 @@ public class PlayerStateMachine : MonoBehaviour
         _runningState,
         _jumpingState,
         _cloneState,
-        _jumpStartState
+        _jumpStartState,
+        _paintingGrabState,
+        _paintingDropState
     };
 
     #endregion
@@ -114,7 +125,9 @@ public class PlayerStateMachine : MonoBehaviour
         debugText += "Droite: " + CollisionInfo.isCollidingRight + "\n";
         debugText += "Haut: " + CollisionInfo.isCollidingAbove + "\n";
         debugText += "Bas: " + CollisionInfo.isCollidingBelow + "\n";
-        GUI.Label(new Rect(20, 20, 200, 140), debugText, style);
+        debugText += "\n";
+        debugText += "IsCarrying: " + IsCarrying + "\n";
+        GUI.Label(new Rect(20, 20, 200, 300), debugText, style);
     }
     #endregion
 
@@ -227,6 +240,24 @@ public class PlayerStateMachine : MonoBehaviour
             Vector3 scale = MeshRenderer.transform.localScale;
             scale.x = Mathf.Sign(Velocity.x) * Mathf.Abs(scale.x);
             MeshRenderer.transform.localScale = scale;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (CurrentState != CloneState) return;
+        if (other.CompareTag("Player") && other.gameObject != gameObject)
+        {
+            IsCarrying = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (CurrentState != CloneState) return;
+        if (other.CompareTag("Player") && other.gameObject != gameObject)
+        {
+            IsCarrying = false;
         }
     }
 
