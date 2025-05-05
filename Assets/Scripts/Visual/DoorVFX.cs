@@ -9,6 +9,7 @@ public class DoorVFX : MonoBehaviour
     [SerializeField] DoorVFX _otherDoorVFX;
      [SerializeField] LevelDoorManage _levelDoorManager;
      [SerializeField] AnimationCurve _curve;
+    bool _isSwitching;
 
     private bool _isSpawned=false;
     [SerializeField]private bool _isDirection=false;
@@ -18,6 +19,8 @@ public class DoorVFX : MonoBehaviour
     public bool IsDirection { get => _isDirection; set => _isDirection = value; }
     public DoorVFX OtherDoorVFX { get => _otherDoorVFX; set => _otherDoorVFX = value; }
     public LevelDoorManage LevelDoorManager { get => _levelDoorManager; set => _levelDoorManager = value; }
+    public AnimationCurve Curve { get => _curve; }
+    public bool IsSwitching { get => _isSwitching; set => _isSwitching = value; }
 
     public void PlayDoorVFX(Door otherDoor)
     {
@@ -41,9 +44,18 @@ public class DoorVFX : MonoBehaviour
     }
     public void SwitchDirection()
     {
-       foreach(DoorMaterialInstance child in _doorVFXInstance.GetComponentsInChildren<DoorMaterialInstance>())
+        if (!IsSwitching)
         {
-            child.InversePath(_curve);
+            foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
+            {
+                IsSwitching = true;
+                child.InversePath(this);
+            }
+            foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(1).GetComponentsInChildren<DoorMaterialInstance>())
+            {
+                IsSwitching = true;
+                child.InversePath(this);
+            }
         }
     }
     private void OnTriggerExit(Collider other)

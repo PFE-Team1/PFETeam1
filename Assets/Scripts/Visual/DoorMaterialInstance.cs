@@ -14,26 +14,42 @@ public class DoorMaterialInstance : MonoBehaviour
         _material = _renderer.material;
     }
     
-    IEnumerator InversingPath(AnimationCurve curve)
+    IEnumerator InversingPath(DoorVFX door)
     {
         float timeScale = _material.GetFloat("_TimeScale");
         float newTimeScale = timeScale;
         _oldTimeScale = timeScale;
         float timer = 0;
-        while (timer < 3)
+        if (timeScale== 1)
         {
-            float val = curve.Evaluate(timer / 3);
-            newTimeScale = Mathf.Lerp(timeScale, -timeScale, val );
-            _material.SetFloat("_TimeScale", newTimeScale);
-            timer += Time.deltaTime;
-            yield return null;
+            while (timer < 3)
+            {
+                float val = door.Curve.Evaluate(timer / 3);
+                newTimeScale = Mathf.Lerp(timeScale, 0, val);
+                _material.SetFloat("_TimeScale", newTimeScale);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            _material.SetFloat("_TimeScale", 0);
         }
-        _material.SetFloat("_TimeScale", -timeScale);
+        if (timeScale ==0)
+        {
+            while (timer < 3)
+            {
+                float val = door.Curve.Evaluate(timer / 3);
+                newTimeScale = Mathf.Lerp(timeScale, 1, val);
+                _material.SetFloat("_TimeScale", newTimeScale);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            _material.SetFloat("_TimeScale", 1);
+        }
         _coroutine = null;
-        yield return null;
+        door.IsSwitching = false;
+       yield return null;
     }
 
-public void InversePath(AnimationCurve curve)
+public void InversePath(DoorVFX door)
     {
         if (_coroutine!=null)
         {
@@ -49,6 +65,6 @@ public void InversePath(AnimationCurve curve)
                 _material.SetFloat("_TimeScale", 1);
             }
         }
-        _coroutine=StartCoroutine(InversingPath( curve));
+        _coroutine=StartCoroutine(InversingPath( door));
     }
 }

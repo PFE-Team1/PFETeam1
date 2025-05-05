@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CloneSpawner : Interactable
 {
-
+    [SerializeField] GameObject _spawnPoint;
     // Update is called once per frame
     void Update()
     {
@@ -14,7 +14,8 @@ public class CloneSpawner : Interactable
             {
                 PlayerC.HasInteracted = true;
 
-                PlayerC.Cloned(gameObject);
+                PlayerC.Cloned(_spawnPoint);
+                Destroy(_spawnPoint);
                 Destroy(gameObject);
             }
         }

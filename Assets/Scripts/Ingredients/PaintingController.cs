@@ -57,7 +57,9 @@ public class PaintingController : Interactable
 
                                         if (levelBounds.Intersects(paintingBounds))
                                         {
-                                            transform.SetParent(child.transform);
+                                            
+                                            transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
+                                            PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                                             PlayerC.heldObject = null;
                                             isHeld = false;
                                             return;
@@ -77,6 +79,7 @@ public class PaintingController : Interactable
                     }
                     AudioManager.Instance.SFX_GrabToile.Post(gameObject);
                     Debug.Log($"{gameObject.name} is being held by {PlayerC.name}");
+                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
                     transform.SetParent(PlayerC.PaintingTransform);
                     transform.position = PlayerC.PaintingTransform.position;
                     isHeld = true;
