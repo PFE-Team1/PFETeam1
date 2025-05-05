@@ -2,17 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class paintingGrabState : MonoBehaviour
+public class paintingGrabState : PlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnStateInit()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnStateEnter(PlayerState previousState)
     {
-        
+    }
+
+    protected override void OnStateExit(PlayerState nextState)
+    {
+        StateMachine.Animator.runtimeAnimatorController = StateMachine.AnimatorWithPaint;
+        StateMachine.Animator.SetTrigger("GrabPaint");
+    }
+
+    protected override void OnStateUpdate()
+    {
+        _timeSinceEnteredState += Time.deltaTime;
+        if (_timeSinceEnteredState > _playerMovementParameters.timeToGrab)
+        {
+            if (StateMachine.CollisionInfo.isCollidingBelow)
+            {
+                if (_inputsManager.MoveX != 0)
+                {
+                    StateMachine.Velocity.y = -0.1f;
+                    StateMachine.ChangeState(StateMachine.RunningState);
+                    return;
+                }
+                StateMachine.ChangeState(StateMachine.IdleState);
+                return;
+            }
+        }
     }
 }

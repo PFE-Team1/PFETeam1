@@ -12,11 +12,13 @@ public class cloneState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.fallMaxSpeedX * _playerMovementParameters.fallAccelerationTime;
+        StateMachine.Animator.SetBool("Clone", true);
     }
 
     protected override void OnStateExit(PlayerState nextState)
     {
         StateMachine.Animator.SetBool("Carrying", false);
+        StateMachine.Animator.SetBool("Clone", false);
     }
 
     protected override void OnStateUpdate()

@@ -4,6 +4,7 @@ using System.Drawing;
 using CollisionHelper;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Color = UnityEngine.Color;
@@ -16,6 +17,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     public bool DebugMode = true;
     public PlayerMovementParameters BasePlayerMovementParameters;
+    public AnimatorController BaseAnimator;
+    public AnimatorController AnimatorWithPaint;
 
     #endregion
     #region NonInspectorVariables
@@ -54,6 +57,8 @@ public class PlayerStateMachine : MonoBehaviour
     private JumpingPlayerState _jumpingState { get; } = new JumpingPlayerState();
 
     private cloneState _cloneState { get; } = new cloneState();
+    private paintingGrabState _paintingGrabState { get; } = new paintingGrabState();
+    private paintingDropState _paintingDropState { get; } = new paintingDropState();
 
     private JumpStartPlayerState _jumpStartState { get; } = new JumpStartPlayerState();
     #endregion
@@ -67,6 +72,8 @@ public class PlayerStateMachine : MonoBehaviour
     public JumpStartPlayerState JumpStartState => _jumpStartState;
 
     public cloneState CloneState => _cloneState;
+    public paintingGrabState PaintingGrabState => _paintingGrabState;
+    public paintingDropState PaintingDropState => _paintingDropState;
     #endregion
     public PlayerState[] AllStates => new PlayerState[]
     {
@@ -75,7 +82,9 @@ public class PlayerStateMachine : MonoBehaviour
         _runningState,
         _jumpingState,
         _cloneState,
-        _jumpStartState
+        _jumpStartState,
+        _paintingGrabState,
+        _paintingDropState
     };
 
     #endregion
