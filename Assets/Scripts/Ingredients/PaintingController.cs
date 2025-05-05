@@ -29,8 +29,11 @@ public class PaintingController : Interactable
                 PlayerC.HasInteracted = true;
                 if (isHeld)
                 {
+                    if (VFX_PoseToile != null)
+                    {
+                        Destroy(Instantiate(VFX_PoseToile, transform), 1f);
+                    }
                     AudioManager.Instance.SFX_PoseToile.Post(gameObject);
-                    Destroy(Instantiate(VFX_PoseToile, transform), 1f);
                     Vector3 releasePosition = transform.position;
                     RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
 
@@ -54,7 +57,8 @@ public class PaintingController : Interactable
 
                                         if (levelBounds.Intersects(paintingBounds))
                                         {
-                                            transform.SetParent(child.transform);
+                                            
+                                            transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
                                             PlayerC.heldObject = null;
                                             isHeld = false;
                                             return;
@@ -68,8 +72,12 @@ public class PaintingController : Interactable
                 }
                 else
                 {
+                    if (VFX_GrabToile != null)
+                    {
+                        Destroy(Instantiate(VFX_GrabToile, transform), 1f);
+                    }
                     AudioManager.Instance.SFX_GrabToile.Post(gameObject);
-                    Destroy(Instantiate(VFX_GrabToile, transform), 1f);
+                    Debug.Log($"{gameObject.name} is being held by {PlayerC.name}");
                     transform.SetParent(PlayerC.PaintingTransform);
                     transform.position = PlayerC.PaintingTransform.position;
                     isHeld = true;
