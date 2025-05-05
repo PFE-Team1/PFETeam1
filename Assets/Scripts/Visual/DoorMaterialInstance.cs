@@ -58,7 +58,7 @@ public void InversePath(DoorVFX door)
             float timeScale = _material.GetFloat("_TimeScale");
             if (_oldTimeScale > timeScale)
             {
-                _material.SetFloat("_TimeScale", -1);
+                _material.SetFloat("_TimeScale", 0);
             }
             else
             {

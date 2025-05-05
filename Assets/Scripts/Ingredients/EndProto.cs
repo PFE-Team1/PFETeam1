@@ -6,7 +6,7 @@ using UnityEngine;
 public class EndProto : Interactable
 {
 
-    private string _sceneToLoad;
+    [SerializeField]private GameObject _level;
     // Update is called once per frame
     void Update()
     {
@@ -16,6 +16,7 @@ public class EndProto : Interactable
             {
                 PlayerC.IsInteracting = false;
                 //Application.Quit();
+                CameraManager.Instance.SeeCurrentLevel(_level);
                 ScenesManager.instance.loadNextScene();
                 //SceneManager.LoadScene(_sceneToLoad);
             }
