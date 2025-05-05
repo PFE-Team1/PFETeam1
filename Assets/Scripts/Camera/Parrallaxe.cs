@@ -80,7 +80,7 @@ public class Parrallaxe : MonoBehaviour
         float currentFallOff = 0;
         foreach(Layer currentLayer in _layers)
         {
-            currentLayer.layer.transform.position = new Vector2(_startPos.x + distX * currentLayer.strengthX * (1-currentFallOff), _startPos.y + distY * currentLayer.strengthY * (1-currentFallOff));
+            currentLayer.layer.transform.position = new Vector2(_startPos.x + distX * currentLayer.strengthX , _startPos.y + distY * currentLayer.strengthY);
         }
 
     }
