@@ -92,7 +92,10 @@ public class PaintInOutController : MonoBehaviour
         CameraManager.Instance.FocusCamera();
         paint.SetActive(false);
         _image.enabled = true;
-        CameraManager.Instance.ReEvaluate();
+        if(paint!= _firstPaint)
+        {
+            CameraManager.Instance.ReEvaluate();
+        }
         yield return null;
     }
     private List<GameObject> AllChilds(GameObject root)
