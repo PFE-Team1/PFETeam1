@@ -54,12 +54,12 @@ public class PaintInOutController : MonoBehaviour
         float timer = 0;
         while (timer < _duration)
         {
-            _line.material.SetFloat("_Float_GP",(timer / _duration) * 3f);
+            _line.material.SetFloat("_CursorAppearance",(timer / _duration) * 3f);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
         paint.layer = 0;
-        foreach (GameObject child in AllChilds(paint))
+         foreach (GameObject child in AllChilds(paint))
         {
             child.layer = 0;
         }
@@ -72,14 +72,14 @@ public class PaintInOutController : MonoBehaviour
         float timer = 0;
         while (timer < _duration)
         {
-            _line.material.SetFloat("_Float_GP",1-(timer / _duration)* 3f);
+            _line.material.SetFloat("_CursorAppearance", 1-(timer / _duration)* 3f);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }
-        paint.layer = 0;
+        paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
-            child.layer = 0;
+            child.layer = 6;
         }
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;

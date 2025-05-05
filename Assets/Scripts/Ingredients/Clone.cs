@@ -8,6 +8,7 @@ public class Clone : MonoBehaviour
 {
     [SerializeField] private GameObject _clone;
     [SerializeField] private int _charID;
+    [SerializeField] private PlayerVFX _playerVFX;
     private PlayerStateMachine _playerStateMachine;
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
@@ -34,6 +35,7 @@ public class Clone : MonoBehaviour
         CloneManager.instance.Characters.Add(this);
         CloneManager.instance.Switch(_charID - 1);
         gameObject.layer = transform.parent.gameObject.layer;
+
     }
 
     void Update()
@@ -43,13 +45,14 @@ public class Clone : MonoBehaviour
         if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer == _charID)
         {
             CloneManager.instance.Switch(_charID);
+            EventManager.instance.OnJump.Invoke();
             _inputs.InputSwitching = false;
         }
         if (!_inputs.InputInteract)
         {
             _isInteracting = false;
         }
-        if (_inputs.InputInteract && !_isInteracting)
+        if (_inputs.InputInteract && !_isInteracting&&CloneManager.instance.CurrentPlayer == _charID)
         {
             _isInteracting = true;
             _inputs.InputInteract = false;
@@ -63,21 +66,19 @@ public class Clone : MonoBehaviour
 
     public void Cloned(GameObject spawnPoint)// mettre dans des �tats pour la state machine
     {
+        _playerStateMachine.ChangeState(_playerStateMachine.CloneState);
         GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
         AudioManager.Instance.SFX_CreateClone.Post(gameObject);
     }
     public void Switchup(bool isEnable)
     {
-        _playerStateMachine.ChangeState(_playerStateMachine.CloneState);
         if (isEnable)
         {
             CVC.Follow = gameObject.transform;
             //CVC.transform.position = transform.position;
         }
-        else
-        {
-            ChangeParent();
-        }
+        _playerVFX.CanPlayVFX(isEnable);
+
     }
     public void ChangeParent()
     {
