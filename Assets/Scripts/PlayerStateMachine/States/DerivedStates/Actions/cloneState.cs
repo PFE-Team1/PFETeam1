@@ -12,17 +12,18 @@ public class cloneState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.fallMaxSpeedX * _playerMovementParameters.fallAccelerationTime;
-        MonoBehaviour.print("Entering Clone");
-        MonoBehaviour.print(previousState);
+        StateMachine.Animator.SetBool("Clone", true);
     }
 
     protected override void OnStateExit(PlayerState nextState)
     {
-        MonoBehaviour.print("Exiting Clone");
+        StateMachine.Animator.SetBool("Carrying", false);
+        StateMachine.Animator.SetBool("Clone", false);
     }
 
     protected override void OnStateUpdate()
     {
+        StateMachine.Animator.SetBool("Carrying", StateMachine.IsCarrying);
         if (StateMachine.CollisionInfo.isCollidingBelow)
         {
             StateMachine.Velocity = new Vector2(0, -0.1f);

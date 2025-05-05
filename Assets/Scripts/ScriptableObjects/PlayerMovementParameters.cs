@@ -63,5 +63,12 @@ public class PlayerMovementParameters : ScriptableObject
     [Tooltip("Temps que prend le joueur a Décélérer")] public float decelerationTime = 5;
     #endregion
 
+    #region Painting
+    [Range(0, 2)]
+    [Tooltip("Time to jump")] public float timeToGrab = 0.25f;
+    [Range(0, 2)]
+    [Tooltip("Time to jump")] public float timeToDrop = 0.25f;
+
+    #endregion
 
 }
