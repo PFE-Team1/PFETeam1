@@ -24,8 +24,29 @@ MonoBehaviour:
     multiplyMaterials: []
     screenMaterials: []
   skeletonDataModifiers: []
-  fromAnimation: []
-  toAnimation: []
-  duration: []
+  fromAnimation:
+  - Jump/CH_Jump_01_M
+  - Jump/CH_JumpApex_01_M
+  - Jump/CH_JumpLanding_01_M
+  - Jump/CH_JumpLanding_01_M
+  - Run/CH_SadRun_01_M
+  - Run/CH_StopafterRun_01_M
+  - CH_CloneCarry_01_M
+  toAnimation:
+  - Jump/CH_JumpApex_01_M
+  - Jump/CH_JumpFall_01_M
+  - Idle/CH_Idle_01_M
+  - Run/CH_SadRun_01_M
+  - Run/CH_StopafterRun_01_M
+  - Run/CH_SadRun_01_M
+  - Idle/CH_Idle_01_M
+  duration:
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
   defaultMix: 0.2
   controller: {fileID: 9100000, guid: 59343b20d93d86b4ba68ec3aa53ffce9, type: 2}

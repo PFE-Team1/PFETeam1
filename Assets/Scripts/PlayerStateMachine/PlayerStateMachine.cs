@@ -37,6 +37,8 @@ public class PlayerStateMachine : MonoBehaviour
     public Animator Animator;
     [HideInInspector]
     public MeshRenderer MeshRenderer;
+    [HideInInspector]
+    public bool IsCarrying = false;
     #endregion
     #endregion
     #region PrivateVariables
@@ -114,7 +116,9 @@ public class PlayerStateMachine : MonoBehaviour
         debugText += "Droite: " + CollisionInfo.isCollidingRight + "\n";
         debugText += "Haut: " + CollisionInfo.isCollidingAbove + "\n";
         debugText += "Bas: " + CollisionInfo.isCollidingBelow + "\n";
-        GUI.Label(new Rect(20, 20, 200, 140), debugText, style);
+        debugText += "\n";
+        debugText += "IsCarrying: " + IsCarrying + "\n";
+        GUI.Label(new Rect(20, 20, 200, 300), debugText, style);
     }
     #endregion
 
@@ -227,6 +231,24 @@ public class PlayerStateMachine : MonoBehaviour
             Vector3 scale = MeshRenderer.transform.localScale;
             scale.x = Mathf.Sign(Velocity.x) * Mathf.Abs(scale.x);
             MeshRenderer.transform.localScale = scale;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (CurrentState != CloneState) return;
+        if (other.CompareTag("Player") && other.gameObject != gameObject)
+        {
+            IsCarrying = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (CurrentState != CloneState) return;
+        if (other.CompareTag("Player") && other.gameObject != gameObject)
+        {
+            IsCarrying = false;
         }
     }
 
