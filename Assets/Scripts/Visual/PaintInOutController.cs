@@ -18,6 +18,7 @@ public class PaintInOutController : MonoBehaviour
     RawImage _image;
 
     public float DurationOut { get => _durationOut; }
+    public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
 
     private void Awake()
     {
