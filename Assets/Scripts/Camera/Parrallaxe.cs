@@ -77,10 +77,9 @@ public class Parrallaxe : MonoBehaviour
             if (distX > _bounds.size.x / 2) distX = _bounds.size.x / 2;
             if (distX <1- _bounds.size.x / 2) distX = 1-_bounds.size.x / 2;
         }
-        float currentFallOff = 0;
         foreach(Layer currentLayer in _layers)
         {
-            currentLayer.layer.transform.position = new Vector2(_startPos.x + distX * currentLayer.strengthX * (1-currentFallOff), _startPos.y + distY * currentLayer.strengthY * (1-currentFallOff));
+            currentLayer.layer.transform.position = new Vector2(_startPos.x + distX * currentLayer.strengthX , _startPos.y + distY * currentLayer.strengthY);
         }
 
     }

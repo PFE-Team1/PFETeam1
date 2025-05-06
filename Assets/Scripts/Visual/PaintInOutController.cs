@@ -7,6 +7,7 @@ public class PaintInOutController : MonoBehaviour
 {
     private LineRenderer _line;
     [SerializeField]float _duration=0.2f;
+    [SerializeField]float _durationOut=0.2f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField] GameObject _raw;
     [SerializeField] GameObject _mask;
@@ -40,6 +41,7 @@ public class PaintInOutController : MonoBehaviour
     public void PaintOut(GameObject paint)// objet , position taille
     {
         RectTransform paintRect = paint.GetComponent<RectTransform>();
+
         _rectTransform.anchorMin = paintRect.anchorMin;
         _rectTransform.anchorMax = paintRect.anchorMax;
         //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
@@ -69,20 +71,23 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderOut(GameObject paint)
     {
-        float timer = 0;
-        while (timer < _duration)
-        {
-            _line.material.SetFloat("_CursorAppearance", 1-(timer / _duration)* 3f);
-            timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
-            yield return null;
-        }
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
             child.layer = 6;
         }
+        float timer = 0;
+      
+        while (timer < _durationOut)
+        {
+            _line.material.SetFloat("_CursorAppearance", 1-(timer / _durationOut)*3);
+            timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
+            yield return null;
+        }
         CameraManager.Instance.FocusCamera();
-        _image.enabled = false;
+        paint.SetActive(false);
+        _image.enabled = true;
+        CameraManager.Instance.ReEvaluate();
         yield return null;
     }
     private List<GameObject> AllChilds(GameObject root)

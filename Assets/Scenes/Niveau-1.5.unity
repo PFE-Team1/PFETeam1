@@ -1614,7 +1614,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000011881642, y: 0, z: -10}
+  m_LocalPosition: {x: 0.000011862478, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3480,10 +3480,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
-  _toRemove: {fileID: 1432562884}
-  _isRespawnable: 1
-  _respawnTime: 1500
-  _respawnStartTime: 1
+  _objectsToRemove:
+  - ObjectToRemove: {fileID: 1432562884}
+    IsRespawnable: 1
+    RespawnTime: 6
+    RespawnStartTime: 1
 --- !u!135 &615874150
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8126,10 +8127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
-  _toRemove: {fileID: 1781091244}
-  _isRespawnable: 0
-  _respawnTime: 1500
-  _respawnStartTime: 1
+  _objectsToRemove:
+  - ObjectToRemove: {fileID: 1781091244}
+    IsRespawnable: 0
+    RespawnTime: 0
+    RespawnStartTime: 0
 --- !u!135 &1247060789
 SphereCollider:
   m_ObjectHideFlags: 0
