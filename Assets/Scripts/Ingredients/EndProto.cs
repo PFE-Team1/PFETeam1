@@ -21,7 +21,14 @@ public class EndProto : Interactable
             {
                 PlayerC.IsInteracting = false;
                 PlayerC.gameObject.SetActive(false);
-                StartCoroutine(EndOfLevel());
+                if (!_endEffect || !_level)
+                {
+                    ScenesManager.instance.loadNextScene();
+                }
+                else
+                {
+                    StartCoroutine(EndOfLevel());
+                }
                 //SceneManager.LoadScene(_sceneToLoad);
             }
         }
@@ -30,6 +37,7 @@ public class EndProto : Interactable
     {
         CameraManager.Instance.SeeCurrentLevel(_level);
         _endEffect.PaintOut(_level);
+        yield return new WaitForSeconds(_endEffect.DurationOut/2);
         CameraManager.Instance.MainCamera.Follow=transform;
         float timer = 0;
         Vector3 currentPos = transform.position;
@@ -37,11 +45,13 @@ public class EndProto : Interactable
          {
             float val = _curve.Evaluate(timer / _displacementDuration);
             transform.position = Vector3.Lerp(currentPos, _endPos, val);
+            timer += Time.deltaTime;
             yield return null;
         }
-        yield return null;
-        
+        yield return new WaitForSeconds(3);
         ScenesManager.instance.loadNextScene();
+        yield return null;
+
     }
 }
 

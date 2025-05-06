@@ -14,7 +14,10 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField] GameObject _mask;
     [SerializeField] GameObject _erase;
     RectTransform _rectTransform;
+    Coroutine _endCoroutine;
     RawImage _image;
+
+    public float DurationOut { get => _durationOut; }
 
     private void Awake()
     {
@@ -52,7 +55,7 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
         _image.enabled = true;
-        StartCoroutine(ShaderOut(paint));
+        _endCoroutine=StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
@@ -85,15 +88,16 @@ public class PaintInOutController : MonoBehaviour
       
         while (timer < _durationOut)
         {
-            _eraseRend.material.SetFloat("_CursorErase", 2*(timer / _durationOut));
+            _eraseRend.material.SetFloat("_CursorErase", 2f*(timer / _durationOut));
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }     
-        CameraManager.Instance.FocusCamera();
+        
         paint.SetActive(false);
-        _image.enabled = true;
+        _image.enabled = false;
         if(paint!= _firstPaint)
         {
+            CameraManager.Instance.FocusCamera();
             CameraManager.Instance.ReEvaluate();
         }
         yield return null;
