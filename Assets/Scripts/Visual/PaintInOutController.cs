@@ -10,11 +10,11 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField]float _duration=0.2f;
     [SerializeField]float _durationOut=0.2f;
     [SerializeField]GameObject _firstPaint;
+    [SerializeField]GameObject _endPaint;
     [SerializeField] GameObject _raw;
     [SerializeField] GameObject _mask;
     [SerializeField] GameObject _erase;
     RectTransform _rectTransform;
-    Coroutine _endCoroutine;
     RawImage _image;
 
     public float DurationOut { get => _durationOut; }
@@ -95,7 +95,7 @@ public class PaintInOutController : MonoBehaviour
         
         paint.SetActive(false);
         _image.enabled = false;
-        if(paint!= _firstPaint)
+        if(paint!= _endPaint)
         {
             CameraManager.Instance.FocusCamera();
             CameraManager.Instance.ReEvaluate();
