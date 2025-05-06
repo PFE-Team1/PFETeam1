@@ -49,7 +49,8 @@ public class FallingPlayerState : PlayerState
         float th = _playerMovementParameters.fallDuration / 2;
         float g = -(2 * h) / Mathf.Pow(th, 2);
 
-        StateMachine.Velocity.y += g * Time.deltaTime;
+        float t = Time.deltaTime * _playerMovementParameters.fallAcceleration.Evaluate(_timeSinceEnteredState / _playerMovementParameters.fallAccelerationTime);
+        StateMachine.Velocity.y += g * t;
         StateMachine.Velocity.y = Mathf.Clamp(StateMachine.Velocity.y, -_playerMovementParameters.maxFallSpeed, _playerMovementParameters.maxFallSpeed);
         #endregion
 
