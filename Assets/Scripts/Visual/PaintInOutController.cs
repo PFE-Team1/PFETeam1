@@ -25,6 +25,7 @@ public class PaintInOutController : MonoBehaviour
     }
 
     public float DurationOut { get => _durationOut; }
+    public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
 
     private void Awake()
     {
