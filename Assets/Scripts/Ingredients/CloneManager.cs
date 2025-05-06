@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,6 @@ public class CloneManager : MonoBehaviour
 
     public void Switch(int charID)
     {
-        print("f");
         AudioManager.Instance.SFX_SwitchClone.Post(gameObject);
         bool mustSkip = true;
         if (_characters.Count <= 1)
@@ -49,12 +49,14 @@ public class CloneManager : MonoBehaviour
             if (c.CharID != charID)
             {
                 playerStateMachine.ChangeState(playerStateMachine.CloneState);
-                c.gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
+                c.gameObject.GetComponent<BoxCollider>().enabled = true;
+                c.gameObject.GetComponentInChildren<UICurrentPlayer>().CanvasGroup.DOFade(0, 0.5f);
                 c.Switchup(false);
             }
             else
             {
                 playerStateMachine.ChangeState(playerStateMachine.IdleState);
+                c.gameObject.GetComponent<UICurrentPlayer>().CanvasGroup.DOFade(1, 0.5f);
                 c.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
             }
         }

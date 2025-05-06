@@ -4443,6 +4443,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4334695110633243112, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1036487335}
+    - targetCorrespondingSourceObject: {fileID: 3076665902186806051, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 870646280}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
 --- !u!61 &750122749 stripped
@@ -5066,6 +5069,73 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &870646279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870646280}
+  - component: {fileID: 870646282}
+  - component: {fileID: 870646281}
+  m_Layer: 0
+  m_Name: ToolTipZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &870646280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870646279}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1781091247}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &870646281
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870646279}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0304279, y: 2.0141764, z: 2.477932}
+  m_Center: {x: -5.1665792, y: -1.1587048, z: 0.3137989}
+--- !u!114 &870646282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870646279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeyName: Interact
 --- !u!1 &893983193
 GameObject:
   m_ObjectHideFlags: 0
@@ -6579,6 +6649,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -259477686917299179, guid: 42c39271e7f2dbf459e01982db3de1d7, type: 3}
+      propertyPath: UIKeyIconsSet
+      value: 
+      objectReference: {fileID: 11400000, guid: 866dcabef1645654a81c42ff82e92674, type: 2}
     - target: {fileID: 3991199244969679032, guid: 42c39271e7f2dbf459e01982db3de1d7, type: 3}
       propertyPath: m_Name
       value: InputManager
@@ -11201,6 +11275,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7434706864289421331, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
   m_PrefabInstance: {fileID: 750122748}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1781091247 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3076665902186806051, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+  m_PrefabInstance: {fileID: 750122748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1790040766
 GameObject:
   m_ObjectHideFlags: 0
@@ -13050,6 +13129,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 750122750}
     m_Modifications:
+    - target: {fileID: 2163827323281995635, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: m_Radius
+      value: 1.6584102
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163827323281995635, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: m_Center.x
+      value: 0.05003279
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163827323281995635, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: m_Center.y
+      value: 2.1009254
+      objectReference: {fileID: 0}
     - target: {fileID: 3419799639441997746, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
       propertyPath: m_Name
       value: PaintBucket
@@ -13072,7 +13163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7205519028400530232, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.936
+      value: -9.08
       objectReference: {fileID: 0}
     - target: {fileID: 7205519028400530232, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
       propertyPath: m_LocalPosition.z
