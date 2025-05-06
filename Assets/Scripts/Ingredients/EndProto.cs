@@ -9,12 +9,13 @@ public class EndProto : Interactable
     [SerializeField]private GameObject _level;
     [SerializeField]private AnimationCurve _curve;
     [SerializeField] private float _displacementDuration;
-    [SerializeField] private Vector3 _endPos;
+    [SerializeField] private GameObject _endPos;
     [SerializeField] PaintInOutController _endEffect;
 
     private void Start()
     {
         _endEffect = FindFirstObjectByType<PaintInOutController>();
+        _endEffect.EndPaint = _level;
     }
     // Update is called once per frame
     void Update()
@@ -49,7 +50,7 @@ public class EndProto : Interactable
         while(timer< _displacementDuration)
          {
             float val = _curve.Evaluate(timer / _displacementDuration);
-            transform.position = Vector3.Lerp(currentPos, _endPos, val);
+            transform.position = Vector3.Lerp(currentPos, _endPos.transform.position, val);
             timer += Time.deltaTime;
             yield return null;
         }
