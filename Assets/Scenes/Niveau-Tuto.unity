@@ -1182,6 +1182,10 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7812950484407905328, guid: 62a93943d2afbdc49b2f077fea4c5862, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7832346278343909667, guid: 62a93943d2afbdc49b2f077fea4c5862, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1237,6 +1241,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1055628355647953710, guid: 62a93943d2afbdc49b2f077fea4c5862, type: 3}
+    - {fileID: 1236476655551360437, guid: 62a93943d2afbdc49b2f077fea4c5862, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6967893344726275715, guid: 62a93943d2afbdc49b2f077fea4c5862, type: 3}
       insertIndex: -1
@@ -2271,8 +2276,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1506376887476209739}
     - target: {fileID: 7590844515293728066, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590844515293728066, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.156248
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827062797230331775, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489945803341282065, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: orthographic size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8489945803341282065, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -6736,6 +6753,10 @@ PrefabInstance:
       propertyPath: _firstPaint
       value: 
       objectReference: {fileID: 2004473839}
+    - target: {fileID: 3407054168643084081, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4381026627050346512, guid: 63628218e6ccae0469dec39db8055055, type: 3}
       propertyPath: orthographic size
       value: 9.8
@@ -10155,6 +10176,7 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 402166312}
   - {fileID: 1069512340}
   - {fileID: 1663196106}
   - {fileID: 845125177}
@@ -10165,5 +10187,4 @@ SceneRoots:
   - {fileID: 5768031130949384740}
   - {fileID: 591532618}
   - {fileID: 3416118179163390440}
-  - {fileID: 402166312}
   - {fileID: 1772312108}

@@ -64,7 +64,7 @@ public class CloneManager : MonoBehaviour
     {
         Debug.Log($"Skip {charID}");
         bool mustSkip = true;
-        if (_characters[charID].transform.parent.gameObject.activeInHierarchy)
+        if (_characters[charID].isActiveAndEnabled)
         {
             mustSkip = false;
         }
