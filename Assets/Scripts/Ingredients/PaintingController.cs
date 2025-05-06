@@ -78,7 +78,6 @@ public class PaintingController : Interactable
                         Destroy(Instantiate(VFX_GrabToile, transform), 1f);
                     }
                     AudioManager.Instance.SFX_GrabToile.Post(gameObject);
-                    Debug.Log($"{gameObject.name} is being held by {PlayerC.name}");
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
                     transform.SetParent(PlayerC.PaintingTransform);
                     transform.position = PlayerC.PaintingTransform.position;
