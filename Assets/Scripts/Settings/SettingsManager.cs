@@ -24,6 +24,10 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _controlsPrefab;
     [SerializeField] private Transform _controlsParent;
 
+    [Header ("Camera Transition")]
+    [SerializeField] private GameObject _objectToZoom;
+    [SerializeField] private float _zoomSpeed = 5f;
+
     [SerializeField] private AK.Wwise.RTPC _masterVolumeRTPC;
     [SerializeField] private AK.Wwise.RTPC _ambianceVolumeRTPC;
     [SerializeField] private AK.Wwise.RTPC _musicVolumeRTPC;
@@ -82,10 +86,32 @@ public class SettingsManager : MonoBehaviour
     {
         if (Input.anyKeyDown && !isMainMenuActive)
         {
-            _landingMenu.SetActive(false);
-            _mainMenu.SetActive(true);
+            StartCoroutine(UIZoom(() =>
+            {
+                _objectToZoom.SetActive(false);
+                _landingMenu.SetActive(false);
+                _mainMenu.SetActive(true);
+                isMainMenuActive = true;
+            }));
             isMainMenuActive = true;
         }
+    }
+
+    IEnumerator UIZoom(System.Action onComplete)
+    {
+        _objectToZoom.GetComponent<Image>().enabled = true;
+        float timer = 0f;
+        Vector2 startSize = _objectToZoom.GetComponent<RectTransform>().sizeDelta;
+        Vector2 targetSize = new Vector2(Screen.width, Screen.height);
+        while (timer < _zoomSpeed)
+        {
+            timer += Time.deltaTime;
+            RectTransform rectTransform = _objectToZoom.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = Vector2.Lerp(startSize, targetSize, timer / _zoomSpeed);
+            rectTransform.position = Vector2.Lerp(rectTransform.position, new Vector2(Screen.width / 2, Screen.height / 2), timer / _zoomSpeed);
+            yield return null;
+        }
+        onComplete?.Invoke();
     }
 
     public void SetControls()
