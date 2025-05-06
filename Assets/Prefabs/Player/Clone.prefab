@@ -110,7 +110,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 3.3
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -131,6 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 0
   BasePlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
+  BaseAnimator: {fileID: 0}
+  AnimatorWithPaint: {fileID: 0}
   Velocity: {x: 0, y: 0}
   IsMovementLocked: 0
   PlayerMovementParameters: {fileID: 11400000, guid: 7b740a878a2e5954aba012287452fd2f, type: 2}
@@ -138,6 +140,7 @@ MonoBehaviour:
   JumpBuffer: 0
   Animator: {fileID: 0}
   MeshRenderer: {fileID: 0}
+  IsCarrying: 0
   walkingTime: 0.25
 --- !u!114 &-7299320894898844267
 MonoBehaviour:
@@ -153,6 +156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clone: {fileID: 434292973231471639}
   _charID: 0
+  _playerVFX: {fileID: 0}
+  _playerVisual: {fileID: 0}
   _paintingTransform: {fileID: 8416431028996980769}
   _isInSocleRange: 0
 --- !u!136 &2640272305601102692
@@ -190,7 +195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a928a9824654a7549b7caa240b999eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpVFX: {fileID: 3217999206906799064, guid: a6a2e274b4a37564fab014209c92edf6, type: 3}
+  _playerRenderer: {fileID: 0}
+  _jumpVFX: {fileID: 0}
+  _relativePositionJumpVFX: {x: 0, y: 0, z: 0}
 --- !u!1 &6219913397573877819
 GameObject:
   m_ObjectHideFlags: 0
