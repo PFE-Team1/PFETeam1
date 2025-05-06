@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,12 @@ public class PaintInOutController : MonoBehaviour
     RectTransform _rectTransform;
     RawImage _image;
 
+    [Button("Paint In")]
+    public void PaintInButton()
+    {
+        PaintIn(_firstPaint);
+    }
+
     public float DurationOut { get => _durationOut; }
 
     private void Awake()
@@ -33,7 +40,9 @@ public class PaintInOutController : MonoBehaviour
         PaintIn(_firstPaint);
     }
     public  void PaintIn(GameObject paint)// objet , position taille
-    {        RectTransform paintRect = paint.GetComponent<RectTransform>();
+    {        
+        RectTransform paintRect = paint.GetComponent<RectTransform>();
+        Debug.Log($"{paint.name} {paintRect.sizeDelta} {paintRect.localScale} {paintRect.position}");
 
         _rectTransform.anchorMin =paintRect.anchorMin;
         _rectTransform.anchorMax =paintRect.anchorMax;
