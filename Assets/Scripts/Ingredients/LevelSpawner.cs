@@ -200,8 +200,6 @@ public class LevelSpawner : Interactable
         if (minOverlap == topOverlap)
             offsetLocal.y += topOverlap; // Collision en haut
 
-        Debug.Log($"Collision detected! Offset: {offsetLocal} Left: {leftOverlap}, Right: {rightOverlap}, Bottom: {bottomOverlap}, Top: {topOverlap}, minOverlap: {minOverlap}");
-
         return offsetLocal;
     }
 
