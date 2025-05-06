@@ -35,6 +35,7 @@ public class ScenesManager : MonoBehaviour
         InputsManager.instance.InputRestarting = false;
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         StartCoroutine(Deload());
+        SettingsManager.Instance.IsMainMenuActive = false;
     }
     IEnumerator Deload()
     {
