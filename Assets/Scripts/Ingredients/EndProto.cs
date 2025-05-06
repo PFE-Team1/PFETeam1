@@ -11,7 +11,11 @@ public class EndProto : Interactable
     [SerializeField] private float _displacementDuration;
     [SerializeField] private Vector3 _endPos;
     [SerializeField] PaintInOutController _endEffect;
-  
+
+    private void Start()
+    {
+        _endEffect = FindFirstObjectByType<PaintInOutController>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -19,6 +23,7 @@ public class EndProto : Interactable
         {
             if (PlayerC.IsInteracting)
             {
+                transform.parent = null;
                 PlayerC.IsInteracting = false;
                 PlayerC.gameObject.SetActive(false);
                 if (!_endEffect || !_level)
