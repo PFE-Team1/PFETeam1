@@ -9176,7 +9176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7120544647815211536}
   - component: {fileID: 5962118742322123470}
-  - component: {fileID: 2797136555038340415}
+  - component: {fileID: 7598441498717404152}
   m_Layer: 0
   m_Name: Plateform_06
   m_TagString: Untagged
@@ -9344,27 +9344,20 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!65 &2797136555038340415
-BoxCollider:
+--- !u!114 &7598441498717404152
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8233881141437635514}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.221233, y: 0.28160584, z: 0.23494637}
-  m_Center: {x: -1.4931433, y: 0.023329735, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 0.2
+  depth: 1
 --- !u!1 &8243204084016687416
 GameObject:
   m_ObjectHideFlags: 0
