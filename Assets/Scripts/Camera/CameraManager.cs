@@ -50,7 +50,6 @@ public class CameraManager : MonoBehaviour
         _playerTransform = _mainCamera.transform;
         initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
         CalculateCameraBounds();
-        DefineCameraBounds();
     }
 
     void Update()
@@ -309,12 +308,6 @@ public class CameraManager : MonoBehaviour
         onComplete?.Invoke();
     }
 
-
-    public void DefineCameraBounds()
-    {
-        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
-    }
-
     public void AddNewLevel(GameObject newLevel)
     {
         _levels.Add(newLevel);
@@ -340,6 +333,5 @@ public class CameraManager : MonoBehaviour
     {
         CalculateWorldBounds();
         CalculateCameraBounds();
-        DefineCameraBounds();
     }
 }
