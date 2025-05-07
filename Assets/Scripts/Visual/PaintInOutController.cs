@@ -76,6 +76,7 @@ public class PaintInOutController : MonoBehaviour
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
+        
         paint.layer = 0;
          foreach (GameObject child in AllChilds(paint))
         {
