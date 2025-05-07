@@ -17,6 +17,7 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField] GameObject _erase;
     RectTransform _rectTransform;
     RawImage _image;
+    Coroutine _coroutine;
 
     [Button("Paint In")]
     public void PaintInButton()
@@ -41,7 +42,14 @@ public class PaintInOutController : MonoBehaviour
         PaintIn(_firstPaint);
     }
     public  void PaintIn(GameObject paint)// objet , position taille
-    {        
+    {
+        if (_coroutine!=null)
+        {
+            _eraseRend.material.SetFloat("_CursorErase", 2);
+            _line.material.SetFloat("_CursorAppearance", 0);
+            StopCoroutine(_coroutine);
+            CameraManager.Instance.FocusCamera();
+        }
         RectTransform paintRect = paint.GetComponent<RectTransform>();
         Debug.Log($"{paint.name} {paintRect.sizeDelta} {paintRect.localScale} {paintRect.position}");
 
@@ -52,10 +60,18 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
         _image.enabled = true;
-        StartCoroutine(ShaderIn(paint));
+        _coroutine=StartCoroutine(ShaderIn(paint));
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
+        if (_coroutine != null)
+        {
+            _eraseRend.material.SetFloat("_CursorErase", 2);
+            _line.material.SetFloat("_CursorAppearance", 0);
+            StopCoroutine(_coroutine);
+            CameraManager.Instance.FocusCamera();
+            _image.enabled = false;
+        }
         RectTransform paintRect = paint.GetComponent<RectTransform>();
 
         _rectTransform.anchorMin = paintRect.anchorMin;
@@ -65,7 +81,7 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
         _image.enabled = true;
-        StartCoroutine(ShaderOut(paint));
+        _coroutine=StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
