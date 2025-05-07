@@ -4,7 +4,6 @@ using System.Drawing;
 using CollisionHelper;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Color = UnityEngine.Color;
@@ -17,8 +16,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     public bool DebugMode = true;
     public PlayerMovementParameters BasePlayerMovementParameters;
-    public AnimatorController BaseAnimator;
-    public AnimatorController AnimatorWithPaint;
+    public RuntimeAnimatorController BaseAnimator;
+    public RuntimeAnimatorController AnimatorWithPaint;
 
     #endregion
     #region NonInspectorVariables
@@ -133,6 +132,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Start()
     {
+        Debug.developerConsoleVisible = true;
+
         InputsManager = InputsManager.instance;
         MeshRenderer = GetComponentInChildren<MeshRenderer>();
         Animator = GetComponentInChildren<Animator>();

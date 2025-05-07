@@ -247,7 +247,7 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShowAndHideLevel()
     {
         SeeAllLevels();
-        yield return new WaitForSeconds(_cameraDezoomTime);
+        yield return new WaitForSeconds(5f);
         FocusCamera();
     }
 
@@ -338,8 +338,8 @@ public class CameraManager : MonoBehaviour
     }
     public void ReEvaluate()
     {
-        DefineCameraBounds();
         CalculateWorldBounds();
         CalculateCameraBounds();
+        DefineCameraBounds();
     }
 }

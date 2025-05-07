@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,14 +11,21 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField]float _duration=0.2f;
     [SerializeField]float _durationOut=0.2f;
     [SerializeField]GameObject _firstPaint;
+    [SerializeField]GameObject _endPaint;
     [SerializeField] GameObject _raw;
     [SerializeField] GameObject _mask;
     [SerializeField] GameObject _erase;
     RectTransform _rectTransform;
-    Coroutine _endCoroutine;
     RawImage _image;
 
+    [Button("Paint In")]
+    public void PaintInButton()
+    {
+        PaintIn(_firstPaint);
+    }
+
     public float DurationOut { get => _durationOut; }
+    public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
 
     private void Awake()
     {
@@ -33,7 +41,9 @@ public class PaintInOutController : MonoBehaviour
         PaintIn(_firstPaint);
     }
     public  void PaintIn(GameObject paint)// objet , position taille
-    {        RectTransform paintRect = paint.GetComponent<RectTransform>();
+    {        
+        RectTransform paintRect = paint.GetComponent<RectTransform>();
+        Debug.Log($"{paint.name} {paintRect.sizeDelta} {paintRect.localScale} {paintRect.position}");
 
         _rectTransform.anchorMin =paintRect.anchorMin;
         _rectTransform.anchorMax =paintRect.anchorMax;
@@ -55,7 +65,7 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
         _image.enabled = true;
-        _endCoroutine=StartCoroutine(ShaderOut(paint));
+        StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
@@ -66,6 +76,7 @@ public class PaintInOutController : MonoBehaviour
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
+        
         paint.layer = 0;
          foreach (GameObject child in AllChilds(paint))
         {
@@ -95,7 +106,7 @@ public class PaintInOutController : MonoBehaviour
         
         paint.SetActive(false);
         _image.enabled = false;
-        if(paint!= _firstPaint)
+        if(paint!= _endPaint)
         {
             CameraManager.Instance.FocusCamera();
             CameraManager.Instance.ReEvaluate();

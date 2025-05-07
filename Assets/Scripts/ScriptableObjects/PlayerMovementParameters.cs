@@ -15,6 +15,7 @@ public class PlayerMovementParameters : ScriptableObject
     [Tooltip("Time to reach jumpheight")] public float jumpDuration = 5;
     [Range(0, 10f)]
     [Tooltip("Saut Min")] public float minJump = 5;
+    public AnimationCurve jumpAcceleration;
     [Range(0, 20)]
     [Tooltip("% of jumpforce subtracted to run speed")] public float inertieLoss = 5f;
 
@@ -22,6 +23,7 @@ public class PlayerMovementParameters : ScriptableObject
     [Tooltip("Air Acceleration time X")] public float jumpAccelerationTime = 5;
     [Range(0, 6)]
     [Tooltip("Air Acceleration time X")] public float jumpDecelerationTime = 5;
+    public AnimationCurve fallAcceleration;
     [Range(0, 50)]
     [Tooltip("Air max Speed X")] public float jumpMaxSpeedX = 5;
 

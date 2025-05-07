@@ -61,6 +61,7 @@ public class LevelSpawner : Interactable
                 if (!PlayerC.HasInteracted && PlayerC.heldObject != null && PlayerC.IsInteracting)
                 {
                     SpawnNewLevel();
+                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                     PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
                     CameraManager.Instance.ShowNewLevel();
@@ -72,6 +73,7 @@ public class LevelSpawner : Interactable
                 {
                     CameraManager.Instance.CameraShake(1,1);
                     RemoveNewLevel();
+                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
                     PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
                 }
@@ -199,8 +201,6 @@ public class LevelSpawner : Interactable
 
         if (minOverlap == topOverlap)
             offsetLocal.y += topOverlap; // Collision en haut
-
-        Debug.Log($"Collision detected! Offset: {offsetLocal} Left: {leftOverlap}, Right: {rightOverlap}, Bottom: {bottomOverlap}, Top: {topOverlap}, minOverlap: {minOverlap}");
 
         return offsetLocal;
     }
