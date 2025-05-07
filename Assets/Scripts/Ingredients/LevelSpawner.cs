@@ -133,7 +133,10 @@ public class LevelSpawner : Interactable
             SetDirection(newLevelBounds + Vector3.one * appliedOffset, currentLevelBounds + Vector3.one * appliedOffset);
             SetNewPosition();
         }
-
+        foreach (OpenButton openButton in _newlevel.GetComponentsInChildren<OpenButton>(true))
+        {
+            openButton.ReStart();
+        }
         CameraManager.Instance.SetNewLevel(_newlevel);
         FindPlayer(true);
         isAlreadySpawned = true;
@@ -298,6 +301,7 @@ public class LevelSpawner : Interactable
         isAlreadySpawned = false;
         _paint.transform.SetParent(Player.transform);
         _paint.GetComponent<Collider>().enabled = true ;
+
         PlayerC.heldObject = _paint;
         _paint = null;
         CameraManager.Instance?.RemoveLevel(_newlevel);
