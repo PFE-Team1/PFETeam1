@@ -1,3 +1,4 @@
+using KeyIconHelper;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -176,5 +177,10 @@ public class InputsManager : MonoBehaviour
             action.Enable();
         }
     }
+    #endregion
+
+    #region KeyIcons
+    [SerializeField] public UIKeyIconsSet UIKeyIconsSet;
+
     #endregion
 }
