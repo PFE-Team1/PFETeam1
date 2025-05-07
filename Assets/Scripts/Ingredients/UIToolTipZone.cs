@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UIToolTipZone : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
     public string KeyName;
+    public Sprite KeyIcon;
 
     private InputsManager _inputsManager;
     private List<GameObject> _CollidingGameObjects;
@@ -39,7 +41,9 @@ public class UIToolTipZone : MonoBehaviour
         if (toolTipManager != null)
         {
             toolTipManager.InsideZone = true;
-            toolTipManager.KeyIcon.sprite = _inputsManager.UIKeyIconsSet.GetKeyIcon(KeyName).KeyboardIcon;
+            // NEED FIX
+            //toolTipManager.KeyIcon.sprite = _inputsManager.UIKeyIconsSet.GetKeyIcon(KeyName).KeyboardIcon;
+            toolTipManager.KeyIcon.sprite = KeyIcon;
         }
     }
 
