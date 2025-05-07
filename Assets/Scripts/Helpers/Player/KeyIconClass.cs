@@ -9,10 +9,6 @@ namespace KeyIconHelper
         public Sprite KeyboardIcon;
         public Sprite ControllerIcon;
 
-        public KeyIcon()
-        {
-        }
-
         public KeyIcon(string keyName, Sprite keyboardIcon, Sprite controllerIcon)
         {
             this.keyName = keyName;
