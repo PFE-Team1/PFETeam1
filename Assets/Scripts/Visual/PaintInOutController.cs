@@ -8,8 +8,9 @@ public class PaintInOutController : MonoBehaviour
 {
     private LineRenderer _line;
     private SpriteRenderer _eraseRend;
-    [SerializeField]float _durationIn=0.2f;
-    [SerializeField]float _durationOut=0.2f;
+    [SerializeField]float _durationIn=5f;
+    [SerializeField]float _durationOut=3f;
+    [SerializeField]float _cameraMoveDuration=0.5f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField]GameObject _endPaint;
     [SerializeField] GameObject _raw;
@@ -82,14 +83,15 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderIn(GameObject paint)
     {
+        CameraManager.Instance.SeeCurrentLevel(paint,.5f);
         float timer = 0;
+        yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationIn)
         {
             _line.material.SetFloat("_CursorAppearance",(timer / _durationIn) * 3f);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
-        
         paint.layer = 0;
          foreach (GameObject child in AllChilds(paint))
         {
@@ -102,6 +104,7 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderOut(GameObject paint)
     {
+        CameraManager.Instance.SeeCurrentLevel(paint,.5f);
         _eraseRend.material.SetFloat("_CursorErase", 0);
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
@@ -109,7 +112,7 @@ public class PaintInOutController : MonoBehaviour
             child.layer = 6;
         }
         float timer = 0;
-      
+        yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationOut)
         {
             _eraseRend.material.SetFloat("_CursorErase", 2f*(timer / _durationOut));

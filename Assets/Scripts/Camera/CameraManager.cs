@@ -112,8 +112,9 @@ public class CameraManager : MonoBehaviour
         );
     }
 
-    public void SeeCurrentLevel(GameObject level)
+    public void SeeCurrentLevel(GameObject level,float duration=0)
     {
+        print(duration);
         if (_globalCamera != null) return;
         if (_zoomCoroutine != null || _dezoomCoroutine != null) return;
 
@@ -122,14 +123,21 @@ public class CameraManager : MonoBehaviour
         if (level.TryGetComponent(out SpriteRenderer sr))
         {
             _globalCamera.m_Lens.Orthographic = true;
-            _globalCamera.m_Lens.OrthographicSize = sr.bounds.size.y / 2;
+            if (sr.bounds.size.y < sr.bounds.size.x)
+            {
+                _globalCamera.m_Lens.OrthographicSize = sr.bounds.size.y / 2;
+            }
+            else
+            {
+                _globalCamera.m_Lens.OrthographicSize = sr.bounds.size.x / 2;
+            }
             _globalCamera.transform.position = new Vector3(sr.bounds.center.x, sr.bounds.center.y, _mainCamera.transform.position.z);
         }
 
         _dezoomCoroutine = StartCoroutine(DezoomEffect(_globalCamera.transform.position, _globalCamera.m_Lens.OrthographicSize, () =>
         {
             _dezoomCoroutine = null;
-        }));
+        },duration));
     }
 
     public void SeeAllLevels()
@@ -211,10 +219,13 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DezoomEffect(Vector3 targetPosition, float targetOrthoSize, System.Action onComplete)
+    private IEnumerator DezoomEffect(Vector3 targetPosition, float targetOrthoSize, System.Action onComplete,float duration=0)
     {
         float elapsedTime = 0f;
-
+        if(duration == 0)
+        {
+            duration = _cameraDezoomTime;
+        }
         Vector3 startPosition = _mainCamera.transform.position;
         float startOrthoSize = _mainCamera.m_Lens.OrthographicSize;
 
@@ -222,9 +233,9 @@ public class CameraManager : MonoBehaviour
 
         //_cameraDezoomTime = Mathf.Abs(decrease) / _cameraDezoomTime;
 
-        while (elapsedTime < _cameraDezoomTime)
+        while (elapsedTime < duration)
         {
-            float t = DOVirtual.EasedValue(0f, 1f, elapsedTime / _cameraDezoomTime, _cameraDezoomEase);
+            float t = DOVirtual.EasedValue(0f, 1f, elapsedTime / duration, _cameraDezoomEase);
 
             _mainCamera.transform.position = Vector3.Lerp(startPosition, new Vector3(targetPosition.x, targetPosition.y, startPosition.z), t);
             _mainCamera.m_Lens.OrthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, t);
