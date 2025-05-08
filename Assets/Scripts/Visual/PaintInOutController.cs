@@ -8,7 +8,7 @@ public class PaintInOutController : MonoBehaviour
 {
     private LineRenderer _line;
     private SpriteRenderer _eraseRend;
-    [SerializeField]float _duration=0.2f;
+    [SerializeField]float _durationIn=0.2f;
     [SerializeField]float _durationOut=0.2f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField]GameObject _endPaint;
@@ -27,6 +27,7 @@ public class PaintInOutController : MonoBehaviour
 
     public float DurationOut { get => _durationOut; }
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
+    public float DurationIn { get => _durationIn;}
 
     private void Awake()
     {
@@ -36,11 +37,7 @@ public class PaintInOutController : MonoBehaviour
         _line = _mask.GetComponent<LineRenderer>();
         _eraseRend = _erase.GetComponent<SpriteRenderer>();
     }
-    private void Start()
-    {
-        CameraManager.Instance.SeeCurrentLevel(_firstPaint);
-        PaintIn(_firstPaint);
-    }
+
     public  void PaintIn(GameObject paint)// objet , position taille
     {
         if (_coroutine!=null)
@@ -86,9 +83,9 @@ public class PaintInOutController : MonoBehaviour
     IEnumerator ShaderIn(GameObject paint)
     {
         float timer = 0;
-        while (timer < _duration)
+        while (timer < _durationIn)
         {
-            _line.material.SetFloat("_CursorAppearance",(timer / _duration) * 3f);
+            _line.material.SetFloat("_CursorAppearance",(timer / _durationIn) * 3f);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
