@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using DG.Tweening;
 
 public class EndProto : Interactable
 {
@@ -14,6 +15,8 @@ public class EndProto : Interactable
 
     private void Start()
     {
+        // Make it move up and down a litle based on his original position using a tween 
+        transform.DOLocalMoveY(transform.localPosition.y + 0.25f, 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         _endEffect = FindFirstObjectByType<PaintInOutController>();
         if (_endEffect == null) return;
         _endEffect.EndPaint = _level;

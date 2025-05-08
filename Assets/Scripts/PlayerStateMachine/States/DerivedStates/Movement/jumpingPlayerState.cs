@@ -57,7 +57,9 @@ public class JumpingPlayerState : PlayerState
 
         g = (-2 * h) / Mathf.Pow(th, 2);
 
-        StateMachine.Velocity.y += g * Time.deltaTime;
+        float t = Time.deltaTime * _playerMovementParameters.jumpAcceleration.Evaluate(_timeSinceEnteredState / _playerMovementParameters.jumpAccelerationTime);
+
+        StateMachine.Velocity.y += g * t;
         #endregion
 
         #region Xvelocity

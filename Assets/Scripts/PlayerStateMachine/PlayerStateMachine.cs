@@ -132,6 +132,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Start()
     {
+        Debug.developerConsoleVisible = true;
+
         InputsManager = InputsManager.instance;
         MeshRenderer = GetComponentInChildren<MeshRenderer>();
         Animator = GetComponentInChildren<Animator>();

@@ -1,8 +1,10 @@
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(BoneFollower))]
 public class PaintingController : Interactable
 {
     [SerializeField] private GameObject _newLevelPrefab;
@@ -14,10 +16,12 @@ public class PaintingController : Interactable
 
     [SerializeField] private ParticleSystem VFX_GrabToile;
     [SerializeField] private ParticleSystem VFX_PoseToile;
+    private BoneFollower boneFollower;
 
     void Start()
     {
         tableau = GetComponentInParent<BoxCollider2D>().gameObject;
+        boneFollower = GetComponent<BoneFollower>();
     }
 
     void Update()
@@ -57,9 +61,14 @@ public class PaintingController : Interactable
 
                                         if (levelBounds.Intersects(paintingBounds))
                                         {
-
-                                            transform.SetParent(child.transform) ;
+                                            
+                                            // Visuel de peinture
+                                            transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
+                                            transform.localRotation = Quaternion.Euler(0, 0, 0);
+                                            transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                                            // Changing state of State machine
                                             PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
+                                            boneFollower.SkeletonRenderer = null;
                                             PlayerC.heldObject = null;
                                             isHeld = false;
                                             return;
@@ -79,8 +88,13 @@ public class PaintingController : Interactable
                     }
                     AudioManager.Instance.SFX_GrabToile.Post(gameObject);
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
+                    // Visuel de peinture
+                    boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
+                    boneFollower.followZPosition = false;
+                    boneFollower.boneName = "Target_Arm_R";
                     transform.SetParent(PlayerC.PaintingTransform);
                     transform.position = PlayerC.PaintingTransform.position;
+
                     isHeld = true;
                     PlayerC.heldObject = gameObject;
                 }
