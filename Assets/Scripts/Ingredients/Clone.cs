@@ -104,12 +104,40 @@ public class Clone : MonoBehaviour
 
                             if (levelBounds.Intersects(paintingBounds))
                             {
-                                transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
+                                transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform); List<GameObject> changement=AllChilds(gameObject);
+                                foreach(GameObject change in changement)
+                                {
+                                    _playerVisual.GetComponent<Renderer>().sortingLayerID = child.GetComponent<Renderer>().sortingLayerID;
+                                }
                                 return;
                             }
                         }
                     }
                 }
+            }
+        }
+    }
+    private List<GameObject> AllChilds(GameObject root)
+    {
+        List<GameObject> result = new List<GameObject>();
+        if (root.transform.childCount > 0)
+        {
+            foreach (Transform VARIABLE in root.transform)
+            {
+                Searcher(result, VARIABLE.gameObject);
+            }
+        }
+        return result;
+    }
+
+    private void Searcher(List<GameObject> list, GameObject root)
+    {
+        list.Add(root);
+        if (root.transform.childCount > 0)
+        {
+            foreach (Transform VARIABLE in root.transform)
+            {
+                Searcher(list, VARIABLE.gameObject);
             }
         }
     }
