@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 2402205280097616906}
   - component: {fileID: 5246930047359014605}
   - component: {fileID: 6951806372250624286}
+  - component: {fileID: 4472944988096750482}
   m_Layer: 0
   m_Name: Spine Mecanim GameObject (Setup_Character Design)
   m_TagString: Untagged
@@ -319,6 +320,20 @@ MonoBehaviour:
   partsRenderers:
   - {fileID: 9189744339307645033}
   - {fileID: 269884668803641789}
+--- !u!114 &4472944988096750482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2497204675655796273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bbbfb8230a0bf49ba6732cb84474c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BodyPartRenderer: {fileID: 9189744339307645033}
+  ArmPartRenderer: {fileID: 269884668803641789}
 --- !u!1 &5924915213179185848
 GameObject:
   m_ObjectHideFlags: 0

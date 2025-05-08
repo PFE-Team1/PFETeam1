@@ -68,6 +68,7 @@ public class PaintingController : Interactable
                                             transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                                             // Changing state of State machine
                                             PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
+                                            Player.GetComponentInChildren<PaintHandler>().BodyPartRenderer.MeshRenderer.sortingOrder = 251;
                                             boneFollower.SkeletonRenderer = null;
                                             PlayerC.heldObject = null;
                                             isHeld = false;
@@ -94,7 +95,7 @@ public class PaintingController : Interactable
                     boneFollower.boneName = "Target_Arm_R";
                     transform.SetParent(PlayerC.PaintingTransform);
                     transform.position = PlayerC.PaintingTransform.position;
-
+                    Player.GetComponentInChildren<PaintHandler>().BodyPartRenderer.MeshRenderer.sortingOrder = 250;
                     isHeld = true;
                     PlayerC.heldObject = gameObject;
                 }
