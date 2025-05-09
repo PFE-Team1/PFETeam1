@@ -15,8 +15,11 @@ public class SpawnManager : MonoBehaviour
     }
     IEnumerator StartSequence()
     {
-        _paintVisual?.PaintIn(_firstPaint);
-        yield return new WaitForSeconds(_paintVisual.DurationIn);
+        if (_paintVisual)
+        {
+            _paintVisual.PaintIn(_firstPaint);
+            yield return new WaitForSeconds(_paintVisual.DurationIn);
+        } 
         GameObject player = Instantiate(_playerPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(.5f);
         Destroy(gameObject);

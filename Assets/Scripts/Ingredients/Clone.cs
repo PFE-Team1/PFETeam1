@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.Rendering;
+using Spine.Unity;
 
 public class Clone : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class Clone : MonoBehaviour
     [SerializeField] private int _charID;
     [SerializeField] private PlayerVFX _playerVFX;
     [SerializeField] private GameObject _playerVisual;
+    [SerializeField] private List<SkeletonPartsRenderer> _skeletonPartRend;
     private PlayerStateMachine _playerStateMachine;
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
@@ -105,9 +108,18 @@ public class Clone : MonoBehaviour
                             if (levelBounds.Intersects(paintingBounds))
                             {
                                 transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform); List<GameObject> changement=AllChilds(gameObject);
-                                foreach(GameObject change in changement)
+                                int val= child.GetComponent<Renderer>().sortingLayerID;
+                                foreach (GameObject change in changement)
                                 {
-                                    _playerVisual.GetComponent<Renderer>().sortingLayerID = child.GetComponent<Renderer>().sortingLayerID;
+                                    if (change.GetComponent<Renderer>())
+                                    {
+                                        change.GetComponent<Renderer>().sortingLayerID = val;
+                                    }
+                                }
+                                foreach (SkeletonPartsRenderer skel in _skeletonPartRend) 
+                                {
+                                    print(skel.name+"  "+ skel.MeshRenderer.sortingLayerID);
+                                    skel.MeshRenderer.sortingLayerID = val;
                                 }
                                 return;
                             }
