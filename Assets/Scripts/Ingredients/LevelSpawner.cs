@@ -19,8 +19,11 @@ public class LevelSpawner : Interactable
     private GameObject _paint;    
     float appliedOffset;
     private GameObject _newlevel;
-    
 
+    private void FixedUpdate()
+    {
+        print(_paint);
+    }
     private void Start()
     {
         appliedOffset = GetComponentInParent<Level>().Offset;
@@ -99,10 +102,12 @@ public class LevelSpawner : Interactable
     {
         if (_heldObject == null) return;
 
-        var paintingController = _heldObject.GetComponent<PaintingController>();
         _heldObject.GetComponent<Collider>().enabled = false;
         _heldObject.GetComponent<PaintingController>().IsInRange = false;
+
+        var paintingController = _heldObject.GetComponent<PaintingController>();
         var newLevelPrefab = paintingController.newLevelPrefab;
+
 
         if (!CameraManager.Instance.Levels.Exists(level => level.name == newLevelPrefab.name))
         {
@@ -119,7 +124,6 @@ public class LevelSpawner : Interactable
         _heldObject.transform.SetParent(transform);
         _heldObject.transform.localPosition = Vector3.zero;
         _paint = PlayerC.heldObject;
-        PlayerC.heldObject = null;
 
         var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
@@ -139,6 +143,7 @@ public class LevelSpawner : Interactable
         CameraManager.Instance.SetNewLevel(_newlevel);
         FindPlayer(true);
         isAlreadySpawned = true;
+        paintingController.DropPainting();
     }
 
     private void SetNewPosition()
@@ -300,7 +305,8 @@ public class LevelSpawner : Interactable
         isAlreadySpawned = false;
         _paint.transform.SetParent(Player.transform);
         _paint.GetComponent<Collider>().enabled = true ;
-        PlayerC.heldObject = _paint;
+        var paintingController = _paint.GetComponent<PaintingController>();
+        paintingController.GrabPainting();
         _paint = null;
         CameraManager.Instance?.RemoveLevel(_newlevel);
     }
