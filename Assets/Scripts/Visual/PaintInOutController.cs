@@ -88,7 +88,7 @@ public class PaintInOutController : MonoBehaviour
         yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationIn)
         {
-            _line.material.SetFloat("_CursorAppearance",(timer / _durationIn) * 3f);
+            _line.material.SetFloat("_CursorAppearance",(timer / _durationIn)*2);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
@@ -115,7 +115,7 @@ public class PaintInOutController : MonoBehaviour
         yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationOut)
         {
-            _eraseRend.material.SetFloat("_CursorErase", 2f*(timer / _durationOut));
+            _eraseRend.material.SetFloat("_CursorErase", (timer / _durationOut)*2);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }     
