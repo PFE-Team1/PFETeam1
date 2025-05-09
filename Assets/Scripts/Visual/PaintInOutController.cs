@@ -6,13 +6,18 @@ using UnityEngine.UI;
 public class PaintInOutController : MonoBehaviour
 {
     private LineRenderer _line;
+    private SpriteRenderer _eraseRend;
     [SerializeField]float _duration=0.2f;
     [SerializeField]float _durationOut=0.2f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField] GameObject _raw;
     [SerializeField] GameObject _mask;
+    [SerializeField] GameObject _erase;
     RectTransform _rectTransform;
+    Coroutine _endCoroutine;
     RawImage _image;
+
+    public float DurationOut { get => _durationOut; }
 
     private void Awake()
     {
@@ -20,6 +25,7 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform = _raw.GetComponent<RectTransform>();
         _image = _raw.GetComponent<RawImage>();
         _line = _mask.GetComponent<LineRenderer>();
+        _eraseRend = _erase.GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
@@ -49,7 +55,7 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
         _image.enabled = true;
-        StartCoroutine(ShaderOut(paint));
+        _endCoroutine=StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
@@ -67,10 +73,12 @@ public class PaintInOutController : MonoBehaviour
         }
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;
-        yield return null;
+        _line.material.SetFloat("_CursorAppearance", 0);
+       yield return null;
     }
     IEnumerator ShaderOut(GameObject paint)
     {
+        _eraseRend.material.SetFloat("_CursorErase", 0);
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
@@ -80,14 +88,18 @@ public class PaintInOutController : MonoBehaviour
       
         while (timer < _durationOut)
         {
-            _line.material.SetFloat("_CursorAppearance", 1-(timer / _durationOut)*3);
+            _eraseRend.material.SetFloat("_CursorErase", 2f*(timer / _durationOut));
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
-        }
-        CameraManager.Instance.FocusCamera();
+        }     
+        
         paint.SetActive(false);
-        _image.enabled = true;
-        CameraManager.Instance.ReEvaluate();
+        _image.enabled = false;
+        if(paint!= _firstPaint)
+        {
+            CameraManager.Instance.FocusCamera();
+            CameraManager.Instance.ReEvaluate();
+        }
         yield return null;
     }
     private List<GameObject> AllChilds(GameObject root)

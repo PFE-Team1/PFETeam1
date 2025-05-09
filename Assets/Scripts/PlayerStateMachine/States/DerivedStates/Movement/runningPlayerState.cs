@@ -10,7 +10,7 @@ public class RunningPlayerState : PlayerState
     }
 
     protected override void OnStateEnter(PlayerState previousState)
-    { 
+    {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.maxSpeed * _playerMovementParameters.accelerationTime;
         //MonoBehaviour.print("Entering Run");
         AudioManager.Instance.FOL_Pas.Post(null);
@@ -22,7 +22,6 @@ public class RunningPlayerState : PlayerState
 
     protected override void OnStateUpdate()
     {
-
         if (StateMachine.JumpBuffer > 0)
         {
             StateMachine.JumpBuffer = 0;
@@ -31,7 +30,7 @@ public class RunningPlayerState : PlayerState
         }
 
         // afin d'éviter de faire les petits sauts dans les slopes
-        if (!StateMachine.CollisionInfo.isCollidingBelow && _timeSinceEnteredState>=0.15f)
+        if (!StateMachine.CollisionInfo.isCollidingBelow)
         {
             StateMachine.Velocity.y = -0.1f;
             StateMachine.ChangeState(StateMachine.FallingState);
