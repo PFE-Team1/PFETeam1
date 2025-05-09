@@ -28,7 +28,6 @@ public class DoorVFX : MonoBehaviour
         _otherDoorVFX.OtherDoorVFX = this;
         if (IsDirection == true&&_doorVFXInstance==null)
         {
-            print("feur");
             _doorVFXInstance = Instantiate(_doorVFXPrefab, (transform.position + otherDoor.transform.position) / 2, transform.rotation);
             _otherDoorVFX.DoorVFXInstance = _doorVFXInstance;
             _otherDoorVFX.IsDirection = false;
@@ -63,7 +62,6 @@ public class DoorVFX : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            print("in door " + IsDirection);
             if (!IsDirection)
             {
                 _levelDoorManager.UpdateDoor();
