@@ -129,6 +129,13 @@ public class Clone : MonoBehaviour
             }
         }
     }
+    public void ChangeToLayerX(string val)
+    {
+        foreach (SkeletonPartsRenderer skel in _skeletonPartRend)
+        {
+            skel.MeshRenderer.sortingLayerName = val;
+        }
+    }
     private List<GameObject> AllChilds(GameObject root)
     {
         List<GameObject> result = new List<GameObject>();

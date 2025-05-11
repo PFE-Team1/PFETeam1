@@ -10,6 +10,8 @@ public class DoorVFX : MonoBehaviour
      [SerializeField] LevelDoorManage _levelDoorManager;
      [SerializeField] AnimationCurve _curve;
     bool _isSwitching;
+    bool _isPlayerInter;
+    bool _isOut;
 
     private bool _isSpawned=false;
     [SerializeField]private bool _isDirection=false;
@@ -21,6 +23,7 @@ public class DoorVFX : MonoBehaviour
     public LevelDoorManage LevelDoorManager { get => _levelDoorManager; set => _levelDoorManager = value; }
     public AnimationCurve Curve { get => _curve; }
     public bool IsSwitching { get => _isSwitching; set => _isSwitching = value; }
+    public bool IsPlayerInter { get => _isPlayerInter; set => _isPlayerInter = value; }
 
     public void PlayDoorVFX(Door otherDoor)
     {
@@ -44,27 +47,45 @@ public class DoorVFX : MonoBehaviour
     }
     public void SwitchDirection()
     {
-        if (!IsSwitching)
+        foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
         {
-            foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
-            {
-                IsSwitching = true;
-                child.InversePath(this);
-            }
-            foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(1).GetComponentsInChildren<DoorMaterialInstance>())
-            {
-                IsSwitching = true;
-                child.InversePath(this);
-            }
+            child.InversePath(this);
+        }
+        foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(1).GetComponentsInChildren<DoorMaterialInstance>())
+        {
+            child.InversePath(this);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && (!_isPlayerInter))
+        {
+            _isPlayerInter = true;
+            print("x2rF5dne");
+            other.GetComponent<Clone>().ChangeToLayerX("Inter");
+        }
+        _isOut = false;
+    }
+    /*private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") &&! _isPlayerInter)
+        {
+            _isPlayerInter = true;
+        }
+    }*/
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        _isPlayerInter = false;
+        if (other.CompareTag("Player")&&!_isOut)
         {
+            _isOut = true;
             if (!IsDirection)
             {
                 _levelDoorManager.UpdateDoor();
+            }
+            if (!_otherDoorVFX|| !_otherDoorVFX.IsPlayerInter)//verifie si le joueur est sorti de l'autre partie du passage pour faire le changer de parent
+            {
+                other.GetComponent<Clone>().ChangeParent();
             }
         }
     }

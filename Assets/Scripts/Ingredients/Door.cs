@@ -40,20 +40,5 @@ public class Door : MonoBehaviour
         }
 
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player")&& other.GetComponentInChildren<MeshRenderer>()?.sortingLayerName != "Inter")
-        {
-            other.GetComponentInChildren<MeshRenderer>().sortingLayerName = "Inter";
-            other.transform.parent = null;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponentInChildren<MeshRenderer>().sortingLayerName= "Default";
-            other.GetComponent<Clone>().ChangeParent();
-        }
-    }
+  
 }
