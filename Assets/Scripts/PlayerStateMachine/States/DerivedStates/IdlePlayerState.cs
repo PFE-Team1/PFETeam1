@@ -10,7 +10,12 @@ public class IdlePlayerState : PlayerState
 
     protected override void OnStateEnter(PlayerState previousState)
     {
-        StateMachine.Velocity = new Vector2(0, -0.1f);
+        if ((previousState is cloneState) && !StateMachine.CollisionInfo.isCollidingBelow)
+        {
+            StateMachine.ChangeState(StateMachine.FallingState);
+            return;
+        }
+        StateMachine.Velocity = new Vector2(0, -0.1f );
     }
 
     protected override void OnStateExit(PlayerState nextState)

@@ -35,7 +35,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 532975740336723945}
   - {fileID: 1514771492275754695}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -110,7 +109,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 4.3
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -181,7 +180,7 @@ MonoBehaviour:
   _charID: 0
   _playerVFX: {fileID: 0}
   _playerVisual: {fileID: 0}
-  _paintingTransform: {fileID: 532975740336723945}
+  _paintingTransform: {fileID: 0}
   _isInSocleRange: 0
 --- !u!114 &4515051955276103870
 MonoBehaviour:
@@ -251,34 +250,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.7, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &7906296954674027016
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 532975740336723945}
-  m_Layer: 0
-  m_Name: PaintingTransform
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &532975740336723945
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7906296954674027016}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8558257557379563842}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
