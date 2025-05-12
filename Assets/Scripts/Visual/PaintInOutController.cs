@@ -8,8 +8,9 @@ public class PaintInOutController : MonoBehaviour
 {
     private LineRenderer _line;
     private SpriteRenderer _eraseRend;
-    [SerializeField]float _duration=0.2f;
-    [SerializeField]float _durationOut=0.2f;
+    [SerializeField]float _durationIn=5f;
+    [SerializeField]float _durationOut=3f;
+    [SerializeField]float _cameraMoveDuration=0.5f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField]GameObject _endPaint;
     [SerializeField] GameObject _raw;
@@ -17,6 +18,7 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField] GameObject _erase;
     RectTransform _rectTransform;
     RawImage _image;
+    Coroutine _coroutine;
 
     [Button("Paint In")]
     public void PaintInButton()
@@ -26,6 +28,7 @@ public class PaintInOutController : MonoBehaviour
 
     public float DurationOut { get => _durationOut; }
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
+    public float DurationIn { get => _durationIn;}
 
     private void Awake()
     {
@@ -35,13 +38,16 @@ public class PaintInOutController : MonoBehaviour
         _line = _mask.GetComponent<LineRenderer>();
         _eraseRend = _erase.GetComponent<SpriteRenderer>();
     }
-    private void Start()
-    {
-        CameraManager.Instance.SeeCurrentLevel(_firstPaint);
-        PaintIn(_firstPaint);
-    }
+
     public  void PaintIn(GameObject paint)// objet , position taille
-    {        
+    {
+        if (_coroutine!=null)
+        {
+            _eraseRend.material.SetFloat("_CursorErase", 2);
+            _line.material.SetFloat("_CursorAppearance", 0);
+            StopCoroutine(_coroutine);
+            CameraManager.Instance.FocusCamera();
+        }
         RectTransform paintRect = paint.GetComponent<RectTransform>();
         Debug.Log($"{paint.name} {paintRect.sizeDelta} {paintRect.localScale} {paintRect.position}");
 
@@ -52,10 +58,18 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
         _image.enabled = true;
-        StartCoroutine(ShaderIn(paint));
+        _coroutine=StartCoroutine(ShaderIn(paint));
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
+        if (_coroutine != null)
+        {
+            _eraseRend.material.SetFloat("_CursorErase", 2);
+            _line.material.SetFloat("_CursorAppearance", 0);
+            StopCoroutine(_coroutine);
+            CameraManager.Instance.FocusCamera();
+            _image.enabled = false;
+        }
         RectTransform paintRect = paint.GetComponent<RectTransform>();
 
         _rectTransform.anchorMin = paintRect.anchorMin;
@@ -65,18 +79,19 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
         _image.enabled = true;
-        StartCoroutine(ShaderOut(paint));
+        _coroutine=StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
+        CameraManager.Instance.SeeCurrentLevel(paint,.5f);
         float timer = 0;
-        while (timer < _duration)
+        yield return new WaitForSeconds(_cameraMoveDuration);
+        while (timer < _durationIn)
         {
-            _line.material.SetFloat("_CursorAppearance",(timer / _duration) * 3f);
+            _line.material.SetFloat("_CursorAppearance",(timer / _durationIn)*2);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
-        
         paint.layer = 0;
          foreach (GameObject child in AllChilds(paint))
         {
@@ -89,6 +104,7 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderOut(GameObject paint)
     {
+        CameraManager.Instance.SeeCurrentLevel(paint,.5f);
         _eraseRend.material.SetFloat("_CursorErase", 0);
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
@@ -96,10 +112,10 @@ public class PaintInOutController : MonoBehaviour
             child.layer = 6;
         }
         float timer = 0;
-      
+        yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationOut)
         {
-            _eraseRend.material.SetFloat("_CursorErase", 2f*(timer / _durationOut));
+            _eraseRend.material.SetFloat("_CursorErase", (timer / _durationOut)*2);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }     

@@ -49,7 +49,7 @@ public class EndProto : Interactable
         if (_endEffect != null)
         {
             _endEffect.PaintOut(_level);
-            yield return new WaitForSeconds(_endEffect.DurationOut / 2);
+            yield return new WaitForSeconds(_endEffect.DurationOut );
             CameraManager.Instance.MainCamera.Follow = transform;
             float timer = 0;
             Vector3 currentPos = transform.position;
