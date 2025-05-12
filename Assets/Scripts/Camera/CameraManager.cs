@@ -323,7 +323,13 @@ public class CameraManager : MonoBehaviour
 
     public void DefineCameraBounds()
     {
-        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+        CinemachineConfiner confiner= _mainCamera.GetComponent<CinemachineConfiner>();
+        if (!confiner)
+        {
+            return;
+        }
+        confiner.InvalidatePathCache();
+
     }
 
     public void AddNewLevel(GameObject newLevel)
