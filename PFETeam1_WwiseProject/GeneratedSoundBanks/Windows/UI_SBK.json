@@ -11,7 +11,7 @@
     "GUID": "{66CD8657-BB27-4ABF-A6E7-231484986B7D}",
     "Color": "10",
     "Language": "SFX",
-    "Hash": "{B9A15C0F-2723-0F89-1DB1-9A5A489E9C51}",
+    "Hash": "{CA172FC8-5AA6-96E8-BCBC-A64B18E3E8FB}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI_SBK",
     "ShortName": "UI_SBK",
     "Path": "UI_SBK.bnk",
@@ -31,6 +31,14 @@
       "Location": "Memory",
       "ShortName": "SUI_CliqueValidationBouton_01.wav",
       "CachePath": "3E/{3E2C229D-AA2D-D8BC-BA53-6A4E6ACE0D75}.wem"
+     },
+     {
+      "Id": "191887575",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SUI_PressAnyKey.wav",
+      "CachePath": "5F/{5F498433-2C03-2EC5-48E6-26F8E7AE42FF}.wem"
      },
      {
       "Id": "332987736",
@@ -126,6 +134,21 @@
       ]
      },
      {
+      "Id": "3626919780",
+      "Name": "Play_SUI_PressAnyKey",
+      "ObjectPath": "\\Events\\UI_WU\\Play_SUI_PressAnyKey",
+      "GUID": "{7D62AC52-415B-4052-9B36-B1AF55D60ADD}",
+      "Color": "10",
+      "DurationType": "OneShot",
+      "DurationMin": "4.334833",
+      "DurationMax": "4.334833",
+      "MediaRefs": [
+       {
+        "Id": "191887575"
+       }
+      ]
+     },
+     {
       "Id": "2589902834",
       "Name": "Play_SUI_SurvolBouton_RC_01",
       "ObjectPath": "\\Events\\UI_WU\\Play_SUI_SurvolBouton_RC_01",
@@ -155,6 +178,6 @@
     ]
    }
   ],
-  "FileHash": "{FDA46220-2F11-C8E1-AFAA-71C574CEEF70}"
+  "FileHash": "{5BC9FCFE-6526-2006-6EE2-77F25FAD3964}"
  }
 }
