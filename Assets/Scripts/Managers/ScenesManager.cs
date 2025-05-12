@@ -8,7 +8,6 @@ public class ScenesManager : MonoBehaviour
     public static ScenesManager  instance = null;
     [SerializeField]private string _nextScene;
     [SerializeField]private string _menuScene;
-    [SerializeField]private bool _isMainLevel;
     private void Awake()
     {
         instance = this;
@@ -17,7 +16,12 @@ public class ScenesManager : MonoBehaviour
     {
         if (InputsManager.instance == null) return;
     }
-    public void loadNextScene()
+    public void LoadMenu()
+    {
+        SceneManager.LoadSceneAsync(_menuScene);
+        
+    }
+    public void LoadNextScene()
     {
         SceneManager.LoadSceneAsync(_nextScene);
         if (InputsManager.instance != null)
@@ -39,11 +43,6 @@ public class ScenesManager : MonoBehaviour
     }
     IEnumerator Deload()
     {
-        if (_isMainLevel)
-        {
-            //Destroy(_Scene);
-            //active l'anim de deload
-        }
         yield return new WaitForSeconds(1);//dur e de l'anim
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         yield return null;
