@@ -73,6 +73,7 @@ public class Clone : MonoBehaviour
         _playerStateMachine.ChangeState(_playerStateMachine.CloneState);
         GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
         AudioManager.Instance.SFX_CreateClone.Post(gameObject);
+        instantiatedClone.GetComponentInChildren<ToolTipManager>().InsideZone = false;
     }
     public void Switchup(bool isEnable)
     {

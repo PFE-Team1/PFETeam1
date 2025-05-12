@@ -13,7 +13,6 @@ public class CloneSpawner : Interactable
             if (PlayerC.IsInteracting &&!PlayerC.HasInteracted)
             {
                 PlayerC.HasInteracted = true;
-
                 PlayerC.Cloned(_spawnPoint);
                 Destroy(_spawnPoint);
                 Destroy(gameObject);
