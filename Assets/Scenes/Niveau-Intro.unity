@@ -3297,7 +3297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0.2
+  width: -0.15
   depth: 1
 --- !u!1 &375057180
 GameObject:
@@ -3675,7 +3675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0.2
+  width: -0.15
   depth: 1
 --- !u!120 &419858113
 LineRenderer:
@@ -8434,6 +8434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5986292435711005415, guid: f5a44cfbb1d25aa44a64d2fad6a09d62, type: 3}
+      propertyPath: _playerPrefab
+      value: 
+      objectReference: {fileID: 7384922706752922667, guid: 05d77319607290c48b3534828803acb4, type: 3}
     - target: {fileID: 7622406565465907250, guid: f5a44cfbb1d25aa44a64d2fad6a09d62, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42.3836
@@ -16651,7 +16655,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 250
   m_Positions:
-  - {x: 0, y: 0, z: 0}
+  - {x: 0.27, y: -0.79, z: 0}
   - {x: 0.2942047, y: 0.8507471, z: 0}
   - {x: 0.30621338, y: 1.6793766, z: 0}
   - {x: 0.31822205, y: 2.423942, z: 0}
@@ -16660,19 +16664,19 @@ LineRenderer:
   - {x: 0.39027405, y: 4.5615664, z: 0}
   - {x: 0.63, y: 4.837776, z: 0}
   - {x: -1.567215, y: 4.909831, z: 0}
-  - {x: -1.4231033, y: 4.5735755, z: 0}
-  - {x: -1.4231033, y: 4.10522, z: 0}
-  - {x: -1.4831467, y: 3.3246267, z: 0}
-  - {x: -1.4231033, y: 2.7601976, z: 0}
+  - {x: -1.57, y: 4.5735755, z: 0}
+  - {x: -1.54, y: 4.10522, z: 0}
+  - {x: -1.58, y: 3.3246267, z: 0}
+  - {x: -1.54, y: 2.7601976, z: 0}
   - {x: -1.4831467, y: 2.4359512, z: 0}
   - {x: -1.507164, y: 2.3518877, z: 0}
   - {x: -3.020317, y: 2.4359512, z: 0}
-  - {x: -2.8641968, y: 1.3311119, z: 0}
-  - {x: -2.9962997, y: 0.49047327, z: 0}
-  - {x: -3.0443344, y: 0.13019991, z: 0}
+  - {x: -3.12, y: 1.3311119, z: 0}
+  - {x: -3.06, y: 0.49047327, z: 0}
+  - {x: -3.0443344, y: -0.11, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.48987925
+    widthMultiplier: 0.80349106
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -16686,8 +16690,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.08893995
-        value: 0.69699275
+        time: 0.058239266
+        value: 1
         inSlope: 0.003210877
         outSlope: 0.003210877
         tangentMode: 0
@@ -16695,8 +16699,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.30769688
-        value: 0.8471588
+        time: 0.33401066
+        value: 1
         inSlope: 0.0072299954
         outSlope: 0.0072299954
         tangentMode: 0
@@ -16704,8 +16708,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.3750081
-        value: 0.1091876
+        time: 0.3837819
+        value: 0.32194853
         inSlope: 0.008064841
         outSlope: 0.008064841
         tangentMode: 0
@@ -16713,8 +16717,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.60576177
-        value: 0.61565924
+        time: 0.57944036
+        value: 0.60502005
         inSlope: 0.007151973
         outSlope: 0.007151973
         tangentMode: 0
@@ -16722,8 +16726,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.82451916
-        value: 0.45167255
+        time: 0.80697155
+        value: 0.7282686
         inSlope: 0.004769522
         outSlope: 0.004769522
         tangentMode: 0
@@ -16732,7 +16736,7 @@ LineRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.9879807
-        value: 1.0053191
+        value: 0.9627662
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -16795,7 +16799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0.2
+  width: -0.15
   depth: 1
 --- !u!1 &1789260318
 GameObject:
