@@ -23,6 +23,7 @@ public class LevelSpawner : Interactable
 
     private void Start()
     {
+        isSocle = true;
         appliedOffset = GetComponentInParent<Level>().Offset;
         if (isAlreadySpawned)
         {
@@ -54,7 +55,6 @@ public class LevelSpawner : Interactable
         }
         if (IsInRange)
         {
-            IsInSocleRange = true;
             if (isSpawnOnStart && isFixed) return;
             if (!isAlreadySpawned)
             {
@@ -71,7 +71,7 @@ public class LevelSpawner : Interactable
             {
                 if (!PlayerC.HasInteracted && PlayerC.IsInteracting && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
                 {
-                    CameraManager.Instance.CameraShake(1,1);
+                    CameraManager.Instance.CameraShake(1, 1);
                     RemoveNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
                     PlayerC.HasInteracted = true;
