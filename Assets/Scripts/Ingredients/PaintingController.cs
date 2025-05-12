@@ -1,6 +1,7 @@
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,17 +12,28 @@ public class PaintingController : Interactable
     [SerializeField] private GameObject _spawnPoint;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
-    private GameObject tableau;
-    bool isHeld = false;
+    private SpriteRenderer _spriteRenderer;
+    private PaintHandler _paintHandlerAccessor;
+    private PaintHandler _paintHandler { get => getPaintHandler(); set => _paintHandler = value; }
+    bool _isHeld = false;
 
     [SerializeField] private ParticleSystem VFX_GrabToile;
     [SerializeField] private ParticleSystem VFX_PoseToile;
     private BoneFollower boneFollower;
 
+    private PaintHandler getPaintHandler()
+    {
+        if (_paintHandlerAccessor == null)
+        {
+            _paintHandlerAccessor = Player.GetComponentInChildren<PaintHandler>();
+        }
+        return _paintHandlerAccessor;
+    }
+
     void Start()
     {
-        tableau = GetComponentInParent<BoxCollider2D>().gameObject;
         boneFollower = GetComponent<BoneFollower>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -31,7 +43,7 @@ public class PaintingController : Interactable
             if (PlayerC.IsInteracting && !PlayerC.IsInSocleRange && !PlayerC.HasInteracted)
             {
                 PlayerC.HasInteracted = true;
-                if (isHeld)
+                if (_isHeld)
                 {
                     if (VFX_PoseToile != null)
                     {
@@ -84,10 +96,11 @@ public class PaintingController : Interactable
                                 transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                                 // Changing state of State machine
                                 PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
-                                Player.GetComponentInChildren<PaintHandler>().BodyPartRenderer.MeshRenderer.sortingOrder = 251;
+                                //_paintHandler.ChangeLayer(_spriteRenderer.sortingLayerID);
+                                _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder+1);
                                 boneFollower.SkeletonRenderer = null;
                                 PlayerC.heldObject = null;
-                                isHeld = false;
+                                _isHeld = false;
                                 return;
                             }
                         }
@@ -111,8 +124,9 @@ public class PaintingController : Interactable
         boneFollower.boneName = "Target_Arm_R";
         transform.SetParent(PlayerC.PaintingTransform);
         transform.position = PlayerC.PaintingTransform.position;
-        Player.GetComponentInChildren<PaintHandler>().BodyPartRenderer.MeshRenderer.sortingOrder = 250;
-        isHeld = true;
+        _paintHandler.ChangeLayer(_spriteRenderer.sortingLayerID);
+        _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder);
+        _isHeld = true;
         PlayerC.heldObject = gameObject;
     }
 }

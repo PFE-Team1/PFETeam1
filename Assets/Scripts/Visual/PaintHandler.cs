@@ -10,6 +10,19 @@ public class PaintHandler : MonoBehaviour
 
     private Spine.AnimationState spineAnimationState;
 
+
+    public void ChangeLayer(int LayerID)
+    {
+        ArmPartRenderer.MeshRenderer.sortingLayerID = LayerID;
+        BodyPartRenderer.MeshRenderer.sortingLayerID = LayerID;
+    }
+
+    public void ChangeSortingorder(int sortingOrder)
+    {
+        ArmPartRenderer.MeshRenderer.sortingOrder = sortingOrder+1;
+        BodyPartRenderer.MeshRenderer.sortingOrder = sortingOrder;
+    }
+
     // to capture event "Footstep" when it's placed outside of folders
     void Grab()
     {
