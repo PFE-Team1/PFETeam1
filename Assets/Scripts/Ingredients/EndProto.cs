@@ -37,6 +37,7 @@ public class EndProto : Interactable
                 }
                 else
                 {
+
                     StartCoroutine(EndOfLevel());
                 }
                 //SceneManager.LoadScene(_sceneToLoad);
@@ -46,6 +47,14 @@ public class EndProto : Interactable
     IEnumerator EndOfLevel()
     {
         CameraManager.Instance.SeeCurrentLevel(_level);
+        yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime);
+        foreach (Level level in FindObjectsOfType<Level>())
+        {
+            if (level.gameObject != _level)
+            {
+                Destroy(level.gameObject);
+            }
+        }
         if (_endEffect != null)
         {
             _endEffect.PaintOut(_level);

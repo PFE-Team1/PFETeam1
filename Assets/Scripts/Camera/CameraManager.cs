@@ -28,6 +28,7 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera MainCamera { get => _mainCamera; set => _mainCamera = value; }
     public GameObject CompositeParent { get => _compositeParent; set => _compositeParent = value; }
     public List<GameObject> Levels { get => _levels; set => _levels = value; }
+    public float CameraDezoomTime { get => _cameraDezoomTime; }
 
     void Awake()
     {
@@ -323,7 +324,13 @@ public class CameraManager : MonoBehaviour
 
     public void DefineCameraBounds()
     {
-        _mainCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+        CinemachineConfiner confiner= _mainCamera.GetComponent<CinemachineConfiner>();
+        if (!confiner)
+        {
+            return;
+        }
+        confiner.InvalidatePathCache();
+
     }
 
     public void AddNewLevel(GameObject newLevel)

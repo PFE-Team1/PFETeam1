@@ -277,7 +277,11 @@ public class SettingsManager : MonoBehaviour
         else Time.timeScale = 0;
         _pauseMenu.SetActive(!_pauseMenu.activeSelf);
     }
-
+    public void GoToMenu()
+    {
+        DisplayPauseMenu();
+        ScenesManager.instance.LoadMenu();
+    }
     public void SetParallax()
     {
         wantParallax = !wantParallax;
