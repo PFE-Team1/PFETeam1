@@ -17,7 +17,7 @@ public class Clone : MonoBehaviour
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
     private InputsManager _inputs;
-    private bool _isInteracting;
+    public bool _isInteracting;
     private bool _hasInteracted;
     [SerializeField] private bool _isInSocleRange = false;
     private GameObject _heldObject;

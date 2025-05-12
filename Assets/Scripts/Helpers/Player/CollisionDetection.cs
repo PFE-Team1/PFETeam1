@@ -76,13 +76,11 @@ namespace CollisionHelper
             if (normal.x > 0.7f)
             {
                 info.isCollidingLeft = true;
-                Debug.Log("CollisionDetector: Contact à gauche détecté pour " + gameObject.name);
             }
 
             if (normal.x < -0.7f)
             {
                 info.isCollidingRight = true;
-                Debug.Log("CollisionDetector: Contact à droite détecté pour " + gameObject.name);
             }
 
             // Sauvegarder les informations mises à jour - TRÈS IMPORTANT

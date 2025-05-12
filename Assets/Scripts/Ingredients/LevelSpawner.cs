@@ -54,11 +54,11 @@ public class LevelSpawner : Interactable
         }
         if (IsInRange)
         {
-            PlayerC.IsInSocleRange = true;
+            IsInSocleRange = true;
             if (isSpawnOnStart && isFixed) return;
             if (!isAlreadySpawned)
             {
-                if (!PlayerC.HasInteracted && PlayerC.heldObject != null && PlayerC.IsInteracting)
+                if (!PlayerC.HasInteracted && PlayerC.heldObject != null && PlayerC.IsInteracting && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
                 {
                     SpawnNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
@@ -69,7 +69,7 @@ public class LevelSpawner : Interactable
             }
             else if (isAlreadySpawned)
             {
-                if (!PlayerC.HasInteracted && PlayerC.IsInteracting)
+                if (!PlayerC.HasInteracted && PlayerC.IsInteracting && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
                 {
                     CameraManager.Instance.CameraShake(1,1);
                     RemoveNewLevel();
@@ -99,7 +99,7 @@ public class LevelSpawner : Interactable
     {
         if (_heldObject == null) return;
 
-        _heldObject.GetComponent<Collider>().enabled = false;
+        //_heldObject.GetComponent<Collider>().enabled = false;
         _heldObject.GetComponent<PaintingController>().IsInRange = false;
         var paintingController = _heldObject.GetComponent<PaintingController>();
         var newLevelPrefab = paintingController.newLevelPrefab;
@@ -310,21 +310,11 @@ public class LevelSpawner : Interactable
         CameraManager.Instance?.RemoveLevel(_newlevel);
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            IsInRange = false;
-            PlayerC.IsInSocleRange = false;
-        }
-    }
-
     void FindPlayer(bool active)
     {
         List<Clone> clone = _newlevel.GetComponentsInChildren<Clone>(true).ToList();
         foreach(Clone c in clone)
         {
-            print("feur");
             c.gameObject.SetActive(active);
         }
     }

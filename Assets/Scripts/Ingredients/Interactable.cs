@@ -3,38 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Events;
+using System;
 
 public class Interactable : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject player;
     private Clone _playerC;
     private PlayerStateMachine _playerStateMachine;
     [SerializeField] private bool isInRange = false;
 
     public GameObject Player { get => player; set => player = value; }
+
+    public List<GameObject> CollidingPlayers = new List<GameObject>();
     public Clone PlayerC { get => _playerC; set => _playerC = value; }
     public PlayerStateMachine PlayerStateMachine { get => _playerStateMachine; set => _playerStateMachine = value; }
     public bool IsInRange { get => isInRange; set => isInRange = value; }
 
+    public bool CanGetTriggered = true;
+
+    public bool IsInSocleRange = false;
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && CanGetTriggered)
         {
-            player = other.gameObject;
-            _playerC = player.GetComponent<Clone>();
-            _playerStateMachine = player.GetComponent<PlayerStateMachine>();
-            isInRange = true;
+            if (!CollidingPlayers.Contains(other.gameObject))
+            {
+                CollidingPlayers.Add(other.gameObject);
+            }
+
+        }
+    }
+    void OnTriggerStay(Collider other)
+    {
+        UpdateCollidingPlayers();
+    }
+
+    void UpdateCollidingPlayers()
+    {
+        foreach (var collidingPlayer in CollidingPlayers)
+        {
+            PlayerStateMachine CollidingStateMachine = collidingPlayer.GetComponent<PlayerStateMachine>();
+            if (player == null || CollidingStateMachine.CurrentState != CollidingStateMachine.CloneState || CollidingPlayers.Count == 1)
+            {
+                player = collidingPlayer;
+                _playerC = player.GetComponent<Clone>();
+                _playerStateMachine = CollidingStateMachine;
+                isInRange = true;
+            }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && CanGetTriggered)
         {
-            player = null;
-            _playerC = null;
-            _playerStateMachine = null;
-            isInRange = false;
+            if (CollidingPlayers.Contains(other.gameObject))
+            {
+                CollidingPlayers.Remove(other.gameObject);
+            }
+            if (CollidingPlayers.Count == 0)
+            {
+                player = null;
+                _playerC = null;
+                _playerStateMachine = null;
+                isInRange = false;
+                PlayerC.IsInSocleRange = false;
+                return;
+            }
         }
+    }
+
+    public void ResetcollidingPlayers()
+    {
+        CollidingPlayers = new List<GameObject>();
     }
 }
