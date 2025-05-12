@@ -273,6 +273,8 @@ public class SettingsManager : MonoBehaviour
 
     public void DisplayPauseMenu()
     {
+        if (_pauseMenu.activeSelf) Time.timeScale = 1;
+        else Time.timeScale = 0;
         _pauseMenu.SetActive(!_pauseMenu.activeSelf);
     }
 
