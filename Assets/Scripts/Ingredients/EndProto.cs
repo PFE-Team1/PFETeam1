@@ -33,7 +33,7 @@ public class EndProto : Interactable
                 PlayerC.gameObject.SetActive(false);
                 if (!_endEffect || !_level)
                 {
-                    ScenesManager.instance.loadNextScene();
+                    ScenesManager.instance.LoadNextScene();
                 }
                 else
                 {
@@ -62,7 +62,7 @@ public class EndProto : Interactable
             }
             yield return new WaitForSeconds(3);
         }
-        ScenesManager.instance.loadNextScene();
+        ScenesManager.instance.LoadNextScene();
         yield return null;
 
     }

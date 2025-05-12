@@ -2253,8 +2253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextScene: Niveau-2
-  _menuScene: 
-  _isMainLevel: 0
+  _menuScene: Niveau-0
 --- !u!4 &605784287
 Transform:
   m_ObjectHideFlags: 0
@@ -3317,6 +3316,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -8.800003
       objectReference: {fileID: 0}
+    - target: {fileID: 1867207988793170031, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Name
+      value: rWall
+      objectReference: {fileID: 0}
     - target: {fileID: 3076665902186806051, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_LocalScale.x
       value: 5.76
@@ -3408,6 +3411,14 @@ PrefabInstance:
     - target: {fileID: 6276300873509078382, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_Name
       value: Level-1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7403543624835366224, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: _objectsToRemove.Array.data[0].RespawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070706936985301211, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Name
+      value: rPlatform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
