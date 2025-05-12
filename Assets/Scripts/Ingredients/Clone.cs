@@ -68,9 +68,10 @@ public class Clone : MonoBehaviour
         }
     }
 
-    public void Cloned(GameObject spawnPoint)// mettre dans des �tats pour la state machine
+    public void Cloned(GameObject spawnPoint, string InitialSkinName)// mettre dans des �tats pour la state machine
     {
         _playerStateMachine.ChangeState(_playerStateMachine.CloneState);
+        _clone.GetComponentInChildren<SkeletonMecanim>().initialSkinName = InitialSkinName;
         GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
         AudioManager.Instance.SFX_CreateClone.Post(gameObject);
         instantiatedClone.GetComponentInChildren<ToolTipManager>().InsideZone = false;
