@@ -10,10 +10,12 @@ public class Door : MonoBehaviour
     [SerializeField] private Door _otherDoor;
     [SerializeField] private DoorVFX _vfxOpen;
     [SerializeField] private GameObject _groundOpen;
+    [SerializeField] private GameObject _closedDoorVFX;
     public Door OtherDoor { get => _otherDoor; set => _otherDoor = null; }
 
     public void Open()
     {
+        _closedDoorVFX.SetActive(false);
         _collider.isTrigger = true;
         _sprite.enabled = false;
             _vfxOpen.PlayDoorVFX(_otherDoor); 
@@ -21,6 +23,7 @@ public class Door : MonoBehaviour
     }
     public  void Close()
     {
+        _closedDoorVFX.SetActive(true);
         _collider.isTrigger = false;
         _sprite.enabled = true;
         _vfxOpen.StopDoorVFX();
@@ -37,20 +40,5 @@ public class Door : MonoBehaviour
         }
 
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player")&& other.GetComponentInChildren<MeshRenderer>()?.sortingLayerName != "Inter")
-        {
-            other.GetComponentInChildren<MeshRenderer>().sortingLayerName = "Inter";
-            other.transform.parent = null;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponentInChildren<MeshRenderer>().sortingLayerName= "Default";
-            other.GetComponent<Clone>().ChangeParent();
-        }
-    }
+  
 }
