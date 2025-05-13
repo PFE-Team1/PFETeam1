@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.Rendering;
+using Spine.Unity;
 
 public class Clone : MonoBehaviour
 {
@@ -10,11 +12,12 @@ public class Clone : MonoBehaviour
     [SerializeField] private int _charID;
     [SerializeField] private PlayerVFX _playerVFX;
     [SerializeField] private GameObject _playerVisual;
+    [SerializeField] private List<SkeletonPartsRenderer> _skeletonPartRend;
     private PlayerStateMachine _playerStateMachine;
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
     private InputsManager _inputs;
-    private bool _isInteracting;
+    public bool _isInteracting;
     private bool _hasInteracted;
     [SerializeField] private bool _isInSocleRange = false;
     private GameObject _heldObject;
@@ -65,11 +68,13 @@ public class Clone : MonoBehaviour
         }
     }
 
-    public void Cloned(GameObject spawnPoint)// mettre dans des �tats pour la state machine
+    public void Cloned(GameObject spawnPoint, string InitialSkinName)// mettre dans des �tats pour la state machine
     {
         _playerStateMachine.ChangeState(_playerStateMachine.CloneState);
+        _clone.GetComponentInChildren<SkeletonMecanim>().initialSkinName = InitialSkinName;
         GameObject instantiatedClone = Instantiate(_clone, spawnPoint.transform.position, spawnPoint.transform.rotation);
         AudioManager.Instance.SFX_CreateClone.Post(gameObject);
+        instantiatedClone.GetComponentInChildren<ToolTipManager>().InsideZone = false;
     }
     public void Switchup(bool isEnable)
     {
@@ -104,12 +109,56 @@ public class Clone : MonoBehaviour
 
                             if (levelBounds.Intersects(paintingBounds))
                             {
-                                transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
+                                transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform); List<GameObject> changement=AllChilds(gameObject);
+                                int val= child.GetComponent<Renderer>().sortingLayerID;
+                                foreach (GameObject change in changement)
+                                {
+                                    if (change.GetComponent<Renderer>())
+                                    {
+                                        change.GetComponent<Renderer>().sortingLayerID = val;
+                                    }
+                                }
+                                foreach (SkeletonPartsRenderer skel in _skeletonPartRend) 
+                                {
+                                    print(skel.name+"  "+ skel.MeshRenderer.sortingLayerID);
+                                    skel.MeshRenderer.sortingLayerID = val;
+                                }
                                 return;
                             }
                         }
                     }
                 }
+            }
+        }
+    }
+    public void ChangeToLayerX(string val)
+    {
+        foreach (SkeletonPartsRenderer skel in _skeletonPartRend)
+        {
+            skel.MeshRenderer.sortingLayerName = val;
+        }
+    }
+    private List<GameObject> AllChilds(GameObject root)
+    {
+        List<GameObject> result = new List<GameObject>();
+        if (root.transform.childCount > 0)
+        {
+            foreach (Transform VARIABLE in root.transform)
+            {
+                Searcher(result, VARIABLE.gameObject);
+            }
+        }
+        return result;
+    }
+
+    private void Searcher(List<GameObject> list, GameObject root)
+    {
+        list.Add(root);
+        if (root.transform.childCount > 0)
+        {
+            foreach (Transform VARIABLE in root.transform)
+            {
+                Searcher(list, VARIABLE.gameObject);
             }
         }
     }

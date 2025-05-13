@@ -4734,6 +4734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerInputs: {fileID: 0}
   _inputActionAsset: {fileID: -944628639613478452, guid: 29dcd0c92f808814a9da32fc8bb78653, type: 3}
+  UIKeyIconsSet: {fileID: 0}
 --- !u!4 &649678639
 Transform:
   m_ObjectHideFlags: 0
@@ -6548,7 +6549,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1342179803}
         m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
-        m_MethodName: loadNextScene
+        m_MethodName: LoadNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8357,7 +8358,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1481164770}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: GoToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9548,8 +9549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextScene: Niveau-Intro
-  _menuScene: 
-  _isMainLevel: 0
+  _menuScene: Niveau-0
 --- !u!4 &1342179804
 Transform:
   m_ObjectHideFlags: 0
@@ -13357,10 +13357,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30205072}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1481164770}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: DisplayPauseMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

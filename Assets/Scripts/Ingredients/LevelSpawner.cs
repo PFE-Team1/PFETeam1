@@ -23,6 +23,7 @@ public class LevelSpawner : Interactable
 
     private void Start()
     {
+        isSocle = true;
         appliedOffset = GetComponentInParent<Level>().Offset;
         if (isAlreadySpawned)
         {
@@ -54,13 +55,13 @@ public class LevelSpawner : Interactable
         }
         if (IsInRange)
         {
-            PlayerC.IsInSocleRange = true;
             if (isSpawnOnStart && isFixed) return;
             if (!isAlreadySpawned)
             {
-                if (!PlayerC.HasInteracted && PlayerC.heldObject != null && PlayerC.IsInteracting)
+                if (!PlayerC.HasInteracted && PlayerC.heldObject != null && PlayerC.IsInteracting && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
                 {
                     SpawnNewLevel();
+                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                     PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
                     CameraManager.Instance.ShowNewLevel();
@@ -68,10 +69,11 @@ public class LevelSpawner : Interactable
             }
             else if (isAlreadySpawned)
             {
-                if (!PlayerC.HasInteracted && PlayerC.IsInteracting)
+                if (!PlayerC.HasInteracted && PlayerC.IsInteracting && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
                 {
-                    CameraManager.Instance.CameraShake(1,1);
+                    CameraManager.Instance.CameraShake(1, 1);
                     RemoveNewLevel();
+                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
                     PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
                 }
@@ -97,9 +99,9 @@ public class LevelSpawner : Interactable
     {
         if (_heldObject == null) return;
 
-        var paintingController = _heldObject.GetComponent<PaintingController>();
-        _heldObject.GetComponent<Collider>().enabled = false;
+        //_heldObject.GetComponent<Collider>().enabled = false;
         _heldObject.GetComponent<PaintingController>().IsInRange = false;
+        var paintingController = _heldObject.GetComponent<PaintingController>();
         var newLevelPrefab = paintingController.newLevelPrefab;
 
         if (!CameraManager.Instance.Levels.Exists(level => level.name == newLevelPrefab.name))
@@ -117,7 +119,6 @@ public class LevelSpawner : Interactable
         _heldObject.transform.SetParent(transform);
         _heldObject.transform.localPosition = Vector3.zero;
         _paint = PlayerC.heldObject;
-        PlayerC.heldObject = null;
 
         var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
         var currentLevelBounds = _currentLevel.GetComponent<SpriteRenderer>().bounds.size;
@@ -133,10 +134,14 @@ public class LevelSpawner : Interactable
             SetDirection(newLevelBounds + Vector3.one * appliedOffset, currentLevelBounds + Vector3.one * appliedOffset);
             SetNewPosition();
         }
-
+        foreach (OpenButton openButton in _newlevel.GetComponentsInChildren<OpenButton>(true))
+        {
+            openButton.ReStart();
+        }
         CameraManager.Instance.SetNewLevel(_newlevel);
         FindPlayer(true);
         isAlreadySpawned = true;
+        paintingController.DropPainting();
     }
 
     private void SetNewPosition()
@@ -298,18 +303,11 @@ public class LevelSpawner : Interactable
         isAlreadySpawned = false;
         _paint.transform.SetParent(Player.transform);
         _paint.GetComponent<Collider>().enabled = true ;
-        PlayerC.heldObject = _paint;
+
+        var paintingController = _paint.GetComponent<PaintingController>();
+        paintingController.GrabPainting();
         _paint = null;
         CameraManager.Instance?.RemoveLevel(_newlevel);
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            IsInRange = false;
-            PlayerC.IsInSocleRange = false;
-        }
     }
 
     void FindPlayer(bool active)
@@ -317,7 +315,6 @@ public class LevelSpawner : Interactable
         List<Clone> clone = _newlevel.GetComponentsInChildren<Clone>(true).ToList();
         foreach(Clone c in clone)
         {
-            print("feur");
             c.gameObject.SetActive(active);
         }
     }

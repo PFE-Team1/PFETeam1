@@ -37,6 +37,7 @@ public class SettingsManager : MonoBehaviour
     bool wantParallax = true;
     bool wantScreenShake = true;
     bool isMainMenuActive = false;
+    public bool IsMainMenuActive { get => isMainMenuActive; set => isMainMenuActive = value; }
     Resolution[] resolutions;
     public bool WantParallax { get => wantParallax; set => wantParallax = value; }
     public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
@@ -272,9 +273,15 @@ public class SettingsManager : MonoBehaviour
 
     public void DisplayPauseMenu()
     {
+        if (_pauseMenu.activeSelf) Time.timeScale = 1;
+        else Time.timeScale = 0;
         _pauseMenu.SetActive(!_pauseMenu.activeSelf);
     }
-
+    public void GoToMenu()
+    {
+        DisplayPauseMenu();
+        ScenesManager.instance.LoadMenu();
+    }
     public void SetParallax()
     {
         wantParallax = !wantParallax;
