@@ -13,7 +13,7 @@ public class EndIntro : Interactable
         if (IsInRange)
         {
                 //Application.Quit();
-                ScenesManager.instance.loadNextScene();
+                ScenesManager.instance.LoadNextScene();
                 //SceneManager.LoadScene(_sceneToLoad);
         }
     }

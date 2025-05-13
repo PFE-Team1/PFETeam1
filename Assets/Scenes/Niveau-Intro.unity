@@ -3165,7 +3165,7 @@ LineRenderer:
   - {x: 0.03608322, y: 1.2300954, z: 0}
   - {x: -0.04983902, y: 1.7241483, z: 0}
   - {x: 0.1005249, y: 2.2504225, z: 0}
-  - {x: -1.1775703, y: 2.250422, z: 0}
+  - {x: -1.1775703, y: 2.39, z: 0}
   - {x: -1.0809078, y: 1.8959928, z: 0}
   - {x: -1.1023884, y: 1.1441727, z: 0}
   - {x: -1.2205315, y: 0.3279109, z: 0}
@@ -3174,7 +3174,7 @@ LineRenderer:
   - {x: -1.0809078, y: 0.048663616, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.19913936
+    widthMultiplier: 0.48844066
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -3206,8 +3206,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.51203203
-        value: 1.0028052
+        time: 0.46636248
+        value: 0.16237974
         inSlope: 0.008064841
         outSlope: 0.008064841
         tangentMode: 0
@@ -3297,7 +3297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: -0.15
+  width: -0.1
   depth: 1
 --- !u!1 &375057180
 GameObject:
@@ -3675,7 +3675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: -0.15
+  width: -0.1
   depth: 1
 --- !u!120 &419858113
 LineRenderer:
@@ -3812,8 +3812,8 @@ LineRenderer:
   - {x: -56.501015, y: -24.927156, z: 0}
   - {x: -62.820496, y: -24.611183, z: 0}
   - {x: -64.98709, y: -25.15287, z: 0}
-  - {x: -69.00447, y: -25.513985, z: 0}
-  - {x: -73.24756, y: -25.829958, z: 0}
+  - {x: -67, y: -26, z: 0}
+  - {x: -71.4, y: -26.6, z: 0}
   - {x: -74.19548, y: -24.882036, z: 0}
   - {x: -77.35522, y: -24.791758, z: 0}
   - {x: -86.337845, y: -24.836906, z: 0}
@@ -6100,8 +6100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextScene: Niveau-Tuto
-  _menuScene: 
-  _isMainLevel: 0
+  _menuScene: Niveau-0
 --- !u!4 &641416586
 Transform:
   m_ObjectHideFlags: 0
@@ -9141,6 +9140,7 @@ Transform:
   - {fileID: 179178604}
   - {fileID: 6269842753826137905}
   - {fileID: 4635271134678573146}
+  - {fileID: 1478156531}
   m_Father: {fileID: 1380080587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &968228448
@@ -12944,7 +12944,6 @@ Transform:
   m_Children:
   - {fileID: 59259928}
   - {fileID: 1919186061}
-  - {fileID: 1478156531}
   - {fileID: 964614123}
   - {fileID: 807056553}
   m_Father: {fileID: 0}
@@ -13912,7 +13911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1478156529
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13999,7 +13998,7 @@ Transform:
   m_LocalScale: {x: 18.213263, y: 0.5, z: 0.8333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1380080587}
+  m_Father: {fileID: 964614123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &1478305308
 GameObject:
@@ -16799,7 +16798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: -0.15
+  width: -0.1
   depth: 1
 --- !u!1 &1789260318
 GameObject:
@@ -18503,7 +18502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1934466584
 Transform:
   m_ObjectHideFlags: 0
@@ -18531,7 +18530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0.5
+  width: -0.1
   depth: 1
 --- !u!120 &1934466586
 LineRenderer:

@@ -15,18 +15,17 @@ public class PaintingController : Interactable
     private SpriteRenderer _spriteRenderer;
     private PaintHandler _paintHandlerAccessor;
     private PaintHandler _paintHandler { get => getPaintHandler(); set => _paintHandler = value; }
-    bool _isHeld = false;
+    public bool _isHeld = false;
+    public PlayerStateMachine CurrentHoldingStateMachine;
 
     [SerializeField] private ParticleSystem VFX_GrabToile;
     [SerializeField] private ParticleSystem VFX_PoseToile;
+
     private BoneFollower boneFollower;
 
     private PaintHandler getPaintHandler()
     {
-        if (_paintHandlerAccessor == null)
-        {
-            _paintHandlerAccessor = Player.GetComponentInChildren<PaintHandler>();
-        }
+        _paintHandlerAccessor = Player.GetComponentInChildren<PaintHandler>();
         return _paintHandlerAccessor;
     }
 
@@ -40,7 +39,7 @@ public class PaintingController : Interactable
     {
         if (IsInRange)
         {
-            if (PlayerC.IsInteracting && !PlayerC.IsInSocleRange && !PlayerC.HasInteracted)
+            if (PlayerC.IsInteracting && !PlayerC.IsInSocleRange && !PlayerC.HasInteracted && (CurrentHoldingStateMachine == null || CurrentHoldingStateMachine.CurrentState != CurrentHoldingStateMachine.CloneState))
             {
                 PlayerC.HasInteracted = true;
                 if (_isHeld)
@@ -94,13 +93,12 @@ public class PaintingController : Interactable
                                 transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
                                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                                 transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-                                // Changing state of State machine
                                 PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
-                                //_paintHandler.ChangeLayer(_spriteRenderer.sortingLayerID);
                                 _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder+1);
                                 boneFollower.SkeletonRenderer = null;
                                 PlayerC.heldObject = null;
                                 _isHeld = false;
+                                CurrentHoldingStateMachine = null;
                                 return;
                             }
                         }
@@ -118,7 +116,6 @@ public class PaintingController : Interactable
         }
         AudioManager.Instance.SFX_GrabToile.Post(gameObject);
         PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
-        // Visuel de peinture
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
         boneFollower.boneName = "Target_Arm_R";
@@ -126,7 +123,9 @@ public class PaintingController : Interactable
         transform.position = PlayerC.PaintingTransform.position;
         _paintHandler.ChangeLayer(_spriteRenderer.sortingLayerID);
         _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder);
+        CurrentHoldingStateMachine = PlayerC.GetComponent<PlayerStateMachine>();
         _isHeld = true;
+        IsInRange = true;
         PlayerC.heldObject = gameObject;
     }
 }

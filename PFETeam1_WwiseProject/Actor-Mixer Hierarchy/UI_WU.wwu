@@ -39,11 +39,6 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-8</Value>
-							</ValueList>
-						</Property>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -166,7 +161,7 @@
 						</Sound>
 					</ChildrenList>
 				</RandomSequenceContainer>
-				<RandomSequenceContainer Name="SUI_SurvolBouton_RC" ID="{9B21F886-E875-4AAA-9348-2548DCCAFF18}" ShortID="359106761">
+				<RandomSequenceContainer Name="SUI_SurvolBouton_RC_01" ID="{9B21F886-E875-4AAA-9348-2548DCCAFF18}" ShortID="359106761">
 					<PropertyList>
 						<Property Name="MaxSoundPerInstance" Type="int16">
 							<ValueList>
@@ -196,11 +191,6 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>True</Value>
-							</ValueList>
-						</Property>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-10</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -325,35 +315,6 @@
 						</Sound>
 					</ChildrenList>
 				</RandomSequenceContainer>
-				<Sound Name="SUI_PressAnyKey" ID="{BC705D31-5EB9-4161-844D-5D0E515295E0}" ShortID="144836716">
-					<PropertyList>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-4</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="SUI_PressAnyKey" ID="{10A234C4-7C3E-4C82-B665-AFD9A668DC57}">
-							<Language>SFX</Language>
-							<AudioFile>SUI_PressAnyKey.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="191887575"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ActiveSourceList>
-						<ActiveSource Name="SUI_PressAnyKey" ID="{10A234C4-7C3E-4C82-B665-AFD9A668DC57}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

@@ -151,11 +151,11 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 5b1a7e0c34ee414e9dc1f3835973309b
     GuidInternal: 
-    m_lastTime: -8584547908521956506
+    m_lastTime: -8584545495768637740
     List:
-    - name: AMB_LVL01_SBK
+    - name: AMB_SBK
       guid: fdc9988257980740ab1f040c6bb35c2e
-      id: 3681895266
+      id: 3702631076
       PathAndIcons:
       - ElementName: SoundBanks
         ObjectType: 5
@@ -163,24 +163,10 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 5b1a7e0c34ee414e9dc1f3835973309b
-      - ElementName: AMB_LVL01_SBK
+      - ElementName: AMB_SBK
         ObjectType: 7
         guid: fdc9988257980740ab1f040c6bb35c2e
-      Path: SoundBanks\Default Work Unit\AMB_LVL01_SBK
-    - name: AMB_LVL02_SBK
-      guid: 9e415096367bf6468cabdc9270d2f89d
-      id: 949270025
-      PathAndIcons:
-      - ElementName: SoundBanks
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: 5b1a7e0c34ee414e9dc1f3835973309b
-      - ElementName: AMB_LVL02_SBK
-        ObjectType: 7
-        guid: 9e415096367bf6468cabdc9270d2f89d
-      Path: SoundBanks\Default Work Unit\AMB_LVL02_SBK
+      Path: SoundBanks\Default Work Unit\AMB_SBK
     - name: FOL_SBK
       guid: 4af1800409a1da45b060ea3c24dd5d8b
       id: 2606446995
@@ -209,9 +195,9 @@ MonoBehaviour:
         ObjectType: 7
         guid: bff3fe550da7004aa751ca87997d0e79
       Path: SoundBanks\Default Work Unit\MUS_SBK
-    - name: SFX01_SBK
+    - name: SFX_SBK
       guid: f5ebf4ac2f5b004f87f52a8c349f43b6
-      id: 776845020
+      id: 4254072057
       PathAndIcons:
       - ElementName: SoundBanks
         ObjectType: 5
@@ -219,24 +205,10 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 5b1a7e0c34ee414e9dc1f3835973309b
-      - ElementName: SFX01_SBK
+      - ElementName: SFX_SBK
         ObjectType: 7
         guid: f5ebf4ac2f5b004f87f52a8c349f43b6
-      Path: SoundBanks\Default Work Unit\SFX01_SBK
-    - name: SFX02_SBK
-      guid: aadc93b9592ef64cb933ce574f5c4745
-      id: 1390160151
-      PathAndIcons:
-      - ElementName: SoundBanks
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: 5b1a7e0c34ee414e9dc1f3835973309b
-      - ElementName: SFX02_SBK
-        ObjectType: 7
-        guid: aadc93b9592ef64cb933ce574f5c4745
-      Path: SoundBanks\Default Work Unit\SFX02_SBK
+      Path: SoundBanks\Default Work Unit\SFX_SBK
     - name: UI_SBK
       guid: 5786cd6627bbbf4aa6e7231484986b7d
       id: 3630591588
@@ -263,7 +235,7 @@ MonoBehaviour:
     ParentPath: Events\AMB_WU
     guid: a1ca8aaa1c5cba408a3bf1bc2c8e9b1b
     GuidInternal: 
-    m_lastTime: -8584548077931979660
+    m_lastTime: -8584545532897409433
     List:
     - name: Play_AMB_RFX_Toile01_CraquementBois_RC
       guid: 580f20758c0ea54fb6420f63a6dc5e33
@@ -282,9 +254,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 580f20758c0ea54fb6420f63a6dc5e33
       Path: Events\AMB_WU\Toile01\Play_AMB_RFX_Toile01_CraquementBois_RC
-      maxAttenuation: 10
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_AMB_RFX_Toile01_Oiseaux_RC
       guid: 42fd1ca5ba07804fae43df32e0edf39f
       id: 4033142521
@@ -302,9 +274,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 42fd1ca5ba07804fae43df32e0edf39f
       Path: Events\AMB_WU\Toile01\Play_AMB_RFX_Toile01_Oiseaux_RC
-      maxAttenuation: 50
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_AMB_RFX_Toile01_Vaguelettes_RC
       guid: e4be0efc8ad8fb4fad71b71bffa317a1
       id: 1624259432
@@ -322,9 +294,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: e4be0efc8ad8fb4fad71b71bffa317a1
       Path: Events\AMB_WU\Toile01\Play_AMB_RFX_Toile01_Vaguelettes_RC
-      maxAttenuation: 20
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_AMB_RFX_Toile02_Branche_RC
       guid: cd96c338f04d9c4cb341cd025ecc5f24
       id: 2779508065
@@ -342,9 +314,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: cd96c338f04d9c4cb341cd025ecc5f24
       Path: Events\AMB_WU\Toile02\Play_AMB_RFX_Toile02_Branche_RC
-      maxAttenuation: 20
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_AMB_RFX_Toile02_Chouettes_RC
       guid: c5c85bfdadce044481011ca82a648901
       id: 3972738056
@@ -362,9 +334,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: c5c85bfdadce044481011ca82a648901
       Path: Events\AMB_WU\Toile02\Play_AMB_RFX_Toile02_Chouettes_RC
-      maxAttenuation: 50
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_AMB_RFX_Toile02_FeuillesVent_RC
       guid: efe3f4506c7c944facae5075366894e5
       id: 2997463758
@@ -382,9 +354,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: efe3f4506c7c944facae5075366894e5
       Path: Events\AMB_WU\Toile02\Play_AMB_RFX_Toile02_FeuillesVent_RC
-      maxAttenuation: 20
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_AMB_RFX_Toile02_Loup_RC
       guid: 91fdd2ff639688438c4205e11137d720
       id: 3110674342
@@ -402,9 +374,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 91fdd2ff639688438c4205e11137d720
       Path: Events\AMB_WU\Toile02\Play_AMB_RFX_Toile02_Loup_RC
-      maxAttenuation: 50
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_AMB_Toile1_Niveau1_LP
       guid: d8a8d8df2ee6bf4ba4044af867f53f20
       id: 1171349980
@@ -422,9 +394,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: d8a8d8df2ee6bf4ba4044af867f53f20
       Path: Events\AMB_WU\Toile01\Play_AMB_Toile1_Niveau1_LP
-      maxAttenuation: 30
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_AMB_Toile2_Niveau01_LP
       guid: 8cacf0b902172142993551f4400cb05d
       id: 271873771
@@ -442,9 +414,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 8cacf0b902172142993551f4400cb05d
       Path: Events\AMB_WU\Toile02\Play_AMB_Toile2_Niveau01_LP
-      maxAttenuation: 30
-      maxDuration: 257.23132
-      minDuration: 257.23132
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Toile01
       guid: 5d809eca8950194e929f0de93aef9f71
       id: 2950916523
@@ -490,7 +462,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: ad58fff510fe01409612fab3b9f4cc31
     GuidInternal: 
-    m_lastTime: -8584547348234778260
+    m_lastTime: -8584550563918821209
     List: []
   - PhysicalPath: Events\FOL_WU.wwu
     PathAndIcons:
@@ -503,11 +475,11 @@ MonoBehaviour:
     ParentPath: Events\FOL_WU
     guid: 0288738f62aa1b4c9fa9527139f62dc6
     GuidInternal: 
-    m_lastTime: -8584547912054498492
+    m_lastTime: -8584545495769215811
     List:
-    - name: Play_FOL_Atterissage
+    - name: Play_FOL_Atterissage_RC
       guid: e910ed5fee330542a970f3c0819e04f3
-      id: 963548972
+      id: 4231866090
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
@@ -515,16 +487,16 @@ MonoBehaviour:
       - ElementName: FOL_WU
         ObjectType: 12
         guid: 0288738f62aa1b4c9fa9527139f62dc6
-      - ElementName: Play_FOL_Atterissage
+      - ElementName: Play_FOL_Atterissage_RC
         ObjectType: 3
         guid: e910ed5fee330542a970f3c0819e04f3
-      Path: Events\FOL_WU\Play_FOL_Atterissage
+      Path: Events\FOL_WU\Play_FOL_Atterissage_RC
       maxAttenuation: 0
       maxDuration: 0.43355066
       minDuration: 0.37005246
-    - name: Play_FOL_Pas
+    - name: Play_FOL_Pas_RC
       guid: 7bdbb761a2055344ae153a0dd51c8a4a
-      id: 2347302452
+      id: 3168559986
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
@@ -532,16 +504,16 @@ MonoBehaviour:
       - ElementName: FOL_WU
         ObjectType: 12
         guid: 0288738f62aa1b4c9fa9527139f62dc6
-      - ElementName: Play_FOL_Pas
+      - ElementName: Play_FOL_Pas_RC
         ObjectType: 3
         guid: 7bdbb761a2055344ae153a0dd51c8a4a
-      Path: Events\FOL_WU\Play_FOL_Pas
+      Path: Events\FOL_WU\Play_FOL_Pas_RC
       maxAttenuation: 0
       maxDuration: 0.34612432
       minDuration: 0.21604441
-    - name: Play_FOL_Saut
+    - name: Play_FOL_Saut_RC
       guid: 2c2644085b49964c8f590b0045f4668c
-      id: 3275352703
+      id: 1819697263
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
@@ -549,10 +521,10 @@ MonoBehaviour:
       - ElementName: FOL_WU
         ObjectType: 12
         guid: 0288738f62aa1b4c9fa9527139f62dc6
-      - ElementName: Play_FOL_Saut
+      - ElementName: Play_FOL_Saut_RC
         ObjectType: 3
         guid: 2c2644085b49964c8f590b0045f4668c
-      Path: Events\FOL_WU\Play_FOL_Saut
+      Path: Events\FOL_WU\Play_FOL_Saut_RC
       maxAttenuation: 0
       maxDuration: 0.6309837
       minDuration: 0.4558711
@@ -586,36 +558,36 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
-  - PhysicalPath: Events\SFX01_WU.wwu
+  - PhysicalPath: Events\SFX_WU.wwu
     PathAndIcons:
     - ElementName: Events
       ObjectType: 5
       guid: 00000000000000000000000000000000
-    - ElementName: SFX01_WU
+    - ElementName: SFX_WU
       ObjectType: 12
       guid: a48179c86af39c48af681069ba57db04
-    ParentPath: Events\SFX01_WU
+    ParentPath: Events\SFX_WU
     guid: a48179c86af39c48af681069ba57db04
     GuidInternal: 
-    m_lastTime: -8584547911471826041
+    m_lastTime: -8584545495769205847
     List:
-    - name: Play_ApparitionToile
+    - name: Play_ApparitionToile_RC
       guid: 7dd5bf9f280d074c910db7fc91b2ef10
-      id: 492561862
+      id: 1342993308
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
         guid: 00000000000000000000000000000000
-      - ElementName: SFX01_WU
+      - ElementName: SFX_WU
         ObjectType: 12
         guid: a48179c86af39c48af681069ba57db04
-      - ElementName: Play_ApparitionToile
+      - ElementName: Play_ApparitionToile_RC
         ObjectType: 3
         guid: 7dd5bf9f280d074c910db7fc91b2ef10
-      Path: Events\SFX01_WU\Play_ApparitionToile
-      maxAttenuation: 10
-      maxDuration: 3.35
-      minDuration: 3.04
+      Path: Events\SFX_WU\Play_ApparitionToile_RC
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_Camera_SFX_Dezoom
       guid: 6dc7a43f3b80f54e84439ebb3d221341
       id: 1282718846
@@ -623,16 +595,16 @@ MonoBehaviour:
       - ElementName: Events
         ObjectType: 5
         guid: 00000000000000000000000000000000
-      - ElementName: SFX01_WU
+      - ElementName: SFX_WU
         ObjectType: 12
         guid: a48179c86af39c48af681069ba57db04
       - ElementName: Play_Camera_SFX_Dezoom
         ObjectType: 3
         guid: 6dc7a43f3b80f54e84439ebb3d221341
-      Path: Events\SFX01_WU\Play_Camera_SFX_Dezoom
+      Path: Events\SFX_WU\Play_Camera_SFX_Dezoom
       maxAttenuation: 0
-      maxDuration: 0.39530906
-      minDuration: 0.33241397
+      maxDuration: -1
+      minDuration: -1
     - name: Play_Camera_SFX_Zoom
       guid: e892a6af8e2ff2499a368f4271b92f8b
       id: 950135643
@@ -640,111 +612,47 @@ MonoBehaviour:
       - ElementName: Events
         ObjectType: 5
         guid: 00000000000000000000000000000000
-      - ElementName: SFX01_WU
+      - ElementName: SFX_WU
         ObjectType: 12
         guid: a48179c86af39c48af681069ba57db04
       - ElementName: Play_Camera_SFX_Zoom
         ObjectType: 3
         guid: e892a6af8e2ff2499a368f4271b92f8b
-      Path: Events\SFX01_WU\Play_Camera_SFX_Zoom
+      Path: Events\SFX_WU\Play_Camera_SFX_Zoom
       maxAttenuation: 0
-      maxDuration: 0.40755457
-      minDuration: 0.34271115
-    - name: Play_CreateClone
+      maxDuration: -1
+      minDuration: -1
+    - name: Play_CreateClone_RC
       guid: 8544e16211c67d46a4f210149d2a3529
-      id: 1596093869
+      id: 772483901
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
         guid: 00000000000000000000000000000000
-      - ElementName: SFX01_WU
+      - ElementName: SFX_WU
         ObjectType: 12
         guid: a48179c86af39c48af681069ba57db04
-      - ElementName: Play_CreateClone
+      - ElementName: Play_CreateClone_RC
         ObjectType: 3
         guid: 8544e16211c67d46a4f210149d2a3529
-      Path: Events\SFX01_WU\Play_CreateClone
+      Path: Events\SFX_WU\Play_CreateClone_RC
       maxAttenuation: 0
-      maxDuration: 1.3350264
-      minDuration: 1.2600971
-    - name: Play_Dechirure_Toile
-      guid: 3f9a329f6a2da94da615fc6d4005cf20
-      id: 268635939
+      maxDuration: 1.2370498
+      minDuration: 1.1676195
+    - name: Play_PoseToile_RC
+      guid: 75b231897a16c74b8cfef16939404214
+      id: 295623852
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
         guid: 00000000000000000000000000000000
-      - ElementName: SFX01_WU
+      - ElementName: SFX_WU
         ObjectType: 12
         guid: a48179c86af39c48af681069ba57db04
-      - ElementName: Play_Dechirure_Toile
+      - ElementName: Play_PoseToile_RC
         ObjectType: 3
-        guid: 3f9a329f6a2da94da615fc6d4005cf20
-      Path: Events\SFX01_WU\Play_Dechirure_Toile
-      maxAttenuation: 0
-      maxDuration: 1.5258034
-      minDuration: 1.260236
-  - PhysicalPath: Events\SFX02_WU.wwu
-    PathAndIcons:
-    - ElementName: Events
-      ObjectType: 5
-      guid: 00000000000000000000000000000000
-    - ElementName: SFX02_WU
-      ObjectType: 12
-      guid: f66d51b5c451704293ba02a911ad8d6a
-    ParentPath: Events\SFX02_WU
-    guid: f66d51b5c451704293ba02a911ad8d6a
-    GuidInternal: 
-    m_lastTime: -8584547910818845646
-    List:
-    - name: Play_PoseToile
-      guid: b9b1aea473b2204899f7fdd4abfba0da
-      id: 3737469814
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: SFX02_WU
-        ObjectType: 12
-        guid: f66d51b5c451704293ba02a911ad8d6a
-      - ElementName: Play_PoseToile
-        ObjectType: 3
-        guid: b9b1aea473b2204899f7fdd4abfba0da
-      Path: Events\SFX02_WU\Play_PoseToile
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
-    - name: Play_Reformation_Toile
-      guid: 16e6403e43c5be41904f11c756545cdb
-      id: 1700749746
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: SFX02_WU
-        ObjectType: 12
-        guid: f66d51b5c451704293ba02a911ad8d6a
-      - ElementName: Play_Reformation_Toile
-        ObjectType: 3
-        guid: 16e6403e43c5be41904f11c756545cdb
-      Path: Events\SFX02_WU\Play_Reformation_Toile
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
-    - name: Play_Switch_Clone
-      guid: fecbbc3f39293f4fb60dfd46c9d96d01
-      id: 1864381592
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: SFX02_WU
-        ObjectType: 12
-        guid: f66d51b5c451704293ba02a911ad8d6a
-      - ElementName: Play_Switch_Clone
-        ObjectType: 3
-        guid: fecbbc3f39293f4fb60dfd46c9d96d01
-      Path: Events\SFX02_WU\Play_Switch_Clone
+        guid: 75b231897a16c74b8cfef16939404214
+      Path: Events\SFX_WU\Play_PoseToile_RC
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -759,7 +667,7 @@ MonoBehaviour:
     ParentPath: Events\UI_WU
     guid: ab9be2386fd8504d917a5c99d0da3795
     GuidInternal: 
-    m_lastTime: -8584547348234778260
+    m_lastTime: -8584545495769197216
     List:
     - name: Play_SUI_CliqueValidationBouton_RC
       guid: cba854d5bb76a140a653f4d96ee48528
@@ -778,23 +686,6 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.45130613
       minDuration: 0.2505945
-    - name: Play_SUI_PressAnyKey
-      guid: 52ac627d5b4152409b36b1af55d60add
-      id: 3626919780
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: UI_WU
-        ObjectType: 12
-        guid: ab9be2386fd8504d917a5c99d0da3795
-      - ElementName: Play_SUI_PressAnyKey
-        ObjectType: 3
-        guid: 52ac627d5b4152409b36b1af55d60add
-      Path: Events\UI_WU\Play_SUI_PressAnyKey
-      maxAttenuation: 0
-      maxDuration: 4.334833
-      minDuration: 4.334833
     - name: Play_SUI_SurvolBouton_RC_01
       guid: 7d334bedb11a87479152b84dc5fd1300
       id: 2589902834
@@ -824,7 +715,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 4bebea56ecd8fe41a63933e2e22105aa
     GuidInternal: 
-    m_lastTime: -8584548077931979660
+    m_lastTime: -8584545532897201895
     List:
     - name: AMB_BUS_Volume_RTPC
       guid: 3f7d8e4272abd8439e80631a9765e4d4
@@ -953,7 +844,7 @@ MonoBehaviour:
     m_lastTime: -8584550563869786706
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 05000000060000001f0000002a000000300000007a0100008f010000
+  ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
