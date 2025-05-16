@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5935027798015342362}
   - component: {fileID: 1728487134142390981}
   - component: {fileID: 4910549751048934466}
-  - component: {fileID: 5342721667291586375}
+  - component: {fileID: 9073431259549352449}
   m_Layer: 0
   m_Name: End
   m_TagString: Untagged
@@ -98,7 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38dd6a4a212aaa84cb5d54200464e308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   isInRange: 0
+  CollidingPlayers: []
+  isSocle: 0
   _level: {fileID: 0}
   _curve:
     serializedVersion: 2
@@ -109,8 +112,8 @@ MonoBehaviour:
   _displacementDuration: 0
   _endPos: {fileID: 0}
   _endEffect: {fileID: 0}
---- !u!135 &5342721667291586375
-SphereCollider:
+--- !u!136 &9073431259549352449
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,9 +127,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
+  serializedVersion: 2
+  m_Radius: 1.94
+  m_Height: 8.96
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
