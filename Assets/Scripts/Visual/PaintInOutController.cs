@@ -83,7 +83,7 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderIn(GameObject paint)
     {
-        CameraManager.Instance.SeeCurrentLevel(paint,.5f);
+        CameraManager.Instance.SeeCurrentLevel(paint, _cameraMoveDuration);
         float timer = 0;
         yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationIn)
@@ -104,8 +104,8 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderOut(GameObject paint)
     {
-        CameraManager.Instance.SeeCurrentLevel(paint,.5f);
-        _eraseRend.material.SetFloat("_CursorErase", 0);
+        CameraManager.Instance.SeeCurrentLevel(paint, _cameraMoveDuration);
+        _eraseRend.material.SetFloat("_CursorErase", -1);
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
@@ -115,7 +115,7 @@ public class PaintInOutController : MonoBehaviour
         yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationOut)
         {
-            _eraseRend.material.SetFloat("_CursorErase", (timer / _durationOut)*2);
+            _eraseRend.material.SetFloat("_CursorErase", (timer / _durationOut)*3-1);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }     
