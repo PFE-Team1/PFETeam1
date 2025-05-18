@@ -22,19 +22,22 @@ public class OpenButton : Interactable
         _sprite = _spriteRenderer.sprite;
         foreach (ObectToDestroy toRemove in _objectsToRemove)
         {
+            if (toRemove.IsParent)
+            {
+                toRemove.Colliders.AddRange(toRemove.ObjectToRemove.GetComponentsInChildren<Collider>().Where(collide => collide.gameObject != toRemove.ObjectToRemove && collide.isTrigger == false));
+                toRemove.Renderers.AddRange(toRemove.ObjectToRemove.GetComponentsInChildren<Renderer>().Where(collide => collide.gameObject != toRemove.ObjectToRemove));
+
+            }
+            else
+            {
+                List<Collider> coll = toRemove.ObjectToRemove.GetComponents<Collider>().Where(collide=>collide.isTrigger==false).ToList();
+                toRemove.Colliders.AddRange(coll);
+                toRemove.Renderers.Add(toRemove.ObjectToRemove.GetComponent<Renderer>());
+            }
             if (toRemove.IsRespawnable)
             {
                 toRemove.respawnable = toRemove.ObjectToRemove.AddComponent<RespawnableWall>();
-                if (toRemove.IsParent)
-                {
-                   toRemove.Colliders.AddRange(toRemove.ObjectToRemove.GetComponentsInChildren<Collider>().Where(collide=>collide.gameObject!=toRemove.ObjectToRemove));
-                   toRemove.Renderers.AddRange(toRemove.ObjectToRemove.GetComponentsInChildren<Renderer>().Where(collide=>collide.gameObject!=toRemove.ObjectToRemove));
-                }
-                else
-                {
-                    toRemove.Colliders.Add(toRemove.ObjectToRemove.GetComponent<Collider>());
-                    toRemove.Renderers.Add(toRemove.ObjectToRemove.GetComponent<Renderer>());
-                }
+
             }
             if (toRemove.RespawnTime+toRemove.RespawnStartTime > hightestRespawnTime)
             {
@@ -58,10 +61,14 @@ public class OpenButton : Interactable
                     for (int i = 0; i < toRemove.Colliders.Count; i++)
                     {
                         toRemove.Colliders[i].enabled = false;
+                    }
+                    for (int i = 0; i < toRemove.Renderers.Count; i++)
+                    {
                         toRemove.Renderers[i].enabled = false;
                     }
-                        if (toRemove.IsRespawnable == true)
+                    if (toRemove.IsRespawnable == true)
                     {
+                        toRemove.currentTime = 0;
                         _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
                     }
                 }
@@ -70,7 +77,7 @@ public class OpenButton : Interactable
     }
     IEnumerator Rebuilding(ObectToDestroy destroyed)
     {
-        float time = 0;
+        float time = destroyed.currentTime;
         yield return new WaitForSeconds(destroyed.RespawnStartTime);
         while (time < destroyed.RespawnTime)
         {
@@ -82,7 +89,12 @@ public class OpenButton : Interactable
         }
         while (destroyed.respawnable.IsRepawnBlocked)
         {
-            print("feur");
+            if (_isRespawning) 
+            {
+                _spriteRenderer.sprite = null;
+                _isRespawning = true;
+            }
+            time += Time.deltaTime;
             yield return null;
         }
         for (int i = 0; i < destroyed.Colliders.Count; i++)
@@ -90,7 +102,7 @@ public class OpenButton : Interactable
             destroyed.Colliders[i].enabled = true;
             destroyed.Renderers[i].enabled = true;
         }
-        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime)
+        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime||time>hightestRespawnTime)
         {
             _spriteRenderer.sprite = _sprite;
             _isRespawning = false;
@@ -104,30 +116,10 @@ public class OpenButton : Interactable
             Debug.Log(toRemove.currentTime);
             if (toRemove.currentTime <= toRemove.RespawnTime&&toRemove.currentTime>0)
             {
-                _coroutines.Add(StartCoroutine(ReStartBuilding(toRemove)));
+                _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
 
             }
         }
-    }
-    IEnumerator ReStartBuilding(ObectToDestroy destroyed)
-    {
-        float time = destroyed.currentTime;
-        yield return new WaitForSeconds(destroyed.RespawnStartTime);
-        while (time < destroyed.RespawnTime)
-        {
-            time += Time.deltaTime;
-            destroyed.currentTime = time;
-            //Shader de resolve progressif sur la durée (time/respawnTime)
-            yield return null;
-        }
-        destroyed.ObjectToRemove.SetActive(true);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
-
-        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime)
-        {
-            _spriteRenderer.sprite = _sprite;
-            _isRespawning = false;
-        }
-        yield return null;
     }
 }
 [Serializable]
