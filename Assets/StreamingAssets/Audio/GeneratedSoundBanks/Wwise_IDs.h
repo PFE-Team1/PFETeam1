@@ -31,9 +31,12 @@ namespace AK
         static const AkUniqueID PLAY_FOL_PAS = 2347302452U;
         static const AkUniqueID PLAY_FOL_SAUT = 3275352703U;
         static const AkUniqueID PLAY_GRABTOILE_RC = 552674189U;
+        static const AkUniqueID PLAY_POSETOILE_RC = 295623852U;
+        static const AkUniqueID PLAY_REFORMATION_TOILE = 1700749746U;
         static const AkUniqueID PLAY_SUI_CLIQUEVALIDATIONBOUTON_RC = 129827151U;
         static const AkUniqueID PLAY_SUI_PRESSANYKEY = 3626919780U;
         static const AkUniqueID PLAY_SUI_SURVOLBOUTON_RC_01 = 2589902834U;
+        static const AkUniqueID PLAY_SWITCH_CLONE = 1864381592U;
         static const AkUniqueID PLAY_TOILE_1_PC = 4192545069U;
     } // namespace EVENTS
 

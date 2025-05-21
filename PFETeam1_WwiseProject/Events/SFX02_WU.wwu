@@ -7,17 +7,6 @@
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
 			<ChildrenList>
-				<Event Name="Play_PoseToile" ID="{A4AEB1B9-B273-4820-99F7-FDD4ABFBA0DA}">
-					<ChildrenList>
-						<Action Name="" ID="{F0EE5E06-D2A1-4133-98A9-F94212AB594B}" ShortID="408455937">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="PoseToile_RC" ID="{982FD591-685C-4649-8497-4435F0531367}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
 				<Event Name="Play_Switch_Clone" ID="{3FBCCBFE-2939-4F3F-B60D-FD46C9D96D01}">
 					<ChildrenList>
 						<Action Name="" ID="{983DBB2A-F1A6-400B-B6CB-A5D230161F40}" ShortID="46057409">
@@ -35,6 +24,17 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Reformation_Toile" ID="{FE02C98F-FE7B-439D-BE74-7987CA8372D0}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_PoseToile_RC" ID="{46EADF9C-F151-440C-981B-B8D66EC804FE}">
+					<ChildrenList>
+						<Action Name="" ID="{2867EDAC-EA95-4E69-A843-EE1CAADB33A2}" ShortID="31369534">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="PoseToile_RC" ID="{982FD591-685C-4649-8497-4435F0531367}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
