@@ -6,18 +6,18 @@ using UnityEngine.UI;
 
 public class PaintInOutController : MonoBehaviour
 {
-    private LineRenderer _line;
-    private SpriteRenderer _eraseRend;
+    [SerializeField] private LineRenderer _line;
+    [SerializeField] private SpriteRenderer _eraseRend;
+    [SerializeField] private Camera _camera;
     [SerializeField]float _durationIn=5f;
     [SerializeField]float _durationOut=3f;
     [SerializeField]float _cameraMoveDuration=0.5f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField]GameObject _endPaint;
-    [SerializeField] GameObject _raw;
-    [SerializeField] GameObject _mask;
-    [SerializeField] GameObject _erase;
-    RectTransform _rectTransform;
-    RawImage _image;
+    [SerializeField] List<Renderer> _appearanceAddOns;
+    [SerializeField] RectTransform _rectTransform;
+    [SerializeField]RawImage _image;
+    private float _sizeChange;
     Coroutine _coroutine;
 
     [Button("Paint In")]
@@ -30,24 +30,9 @@ public class PaintInOutController : MonoBehaviour
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}
 
-    private void Awake()
-    {
-
-        _rectTransform = _raw.GetComponent<RectTransform>();
-        _image = _raw.GetComponent<RawImage>();
-        _line = _mask.GetComponent<LineRenderer>();
-        _eraseRend = _erase.GetComponent<SpriteRenderer>();
-    }
-
     public  void PaintIn(GameObject paint)// objet , position taille
     {
-        if (_coroutine!=null)
-        {
-            _eraseRend.material.SetFloat("_CursorErase", 2);
-            _line.material.SetFloat("_CursorAppearance", 0);
-            StopCoroutine(_coroutine);
-            CameraManager.Instance.FocusCamera();
-        }
+        Reset();
         RectTransform paintRect = paint.GetComponent<RectTransform>();
         Debug.Log($"{paint.name} {paintRect.sizeDelta} {paintRect.localScale} {paintRect.position}");
 
@@ -62,14 +47,7 @@ public class PaintInOutController : MonoBehaviour
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
-        if (_coroutine != null)
-        {
-            _eraseRend.material.SetFloat("_CursorErase", 2);
-            _line.material.SetFloat("_CursorAppearance", 0);
-            StopCoroutine(_coroutine);
-            CameraManager.Instance.FocusCamera();
-            _image.enabled = false;
-        }
+        Reset();
         RectTransform paintRect = paint.GetComponent<RectTransform>();
 
         _rectTransform.anchorMin = paintRect.anchorMin;
@@ -84,11 +62,16 @@ public class PaintInOutController : MonoBehaviour
     IEnumerator ShaderIn(GameObject paint)
     {
         CameraManager.Instance.SeeCurrentLevel(paint, _cameraMoveDuration);
+
         float timer = 0;
         yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationIn)
         {
             _line.material.SetFloat("_CursorAppearance",(timer / _durationIn)*2);
+            foreach(Renderer rend in _appearanceAddOns)
+            {
+                rend.material.SetFloat("_Resolve_Cursor", 2-(timer / _durationIn) * 2.5f);
+            }
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
@@ -100,7 +83,11 @@ public class PaintInOutController : MonoBehaviour
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;
         _line.material.SetFloat("_CursorAppearance", 0);
-       yield return null;
+        foreach (Renderer rend in _appearanceAddOns)
+        {
+            rend.material.SetFloat("", 1);
+        }
+        yield return null;
     }
     IEnumerator ShaderOut(GameObject paint)
     {
@@ -141,7 +128,22 @@ public class PaintInOutController : MonoBehaviour
         }
         return result;
     }
+    private void Reset()
+    {
+        if (_coroutine != null)
+        {
+            _eraseRend.material.SetFloat("_CursorErase", 2);
+            _line.material.SetFloat("_CursorAppearance", 0);
+            foreach (Renderer rend in _appearanceAddOns)
+            {
+                rend.material.SetFloat("_ResolveCursor", 1);
+            }
+            StopCoroutine(_coroutine);
+            CameraManager.Instance.FocusCamera();
+            _image.enabled = false;
 
+        }
+    }
     private void Searcher(List<GameObject> list, GameObject root)
     {
         list.Add(root);
