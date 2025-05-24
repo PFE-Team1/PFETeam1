@@ -25,39 +25,41 @@ public class PaintInOutController : MonoBehaviour
     {
         PaintIn(_firstPaint);
     }
-
+    private void Start()
+    {
+        Reset();
+    }
     public float DurationOut { get => _durationOut; }
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}
 
     public  void PaintIn(GameObject paint)// objet , position taille
     {
-        Reset();
-        RectTransform paintRect = paint.GetComponent<RectTransform>();
-        Debug.Log($"{paint.name} {paintRect.sizeDelta} {paintRect.localScale} {paintRect.position}");
-
-        _rectTransform.anchorMin =paintRect.anchorMin;
-        _rectTransform.anchorMax =paintRect.anchorMax;
-        //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
-        _rectTransform.sizeDelta = paintRect.sizeDelta;
-        _rectTransform.localScale = paintRect.localScale;
-        transform.position = paintRect.position;
-        _image.enabled = true;
-        _coroutine=StartCoroutine(ShaderIn(paint));
+        if (paint.layer != 6)
+        {
+            paint.layer = 6;
+            foreach (GameObject child in AllChilds(paint))
+            {
+                child.layer = 6;
+            }
+        }
+        Reset();        
+        Setup(paint);
+        _coroutine =StartCoroutine(ShaderIn(paint));
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
+        if (paint.layer != 0)
+        {
+            paint.layer = 0;
+            foreach (GameObject child in AllChilds(paint))
+            {
+                child.layer = 0;
+            }
+        }
         Reset();
-        RectTransform paintRect = paint.GetComponent<RectTransform>();
-
-        _rectTransform.anchorMin = paintRect.anchorMin;
-        _rectTransform.anchorMax = paintRect.anchorMax;
-        //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
-        _rectTransform.sizeDelta = paintRect.sizeDelta;
-        _rectTransform.localScale = paintRect.localScale;
-        transform.position = paintRect.position;
-        _image.enabled = true;
-        _coroutine=StartCoroutine(ShaderOut(paint));
+        Setup(paint);
+        _coroutine = StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
@@ -85,7 +87,7 @@ public class PaintInOutController : MonoBehaviour
         _line.material.SetFloat("_CursorAppearance", 0);
         foreach (Renderer rend in _appearanceAddOns)
         {
-            rend.material.SetFloat("", 1);
+            rend.material.SetFloat("_Resolve_Cursor", 1);
         }
         yield return null;
     }
@@ -132,17 +134,17 @@ public class PaintInOutController : MonoBehaviour
     {
         if (_coroutine != null)
         {
-            _eraseRend.material.SetFloat("_CursorErase", 2);
+            StopCoroutine(_coroutine);
+        }
+        _eraseRend.material.SetFloat("_CursorErase", 2);
             _line.material.SetFloat("_CursorAppearance", 0);
             foreach (Renderer rend in _appearanceAddOns)
             {
                 rend.material.SetFloat("_ResolveCursor", 1);
             }
-            StopCoroutine(_coroutine);
+            
             CameraManager.Instance.FocusCamera();
             _image.enabled = false;
-
-        }
     }
     private void Searcher(List<GameObject> list, GameObject root)
     {
@@ -154,5 +156,18 @@ public class PaintInOutController : MonoBehaviour
                 Searcher(list, VARIABLE.gameObject);
             }
         }
+    }
+    private void Setup(GameObject paint)
+    {
+        RectTransform paintRect = paint.GetComponent<RectTransform>();
+        float baseWidth = _rectTransform.sizeDelta.x;
+        _rectTransform.anchorMin = paintRect.anchorMin;
+        _rectTransform.anchorMax = paintRect.anchorMax;
+        //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
+        _rectTransform.sizeDelta = paintRect.sizeDelta;
+        _rectTransform.localScale = paintRect.localScale;
+        transform.position = paintRect.position;
+        _image.enabled = true;
+        _camera.orthographicSize = _camera.orthographicSize * (_rectTransform.sizeDelta.x / baseWidth);
     }
 }
