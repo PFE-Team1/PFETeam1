@@ -42,4 +42,9 @@ public class PaintHandler : MonoBehaviour
     void Pushbutton()
     {
     }
+
+    void Footstep()
+    {
+        AudioManager.Instance.FOL_Pas.Post(gameObject);
+    }
 }
