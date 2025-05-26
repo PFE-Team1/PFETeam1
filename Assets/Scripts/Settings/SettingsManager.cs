@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class SettingsManager : MonoBehaviour
@@ -42,6 +43,8 @@ public class SettingsManager : MonoBehaviour
     Resolution[] resolutions;
     public bool WantParallax { get => wantParallax; set => wantParallax = value; }
     public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
+
+    private Coroutine _zoomCoroutine;
 
     void Awake()
     {
