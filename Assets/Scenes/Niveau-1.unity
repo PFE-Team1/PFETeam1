@@ -841,7 +841,7 @@ PrefabInstance:
     - target: {fileID: 2857431998168138171, guid: 63628218e6ccae0469dec39db8055055, type: 3}
       propertyPath: _firstPaint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 18072586}
     - target: {fileID: 2857431998168138171, guid: 63628218e6ccae0469dec39db8055055, type: 3}
       propertyPath: _durationOut
       value: 2
@@ -879,6 +879,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+--- !u!114 &948146563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2857431998168138171, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+  m_PrefabInstance: {fileID: 948146562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fac2e77717915469f60afaa9a9cd3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1069512337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,6 +1461,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 18072586}
     - target: {fileID: 638501782891998964, guid: 8bbd7c9d904028244aca94edfe344894, type: 3}
+      propertyPath: _paintVisual
+      value: 
+      objectReference: {fileID: 948146563}
+    - target: {fileID: 638501782891998964, guid: 8bbd7c9d904028244aca94edfe344894, type: 3}
       propertyPath: _playerPrefab
       value: 
       objectReference: {fileID: 7384922706752922667, guid: 05d77319607290c48b3534828803acb4, type: 3}
@@ -1552,6 +1567,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2059217369692450517, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975464520239631010, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
