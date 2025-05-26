@@ -6,17 +6,17 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private GameObject _firstPaint;
-    private PaintInOutController _paintVisual;
+    [SerializeField] private PaintInOutController _paintVisual;
     void Start()
     {
-        _paintVisual = FindObjectOfType<PaintInOutController>();
         StartCoroutine(StartSequence());
-        
     }
     IEnumerator StartSequence()
     {
+        Debug.Log($"COUCADZAh");
         if (_paintVisual)
         {
+            Debug.Log($"COUCADZAh2");
             _paintVisual.PaintIn(_firstPaint);
             yield return new WaitForSeconds(_paintVisual.DurationIn);
         } 

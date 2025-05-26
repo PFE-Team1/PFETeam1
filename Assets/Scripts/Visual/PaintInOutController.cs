@@ -43,7 +43,7 @@ public class PaintInOutController : MonoBehaviour
         float timer = 0;
         Reset();        
         Setup(paint);
-        _coroutine =StartCoroutine(ShaderIn(paint));
+        _coroutine = StartCoroutine(ShaderIn(paint));
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
@@ -56,13 +56,14 @@ public class PaintInOutController : MonoBehaviour
     {
         CameraManager.Instance.SeeCurrentLevel(paint);
         float timer = 0;
-        yield return new WaitForSeconds(CameraManager.Instance .CameraDezoomTime+ .5f);
+        yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime + .5f);
         while (timer < _durationIn)
         {
-            _line.material.SetFloat("_CursorAppearance",(timer / _durationIn)*2);
-            foreach(Renderer rend in _appearanceAddOns)
+            Debug.Log($"{timer / _durationIn}");
+            _line.material.SetFloat("_CursorAppearance", (timer / _durationIn) * 2);
+            foreach (Renderer rend in _appearanceAddOns)
             {
-                rend.material.SetFloat("_Resolve_Cursor", _delayFill-(timer / _durationIn) * (_delayFill+.5f));
+                rend.material.SetFloat("_Resolve_Cursor", _delayFill - (timer / _durationIn) * (_delayFill + .5f));
             }
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
