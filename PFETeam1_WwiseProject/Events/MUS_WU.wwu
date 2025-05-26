@@ -29,6 +29,36 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Stop_Toile_2_PC" ID="{93B7044E-4F1E-4F82-97FB-FC2DAB985F55}">
+					<ChildrenList>
+						<Action Name="" ID="{1CA63613-21B3-4EEA-B027-9E918628412A}" ShortID="633406472">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.3"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Toile_2_PC" ID="{4EC90E95-ABCA-4B89-AEDB-6DD61E5DA72E}" WorkUnitID="{E2D220D6-B661-4E87-9352-0176713D896D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Toile_1_PC" ID="{57E584BB-DCF6-4FCA-8032-1A22A76F4C2E}">
+					<ChildrenList>
+						<Action Name="" ID="{A71997A0-20D5-4AC4-B233-CB0739B8AA6A}" ShortID="771521503">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.3"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Toile_1_PC" ID="{D556BCE0-C6CD-4FC3-9471-65A0568C9689}" WorkUnitID="{E2D220D6-B661-4E87-9352-0176713D896D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
