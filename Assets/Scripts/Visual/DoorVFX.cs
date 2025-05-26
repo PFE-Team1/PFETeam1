@@ -32,15 +32,23 @@ public class DoorVFX : MonoBehaviour
         if (IsDirection == true&&_doorVFXInstance==null)
         {
             _doorVFXInstance = Instantiate(_doorVFXPrefab, (transform.position + otherDoor.transform.position) / 2, transform.rotation);
+
             _otherDoorVFX.DoorVFXInstance = _doorVFXInstance;
             _otherDoorVFX.IsDirection = false;
+            foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
+            {
+                child.In();
+            }
         }
 
     }
     public void StopDoorVFX()
     {
-       // _otherDoorVFX.DoorVFXInstance = null;
-        Destroy(_doorVFXInstance);
+        // _otherDoorVFX.DoorVFXInstance = null;
+        foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
+        {
+            child.Out(this);
+        }
         _doorVFXInstance = null;
         //_otherDoorVFX.OtherDoorVFX = null;
         _otherDoorVFX = null;

@@ -25,7 +25,7 @@ public class PaintInOutController : MonoBehaviour
     {
         PaintIn(_firstPaint);
     }
-    private void Start()
+    private void Awake()
     {
         Reset();
     }
