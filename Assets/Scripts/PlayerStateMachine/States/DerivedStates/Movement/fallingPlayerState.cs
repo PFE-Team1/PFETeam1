@@ -13,8 +13,7 @@ public class FallingPlayerState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.fallMaxSpeedX * _playerMovementParameters.fallAccelerationTime;
-        MonoBehaviour.print(previousState);
-        if (previousState is not JumpingPlayerState) _coyoteWindow = _playerMovementParameters.CoyoteWindow;
+        if (previousState is not JumpingPlayerState && previousState is not IdlePlayerState) _coyoteWindow = _playerMovementParameters.CoyoteWindow;
         else _coyoteWindow = 0f;
     }
 
