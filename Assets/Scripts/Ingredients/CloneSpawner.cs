@@ -7,17 +7,15 @@ public class CloneSpawner : Interactable
     [SerializeField] GameObject _spawnPoint;
     [SerializeField] string InitialSkinName = "Pink Clone";
     // Update is called once per frame
-    void Update()
+
+    protected override void Interact()
     {
         if (IsInRange)
         {
-            if (PlayerC.IsInteracting &&!PlayerC.HasInteracted)
-            {
-                PlayerC.HasInteracted = true;
-                PlayerC.Cloned(_spawnPoint, InitialSkinName);
-                Destroy(_spawnPoint);
-                Destroy(gameObject);
-            }
+            PlayerC.HasInteracted = true;
+            PlayerC.Cloned(_spawnPoint, InitialSkinName);
+            Destroy(_spawnPoint);
+            Destroy(gameObject);
         }
     }
 }

@@ -2,6 +2,7 @@ using KeyIconHelper;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InputsManager : MonoBehaviour
@@ -48,6 +49,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            EventManager.instance.OnInputInteract.Invoke();
             _inputInteract = true;
         }
         

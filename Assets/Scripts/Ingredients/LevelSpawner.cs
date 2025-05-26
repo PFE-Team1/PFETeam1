@@ -19,10 +19,11 @@ public class LevelSpawner : Interactable
     private GameObject _paint;    
     float appliedOffset;
     private GameObject _newlevel;
-    
 
-    private void Start()
+
+    protected override void Start()
     {
+        base.Start();
         isSocle = true;
         appliedOffset = GetComponentInParent<Level>().Offset;
         if (isAlreadySpawned)
@@ -44,40 +45,6 @@ public class LevelSpawner : Interactable
             case Direction.Right:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = _sprites[3];
                 break;
-        }
-    }
-
-    void Update()
-    {
-        if (PlayerC != null)
-        {
-            _heldObject = PlayerC.heldObject;
-        }
-        if (IsInRange)
-        {
-            if (isSpawnOnStart && isFixed) return;
-            if (!isAlreadySpawned)
-            {
-                if (!PlayerC.HasInteracted && PlayerC.heldObject != null && PlayerC.IsInteracting && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
-                {
-                    SpawnNewLevel();
-                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
-                    PlayerC.HasInteracted = true;
-                    AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
-                    CameraManager.Instance.ShowNewLevel();
-                }
-            }
-            else if (isAlreadySpawned)
-            {
-                if (!PlayerC.HasInteracted && PlayerC.IsInteracting && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
-                {
-                    CameraManager.Instance.CameraShake(1, 1);
-                    RemoveNewLevel();
-                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
-                    PlayerC.HasInteracted = true;
-                    AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
-                }
-            }
         }
     }
 
@@ -316,6 +283,40 @@ public class LevelSpawner : Interactable
         foreach(Clone c in clone)
         {
             c.gameObject.SetActive(active);
+        }
+    }
+
+    protected override void Interact()
+    {
+        if (PlayerC != null)
+        {
+            _heldObject = PlayerC.heldObject;
+        }
+        if (IsInRange)
+        {
+            if (isSpawnOnStart && isFixed) return;
+            if (!isAlreadySpawned)
+            {
+                if (PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
+                {
+                    SpawnNewLevel();
+                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
+                    PlayerC.HasInteracted = true;
+                    AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
+                    CameraManager.Instance.ShowNewLevel();
+                }
+            }
+            else if (isAlreadySpawned)
+            {
+                if (PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
+                {
+                    CameraManager.Instance.CameraShake(1, 1);
+                    RemoveNewLevel();
+                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
+                    PlayerC.HasInteracted = true;
+                    AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
+                }
+            }
         }
     }
 }

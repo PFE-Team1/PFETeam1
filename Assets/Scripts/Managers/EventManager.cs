@@ -12,6 +12,8 @@ public class EventManager : MonoBehaviour
     public UnityEvent OnLetGoPainting;
     public UnityEvent OnDoorOpen;
     public UnityEvent OnPaintingGrab;
+
+    public UnityEvent OnInputInteract = new UnityEvent();
     private void Awake()
     {
         if (instance != null && instance != this)

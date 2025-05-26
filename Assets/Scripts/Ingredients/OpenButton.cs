@@ -14,8 +14,9 @@ public class OpenButton : Interactable
     float hightestRespawnTime=0;
 
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _isRespawning = false;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _sprite = _spriteRenderer.sprite;
@@ -26,27 +27,6 @@ public class OpenButton : Interactable
                 hightestRespawnTime = toRemove.RespawnTime + toRemove.RespawnStartTime;
             }
             
-        }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (IsInRange)
-        {
-            if (PlayerC.IsInteracting &&!PlayerC.HasInteracted)
-            {
-                _spriteRenderer.sprite = null;
-                _isRespawning = true;
-                PlayerC.HasInteracted = true;
-                foreach(ObectToDestroy toRemove in _objectsToRemove)
-                {
-                    toRemove.ObjectToRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
-                    if (toRemove.IsRespawnable == true)
-                    {
-                        _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
-                    }
-                }
-            }
         }
     }
     IEnumerator Rebuilding(ObectToDestroy destroyed)
@@ -100,6 +80,24 @@ public class OpenButton : Interactable
             _isRespawning = false;
         }
         yield return null;
+    }
+
+    protected override void Interact()
+    {
+        if (IsInRange)
+        {
+            _spriteRenderer.sprite = null;
+            _isRespawning = true;
+            PlayerC.HasInteracted = true;
+            foreach (ObectToDestroy toRemove in _objectsToRemove)
+            {
+                toRemove.ObjectToRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+                if (toRemove.IsRespawnable == true)
+                {
+                    _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
+                }
+            }
+        }
     }
 }
 [Serializable]

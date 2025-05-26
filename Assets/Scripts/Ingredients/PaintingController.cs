@@ -29,32 +29,28 @@ public class PaintingController : Interactable
         return _paintHandlerAccessor;
     }
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         boneFollower = GetComponent<BoneFollower>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    void Update()
+    protected override void Interact()
     {
-        if (IsInRange)
+        if (IsInRange && !PlayerC.IsInSocleRange && (CurrentHoldingStateMachine == null || CurrentHoldingStateMachine.CurrentState != CurrentHoldingStateMachine.CloneState))
         {
-            if (PlayerC.IsInteracting && !PlayerC.IsInSocleRange && !PlayerC.HasInteracted && (CurrentHoldingStateMachine == null || CurrentHoldingStateMachine.CurrentState != CurrentHoldingStateMachine.CloneState))
+            if (_isHeld)
             {
-                PlayerC.HasInteracted = true;
-                if (_isHeld)
+                if (VFX_PoseToile != null)
                 {
-                    if (VFX_PoseToile != null)
-                    {
-                        Destroy(Instantiate(VFX_PoseToile, transform), 1f);
-                    }
-                    AudioManager.Instance.SFX_PoseToile.Post(gameObject);
-                    DropPainting();
+                    Destroy(Instantiate(VFX_PoseToile, transform), 1f);
                 }
-                else
-                {
-                    GrabPainting();
-                }
+                AudioManager.Instance.SFX_PoseToile.Post(gameObject);
+                DropPainting();
+            }
+            else
+            {
+                GrabPainting();
             }
         }
     }
