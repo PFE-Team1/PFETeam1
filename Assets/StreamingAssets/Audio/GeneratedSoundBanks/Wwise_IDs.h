@@ -27,6 +27,7 @@ namespace AK
         static const AkUniqueID PLAY_CAMERA_SFX_ZOOM = 950135643U;
         static const AkUniqueID PLAY_CREATECLONE = 1596093869U;
         static const AkUniqueID PLAY_DECHIRURE_TOILE = 268635939U;
+        static const AkUniqueID PLAY_DISPARITIONTOILE = 1711433891U;
         static const AkUniqueID PLAY_FOL_ATTERISSAGE = 963548972U;
         static const AkUniqueID PLAY_FOL_PAS = 2347302452U;
         static const AkUniqueID PLAY_FOL_SAUT = 3275352703U;

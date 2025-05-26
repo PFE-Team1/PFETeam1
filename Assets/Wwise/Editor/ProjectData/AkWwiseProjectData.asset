@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 734f4be9fe62f948b89f9989702d4be4
     GuidInternal: 
-    m_lastTime: -8584550563869786706
+    m_lastTime: -8584575811228593314
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: 0d0f153d6dae8a42a94c3627e019c690
     GuidInternal: 
-    m_lastTime: -8584542894378616672
+    m_lastTime: -8584567302013257348
     List:
     - name: AMB
       guid: abfeb7524855db47afb52a92c328a467
@@ -263,7 +263,7 @@ MonoBehaviour:
     ParentPath: Events\AMB_WU
     guid: a1ca8aaa1c5cba408a3bf1bc2c8e9b1b
     GuidInternal: 
-    m_lastTime: -8584542894383771692
+    m_lastTime: -8584550908168508380
     List:
     - name: Play_AMB_RFX_Toile01_CraquementBois_RC
       guid: 580f20758c0ea54fb6420f63a6dc5e33
@@ -282,7 +282,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 580f20758c0ea54fb6420f63a6dc5e33
       Path: Events\AMB_WU\Toile01\Play_AMB_RFX_Toile01_CraquementBois_RC
-      maxAttenuation: 10
+      maxAttenuation: 15
       maxDuration: 0
       minDuration: 0
     - name: Play_AMB_RFX_Toile01_Oiseaux_RC
@@ -302,7 +302,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 42fd1ca5ba07804fae43df32e0edf39f
       Path: Events\AMB_WU\Toile01\Play_AMB_RFX_Toile01_Oiseaux_RC
-      maxAttenuation: 50
+      maxAttenuation: 30
       maxDuration: 0
       minDuration: 0
     - name: Play_AMB_RFX_Toile01_Vaguelettes_RC
@@ -422,7 +422,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: d8a8d8df2ee6bf4ba4044af867f53f20
       Path: Events\AMB_WU\Toile01\Play_AMB_Toile1_Niveau1_LP
-      maxAttenuation: 30
+      maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
     - name: Play_AMB_Toile2_Niveau01_LP
@@ -490,7 +490,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: ad58fff510fe01409612fab3b9f4cc31
     GuidInternal: 
-    m_lastTime: -8584537825108086068
+    m_lastTime: -8584575811238663540
     List: []
   - PhysicalPath: Events\FOL_WU.wwu
     PathAndIcons:
@@ -567,7 +567,7 @@ MonoBehaviour:
     ParentPath: Events\MUS_WU
     guid: 95f36ea541cd1f499d6e1f5174a625d0
     GuidInternal: 
-    m_lastTime: -8584550563918811263
+    m_lastTime: -8584575811238653575
     List:
     - name: Play_Toile_1_PC
       guid: 7e5112db7ccbce4b8f14d066a54551d0
@@ -698,7 +698,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 24da7cb59566184fac22617d60f7abd0
       Path: Events\SFX01_WU\Play_GrabToile_RC
-      maxAttenuation: 50
+      maxAttenuation: 0
       maxDuration: 0.41664582
       minDuration: 0.34310415
   - PhysicalPath: Events\SFX02_WU.wwu
@@ -712,8 +712,25 @@ MonoBehaviour:
     ParentPath: Events\SFX02_WU
     guid: f66d51b5c451704293ba02a911ad8d6a
     GuidInternal: 
-    m_lastTime: -8584536125602640035
+    m_lastTime: -8584533582144013353
     List:
+    - name: Play_DisparitionToile
+      guid: 8b29133e7ce53e4c927fd78a6079d5ad
+      id: 1711433891
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: SFX02_WU
+        ObjectType: 12
+        guid: f66d51b5c451704293ba02a911ad8d6a
+      - ElementName: Play_DisparitionToile
+        ObjectType: 3
+        guid: 8b29133e7ce53e4c927fd78a6079d5ad
+      Path: Events\SFX02_WU\Play_DisparitionToile
+      maxAttenuation: 50
+      maxDuration: 3.0333333
+      minDuration: 3.0333126
     - name: Play_PoseToile_RC
       guid: 9cdfea4651f10c44981bb8d66ec804fe
       id: 295623852
@@ -728,7 +745,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 9cdfea4651f10c44981bb8d66ec804fe
       Path: Events\SFX02_WU\Play_PoseToile_RC
-      maxAttenuation: 100
+      maxAttenuation: 0
       maxDuration: 0.5886458
       minDuration: 0.5138125
     - name: Play_Reformation_Toile
@@ -841,7 +858,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 4bebea56ecd8fe41a63933e2e22105aa
     GuidInternal: 
-    m_lastTime: -8584542894383646701
+    m_lastTime: -8584550908168498396
     List:
     - name: AMB_BUS_Volume_RTPC
       guid: 3f7d8e4272abd8439e80631a9765e4d4
@@ -939,7 +956,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: ade3c0f59ebd6c47bb373552589cde30
     GuidInternal: 
-    m_lastTime: -8584550563869806647
+    m_lastTime: -8584575811228623526
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -953,7 +970,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: b6926168816fd842a37c9db1ce550862
     GuidInternal: 
-    m_lastTime: -8584550563869796683
+    m_lastTime: -8584575811228613579
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
@@ -967,10 +984,10 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: d6fc9323de57134fa822eb568d71be21
     GuidInternal: 
-    m_lastTime: -8584550563869786706
+    m_lastTime: -8584575811228603578
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 050000000600000007000000080000000a0000000e0000001000000017000000180000001a0000001b0000001c0000001d0000001f0000002a000000300000007a0100008f010000
+  ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

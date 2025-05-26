@@ -11,7 +11,7 @@
     "GUID": "{B993DCAA-2E59-4CF6-B933-CE574F5C4745}",
     "Color": "8",
     "Language": "SFX",
-    "Hash": "{4B4866F3-DD5D-0FEC-C7FB-240DD4E64FBF}",
+    "Hash": "{4C1CB547-869B-D2F8-2AB6-D97390968871}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\SFX02_SBK",
     "ShortName": "SFX02_SBK",
     "Path": "SFX02_SBK.bnk",
@@ -31,6 +31,14 @@
       "Location": "Memory",
       "ShortName": "SFX_PoseToile_02.wav",
       "CachePath": "BD/{BD68C9A4-FF7A-EF56-7407-88CEF423859A}.wem"
+     },
+     {
+      "Id": "81363130",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SFX_DisparitionToile_01.wav",
+      "CachePath": "CF/{CF36ABBD-4E42-274B-C44F-69DEC8D8950F}.wem"
      },
      {
       "Id": "124049659",
@@ -65,6 +73,14 @@
       "CachePath": "68/{684C7DE7-CC9F-5C35-C720-1742EED1F0F1}.wem"
      },
      {
+      "Id": "472862308",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SFX_DisparitionToile_02.wav",
+      "CachePath": "60/{600872A3-3834-2B1F-01EF-50A2BB7EFDBB}.wem"
+     },
+     {
       "Id": "527040220",
       "Language": "SFX",
       "Streaming": "false",
@@ -81,6 +97,14 @@
       "CachePath": "18/{183D2A9D-E061-771E-583A-16B848450A5F}.wem"
      },
      {
+      "Id": "829166932",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SFX_DisparitionToile_03.wav",
+      "CachePath": "71/{711609B3-FF9B-A3FD-6D5B-B47B26B2B605}.wem"
+     },
+     {
       "Id": "1008502588",
       "Language": "SFX",
       "Streaming": "false",
@@ -91,12 +115,33 @@
     ],
     "Events": [
      {
+      "Id": "1711433891",
+      "Name": "Play_DisparitionToile",
+      "ObjectPath": "\\Events\\SFX02_WU\\Play_DisparitionToile",
+      "GUID": "{3E13298B-E57C-4C3E-927F-D78A6079D5AD}",
+      "Color": "8",
+      "MaxAttenuation": "50",
+      "DurationType": "OneShot",
+      "DurationMin": "3.0333126",
+      "DurationMax": "3.0333333",
+      "MediaRefs": [
+       {
+        "Id": "81363130"
+       },
+       {
+        "Id": "472862308"
+       },
+       {
+        "Id": "829166932"
+       }
+      ]
+     },
+     {
       "Id": "295623852",
       "Name": "Play_PoseToile_RC",
       "ObjectPath": "\\Events\\SFX02_WU\\Play_PoseToile_RC",
       "GUID": "{46EADF9C-F151-440C-981B-B8D66EC804FE}",
       "Color": "8",
-      "MaxAttenuation": "100",
       "DurationType": "OneShot",
       "DurationMin": "0.5138125",
       "DurationMax": "0.5886458",
@@ -157,6 +202,6 @@
     ]
    }
   ],
-  "FileHash": "{C2DEE038-C680-2255-B221-0F5EBD305CE3}"
+  "FileHash": "{D87D6D10-AB39-ED13-0FFE-E4390F412E37}"
  }
 }
