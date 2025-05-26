@@ -11421,6 +11421,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8941967635330801701, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2051052321570883254}
+    - targetCorrespondingSourceObject: {fileID: 8941967635330801701, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1763560789119061103}
   m_SourcePrefab: {fileID: 100100000, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
 --- !u!1 &1737871842522070196 stripped
 GameObject:
@@ -11489,6 +11492,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 42.2, y: 22.59}
   m_EdgeRadius: 0
+--- !u!114 &1763560789119061103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737871842522070196}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa34c510268035d469ae043d30252aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  enableActionOnEvent: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  useCallbacks: 0
+  stopSoundOnDestroy: 1
+  Callbacks: []
+  soundEmitterObject: {fileID: 0}
+  transitionDuration: 0
+  eventIdInternal: 0
+  valueGuidInternal: 
+  m_callbackDataInternal: {fileID: 0}
+  MultiPositionType: 1
+  multiPositionTypeLabel: 0
+  attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
+  LargeModePositions: []
+  multiPositionArray: []
 --- !u!4 &3597016491531316372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6191678160005951493, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
