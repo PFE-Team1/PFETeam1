@@ -1402,9 +1402,13 @@ MonoBehaviour:
   _objectsToRemove:
   - ObjectToRemove: {fileID: 5116627456216890132}
     IsRespawnable: 1
+    IsParent: 0
     RespawnTime: 6
     RespawnStartTime: 1
     currentTime: 0
+    respawnable: {fileID: 0}
+    Colliders: []
+    Renderers: []
 --- !u!1 &1945144292948176017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2893,6 +2897,74 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000001, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3335276340963842636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7582594502176331543}
+  - component: {fileID: 7377124336352792965}
+  - component: {fileID: 3709575744782582379}
+  m_Layer: 0
+  m_Name: ToolTipZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7582594502176331543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335276340963842636}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -51.07, y: -4.92, z: -0.30772164}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2141979768670265064}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7377124336352792965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335276340963842636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeyName: switch
+  KeyIcon: {fileID: 1062942897, guid: 8796074406b0de34783794b5c157e050, type: 3}
+--- !u!65 &3709575744782582379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335276340963842636}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12, y: 5, z: 2.477932}
+  m_Center: {x: -0.89961815, y: 0.6117406, z: 0.31379884}
 --- !u!1 &3366232030084200626
 GameObject:
   m_ObjectHideFlags: 0
@@ -6412,6 +6484,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 2141979768670265064}
   - {fileID: 7278334384706546869}
   - {fileID: 1972279007331851912}
   - {fileID: 5106315828448346601}
@@ -7712,6 +7785,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000001, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7209769407402573900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2141979768670265064}
+  m_Layer: 0
+  m_Name: ToolTipZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2141979768670265064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7209769407402573900}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 85.82917, y: -2.848289, z: 0.24015573}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7582594502176331543}
+  m_Father: {fileID: 4334695110633243112}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7408272051572864416
 GameObject:
   m_ObjectHideFlags: 0
@@ -10493,9 +10598,13 @@ MonoBehaviour:
   _objectsToRemove:
   - ObjectToRemove: {fileID: 7434706864289421331}
     IsRespawnable: 0
+    IsParent: 0
     RespawnTime: 0
     RespawnStartTime: 0
     currentTime: 0
+    respawnable: {fileID: 0}
+    Colliders: []
+    Renderers: []
 --- !u!1 &9104915749148188287
 GameObject:
   m_ObjectHideFlags: 0
@@ -10822,6 +10931,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4334695110633243112}
     m_Modifications:
+    - target: {fileID: 278161461207208943, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 278161461207208943, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: m_Size.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 278161461207208943, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 278161461207208943, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 278161461207208943, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 278161461207208943, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337032195078947098, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
+      propertyPath: KeyIcon
+      value: 
+      objectReference: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
     - target: {fileID: 3419799639441997746, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
       propertyPath: m_Name
       value: PaintBucket (1)
