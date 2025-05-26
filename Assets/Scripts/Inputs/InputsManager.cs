@@ -30,6 +30,8 @@ public class InputsManager : MonoBehaviour
     public bool InputRestarting { get => _inputRestarting; set => _inputRestarting = value; }
     public float MoveX { get => _moveX; }
     public Vector2 Lookaround { get => _lookaround;}
+
+    public bool IsKeyboard = true;
     #endregion
 
     #region InputMethodes
@@ -37,6 +39,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputJumping = true;
         }
 
@@ -49,6 +52,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             EventManager.instance.OnInputInteract.Invoke();
             _inputInteract = true;
         }
@@ -62,6 +66,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputZooming = true;
         }
 
@@ -74,6 +79,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputDezooming = true;
         }
 
@@ -86,6 +92,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputSwitching = true;
         }
 
@@ -98,6 +105,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputRestarting = true;
         }
 
@@ -110,6 +118,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputPausing = true;
             SettingsManager.Instance.DisplayPauseMenu();
         }
@@ -121,10 +130,12 @@ public class InputsManager : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
+        IsKeyboard = context.control.device is Keyboard;
         _moveX = context.ReadValue<Vector2>().x;
     }
     public void OnLook(InputAction.CallbackContext context)
     {
+        IsKeyboard = context.control.device is Keyboard;
         _lookaround = context.ReadValue<Vector2>();
     }
 
