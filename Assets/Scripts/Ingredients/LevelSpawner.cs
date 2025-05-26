@@ -297,23 +297,17 @@ public class LevelSpawner : Interactable
             if (isSpawnOnStart && isFixed) return;
             if (!isAlreadySpawned)
             {
-                if (PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
-                {
                     SpawnNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
                     CameraManager.Instance.ShowNewLevel();
-                }
             }
             else if (isAlreadySpawned)
             {
-                if (PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
-                {
                     CameraManager.Instance.CameraShake(1, 1);
                     RemoveNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
                     AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
-                }
             }
         }
     }
