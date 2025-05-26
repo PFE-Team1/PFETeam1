@@ -33,7 +33,7 @@ public class PaintInOutController : MonoBehaviour
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}
 
-    public  void PaintIn(GameObject paint)// objet , position taille
+    public void PaintIn(GameObject paint)// objet , position taille
     {
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
@@ -57,7 +57,6 @@ public class PaintInOutController : MonoBehaviour
         CameraManager.Instance.SeeCurrentLevel(paint);
         float timer = 0;
         yield return new WaitForSeconds(CameraManager.Instance .CameraDezoomTime+ .5f);
-        print("feur");
         while (timer < _durationIn)
         {
             _line.material.SetFloat("_CursorAppearance",(timer / _durationIn)*2);
