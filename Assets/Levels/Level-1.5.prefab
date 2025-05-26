@@ -5759,6 +5759,7 @@ GameObject:
   - component: {fileID: 3341110614693704615}
   - component: {fileID: 6688626487114351904}
   - component: {fileID: 8731141038683155914}
+  - component: {fileID: 2500422439765270551}
   m_Layer: 0
   m_Name: End
   m_TagString: Untagged
@@ -5846,6 +5847,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  _level: {fileID: 0}
+  _curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _displacementDuration: 0
+  _endPos: {fileID: 0}
+  _endEffect: {fileID: 0}
 --- !u!135 &8731141038683155914
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5867,6 +5878,30 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2500422439765270551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669669529798921828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f88b35b6234e0143a8b2eed54de9c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 1
+  isStaticObject: 0
+  usePositionOffsetData: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  scalingFactor: 1
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &6714248506967828113
 GameObject:
   m_ObjectHideFlags: 0

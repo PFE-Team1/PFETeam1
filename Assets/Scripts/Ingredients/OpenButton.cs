@@ -27,16 +27,15 @@ public class OpenButton : Interactable
                 _spriteRenderer.sprite = null;
                 _isRespawning = true;
                 PlayerC.HasInteracted = true;
-                foreach(ObectToDestroy toRemove in _objectsToRemove)
+                foreach (ObectToDestroy toRemove in _objectsToRemove)
                 {
-                    toRemove.ObjectToRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+                    toRemove.ObjectToRemove.SetActive(false);//ï¿½ la place faire le truc du shader qui s'applique(disolve) et enlever la collision
                     if (toRemove.IsRespawnable == true)
                     {
                         StartCoroutine(Rebuilding(toRemove));
                     }
+                    AudioManager.Instance.SFX_OuvertureMur.Post(gameObject);
                 }
-               
-
             }
         }
     }
@@ -47,10 +46,10 @@ public class OpenButton : Interactable
         while (time < destroyed.RespawnTime)
         {
             time += Time.deltaTime;
-            //Shader de resolve progressif sur la durée (time/respawnTime)
+            //Shader de resolve progressif sur la durï¿½e (time/respawnTime)
             yield return null;
         }
-            destroyed.ObjectToRemove.SetActive(true);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+            destroyed.ObjectToRemove.SetActive(true);//ï¿½ la place faire le truc du shader qui s'applique(disolve) et enlever la collision
         
         _spriteRenderer.sprite = _sprite;
         _isRespawning = false;

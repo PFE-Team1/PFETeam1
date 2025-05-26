@@ -14,6 +14,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _firstPauseItem;
     [SerializeField] private TMP_Dropdown _resolutionDropDown;
     [SerializeField] private TMP_Dropdown _screenTypeDropDown;
     [SerializeField] private Slider _masterVolumeSlider;
@@ -95,6 +96,7 @@ public class SettingsManager : MonoBehaviour
         if (isMainMenuActive) return;
         if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown && !isMainMenuActive)
         {
+            AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
             isMainMenuActive = true;
             _zoomCoroutine = StartCoroutine(UIZoom(() =>
@@ -290,6 +292,7 @@ public class SettingsManager : MonoBehaviour
     public void DisplayPauseMenu()
     {
         _pauseMenu.SetActive(!_pauseMenu.activeSelf);
+        EventSystem.current.SetSelectedGameObject(_firstPauseItem);
     }
 
     public void SetParallax()

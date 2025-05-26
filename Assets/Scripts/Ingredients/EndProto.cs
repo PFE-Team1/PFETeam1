@@ -46,6 +46,7 @@ public class EndProto : Interactable
     IEnumerator EndOfLevel()
     {
         CameraManager.Instance.SeeCurrentLevel(_level);
+        AudioManager.Instance.SFX_Déchirure.Post(gameObject);
         if (_endEffect != null)
         {
             _endEffect.PaintOut(_level);
