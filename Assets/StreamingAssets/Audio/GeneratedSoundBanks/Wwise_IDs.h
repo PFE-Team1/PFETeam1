@@ -14,14 +14,20 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID PLAY_AMB_RFX_TOILE01_CRAQUEMENTBOIS_RC = 1182040807U;
+        static const AkUniqueID PLAY_AMB_RFX_TOILE01_CRAYON = 457522959U;
         static const AkUniqueID PLAY_AMB_RFX_TOILE01_OISEAUX_RC = 4033142521U;
+        static const AkUniqueID PLAY_AMB_RFX_TOILE01_PINCEAUX = 1998953700U;
+        static const AkUniqueID PLAY_AMB_RFX_TOILE01_SPATULE = 3900144833U;
         static const AkUniqueID PLAY_AMB_RFX_TOILE01_VAGUELETTES_RC = 1624259432U;
+        static const AkUniqueID PLAY_AMB_RFX_TOILE01_WOODCREAK = 692848194U;
         static const AkUniqueID PLAY_AMB_RFX_TOILE02_BRANCHE_RC = 2779508065U;
         static const AkUniqueID PLAY_AMB_RFX_TOILE02_CHOUETTES_RC = 3972738056U;
         static const AkUniqueID PLAY_AMB_RFX_TOILE02_FEUILLESVENT_RC = 2997463758U;
         static const AkUniqueID PLAY_AMB_RFX_TOILE02_LOUP_RC = 3110674342U;
         static const AkUniqueID PLAY_AMB_TOILE1_NIVEAU1_LP = 1171349980U;
         static const AkUniqueID PLAY_AMB_TOILE2_NIVEAU01_LP = 271873771U;
+        static const AkUniqueID PLAY_AMB_TOILE3_NIVEAU2_FENETRE_LP = 3332009233U;
+        static const AkUniqueID PLAY_AMB_TOILE3_NIVEAU2_LP = 2594061855U;
         static const AkUniqueID PLAY_APPARITIONTOILE = 492561862U;
         static const AkUniqueID PLAY_CAMERA_SFX_DEZOOM = 1282718846U;
         static const AkUniqueID PLAY_CAMERA_SFX_ZOOM = 950135643U;
@@ -55,6 +61,7 @@ namespace AK
     {
         static const AkUniqueID INIT = 1355168291U;
         static const AkUniqueID AMB_LVL01_SBK = 3681895266U;
+        static const AkUniqueID AMB_LVL02_BIS_SBK = 3777429318U;
         static const AkUniqueID AMB_LVL02_SBK = 949270025U;
         static const AkUniqueID FOL_SBK = 2606446995U;
         static const AkUniqueID MUS_SBK = 552161325U;
