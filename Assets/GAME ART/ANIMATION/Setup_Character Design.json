@@ -1,7 +1,7 @@
 {
 "skeleton": {
-	"hash": "qvIJ35xRqmk",
-	"spine": "4.2.40",
+	"hash": "MyvWFLQOv8I",
+	"spine": "4.2.43",
 	"x": -156.49,
 	"y": -19.77,
 	"width": 300.15,
@@ -848,6 +848,7 @@
 "events": {
 	"Clone creation": {},
 	"Door opening": {},
+	"Footstep": {},
 	"Grab": {},
 	"Place": {},
 	"Push button": {}
@@ -15563,7 +15564,11 @@
 				{ "mix": 0, "softness": 4, "curve": "stepped" },
 				{ "time": 0.8, "mix": 0, "softness": 4 }
 			]
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.7, "name": "Footstep" }
+		]
 	},
 	"Run/CH_SadRun_WithPaint_01_M": {
 		"slots": {
@@ -15896,7 +15901,11 @@
 				{ "mix": 0, "softness": 4, "curve": "stepped" },
 				{ "time": 0.8, "mix": 0, "softness": 4 }
 			]
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.7, "name": "Footstep" }
+		]
 	},
 	"Run/CH_StopafterRun_01_M": {
 		"slots": {
@@ -16767,7 +16776,11 @@
 				{ "curve": "stepped" },
 				{ "time": 0.9 }
 			]
-		}
+		},
+		"events": [
+			{ "name": "Footstep" },
+			{ "time": 0.4667, "name": "Footstep" }
+		]
 	},
 	"Walk/CH_SadWalk_02_M": {
 		"bones": {
@@ -17311,7 +17324,11 @@
 				{ "softness": 4, "curve": "stepped" },
 				{ "time": 1.0667, "softness": 4 }
 			]
-		}
+		},
+		"events": [
+			{ "time": 0.2667, "name": "Footstep" },
+			{ "time": 0.8, "name": "Footstep" }
+		]
 	},
 	"Walk/CH_SadWalk_WithPaint_01_M": {
 		"slots": {
@@ -17869,7 +17886,11 @@
 				{ "time": 0.8, "softness": 4, "curve": "stepped" },
 				{ "time": 1.0667, "softness": 4 }
 			]
-		}
+		},
+		"events": [
+			{ "time": 0.2667, "name": "Footstep" },
+			{ "time": 0.8, "name": "Footstep" }
+		]
 	}
 }
 }
