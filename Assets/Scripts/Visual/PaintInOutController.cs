@@ -6,18 +6,18 @@ using UnityEngine.UI;
 
 public class PaintInOutController : MonoBehaviour
 {
-    private LineRenderer _line;
-    private SpriteRenderer _eraseRend;
+    [SerializeField] private LineRenderer _line;
+    [SerializeField] private SpriteRenderer _eraseRend;
+    [SerializeField] private Camera _camera;
     [SerializeField]float _durationIn=5f;
     [SerializeField]float _durationOut=3f;
     [SerializeField]float _cameraMoveDuration=0.5f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField]GameObject _endPaint;
-    [SerializeField] GameObject _raw;
-    [SerializeField] GameObject _mask;
-    [SerializeField] GameObject _erase;
-    RectTransform _rectTransform;
-    RawImage _image;
+    [SerializeField] List<Renderer> _appearanceAddOns;
+    [SerializeField] RectTransform _rectTransform;
+    [SerializeField]RawImage _image;
+    private float _sizeChange;
     Coroutine _coroutine;
 
     [Button("Paint In")]
@@ -25,70 +25,55 @@ public class PaintInOutController : MonoBehaviour
     {
         PaintIn(_firstPaint);
     }
-
+    private void Start()
+    {
+        Reset();
+    }
     public float DurationOut { get => _durationOut; }
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}
 
-    private void Awake()
-    {
-
-        _rectTransform = _raw.GetComponent<RectTransform>();
-        _image = _raw.GetComponent<RawImage>();
-        _line = _mask.GetComponent<LineRenderer>();
-        _eraseRend = _erase.GetComponent<SpriteRenderer>();
-    }
-
     public  void PaintIn(GameObject paint)// objet , position taille
     {
-        if (_coroutine!=null)
+        if (paint.layer != 6)
         {
-            _eraseRend.material.SetFloat("_CursorErase", 2);
-            _line.material.SetFloat("_CursorAppearance", 0);
-            StopCoroutine(_coroutine);
-            CameraManager.Instance.FocusCamera();
+            paint.layer = 6;
+            foreach (GameObject child in AllChilds(paint))
+            {
+                child.layer = 6;
+            }
         }
-        RectTransform paintRect = paint.GetComponent<RectTransform>();
-        Debug.Log($"{paint.name} {paintRect.sizeDelta} {paintRect.localScale} {paintRect.position}");
-
-        _rectTransform.anchorMin =paintRect.anchorMin;
-        _rectTransform.anchorMax =paintRect.anchorMax;
-        //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
-        _rectTransform.sizeDelta = paintRect.sizeDelta;
-        _rectTransform.localScale = paintRect.localScale;
-        transform.position = paintRect.position;
-        _image.enabled = true;
-        _coroutine=StartCoroutine(ShaderIn(paint));
+        Reset();        
+        Setup(paint);
+        _coroutine =StartCoroutine(ShaderIn(paint));
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
-        if (_coroutine != null)
+        if (paint.layer != 0)
         {
-            _eraseRend.material.SetFloat("_CursorErase", 2);
-            _line.material.SetFloat("_CursorAppearance", 0);
-            StopCoroutine(_coroutine);
-            CameraManager.Instance.FocusCamera();
-            _image.enabled = false;
+            paint.layer = 0;
+            foreach (GameObject child in AllChilds(paint))
+            {
+                child.layer = 0;
+            }
         }
-        RectTransform paintRect = paint.GetComponent<RectTransform>();
-
-        _rectTransform.anchorMin = paintRect.anchorMin;
-        _rectTransform.anchorMax = paintRect.anchorMax;
-        //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
-        _rectTransform.sizeDelta = paintRect.sizeDelta;
-        _rectTransform.localScale = paintRect.localScale;
-        transform.position = paintRect.position;
-        _image.enabled = true;
-        _coroutine=StartCoroutine(ShaderOut(paint));
+        Reset();
+        Setup(paint);
+        _coroutine = StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
-        CameraManager.Instance.SeeCurrentLevel(paint,.5f);
+        CameraManager.Instance.SeeCurrentLevel(paint, _cameraMoveDuration);
+
         float timer = 0;
         yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationIn)
         {
             _line.material.SetFloat("_CursorAppearance",(timer / _durationIn)*2);
+            foreach(Renderer rend in _appearanceAddOns)
+            {
+                rend.material.SetFloat("_Resolve_Cursor", 2-(timer / _durationIn) * 2.5f);
+            }
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
@@ -100,12 +85,16 @@ public class PaintInOutController : MonoBehaviour
         CameraManager.Instance.FocusCamera();
         _image.enabled = false;
         _line.material.SetFloat("_CursorAppearance", 0);
-       yield return null;
+        foreach (Renderer rend in _appearanceAddOns)
+        {
+            rend.material.SetFloat("_Resolve_Cursor", 1);
+        }
+        yield return null;
     }
     IEnumerator ShaderOut(GameObject paint)
     {
-        CameraManager.Instance.SeeCurrentLevel(paint,.5f);
-        _eraseRend.material.SetFloat("_CursorErase", 0);
+        CameraManager.Instance.SeeCurrentLevel(paint, _cameraMoveDuration);
+        _eraseRend.material.SetFloat("_CursorErase", -1);
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
@@ -115,7 +104,7 @@ public class PaintInOutController : MonoBehaviour
         yield return new WaitForSeconds(_cameraMoveDuration);
         while (timer < _durationOut)
         {
-            _eraseRend.material.SetFloat("_CursorErase", (timer / _durationOut)*2);
+            _eraseRend.material.SetFloat("_CursorErase", (timer / _durationOut)*3-1);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
         }     
@@ -141,7 +130,21 @@ public class PaintInOutController : MonoBehaviour
         }
         return result;
     }
-
+    private void Reset()
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+        _eraseRend.material.SetFloat("_CursorErase", 2);
+            _line.material.SetFloat("_CursorAppearance", 0);
+            foreach (Renderer rend in _appearanceAddOns)
+            {
+                rend.material.SetFloat("_ResolveCursor", 1);
+            }
+            CameraManager.Instance.FocusCamera();
+            _image.enabled = false;
+    }
     private void Searcher(List<GameObject> list, GameObject root)
     {
         list.Add(root);
@@ -151,6 +154,25 @@ public class PaintInOutController : MonoBehaviour
             {
                 Searcher(list, VARIABLE.gameObject);
             }
+        }
+    }
+    private void Setup(GameObject paint)
+    {
+        RectTransform paintRect = paint.GetComponent<RectTransform>();
+        _rectTransform.anchorMin = paintRect.anchorMin;
+        _rectTransform.anchorMax = paintRect.anchorMax;
+        //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
+        _rectTransform.sizeDelta = paintRect.sizeDelta;
+        _rectTransform.localScale = paintRect.localScale;
+        transform.position = paintRect.position;
+        _image.enabled = true;
+        if (paintRect.sizeDelta.y < paintRect.sizeDelta.x)
+        {
+            _camera.orthographicSize = paintRect.sizeDelta.y / 2;
+        }
+        else
+        {
+            _camera.orthographicSize = paintRect.sizeDelta.x / 2;
         }
     }
 }
