@@ -12,12 +12,12 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField]float _durationIn=5f;
     [SerializeField]float _durationOut=3f;
     [SerializeField]float _cameraMoveDuration=0.5f;
+    [SerializeField]float _delayFill=3f;
     [SerializeField]GameObject _firstPaint;
-    [SerializeField]GameObject _endPaint;
+    GameObject _endPaint;
     [SerializeField] List<Renderer> _appearanceAddOns;
     [SerializeField] RectTransform _rectTransform;
     [SerializeField]RawImage _image;
-    private float _sizeChange;
     Coroutine _coroutine;
 
     [Button("Paint In")]
@@ -35,48 +35,40 @@ public class PaintInOutController : MonoBehaviour
 
     public  void PaintIn(GameObject paint)// objet , position taille
     {
-        if (paint.layer != 6)
+        paint.layer = 6;
+        foreach (GameObject child in AllChilds(paint))
         {
-            paint.layer = 6;
-            foreach (GameObject child in AllChilds(paint))
-            {
-                child.layer = 6;
-            }
+            child.layer = 6;
         }
+        float timer = 0;
         Reset();        
         Setup(paint);
         _coroutine =StartCoroutine(ShaderIn(paint));
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
-        if (paint.layer != 0)
-        {
-            paint.layer = 0;
-            foreach (GameObject child in AllChilds(paint))
-            {
-                child.layer = 0;
-            }
-        }
+
         Reset();
         Setup(paint);
         _coroutine = StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
-        CameraManager.Instance.SeeCurrentLevel(paint, _cameraMoveDuration);
-
+        CameraManager.Instance.SeeCurrentLevel(paint);
         float timer = 0;
-        yield return new WaitForSeconds(_cameraMoveDuration);
+        yield return new WaitForSeconds(CameraManager.Instance .CameraDezoomTime+ .5f);
+        print("feur");
         while (timer < _durationIn)
         {
             _line.material.SetFloat("_CursorAppearance",(timer / _durationIn)*2);
             foreach(Renderer rend in _appearanceAddOns)
             {
-                rend.material.SetFloat("_Resolve_Cursor", 2-(timer / _durationIn) * 2.5f);
+                rend.material.SetFloat("_Resolve_Cursor", _delayFill-(timer / _durationIn) * (_delayFill+.5f));
             }
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
+        print("feur");
         paint.layer = 0;
          foreach (GameObject child in AllChilds(paint))
         {
@@ -93,7 +85,8 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderOut(GameObject paint)
     {
-        CameraManager.Instance.SeeCurrentLevel(paint, _cameraMoveDuration);
+        CameraManager.Instance.SeeCurrentLevel(paint);
+        yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime + .5f);
         _eraseRend.material.SetFloat("_CursorErase", -1);
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
@@ -107,8 +100,12 @@ public class PaintInOutController : MonoBehaviour
             _eraseRend.material.SetFloat("_CursorErase", (timer / _durationOut)*3-1);
             timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
             yield return null;
-        }     
-        
+        }
+        paint.layer = 6;
+        foreach (GameObject child in AllChilds(paint))
+        {
+            child.layer = 6;
+        }
         paint.SetActive(false);
         _image.enabled = false;
         if(paint!= _endPaint)
