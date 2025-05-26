@@ -25,7 +25,13 @@ public abstract class Interactable : MonoBehaviour
     protected abstract void Interact();
     protected virtual void Start()
     {
-        EventManager.instance.OnInputInteract.AddListener(Interact);
+        EventManager.instance.OnInputInteract.AddListener(()=>
+        {
+            if (PlayerStateMachine && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
+            {
+                Interact();
+            }
+        });
     }
     void OnTriggerEnter(Collider other)
     {

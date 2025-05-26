@@ -17,14 +17,12 @@ public class Clone : MonoBehaviour
     [SerializeField] private Transform _paintingTransform;
     private CinemachineVirtualCamera CVC;
     private InputsManager _inputs;
-    private bool _hasInteracted;
     [SerializeField] private bool _isInSocleRange = false;
     private GameObject _heldObject;
     public GameObject heldObject { get => _heldObject; set => _heldObject = value; }
     public int CharID { get => _charID; }
     public Transform PaintingTransform { get => _paintingTransform; set => _paintingTransform = value; }
     public bool IsInSocleRange { get => _isInSocleRange; set => _isInSocleRange = value; }
-    public bool HasInteracted { get => _hasInteracted; set => _hasInteracted = value; }
 
     private void Start()
     {
@@ -47,7 +45,7 @@ public class Clone : MonoBehaviour
         if (_inputs.InputSwitching && CloneManager.instance.CurrentPlayer == _charID)
         {
             CloneManager.instance.Switch(_charID);
-            EventManager.instance?.OnJump.Invoke();
+            //EventManager.instance?.OnJump.Invoke();
             _inputs.InputSwitching = false;
         }
     }

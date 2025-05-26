@@ -88,7 +88,6 @@ public class OpenButton : Interactable
         {
             _spriteRenderer.sprite = null;
             _isRespawning = true;
-            PlayerC.HasInteracted = true;
             foreach (ObectToDestroy toRemove in _objectsToRemove)
             {
                 toRemove.ObjectToRemove.SetActive(false);//à la place faire le truc du shader qui s'applique(disolve) et enlever la collision

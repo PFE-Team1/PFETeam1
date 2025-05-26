@@ -301,7 +301,6 @@ public class LevelSpawner : Interactable
                 {
                     SpawnNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
-                    PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
                     CameraManager.Instance.ShowNewLevel();
                 }
@@ -313,7 +312,6 @@ public class LevelSpawner : Interactable
                     CameraManager.Instance.CameraShake(1, 1);
                     RemoveNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
-                    PlayerC.HasInteracted = true;
                     AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
                 }
             }

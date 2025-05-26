@@ -37,7 +37,7 @@ public class PaintingController : Interactable
     }
     protected override void Interact()
     {
-        if (IsInRange && !PlayerC.IsInSocleRange && (CurrentHoldingStateMachine == null || CurrentHoldingStateMachine.CurrentState != CurrentHoldingStateMachine.CloneState))
+        if (IsInRange && !PlayerC.IsInSocleRange)
         {
             if (_isHeld)
             {

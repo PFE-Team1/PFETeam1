@@ -12,7 +12,6 @@ public class CloneSpawner : Interactable
     {
         if (IsInRange)
         {
-            PlayerC.HasInteracted = true;
             PlayerC.Cloned(_spawnPoint, InitialSkinName);
             Destroy(_spawnPoint);
             Destroy(gameObject);
