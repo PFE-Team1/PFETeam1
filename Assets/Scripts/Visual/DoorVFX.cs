@@ -58,7 +58,7 @@ public class DoorVFX : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && (!_isPlayerInter))
+        if (other.CompareTag("Player") && (!_isPlayerInter)&& other.isTrigger == false)
         {
             _isPlayerInter = true;
             print("x2rF5dne");
@@ -76,7 +76,7 @@ public class DoorVFX : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         _isPlayerInter = false;
-        if (other.CompareTag("Player")&&!_isOut)
+        if (other.CompareTag("Player")&&!_isOut&&other.isTrigger==false)
         {
             _isOut = true;
             if (!IsDirection)
