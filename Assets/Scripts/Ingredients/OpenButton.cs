@@ -56,7 +56,7 @@ public class OpenButton : Interactable
                 _spriteRenderer.sprite = null;
                 _isRespawning = true;
                 PlayerC.HasInteracted = true;
-                foreach(ObectToDestroy toRemove in _objectsToRemove)
+                foreach (ObectToDestroy toRemove in _objectsToRemove)
                 {
                     for (int i = 0; i < toRemove.Colliders.Count; i++)
                     {
@@ -71,6 +71,7 @@ public class OpenButton : Interactable
                         toRemove.currentTime = 0;
                         _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
                     }
+                    AudioManager.Instance.SFX_OuvertureMur.Post(gameObject);
                 }
             }
         }
@@ -84,7 +85,7 @@ public class OpenButton : Interactable
             time += Time.deltaTime;
             destroyed.currentTime = time;
 
-            //Shader de resolve progressif sur la durée (time/respawnTime)
+            //Shader de resolve progressif sur la durï¿½e (time/respawnTime)
             yield return null;
         }
         while (destroyed.respawnable.IsRepawnBlocked)

@@ -227,52 +227,6 @@ public class LevelSpawner : Interactable
         }
     }
 
-    private Vector2? TouchingBounds(GameObject _newlevel)
-    {
-        foreach (var level in CameraManager.Instance.Levels)
-        {
-            if (level == _newlevel) continue;
-
-            if (level.TryGetComponent(out SpriteRenderer sr))
-            {
-                if (_newlevel.TryGetComponent(out SpriteRenderer newSr))
-                {
-                    Bounds newLevelBounds = newSr.bounds;
-                    newLevelBounds.Expand(appliedOffset * 2);
-
-                    return GetTouchingBounds(newLevelBounds, sr.bounds);
-                }
-            }
-        }
-        return null;
-    }
-
-    public Vector2 GetTouchingBounds(Bounds newLevelBounds, Bounds srBounds)
-    {
-        Vector2 touchingBounds = new Vector2();
-        if (newLevelBounds.Intersects(srBounds))
-        {
-            if (newLevelBounds.min.x < srBounds.min.x)
-            {
-                touchingBounds.x = newLevelBounds.min.x - srBounds.min.x;
-            }
-            else if (newLevelBounds.max.x > srBounds.max.x)
-            {
-                touchingBounds.x = newLevelBounds.max.x - srBounds.max.x;
-            }
-
-            if (newLevelBounds.min.y < srBounds.min.y)
-            {
-                touchingBounds.y = newLevelBounds.min.y - srBounds.min.y;
-            }
-            else if (newLevelBounds.max.y > srBounds.max.y)
-            {
-                touchingBounds.y = newLevelBounds.max.y - srBounds.max.y;
-            }
-        }
-        return touchingBounds;
-    }
-
     private bool CanBePlaced(GameObject _newlevel)
     {
         foreach (var level in CameraManager.Instance.Levels)

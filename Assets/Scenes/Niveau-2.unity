@@ -1396,40 +1396,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3992618566871474541, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
   m_PrefabInstance: {fileID: 5723980221663169325}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1471561800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471561798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa34c510268035d469ae043d30252aa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: f7e1664c
-  useOtherObject: 0
-  actionOnEventType: 0
-  curveInterpolation: 4
-  enableActionOnEvent: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 51e6ea5ba5d67e24095122db9812ebf4, type: 2}
-  useCallbacks: 0
-  stopSoundOnDestroy: 1
-  Callbacks: []
-  soundEmitterObject: {fileID: 0}
-  transitionDuration: 0
-  eventIdInternal: 0
-  valueGuidInternal: 
-  m_callbackDataInternal: {fileID: 0}
-  MultiPositionType: 1
-  multiPositionTypeLabel: 0
-  attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
-  LargeModePositions: []
-  multiPositionArray: []
 --- !u!114 &1471561801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1511,8 +1477,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2857431998168138171, guid: 63628218e6ccae0469dec39db8055055, type: 3}
+      propertyPath: _delayFill
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857431998168138171, guid: 63628218e6ccae0469dec39db8055055, type: 3}
       propertyPath: _durationIn
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2857431998168138171, guid: 63628218e6ccae0469dec39db8055055, type: 3}
       propertyPath: _firstPaint
@@ -1971,6 +1941,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4034455098081867187, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
+      propertyPath: data.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: d1c0b22abb7cb274fb54db53a08c7fd9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1978,9 +1952,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3992618566871474541, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1471561801}
-    - targetCorrespondingSourceObject: {fileID: 3992618566871474541, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1471561800}
     - targetCorrespondingSourceObject: {fileID: 5977482949756633512, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5723980221663169330}
