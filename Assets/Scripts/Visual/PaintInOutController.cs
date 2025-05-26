@@ -142,7 +142,6 @@ public class PaintInOutController : MonoBehaviour
             {
                 rend.material.SetFloat("_ResolveCursor", 1);
             }
-            
             CameraManager.Instance.FocusCamera();
             _image.enabled = false;
     }
@@ -160,7 +159,6 @@ public class PaintInOutController : MonoBehaviour
     private void Setup(GameObject paint)
     {
         RectTransform paintRect = paint.GetComponent<RectTransform>();
-        float baseWidth = _rectTransform.sizeDelta.x;
         _rectTransform.anchorMin = paintRect.anchorMin;
         _rectTransform.anchorMax = paintRect.anchorMax;
         //_rectTransform.anchoredPosition = paintRect.anchoredPosition;
@@ -168,6 +166,13 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
         _image.enabled = true;
-        _camera.orthographicSize = _camera.orthographicSize * (_rectTransform.sizeDelta.x / baseWidth);
+        if (paintRect.sizeDelta.y < paintRect.sizeDelta.x)
+        {
+            _camera.orthographicSize = paintRect.sizeDelta.y / 2;
+        }
+        else
+        {
+            _camera.orthographicSize = paintRect.sizeDelta.x / 2;
+        }
     }
 }
