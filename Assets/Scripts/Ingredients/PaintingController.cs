@@ -38,6 +38,7 @@ public class PaintingController : Interactable
     }
     protected override void Interact()
     {
+        print(PlayerC.IsInSocleRange);
         if (IsInRange && !PlayerC.IsInSocleRange)
         {
             if (_isHeld)
