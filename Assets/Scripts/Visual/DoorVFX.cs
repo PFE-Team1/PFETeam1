@@ -45,9 +45,12 @@ public class DoorVFX : MonoBehaviour
     public void StopDoorVFX()
     {
         // _otherDoorVFX.DoorVFXInstance = null;
-        foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
+        if (_doorVFXInstance)
         {
-            child.Out(this);
+            foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
+            {
+                child.Out(this);
+            }
         }
         _doorVFXInstance = null;
         //_otherDoorVFX.OtherDoorVFX = null;
