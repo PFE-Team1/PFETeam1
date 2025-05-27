@@ -13,37 +13,17 @@ public class EndProto : Interactable
     [SerializeField] private GameObject _endPos;
     [SerializeField] PaintInOutController _endEffect;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         // Make it move up and down a litle based on his original position using a tween 
         transform.DOLocalMoveY(transform.localPosition.y + 0.25f, 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         _endEffect = FindFirstObjectByType<PaintInOutController>();
         if (_endEffect == null) return;
         _endEffect.EndPaint = _level;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (IsInRange)
-        {
-            if (PlayerC.IsInteracting)
-            {
-                transform.parent = null;
-                PlayerC.IsInteracting = false;
-                PlayerC.gameObject.SetActive(false);
-                if (!_endEffect || !_level)
-                {
-                    ScenesManager.instance.LoadNextScene();
-                }
-                else
-                {
 
-                    StartCoroutine(EndOfLevel());
-                }
-                //SceneManager.LoadScene(_sceneToLoad);
-            }
-        }
-    }
+
     IEnumerator EndOfLevel()
     {
         CameraManager.Instance.SeeCurrentLevel(_level);
@@ -74,6 +54,25 @@ public class EndProto : Interactable
         ScenesManager.instance.LoadNextScene();
         yield return null;
 
+    }
+
+
+    protected override void Interact()
+    {
+        if (IsInRange)
+        {
+            transform.parent = null;
+            PlayerC.gameObject.SetActive(false);
+            if (!_endEffect || !_level)
+            {
+                ScenesManager.instance.LoadNextScene();
+            }
+            else
+            {
+
+                StartCoroutine(EndOfLevel());
+            }
+        }
     }
 }
 

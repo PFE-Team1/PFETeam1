@@ -15,8 +15,9 @@ public class OpenButton : Interactable
     float hightestRespawnTime=0;
 
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _isRespawning = false;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _sprite = _spriteRenderer.sprite;
@@ -56,22 +57,13 @@ public class OpenButton : Interactable
                 _spriteRenderer.sprite = null;
                 _isRespawning = true;
                 PlayerC.HasInteracted = true;
-                foreach (ObectToDestroy toRemove in _objectsToRemove)
+                foreach(ObectToDestroy toRemove in _objectsToRemove)
                 {
-                    for (int i = 0; i < toRemove.Colliders.Count; i++)
-                    {
-                        toRemove.Colliders[i].enabled = false;
-                    }
-                    for (int i = 0; i < toRemove.Renderers.Count; i++)
-                    {
-                        toRemove.Renderers[i].enabled = false;
-                    }
+                    toRemove.ObjectToRemove.SetActive(false);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
                     if (toRemove.IsRespawnable == true)
                     {
-                        toRemove.currentTime = 0;
                         _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
                     }
-                    AudioManager.Instance.SFX_OuvertureMur.Post(gameObject);
                 }
             }
         }
@@ -121,6 +113,26 @@ public class OpenButton : Interactable
 
             }
         }
+    }
+    IEnumerator ReStartBuilding(ObectToDestroy destroyed)
+    {
+        float time = destroyed.currentTime;
+        yield return new WaitForSeconds(destroyed.RespawnStartTime);
+        while (time < destroyed.RespawnTime)
+        {
+            time += Time.deltaTime;
+            destroyed.currentTime = time;
+            //Shader de resolve progressif sur la dur�e (time/respawnTime)
+            yield return null;
+        }
+        destroyed.ObjectToRemove.SetActive(true);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+
+        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime)
+        {
+            _spriteRenderer.sprite = _sprite;
+            _isRespawning = false;
+        }
+        yield return null;
     }
 }
 [Serializable]
