@@ -10,9 +10,12 @@ public class UIToolTipZone : MonoBehaviour
     private Sprite KeyboardIcon;
     [SerializeField]
     private Sprite ControllerIcon;
+    [SerializeField]
+    private bool ShouldDestroyOnExit = false;
 
     private InputsManager _inputsManager;
     private List<GameObject> _CollidingGameObjects;
+    private ToolTipManager _toolTipManager;
     void Start()
     {
         _inputsManager = InputsManager.instance;
@@ -29,27 +32,34 @@ public class UIToolTipZone : MonoBehaviour
             Debug.LogWarning("No BoxCollider found on the player, can't switch profile");
             return;
         }
+
     }
     private void OnTriggerEnter(Collider other)
     {
         // Trouve dans les objets de l'enfant le premier ToolTipManager
-        ToolTipManager toolTipManager = other.GetComponentInChildren<ToolTipManager>();
+        _toolTipManager = other.GetComponentInChildren<ToolTipManager>();
         if (!_CollidingGameObjects.Contains(other.gameObject))
         {
             _CollidingGameObjects.Add(other.gameObject);
         }
 
-        if (toolTipManager != null)
+        if (_toolTipManager != null)
         {
-            toolTipManager.InsideZone = true;
-            // NEED FIX
-            //toolTipManager.KeyIcon.sprite = _inputsManager.UIKeyIconsSet.GetKeyIcon(KeyName).KeyboardIcon;
-                toolTipManager.KeyIcon.sprite = InputsManager.instance.IsKeyboard ? KeyboardIcon : ControllerIcon;
+            _toolTipManager.InsideZone = true;
+            _toolTipManager.KeyboardIcon = KeyboardIcon;
+            _toolTipManager.ControllerIcon = ControllerIcon;
+
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (ShouldDestroyOnExit)
+        {
+            EventManager.instance.OnInput.RemoveAllListeners();
+            Destroy(other.gameObject);
+            return;
+        }
         ToolTipManager toolTipManager = other.GetComponentInChildren<ToolTipManager>();
         if (_CollidingGameObjects.Contains(other.gameObject))
         {
@@ -86,4 +96,6 @@ public class UIToolTipZone : MonoBehaviour
         }
         _CollidingGameObjects.Clear();
     }
+
+
 }

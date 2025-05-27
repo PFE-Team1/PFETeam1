@@ -84,6 +84,7 @@ public class PaintingController : Interactable
                             PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                             _paintHandler.CurrentPaintingController = this;
                             _targetCollider = child;
+                            gameObject.GetComponentInChildren<UIToolTipZone>().enabled = true;
                             return;
                         }
                     }
@@ -129,5 +130,6 @@ public class PaintingController : Interactable
         _isHeld = true;
         IsInRange = true;
         PlayerC.heldObject = gameObject;
+        gameObject.GetComponentInChildren<UIToolTipZone>().enabled = false;
     }
 }

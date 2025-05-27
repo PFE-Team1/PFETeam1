@@ -186,6 +186,7 @@ public class InputsManager : MonoBehaviour
         foreach (var action in _playerInputs.actions)
         {
             action.performed += ctx => InvokeInputMethod($"On{action.name}", ctx);
+            action.performed += ctx => EventManager.instance.OnInput.Invoke();
             action.canceled += ctx => InvokeInputMethod($"On{action.name}", ctx);
             action.Enable();
         }
