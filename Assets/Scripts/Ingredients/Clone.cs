@@ -102,7 +102,6 @@ public class Clone : MonoBehaviour
                                 }
                                 foreach (SkeletonPartsRenderer skel in _skeletonPartRend) 
                                 {
-                                    print(skel.name+"  "+ skel.MeshRenderer.sortingLayerID);
                                     skel.MeshRenderer.sortingLayerID = val;
                                 }
                                 return;
