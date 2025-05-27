@@ -15,8 +15,9 @@ public class OpenButton : Interactable
     float hightestRespawnTime=0;
 
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _isRespawning = false;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _sprite = _spriteRenderer.sprite;
@@ -44,36 +45,6 @@ public class OpenButton : Interactable
                 hightestRespawnTime = toRemove.RespawnTime + toRemove.RespawnStartTime;
             }
             
-        }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (IsInRange)
-        {
-            if (PlayerC.IsInteracting &&!PlayerC.HasInteracted)
-            {
-                _spriteRenderer.sprite = null;
-                _isRespawning = true;
-                PlayerC.HasInteracted = true;
-                foreach (ObectToDestroy toRemove in _objectsToRemove)
-                {
-                    for (int i = 0; i < toRemove.Colliders.Count; i++)
-                    {
-                        toRemove.Colliders[i].enabled = false;
-                    }
-                    for (int i = 0; i < toRemove.Renderers.Count; i++)
-                    {
-                        toRemove.Renderers[i].enabled = false;
-                    }
-                    if (toRemove.IsRespawnable == true)
-                    {
-                        toRemove.currentTime = 0;
-                        _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
-                    }
-                    AudioManager.Instance.SFX_OuvertureMur.Post(gameObject);
-                }
-            }
         }
     }
     IEnumerator Rebuilding(ObectToDestroy destroyed)
@@ -122,7 +93,46 @@ public class OpenButton : Interactable
             }
         }
     }
+    IEnumerator ReStartBuilding(ObectToDestroy destroyed)
+    {
+        float time = destroyed.currentTime;
+        yield return new WaitForSeconds(destroyed.RespawnStartTime);
+        while (time < destroyed.RespawnTime)
+        {
+            time += Time.deltaTime;
+            destroyed.currentTime = time;
+            //Shader de resolve progressif sur la dur�e (time/respawnTime)
+            yield return null;
+        }
+        destroyed.ObjectToRemove.SetActive(true);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+
+        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime)
+        {
+            _spriteRenderer.sprite = _sprite;
+            _isRespawning = false;
+        }
+        yield return null;
+    }
+
+    protected override void Interact()
+    {
+        if (IsInRange)
+        {
+                _spriteRenderer.sprite = null;
+                _isRespawning = true;
+                foreach (ObectToDestroy toRemove in _objectsToRemove)
+                {
+                    toRemove.ObjectToRemove.SetActive(false);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+                    if (toRemove.IsRespawnable == true)
+                    {
+                        _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
+                    }
+                }
+            }
+    }
 }
+
+
 [Serializable]
 public class ObectToDestroy
 {
