@@ -2686,8 +2686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
 --- !u!1 &1978820436853533252
 GameObject:
   m_ObjectHideFlags: 0
@@ -5596,6 +5596,7 @@ GameObject:
   - component: {fileID: 4972532283373377506}
   - component: {fileID: 5042870374263678416}
   - component: {fileID: 1506057946818543449}
+  - component: {fileID: 8286134984232659206}
   m_Layer: 0
   m_Name: Level-2.1
   m_TagString: Untagged
@@ -5750,6 +5751,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 2
+  ambianceManager: {fileID: 3953745434179357074}
+--- !u!114 &8286134984232659206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3953745434179357074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2df197d228f59a47ab224f59d6a2559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambianceEvents:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e8a961fba33fd294b868e94477077204, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e683318310ebb5445b332faa7b8c0dbd, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c3c3cdb390dd6654c9adb15f58c08e14, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 5c60800d31141d54db49a4e6dec9aadd, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f227958ff2b8932419702f33ee43eb24, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 4cd15b5402510aa44b8448ca39641ef7, type: 2}
 --- !u!1 &4053136314795092948
 GameObject:
   m_ObjectHideFlags: 0
@@ -16617,8 +16650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
 --- !u!1001 &7807129998200088492
 PrefabInstance:
   m_ObjectHideFlags: 0

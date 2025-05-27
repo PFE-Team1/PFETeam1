@@ -6083,6 +6083,7 @@ GameObject:
   - component: {fileID: 5784559836531663272}
   - component: {fileID: 7307650331915188570}
   - component: {fileID: 1506057946818543449}
+  - component: {fileID: 6183613461260305848}
   m_Layer: 0
   m_Name: Level-2.2
   m_TagString: Untagged
@@ -6300,6 +6301,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 2
+  ambianceManager: {fileID: 3953745434179357074}
+--- !u!114 &6183613461260305848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3953745434179357074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2df197d228f59a47ab224f59d6a2559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambianceEvents: []
 --- !u!1 &4053136314795092948
 GameObject:
   m_ObjectHideFlags: 0
@@ -16243,8 +16258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
 --- !u!4 &8356516751569775092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7205519028400530232, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
@@ -17165,5 +17180,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
