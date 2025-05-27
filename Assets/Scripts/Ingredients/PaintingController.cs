@@ -14,6 +14,7 @@ public class PaintingController : Interactable
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
     private SpriteRenderer _spriteRenderer;
     private PaintHandler _paintHandlerAccessor;
+    private Collider2D _targetCollider;
     private PaintHandler _paintHandler { get => getPaintHandler(); set => _paintHandler = value; }
     public bool _isHeld = false;
     public PlayerStateMachine CurrentHoldingStateMachine;
@@ -46,11 +47,11 @@ public class PaintingController : Interactable
                     Destroy(Instantiate(VFX_PoseToile, transform), 1f);
                 }
                 AudioManager.Instance.SFX_PoseToile.Post(gameObject);
-                DropPainting();
+                AnimateDropPainting();
             }
             else
             {
-                GrabPainting();
+                AnimateGrabPainting();
             }
         }
     }
@@ -60,7 +61,7 @@ public class PaintingController : Interactable
         return spawnPoint.transform;
     }
 
-    public void DropPainting()
+    public void AnimateDropPainting()
     {
         Vector3 releasePosition = transform.position;
         RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
@@ -80,30 +81,36 @@ public class PaintingController : Interactable
                         SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
                         if (sr != null)
                         {
-                            Bounds levelBounds = sr.bounds;
-                            Bounds paintingBounds = GetComponent<SpriteRenderer>().bounds;
-
-                            if (levelBounds.Intersects(paintingBounds))
-                            {
-                                // Visuel de peinture
-                                transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
-                                transform.localRotation = Quaternion.Euler(0, 0, 0);
-                                transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-                                PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
-                                _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder+1);
-                                boneFollower.SkeletonRenderer = null;
-                                PlayerC.heldObject = null;
-                                _isHeld = false;
-                                CurrentHoldingStateMachine = null;
-                                return;
-                            }
+                            PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
+                            _paintHandler.CurrentPaintingController = this;
+                            _targetCollider = child;
+                            return;
                         }
                     }
                 }
             }
         }
     }
+    public void DropPainting()
+    {
+        // Visuel de peinture
+        transform.SetParent(_targetCollider.GetComponentInChildren<SpriteMask>().transform);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
+        _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 1);
+        boneFollower.SkeletonRenderer = null;
+        PlayerC.heldObject = null;
+        _isHeld = false;
+        CurrentHoldingStateMachine = null;
+        return;
+    }
+
+    public void AnimateGrabPainting()
+    {
+        PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
+        _paintHandler.CurrentPaintingController = this;
+    }
     public void GrabPainting()
     {
         if (VFX_GrabToile != null)
@@ -111,7 +118,6 @@ public class PaintingController : Interactable
             Destroy(Instantiate(VFX_GrabToile, transform), 1f);
         }
         AudioManager.Instance.SFX_GrabToile.Post(gameObject);
-        PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
         boneFollower.boneName = "Target_Arm_R";
