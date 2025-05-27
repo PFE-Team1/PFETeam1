@@ -54,31 +54,6 @@ public class CameraManager : MonoBehaviour
         DefineCameraBounds();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            AudioManager.Instance.SFX_Dezoom.Post(gameObject);
-            SeeAllLevels();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            AudioManager.Instance.SFX_Zoom.Post(gameObject);
-            FocusCamera();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F3))
-        {
-            SeeCurrentLevel(_levels[0]);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F4))
-        {
-            CameraShake(0.5f, 1f);
-        }
-    }
-
     private void CalculateWorldBounds()
     {
         if (_levels.Count - 1 == 0) return;

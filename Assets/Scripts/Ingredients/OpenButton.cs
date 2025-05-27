@@ -13,7 +13,23 @@ public class OpenButton : Interactable
     private SpriteRenderer _spriteRenderer ;
     private List<Coroutine> _coroutines=new List<Coroutine>();
     float hightestRespawnTime=0;
-
+    
+    protected override void Interact()
+    {
+        if (IsInRange)
+        {
+            _spriteRenderer.sprite = null;
+            _isRespawning = true;
+            foreach (ObectToDestroy toRemove in _objectsToRemove)
+            {
+                toRemove.ObjectToRemove.SetActive(false);
+                if (toRemove.IsRespawnable == true)
+                {
+                    _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
+                }
+            }
+        }
+    }
 
     protected override void Start()
     {
@@ -31,7 +47,7 @@ public class OpenButton : Interactable
             }
             else
             {
-                List<Collider> coll = toRemove.ObjectToRemove.GetComponents<Collider>().Where(collide=>collide.isTrigger==false).ToList();
+                List<Collider> coll = toRemove.ObjectToRemove.GetComponents<Collider>().Where(collide => collide.isTrigger == false).ToList();
                 toRemove.Colliders.AddRange(coll);
                 toRemove.Renderers.Add(toRemove.ObjectToRemove.GetComponent<Renderer>());
             }
@@ -40,34 +56,14 @@ public class OpenButton : Interactable
                 toRemove.respawnable = toRemove.ObjectToRemove.AddComponent<RespawnableWall>();
 
             }
-            if (toRemove.RespawnTime+toRemove.RespawnStartTime > hightestRespawnTime)
+            if (toRemove.RespawnTime + toRemove.RespawnStartTime > hightestRespawnTime)
             {
                 hightestRespawnTime = toRemove.RespawnTime + toRemove.RespawnStartTime;
             }
-            
+
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (IsInRange)
-        {
-            if (PlayerC.IsInteracting &&!PlayerC.HasInteracted)
-            {
-                _spriteRenderer.sprite = null;
-                _isRespawning = true;
-                PlayerC.HasInteracted = true;
-                foreach(ObectToDestroy toRemove in _objectsToRemove)
-                {
-                    toRemove.ObjectToRemove.SetActive(false);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
-                    if (toRemove.IsRespawnable == true)
-                    {
-                        _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
-                    }
-                }
-            }
-        }
-    }
+
     IEnumerator Rebuilding(ObectToDestroy destroyed)
     {
         float time = destroyed.currentTime;

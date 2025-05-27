@@ -12,8 +12,9 @@ public class DoorVFX : MonoBehaviour
     bool _isSwitching;
     bool _isPlayerInter;
     bool _isOut;
+    bool switched = true;
 
-    private bool _isSpawned=false;
+    private bool _isSpawned = false;
     [SerializeField]private bool _isDirection=false;
 
     public bool IsSpawned { get => _isSpawned; set => _isSpawned = value; }
@@ -63,10 +64,29 @@ public class DoorVFX : MonoBehaviour
         {
             child.InversePath(this);
         }
+
+        InvertSound();
     }
+
+    void InvertSound()
+    {
+        if (switched)
+        {
+            OtherDoorVFX.GetComponentInParent<Level>().AmbianceManager.GetComponent<AmbianceManager>().StopAmbiance();
+            gameObject.GetComponentInParent<Level>().AmbianceManager.GetComponent<AmbianceManager>().PlayAmbiance();
+            switched = true;
+        }
+        else
+        {
+            gameObject.GetComponentInParent<Level>().AmbianceManager.GetComponent<AmbianceManager>().StopAmbiance();
+            OtherDoorVFX.GetComponentInParent<Level>().AmbianceManager.GetComponent<AmbianceManager>().PlayAmbiance();
+            switched = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && (!_isPlayerInter)&& other.isTrigger == false)
+        if (other.CompareTag("Player") && (!_isPlayerInter) && other.isTrigger == false)
         {
             _isPlayerInter = true;
             print("x2rF5dne");

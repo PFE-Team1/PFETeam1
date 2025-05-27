@@ -8760,6 +8760,7 @@ GameObject:
   - component: {fileID: 5882725398901075337}
   - component: {fileID: 2926982240628390982}
   - component: {fileID: 3733387583260690075}
+  - component: {fileID: 8120171314224859008}
   m_Layer: 6
   m_Name: Level-1.2_V2
   m_TagString: Untagged
@@ -8913,6 +8914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 2
+  ambianceManager: {fileID: 7230772840160989966}
 --- !u!114 &3733387583260690075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8950,6 +8952,34 @@ MonoBehaviour:
     layer: {fileID: 4621791546874169446}
     strengthY: 0.8
     strengthX: 1.6
+--- !u!114 &8120171314224859008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7230772840160989966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2df197d228f59a47ab224f59d6a2559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambianceEvents:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 487c80facfcca054788015ff5ab3dc59, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 62cba57f6e0bae747b074584be1b396c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e1dab1e780732f84ea619d602fa150ae, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d75193c63fbeda747b6665a863b6fcd9, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d1c0b22abb7cb274fb54db53a08c7fd9, type: 2}
 --- !u!1 &7238467864515189206
 GameObject:
   m_ObjectHideFlags: 0
@@ -10697,8 +10727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: Interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
 --- !u!65 &108135098959208152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11313,6 +11343,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5493809973840503130, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5912038925826287699, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6191678160005951493, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11360,6 +11398,14 @@ PrefabInstance:
     - target: {fileID: 7658540845275405631, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
       propertyPath: m_Name
       value: AMB_LV01_Toile02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679905336128833151, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8941967635330801701, guid: 1fbca80f692fb4847bbe870758cb2c6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
