@@ -15,6 +15,10 @@ public class ScenesManager : MonoBehaviour
     private void Update()
     {
         if (InputsManager.instance == null) return;
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextScene();
+        }
     }
     public void LoadMenu()
     {
