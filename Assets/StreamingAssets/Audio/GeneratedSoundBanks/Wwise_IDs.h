@@ -34,17 +34,17 @@ namespace AK
         static const AkUniqueID PLAY_CREATECLONE = 1596093869U;
         static const AkUniqueID PLAY_DECHIRURE_TOILE = 268635939U;
         static const AkUniqueID PLAY_DISPARITIONTOILE = 1711433891U;
-        static const AkUniqueID PLAY_FOL_ATTERISSAGE = 963548972U;
-        static const AkUniqueID PLAY_FOL_PAS = 2347302452U;
-        static const AkUniqueID PLAY_FOL_SAUT = 3275352703U;
+        static const AkUniqueID PLAY_FOL_ATTERISSAGE_RC = 4231866090U;
+        static const AkUniqueID PLAY_FOL_PAS_RC = 3168559986U;
+        static const AkUniqueID PLAY_FOL_SAUT_RC = 1819697263U;
         static const AkUniqueID PLAY_GRABTOILE_RC = 552674189U;
         static const AkUniqueID PLAY_POSETOILE_RC = 295623852U;
         static const AkUniqueID PLAY_REFORMATION_TOILE = 1700749746U;
         static const AkUniqueID PLAY_SUI_CLIQUEVALIDATIONBOUTON_RC = 129827151U;
-        static const AkUniqueID PLAY_SUI_PRESSANYKEY = 3626919780U;
         static const AkUniqueID PLAY_SUI_SURVOLBOUTON_RC_01 = 2589902834U;
         static const AkUniqueID PLAY_SWITCH_CLONE = 1864381592U;
         static const AkUniqueID PLAY_TOILE_1_PC = 4192545069U;
+        static const AkUniqueID PLAY_TOILE_2_PC = 2815554252U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

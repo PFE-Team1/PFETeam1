@@ -7,8 +7,9 @@ public class UIToolTipZone : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    public string KeyName;
-    public Sprite KeyIcon;
+    private Sprite KeyboardIcon;
+    [SerializeField]
+    private Sprite ControllerIcon;
 
     private InputsManager _inputsManager;
     private List<GameObject> _CollidingGameObjects;
@@ -43,7 +44,7 @@ public class UIToolTipZone : MonoBehaviour
             toolTipManager.InsideZone = true;
             // NEED FIX
             //toolTipManager.KeyIcon.sprite = _inputsManager.UIKeyIconsSet.GetKeyIcon(KeyName).KeyboardIcon;
-            toolTipManager.KeyIcon.sprite = KeyIcon;
+                toolTipManager.KeyIcon.sprite = InputsManager.instance.IsKeyboard ? KeyboardIcon : ControllerIcon;
         }
     }
 

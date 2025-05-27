@@ -5,7 +5,7 @@ using Cinemachine;
 using UnityEngine.Events;
 using System;
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
     public GameObject player;
     private Clone _playerC;
@@ -21,6 +21,18 @@ public class Interactable : MonoBehaviour
 
     public bool isSocle = false;
 
+    // Make sure Interactable objects inegrate a interact method that can be called by the EventManager
+    protected abstract void Interact();
+    protected virtual void Start()
+    {
+        EventManager.instance.OnInputInteract.AddListener(()=>
+        {
+            if (PlayerStateMachine && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState)
+            {
+                Interact();
+            }
+        });
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

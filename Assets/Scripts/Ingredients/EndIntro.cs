@@ -7,6 +7,11 @@ public class EndIntro : Interactable
 {
 
     private string _sceneToLoad;
+
+    protected override void Interact()
+    {
+    }
+
     // Update is called once per frame
     void Update()
     {

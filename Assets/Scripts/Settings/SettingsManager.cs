@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -29,7 +30,11 @@ public class SettingsManager : MonoBehaviour
     [Header ("Camera Transition")]
     [SerializeField] private GameObject _objectToZoom;
     [SerializeField] private float _zoomSpeed = 5f;
+    
+    [Header("FirstController")]
+    [SerializeField] private GameObject _firstItem;
 
+    [Header ("Volume")]
     [SerializeField] private AK.Wwise.RTPC _masterVolumeRTPC;
     [SerializeField] private AK.Wwise.RTPC _ambianceVolumeRTPC;
     [SerializeField] private AK.Wwise.RTPC _musicVolumeRTPC;
@@ -39,12 +44,11 @@ public class SettingsManager : MonoBehaviour
     bool wantParallax = true;
     bool wantScreenShake = true;
     bool isMainMenuActive = false;
+    Coroutine _zoomCoroutine;
     public bool IsMainMenuActive { get => isMainMenuActive; set => isMainMenuActive = value; }
     Resolution[] resolutions;
     public bool WantParallax { get => wantParallax; set => wantParallax = value; }
     public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
-
-    private Coroutine _zoomCoroutine;
 
     void Awake()
     {
@@ -89,7 +93,8 @@ public class SettingsManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKeyDown && !isMainMenuActive)
+        if (isMainMenuActive) return;
+        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown && !isMainMenuActive)
         {
             AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
@@ -99,9 +104,10 @@ public class SettingsManager : MonoBehaviour
                 _objectToZoom.SetActive(false);
                 _landingMenu.SetActive(false);
                 _mainMenu.SetActive(true);
-                isMainMenuActive = true;
+                if (_firstItem != null)
+                    EventSystem.current.SetSelectedGameObject(_firstItem);
             }));
-            isMainMenuActive = true;
+
         }
     }
 
@@ -126,22 +132,27 @@ public class SettingsManager : MonoBehaviour
     {
         var actions = InputsManager.instance._playerInputs;
 
-        foreach (var action in actions.actions)
+        foreach (Transform child in _controlsParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (var action in actions.actions.Where(a => a.bindings.Any(b => b.groups.Contains(actions.currentControlScheme))))
         {
             if (action.bindings.Count > 0)
             {
                 GameObject control = Instantiate(_controlsPrefab, _controlsParent);
                 control.GetComponent<TextUpdater>().Key = action.name;
                 control.GetComponent<TextMeshProUGUI>().text = action.name;
-                control.GetComponentsInChildren<TextMeshProUGUI>()[1].text = action.bindings[0].ToDisplayString();
-                control.GetComponent<Button>().onClick.AddListener(() =>
+                control.GetComponentsInChildren<TextMeshProUGUI>()[1].text = action.bindings.First(b => b.groups.Contains(actions.currentControlScheme)).ToDisplayString();
+                control.GetComponentInChildren<Button>().onClick.AddListener(() =>
                 {
-                    Debug.Log($"{action.name} clicked !");
                     action.PerformInteractiveRebinding()
-                        .WithControlsExcluding("<Mouse>/position")
-                        .WithCancelingThrough("<Keyboard>/escape")
-                        .OnComplete(operation => { operation.Dispose(); SetNewControls(); })
-                        .Start();
+                    .WithControlsExcluding("<Mouse>/position")
+                    .WithCancelingThrough("<Keyboard>/escape")
+                    .WithCancelingThrough("<Gamepad>/buttonEast")
+                    .OnComplete(operation => { operation.Dispose(); SetNewControls(); })
+                    .Start();
                 });
                 control.GetComponent<TextUpdater>().UpdateText();
             }
@@ -280,16 +291,10 @@ public class SettingsManager : MonoBehaviour
 
     public void DisplayPauseMenu()
     {
-        if (_pauseMenu.activeSelf) Time.timeScale = 1;
-        else Time.timeScale = 0;
         _pauseMenu.SetActive(!_pauseMenu.activeSelf);
         EventSystem.current.SetSelectedGameObject(_firstPauseItem);
     }
-    public void GoToMenu()
-    {
-        DisplayPauseMenu();
-        ScenesManager.instance.LoadMenu();
-    }
+
     public void SetParallax()
     {
         wantParallax = !wantParallax;

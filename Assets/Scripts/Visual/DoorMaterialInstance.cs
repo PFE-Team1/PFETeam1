@@ -13,7 +13,43 @@ public class DoorMaterialInstance : MonoBehaviour
     {
         _material = _renderer.material;
     }
-    
+    public void In()
+    {
+        StartCoroutine(FadeIn());
+    }
+    public void Out(DoorVFX door)
+    {
+        StartCoroutine(FadeOut( door));
+
+    }
+    IEnumerator FadeIn()
+    {
+        float appearance = _material.GetFloat("_Cursor_Appearance_Corridor");
+        float newAppearance= 0;
+        float timer = 0;
+        while (timer < 3)
+        {
+            newAppearance = Mathf.Lerp(appearance, -0.5f, timer/3);
+            _material.SetFloat("_Cursor_Appearance_Corridor", newAppearance);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+    IEnumerator FadeOut(DoorVFX door)
+    {
+        float appearance = _material.GetFloat("_Cursor_Appearance_Corridor");
+        float newAppearance = 0;
+        float timer = 0;
+        while (timer < 3)
+        {
+            newAppearance = Mathf.Lerp(appearance, 1f, timer / 3);
+            _material.SetFloat("_Cursor_Appearance_Corridor", newAppearance);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        yield return new WaitForSeconds(2);
+        Destroy(door.gameObject);
+    }
     IEnumerator InversingPath(DoorVFX door)
     {
         float timeScale = _material.GetFloat("_TimeScale");
