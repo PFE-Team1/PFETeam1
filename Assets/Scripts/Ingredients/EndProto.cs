@@ -8,10 +8,8 @@ public class EndProto : Interactable
 {
 
     [SerializeField]private GameObject _level;
-    [SerializeField]private AnimationCurve _curve;
-    [SerializeField] private float _displacementDuration;
-    [SerializeField] private GameObject _endPos;
     [SerializeField] PaintInOutController _endEffect;
+    private SpriteRenderer _fissure;
 
     protected override void Start()
     {
@@ -21,9 +19,17 @@ public class EndProto : Interactable
         _endEffect = FindFirstObjectByType<PaintInOutController>();
         if (_endEffect == null) return;
         _endEffect.EndPaint = _level;
+        _fissure = GetComponent<SpriteRenderer>();
+        StartCoroutine(OpenFissure());
     }
 
+    IEnumerator OpenFissure()
+    {
+        yield return new WaitForSeconds(5f);
+        _fissure.enabled = true;
 
+        //_fissure.le truc là anim et tout;
+    }
     IEnumerator EndOfLevel()
     {
         CameraManager.Instance.SeeCurrentLevel(_level);
@@ -42,13 +48,6 @@ public class EndProto : Interactable
             CameraManager.Instance.MainCamera.Follow = transform;
             float timer = 0;
             Vector3 currentPos = transform.position;
-            while (timer < _displacementDuration)
-            {
-                float val = _curve.Evaluate(timer / _displacementDuration);
-                transform.position = Vector3.Lerp(currentPos, _endPos.transform.position, val);
-                timer += Time.deltaTime;
-                yield return null;
-            }
             yield return new WaitForSeconds(3);
         }
         ScenesManager.instance.LoadNextScene();
@@ -62,7 +61,6 @@ public class EndProto : Interactable
         if (IsInRange)
         {
             transform.parent = null;
-            PlayerC.gameObject.SetActive(false);
             if (!_endEffect || !_level)
             {
                 ScenesManager.instance.LoadNextScene();
