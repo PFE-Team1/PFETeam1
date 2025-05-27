@@ -13,10 +13,8 @@ public class SpawnManager : MonoBehaviour
     }
     IEnumerator StartSequence()
     {
-        Debug.Log($"COUCADZAh");
         if (_paintVisual)
         {
-            Debug.Log($"COUCADZAh2");
             _paintVisual.PaintIn(_firstPaint);
             yield return new WaitForSeconds(_paintVisual.DurationIn);
         } 
