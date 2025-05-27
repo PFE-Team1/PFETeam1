@@ -47,27 +47,6 @@ public class OpenButton : Interactable
             
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (IsInRange)
-        {
-            if (PlayerC.IsInteracting &&!PlayerC.HasInteracted)
-            {
-                _spriteRenderer.sprite = null;
-                _isRespawning = true;
-                PlayerC.HasInteracted = true;
-                foreach(ObectToDestroy toRemove in _objectsToRemove)
-                {
-                    toRemove.ObjectToRemove.SetActive(false);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
-                    if (toRemove.IsRespawnable == true)
-                    {
-                        _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
-                    }
-                }
-            }
-        }
-    }
     IEnumerator Rebuilding(ObectToDestroy destroyed)
     {
         float time = destroyed.currentTime;
@@ -134,7 +113,26 @@ public class OpenButton : Interactable
         }
         yield return null;
     }
+
+    protected override void Interact()
+    {
+        if (IsInRange)
+        {
+                _spriteRenderer.sprite = null;
+                _isRespawning = true;
+                foreach (ObectToDestroy toRemove in _objectsToRemove)
+                {
+                    toRemove.ObjectToRemove.SetActive(false);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+                    if (toRemove.IsRespawnable == true)
+                    {
+                        _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
+                    }
+                }
+            }
+    }
 }
+
+
 [Serializable]
 public class ObectToDestroy
 {

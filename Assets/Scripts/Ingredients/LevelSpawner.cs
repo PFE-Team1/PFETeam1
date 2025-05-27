@@ -108,7 +108,7 @@ public class LevelSpawner : Interactable
         CameraManager.Instance.SetNewLevel(_newlevel);
         FindPlayer(true);
         isAlreadySpawned = true;
-        paintingController.DropPainting();
+        paintingController.AnimateDropPainting();
     }
 
     private void SetNewPosition()
@@ -226,7 +226,7 @@ public class LevelSpawner : Interactable
         _paint.GetComponent<Collider>().enabled = true ;
 
         var paintingController = _paint.GetComponent<PaintingController>();
-        paintingController.GrabPainting();
+        paintingController.AnimateGrabPainting();
         _paint = null;
         CameraManager.Instance?.RemoveLevel(_newlevel);
     }
