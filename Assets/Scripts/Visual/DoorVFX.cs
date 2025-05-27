@@ -73,7 +73,6 @@ public class DoorVFX : MonoBehaviour
 
     void InvertSound()
     {
-        if (OtherDoorVFX.GetComponentInParent<Level>() == null || gameObject.GetComponentInParent<Level>() == null) return;
         if (switched)
         {
             OtherDoorVFX.GetComponentInParent<Level>().AmbianceManager.GetComponent<AmbianceManager>().StopAmbiance();
