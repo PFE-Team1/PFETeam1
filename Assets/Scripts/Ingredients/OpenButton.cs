@@ -104,9 +104,12 @@ public class OpenButton : Interactable
             //Shader de resolve progressif sur la dur�e (time/respawnTime)
             yield return null;
         }
-        destroyed.ObjectToRemove.SetActive(true);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
-
-        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime)
+        for (int i = 0; i < destroyed.Colliders.Count; i++)
+        {
+            destroyed.Colliders[i].enabled = true;
+            destroyed.Renderers[i].enabled = true;
+        }
+        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime || time > hightestRespawnTime)
         {
             _spriteRenderer.sprite = _sprite;
             _isRespawning = false;
@@ -122,11 +125,17 @@ public class OpenButton : Interactable
                 _isRespawning = true;
                 foreach (ObectToDestroy toRemove in _objectsToRemove)
                 {
-                    toRemove.ObjectToRemove.SetActive(false);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+
+                    for (int i = 0; i < toRemove.Colliders.Count; i++)
+                    {
+                        toRemove.Colliders[i].enabled = false;
+                        toRemove.Renderers[i].enabled = false;
+                    }
                     if (toRemove.IsRespawnable == true)
                     {
                         _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
                     }
+                
                 }
             }
     }

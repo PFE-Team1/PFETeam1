@@ -11,7 +11,6 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         _renderer=GetComponent<SpriteRenderer>();
-
         StartCoroutine(StartSequence());
     }
     IEnumerator StartSequence()
