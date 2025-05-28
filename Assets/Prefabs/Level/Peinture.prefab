@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8801188359208695302}
   - component: {fileID: 6172422277751947620}
   - component: {fileID: 1131323262559898805}
+  - component: {fileID: 5675981756125044160}
+  - component: {fileID: -119401811537706847}
   m_Layer: 0
   m_Name: Peinture
   m_TagString: Untagged
@@ -119,11 +121,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06adb5b59c2414f47933136b6d5c77ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  isInRange: 0
+  CollidingPlayers: []
+  isSocle: 0
   _newLevelPrefab: {fileID: 3958665638566288639, guid: 0544bba3bed0928499195efd0e7f647d, type: 3}
   _spawnPoint: {fileID: 0}
-  SFX_GrabToile:
-    m_PersistentCalls:
-      m_Calls: []
-  SFX_PoseToile:
-    m_PersistentCalls:
-      m_Calls: []
+  _isHeld: 0
+  CurrentHoldingStateMachine: {fileID: 0}
+  VFX_GrabToile: {fileID: 0}
+  VFX_PoseToile: {fileID: 0}
+--- !u!114 &5675981756125044160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842047356827045289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonRenderer: {fileID: 0}
+  boneName: 
+  followXYPosition: 1
+  followZPosition: 1
+  followBoneRotation: 1
+  followSkeletonFlip: 1
+  followLocalScale: 0
+  followParentWorldScale: 0
+  maintainedAxisOrientation: 1
+  initializeOnAwake: 1
+--- !u!114 &-119401811537706847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842047356827045289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeyboardIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ControllerIcon: {fileID: 475807334, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ShouldDestroyOnExit: 0
