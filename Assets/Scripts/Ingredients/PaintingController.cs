@@ -38,6 +38,7 @@ public class PaintingController : Interactable
     }
     protected override void Interact()
     {
+        print(PlayerC.IsInSocleRange);
         if (IsInRange && !PlayerC.IsInSocleRange)
         {
             if (_isHeld)
@@ -84,6 +85,12 @@ public class PaintingController : Interactable
                             PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                             _paintHandler.CurrentPaintingController = this;
                             _targetCollider = child;
+                            PlayerC.heldObject = null;
+                            _isHeld = false;
+                            CurrentHoldingStateMachine = null;
+                            if (!GetComponentInChildren<UIToolTipZone>()) return;
+                            gameObject.GetComponentInChildren<UIToolTipZone>().enabled = true;
+
                             return;
                         }
                     }
@@ -100,15 +107,15 @@ public class PaintingController : Interactable
 
         _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 1);
         boneFollower.SkeletonRenderer = null;
-        PlayerC.heldObject = null;
-        _isHeld = false;
-        CurrentHoldingStateMachine = null;
+
         return;
     }
 
     public void AnimateGrabPainting()
     {
         PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
+        _isHeld = true;
+        IsInRange = true;
         _paintHandler.CurrentPaintingController = this;
     }
     public void GrabPainting()
@@ -126,8 +133,8 @@ public class PaintingController : Interactable
         _paintHandler.ChangeLayer(_spriteRenderer.sortingLayerID);
         _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder);
         CurrentHoldingStateMachine = PlayerC.GetComponent<PlayerStateMachine>();
-        _isHeld = true;
-        IsInRange = true;
         PlayerC.heldObject = gameObject;
+        if (!GetComponentInChildren<UIToolTipZone>()) return;
+        GetComponentInChildren<UIToolTipZone>().enabled = false;
     }
 }

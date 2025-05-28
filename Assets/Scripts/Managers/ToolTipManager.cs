@@ -10,6 +10,9 @@ public class ToolTipManager : MonoBehaviour
     public float Speed = 1f;
     public Image KeyIcon;
 
+    public Sprite KeyboardIcon;
+    public Sprite ControllerIcon;
+
     private CanvasGroup CanvasGroup;
 
     private void Start()
@@ -17,6 +20,7 @@ public class ToolTipManager : MonoBehaviour
         CanvasGroup = GetComponent<CanvasGroup>();
         CanvasGroup.alpha = 0;
         CanvasGroup.transform.DOLocalMoveY(4, 2f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        EventManager.instance.OnInput.AddListener(ChangeIconDependingOnController);
     }
 
     private void Update()
@@ -29,5 +33,14 @@ public class ToolTipManager : MonoBehaviour
         {
             CanvasGroup.alpha = Mathf.MoveTowards(CanvasGroup.alpha, 0, Speed * Time.deltaTime);
         }
+    }
+
+    private void ChangeIconDependingOnController()
+    {
+        if (KeyboardIcon == null)
+        {
+            return;
+        }
+        KeyIcon.sprite = InputsManager.instance.IsKeyboard ? KeyboardIcon : ControllerIcon;
     }
 }

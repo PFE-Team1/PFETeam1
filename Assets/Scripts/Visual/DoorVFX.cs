@@ -72,7 +72,6 @@ public class DoorVFX : MonoBehaviour
         if (other.CompareTag("Player") && (!_isPlayerInter)&& other.isTrigger == false)
         {
             _isPlayerInter = true;
-            print("x2rF5dne");
             other.GetComponent<Clone>().ChangeToLayerX("Inter");
         }
         _isOut = false;
