@@ -156,8 +156,7 @@ public class InputsManager : MonoBehaviour
             SetupInputs();
         }
         DontDestroyOnLoad(this.gameObject);
-        transform.parent = transform.parent.parent;
-
+        transform.parent = null;
         // Initialisation du Game Manager...
     }
 
