@@ -18,12 +18,12 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_FOL_Pas_RC" ID="{61B7DB7B-05A2-4453-AE15-3A0DD51C8A4A}">
+				<Event Name="Play_FOL_Pas_Run_RC" ID="{61B7DB7B-05A2-4453-AE15-3A0DD51C8A4A}">
 					<ChildrenList>
 						<Action Name="" ID="{3CD0A2AB-3C90-4407-B61B-C6F8B32DDF36}" ShortID="811142904">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="FOL_Pas_RC" ID="{82E75245-A518-4055-9E1C-203E7CF109FC}" WorkUnitID="{D21C34DF-A9EC-499B-8831-8F6F01DD021A}"/>
+									<ObjectRef Name="FOL_Pas_Run_RC" ID="{82E75245-A518-4055-9E1C-203E7CF109FC}" WorkUnitID="{D21C34DF-A9EC-499B-8831-8F6F01DD021A}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -35,6 +35,17 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="FOL_Saut_RC" ID="{FEABAAAA-8CDC-486E-B06E-D79F57DEC379}" WorkUnitID="{D21C34DF-A9EC-499B-8831-8F6F01DD021A}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_FOL_Pas_Walk_RC" ID="{5094F3F6-1B77-4944-9AC6-73D3E0AA2501}">
+					<ChildrenList>
+						<Action Name="" ID="{D7AC5D3F-303E-47FB-861B-5647524B87AE}" ShortID="299174184">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="FOL_Pas_Walk_RC" ID="{9A6C55B0-C22C-4474-8832-862AE4AF8F94}" WorkUnitID="{D21C34DF-A9EC-499B-8831-8F6F01DD021A}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
