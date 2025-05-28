@@ -47,8 +47,7 @@ public class DoorMaterialInstance : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        yield return new WaitForSeconds(2);
-        Destroy(door.gameObject);
+
     }
     IEnumerator InversingPath(DoorVFX door)
     {

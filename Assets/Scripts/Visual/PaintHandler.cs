@@ -27,7 +27,7 @@ public class PaintHandler : MonoBehaviour
     // to capture event "Footstep" when it's placed outside of folders
     void Grab()
     {
-        print("Granb called");
+        print("Grab called");
         if (CurrentPaintingController != null)
         {
             CurrentPaintingController.GrabPainting();

@@ -115,7 +115,6 @@ public class CameraManager : MonoBehaviour
 
     public void SeeCurrentLevel(GameObject level,float duration=0)
     {
-        print(duration);
         if (_globalCamera != null) return;
         if (_zoomCoroutine != null || _dezoomCoroutine != null) return;
 
