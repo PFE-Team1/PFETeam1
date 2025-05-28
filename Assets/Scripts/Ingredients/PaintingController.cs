@@ -19,6 +19,8 @@ public class PaintingController : Interactable
     public bool _isHeld = false;
     public PlayerStateMachine CurrentHoldingStateMachine;
 
+    private Transform _currentlyGrabbingTransform = null;
+
     [SerializeField] private ParticleSystem VFX_GrabToile;
     [SerializeField] private ParticleSystem VFX_PoseToile;
 
@@ -117,6 +119,7 @@ public class PaintingController : Interactable
         _isHeld = true;
         IsInRange = true;
         _paintHandler.CurrentPaintingController = this;
+        _currentlyGrabbingTransform = PlayerC.PaintingTransform;
     }
     public void GrabPainting()
     {
@@ -128,8 +131,8 @@ public class PaintingController : Interactable
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
         boneFollower.boneName = "Target_Arm_R";
-        transform.SetParent(PlayerC.PaintingTransform);
-        transform.position = PlayerC.PaintingTransform.position;
+        transform.SetParent(_currentlyGrabbingTransform);
+        transform.position = _currentlyGrabbingTransform.position;
         _paintHandler.ChangeLayer(_spriteRenderer.sortingLayerID);
         _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder);
         CurrentHoldingStateMachine = PlayerC.GetComponent<PlayerStateMachine>();
