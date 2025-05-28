@@ -19,6 +19,8 @@ public class PaintingController : Interactable
     public bool _isHeld = false;
     public PlayerStateMachine CurrentHoldingStateMachine;
 
+    private Transform _currentlyGrabbingTransform = null;
+
     [SerializeField] private ParticleSystem VFX_GrabToile;
     [SerializeField] private ParticleSystem VFX_PoseToile;
 
@@ -38,6 +40,7 @@ public class PaintingController : Interactable
     }
     protected override void Interact()
     {
+        print(PlayerC.IsInSocleRange);
         if (IsInRange && !PlayerC.IsInSocleRange)
         {
             if (_isHeld)
@@ -84,6 +87,12 @@ public class PaintingController : Interactable
                             PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                             _paintHandler.CurrentPaintingController = this;
                             _targetCollider = child;
+                            PlayerC.heldObject = null;
+                            _isHeld = false;
+                            CurrentHoldingStateMachine = null;
+                            if (!GetComponentInChildren<UIToolTipZone>()) return;
+                            gameObject.GetComponentInChildren<UIToolTipZone>().enabled = true;
+
                             return;
                         }
                     }
@@ -100,16 +109,17 @@ public class PaintingController : Interactable
 
         _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 1);
         boneFollower.SkeletonRenderer = null;
-        PlayerC.heldObject = null;
-        _isHeld = false;
-        CurrentHoldingStateMachine = null;
+
         return;
     }
 
     public void AnimateGrabPainting()
     {
         PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
+        _isHeld = true;
+        IsInRange = true;
         _paintHandler.CurrentPaintingController = this;
+        _currentlyGrabbingTransform = PlayerC.PaintingTransform;
     }
     public void GrabPainting()
     {
@@ -121,13 +131,13 @@ public class PaintingController : Interactable
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
         boneFollower.boneName = "Target_Arm_R";
-        transform.SetParent(PlayerC.PaintingTransform);
-        transform.position = PlayerC.PaintingTransform.position;
+        transform.SetParent(_currentlyGrabbingTransform);
+        transform.position = _currentlyGrabbingTransform.position;
         _paintHandler.ChangeLayer(_spriteRenderer.sortingLayerID);
         _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder);
         CurrentHoldingStateMachine = PlayerC.GetComponent<PlayerStateMachine>();
-        _isHeld = true;
-        IsInRange = true;
         PlayerC.heldObject = gameObject;
+        if (!GetComponentInChildren<UIToolTipZone>()) return;
+        GetComponentInChildren<UIToolTipZone>().enabled = false;
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 public class OpenButton : Interactable
 {
     [SerializeField] private List<ObectToDestroy> _objectsToRemove = new List<ObectToDestroy>();
+    [SerializeField] private float disolveDuration;
     private bool _isRespawning ;
     private bool _pause ;
     private Sprite _sprite ;
@@ -53,32 +54,30 @@ public class OpenButton : Interactable
         yield return new WaitForSeconds(destroyed.RespawnStartTime);
         while (time < destroyed.RespawnTime)
         {
-            time += Time.deltaTime;
-            destroyed.currentTime = time;
-
-            //Shader de resolve progressif sur la dur�e (time/respawnTime)
-            yield return null;
-        }
-        while (destroyed.respawnable.IsRepawnBlocked)
-        {
-            if (_isRespawning) 
+            while (destroyed.respawnable.IsRepawnBlocked)
             {
-                _spriteRenderer.sprite = null;
-                _isRespawning = true;
+                yield return null;
+            }         
+            for (int i = 0; i < destroyed.Colliders.Count; i++)
+            {
+                destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", -1f + (time / destroyed.RespawnTime));
             }
             time += Time.deltaTime;
+            destroyed.currentTime = time;
             yield return null;
         }
+
         for (int i = 0; i < destroyed.Colliders.Count; i++)
         {
             destroyed.Colliders[i].enabled = true;
-            destroyed.Renderers[i].enabled = true;
+            destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", 0);
         }
         if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime||time>hightestRespawnTime)
         {
             _spriteRenderer.sprite = _sprite;
             _isRespawning = false;
         }
+
         yield return null;
     }
     public void ReStart()
@@ -93,26 +92,6 @@ public class OpenButton : Interactable
             }
         }
     }
-    IEnumerator ReStartBuilding(ObectToDestroy destroyed)
-    {
-        float time = destroyed.currentTime;
-        yield return new WaitForSeconds(destroyed.RespawnStartTime);
-        while (time < destroyed.RespawnTime)
-        {
-            time += Time.deltaTime;
-            destroyed.currentTime = time;
-            //Shader de resolve progressif sur la dur�e (time/respawnTime)
-            yield return null;
-        }
-        destroyed.ObjectToRemove.SetActive(true);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
-
-        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime)
-        {
-            _spriteRenderer.sprite = _sprite;
-            _isRespawning = false;
-        }
-        yield return null;
-    }
 
     protected override void Interact()
     {
@@ -122,13 +101,33 @@ public class OpenButton : Interactable
                 _isRespawning = true;
                 foreach (ObectToDestroy toRemove in _objectsToRemove)
                 {
-                    toRemove.ObjectToRemove.SetActive(false);//� la place faire le truc du shader qui s'applique(disolve) et enlever la collision
+
+                    for (int i = 0; i < toRemove.Colliders.Count; i++)
+                    {
+                        toRemove.currentTime = 0;
+                        toRemove.Colliders[i].enabled = false;
+                    StartCoroutine(Disolve(toRemove.Renderers[i]));
+                    }
                     if (toRemove.IsRespawnable == true)
                     {
                         _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
                     }
+                
                 }
             }
+    }
+    IEnumerator Disolve(Renderer renderer)
+    {
+        float timer = 0;
+        Material mat = renderer.material;
+        while (timer < disolveDuration)
+        {
+            mat.SetFloat("_Disolve_Cursor2", - (timer / disolveDuration));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        mat.SetFloat("_Disolve_Cursor2", -1);
+        yield return null;
     }
 }
 

@@ -20,12 +20,15 @@ public class EndProto : Interactable
         if (_endEffect == null) return;
         _endEffect.EndPaint = _level;
         _fissure = GetComponent<SpriteRenderer>();
+        StartCoroutine(OpenFissure());
     }
 
     IEnumerator OpenFissure()
     {
-        //start visual
-        yield return null;
+        yield return new WaitForSeconds(5f);
+        _fissure.enabled = true;
+
+        //_fissure.le truc là anim et tout;
     }
     IEnumerator EndOfLevel()
     {
@@ -58,7 +61,6 @@ public class EndProto : Interactable
         if (IsInRange)
         {
             transform.parent = null;
-            PlayerC.gameObject.SetActive(false);
             if (!_endEffect || !_level)
             {
                 ScenesManager.instance.LoadNextScene();

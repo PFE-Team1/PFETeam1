@@ -3777,6 +3777,7 @@ GameObject:
   - component: {fileID: 7039805321313053341}
   - component: {fileID: 2686069059340726541}
   - component: {fileID: 5302661986307479612}
+  - component: {fileID: 2895216656756720924}
   m_Layer: 0
   m_Name: Peinture
   m_TagString: Untagged
@@ -3916,6 +3917,21 @@ MonoBehaviour:
   followParentWorldScale: 0
   maintainedAxisOrientation: 1
   initializeOnAwake: 1
+--- !u!114 &2895216656756720924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978097897700220041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeyboardIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ControllerIcon: {fileID: 475807334, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ShouldDestroyOnExit: 0
 --- !u!1 &1978820436853533252
 GameObject:
   m_ObjectHideFlags: 0
@@ -8049,6 +8065,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f438742b7cfc76646aa725d95e598cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doors: []
+  _isEnd: 0
 --- !u!114 &1506057946818543449
 MonoBehaviour:
   m_ObjectHideFlags: 0
