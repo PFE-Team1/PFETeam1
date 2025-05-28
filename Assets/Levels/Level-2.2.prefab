@@ -6224,6 +6224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f438742b7cfc76646aa725d95e598cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doors: []
+  _isEnd: 0
 --- !u!331 &5784559836531663272
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -16243,8 +16245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
+  ShouldDestroyOnExit: 0
 --- !u!4 &8356516751569775092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7205519028400530232, guid: 3cc55c3f1495b404c91c10af5333fb80, type: 3}
@@ -17165,5 +17168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
+  ShouldDestroyOnExit: 0

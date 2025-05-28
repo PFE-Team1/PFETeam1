@@ -7,6 +7,7 @@ using UnityEngine;
 public class OpenButton : Interactable
 {
     [SerializeField] private List<ObectToDestroy> _objectsToRemove = new List<ObectToDestroy>();
+    [SerializeField] private float disolveDuration;
     private bool _isRespawning ;
     private bool _pause ;
     private Sprite _sprite ;
@@ -59,16 +60,6 @@ public class OpenButton : Interactable
             //Shader de resolve progressif sur la dur�e (time/respawnTime)
             yield return null;
         }
-        while (destroyed.respawnable.IsRepawnBlocked)
-        {
-            if (_isRespawning) 
-            {
-                _spriteRenderer.sprite = null;
-                _isRespawning = true;
-            }
-            time += Time.deltaTime;
-            yield return null;
-        }
         for (int i = 0; i < destroyed.Colliders.Count; i++)
         {
             destroyed.Colliders[i].enabled = true;
@@ -78,6 +69,12 @@ public class OpenButton : Interactable
         {
             _spriteRenderer.sprite = _sprite;
             _isRespawning = false;
+        }
+        while (destroyed.respawnable.IsRepawnBlocked)
+        {
+           //destroyed.Renderers[]
+            //time += Time.deltaTime;
+            yield return null;
         }
         yield return null;
     }
@@ -129,7 +126,7 @@ public class OpenButton : Interactable
                     for (int i = 0; i < toRemove.Colliders.Count; i++)
                     {
                         toRemove.Colliders[i].enabled = false;
-                        toRemove.Renderers[i].enabled = false;
+                    StartCoroutine(Disolve(toRemove.Renderers[i]));
                     }
                     if (toRemove.IsRespawnable == true)
                     {
@@ -138,6 +135,18 @@ public class OpenButton : Interactable
                 
                 }
             }
+    }
+    IEnumerator Disolve(Renderer renderer)
+    {
+        float timer = 0;
+        Material mat = renderer.material;
+        while (timer < disolveDuration)
+        {
+            mat.SetFloat("_Disolve_Cursor2", 1 - (timer / disolveDuration) * 1.5f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        yield return null;
     }
 }
 
