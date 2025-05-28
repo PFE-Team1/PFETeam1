@@ -8,41 +8,27 @@ public class EndProto : Interactable
 {
 
     [SerializeField]private GameObject _level;
-    [SerializeField]private AnimationCurve _curve;
-    [SerializeField] private float _displacementDuration;
-    [SerializeField] private GameObject _endPos;
     [SerializeField] PaintInOutController _endEffect;
+    private SpriteRenderer _fissure;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         // Make it move up and down a litle based on his original position using a tween 
         transform.DOLocalMoveY(transform.localPosition.y + 0.25f, 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         _endEffect = FindFirstObjectByType<PaintInOutController>();
         if (_endEffect == null) return;
         _endEffect.EndPaint = _level;
+        _fissure = GetComponent<SpriteRenderer>();
+        StartCoroutine(OpenFissure());
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (IsInRange)
-        {
-            if (PlayerC.IsInteracting)
-            {
-                transform.parent = null;
-                PlayerC.IsInteracting = false;
-                PlayerC.gameObject.SetActive(false);
-                if (!_endEffect || !_level)
-                {
-                    ScenesManager.instance.LoadNextScene();
-                }
-                else
-                {
 
-                    StartCoroutine(EndOfLevel());
-                }
-                //SceneManager.LoadScene(_sceneToLoad);
-            }
-        }
+    IEnumerator OpenFissure()
+    {
+        yield return new WaitForSeconds(5f);
+        _fissure.enabled = true;
+
+        //_fissure.le truc là anim et tout;
     }
     IEnumerator EndOfLevel()
     {
@@ -62,18 +48,29 @@ public class EndProto : Interactable
             CameraManager.Instance.MainCamera.Follow = transform;
             float timer = 0;
             Vector3 currentPos = transform.position;
-            while (timer < _displacementDuration)
-            {
-                float val = _curve.Evaluate(timer / _displacementDuration);
-                transform.position = Vector3.Lerp(currentPos, _endPos.transform.position, val);
-                timer += Time.deltaTime;
-                yield return null;
-            }
             yield return new WaitForSeconds(3);
         }
         ScenesManager.instance.LoadNextScene();
         yield return null;
 
+    }
+
+
+    protected override void Interact()
+    {
+        if (IsInRange)
+        {
+            transform.parent = null;
+            if (!_endEffect || !_level)
+            {
+                ScenesManager.instance.LoadNextScene();
+            }
+            else
+            {
+
+                StartCoroutine(EndOfLevel());
+            }
+        }
     }
 }
 

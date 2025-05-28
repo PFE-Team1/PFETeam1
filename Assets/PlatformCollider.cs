@@ -7,7 +7,7 @@ public class LineToMeshCollider : MonoBehaviour
     public float width = 0.2f;
     public float depth = 1f;
 
-    void Start()
+    void Awake()
     {
         LineRenderer line = GetComponent<LineRenderer>();
         Vector3[] positions = new Vector3[line.positionCount];

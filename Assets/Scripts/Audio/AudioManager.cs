@@ -48,6 +48,11 @@ public class AudioManager : MonoBehaviour
 
     [Header ("Musique")]
     public AK.Wwise.Event MSC_Menu;
+    public AK.Wwise.Event MSC_Niveau1_Globale;
+    public AK.Wwise.Event MSC_Niveau2_Globale;
+    public AK.Wwise.Event AMB_NiveauTuto;
+    public AK.Wwise.Event AMB_Niveau15;
+
 
     void Awake()
     {

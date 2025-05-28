@@ -115,13 +115,12 @@ public class CameraManager : MonoBehaviour
 
     public void SeeCurrentLevel(GameObject level,float duration=0)
     {
-        print(duration);
         if (_globalCamera != null) return;
         if (_zoomCoroutine != null || _dezoomCoroutine != null) return;
 
         _globalCamera = new GameObject("Global Camera").AddComponent<CinemachineVirtualCamera>();
         
-        if (level.TryGetComponent(out SpriteRenderer sr))
+      /*  if (level.TryGetComponent(out SpriteRenderer sr))
         {
             _globalCamera.m_Lens.Orthographic = true;
             if (sr.bounds.size.y < sr.bounds.size.x)
@@ -133,8 +132,20 @@ public class CameraManager : MonoBehaviour
                 _globalCamera.m_Lens.OrthographicSize = sr.bounds.size.x / 2;
             }
             _globalCamera.transform.position = new Vector3(sr.bounds.center.x, sr.bounds.center.y, _mainCamera.transform.position.z);
+        }*/
+        if(level.TryGetComponent(out RectTransform rt))
+        {
+            _globalCamera.m_Lens.Orthographic = true;
+            if (rt.sizeDelta.y < rt.sizeDelta.x)
+            {
+                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.y/2;
+            }
+            else
+            {
+                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.x/2;
+            }
+            _globalCamera.transform.position = new Vector3(level.transform.position.x, level.transform.position.y, _mainCamera.transform.position.z);
         }
-
         _dezoomCoroutine = StartCoroutine(DezoomEffect(_globalCamera.transform.position, _globalCamera.m_Lens.OrthographicSize, () =>
         {
             _dezoomCoroutine = null;

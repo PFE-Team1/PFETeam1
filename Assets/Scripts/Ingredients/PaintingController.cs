@@ -14,9 +14,12 @@ public class PaintingController : Interactable
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
     private SpriteRenderer _spriteRenderer;
     private PaintHandler _paintHandlerAccessor;
+    private Collider2D _targetCollider;
     private PaintHandler _paintHandler { get => getPaintHandler(); set => _paintHandler = value; }
     public bool _isHeld = false;
     public PlayerStateMachine CurrentHoldingStateMachine;
+
+    private Transform _currentlyGrabbingTransform = null;
 
     [SerializeField] private ParticleSystem VFX_GrabToile;
     [SerializeField] private ParticleSystem VFX_PoseToile;
@@ -29,32 +32,29 @@ public class PaintingController : Interactable
         return _paintHandlerAccessor;
     }
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         boneFollower = GetComponent<BoneFollower>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    void Update()
+    protected override void Interact()
     {
-        if (IsInRange)
+        print(PlayerC.IsInSocleRange);
+        if (IsInRange && !PlayerC.IsInSocleRange)
         {
-            if (PlayerC.IsInteracting && !PlayerC.IsInSocleRange && !PlayerC.HasInteracted && (CurrentHoldingStateMachine == null || CurrentHoldingStateMachine.CurrentState != CurrentHoldingStateMachine.CloneState))
+            if (_isHeld)
             {
-                PlayerC.HasInteracted = true;
-                if (_isHeld)
+                if (VFX_PoseToile != null)
                 {
-                    if (VFX_PoseToile != null)
-                    {
-                        Destroy(Instantiate(VFX_PoseToile, transform), 1f);
-                    }
-                    AudioManager.Instance.SFX_PoseToile.Post(gameObject);
-                    DropPainting();
+                    Destroy(Instantiate(VFX_PoseToile, transform), 1f);
                 }
-                else
-                {
-                    GrabPainting();
-                }
+                AudioManager.Instance.SFX_PoseToile.Post(gameObject);
+                AnimateDropPainting();
+            }
+            else
+            {
+                AnimateGrabPainting();
             }
         }
     }
@@ -64,7 +64,7 @@ public class PaintingController : Interactable
         return spawnPoint.transform;
     }
 
-    public void DropPainting()
+    public void AnimateDropPainting()
     {
         Vector3 releasePosition = transform.position;
         RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
@@ -84,30 +84,43 @@ public class PaintingController : Interactable
                         SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
                         if (sr != null)
                         {
-                            Bounds levelBounds = sr.bounds;
-                            Bounds paintingBounds = GetComponent<SpriteRenderer>().bounds;
+                            PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
+                            _paintHandler.CurrentPaintingController = this;
+                            _targetCollider = child;
+                            PlayerC.heldObject = null;
+                            _isHeld = false;
+                            CurrentHoldingStateMachine = null;
+                            if (!GetComponentInChildren<UIToolTipZone>()) return;
+                            gameObject.GetComponentInChildren<UIToolTipZone>().enabled = true;
 
-                            if (levelBounds.Intersects(paintingBounds))
-                            {
-                                // Visuel de peinture
-                                transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
-                                transform.localRotation = Quaternion.Euler(0, 0, 0);
-                                transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-                                PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
-                                _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder+1);
-                                boneFollower.SkeletonRenderer = null;
-                                PlayerC.heldObject = null;
-                                _isHeld = false;
-                                CurrentHoldingStateMachine = null;
-                                return;
-                            }
+                            return;
                         }
                     }
                 }
             }
         }
     }
+    public void DropPainting()
+    {
+        // Visuel de peinture
+        transform.SetParent(_targetCollider.GetComponentInChildren<SpriteMask>().transform);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
+        _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 1);
+        boneFollower.SkeletonRenderer = null;
+
+        return;
+    }
+
+    public void AnimateGrabPainting()
+    {
+        PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
+        _isHeld = true;
+        IsInRange = true;
+        _paintHandler.CurrentPaintingController = this;
+        _currentlyGrabbingTransform = PlayerC.PaintingTransform;
+    }
     public void GrabPainting()
     {
         if (VFX_GrabToile != null)
@@ -115,17 +128,16 @@ public class PaintingController : Interactable
             Destroy(Instantiate(VFX_GrabToile, transform), 1f);
         }
         AudioManager.Instance.SFX_GrabToile.Post(gameObject);
-        PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
         boneFollower.boneName = "Target_Arm_R";
-        transform.SetParent(PlayerC.PaintingTransform);
-        transform.position = PlayerC.PaintingTransform.position;
+        transform.SetParent(_currentlyGrabbingTransform);
+        transform.position = _currentlyGrabbingTransform.position;
         _paintHandler.ChangeLayer(_spriteRenderer.sortingLayerID);
         _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder);
         CurrentHoldingStateMachine = PlayerC.GetComponent<PlayerStateMachine>();
-        _isHeld = true;
-        IsInRange = true;
         PlayerC.heldObject = gameObject;
+        if (!GetComponentInChildren<UIToolTipZone>()) return;
+        GetComponentInChildren<UIToolTipZone>().enabled = false;
     }
 }

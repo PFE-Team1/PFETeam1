@@ -6,20 +6,22 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private GameObject _firstPaint;
-    private PaintInOutController _paintVisual;
+    [SerializeField] private PaintInOutController _paintVisual;
+    private SpriteRenderer _renderer;
     void Start()
     {
-        _paintVisual = FindObjectOfType<PaintInOutController>();
+        _renderer=GetComponent<SpriteRenderer>();
         StartCoroutine(StartSequence());
-        
     }
     IEnumerator StartSequence()
     {
         if (_paintVisual)
         {
             _paintVisual.PaintIn(_firstPaint);
-            yield return new WaitForSeconds(_paintVisual.DurationIn);
-        } 
+            yield return new WaitForSeconds(_paintVisual.DurationIn+ CameraManager.Instance.CameraDezoomTime+2);
+        }
+        _renderer.enabled = true;//+anim du perso qui sort /tombe.
+        yield return new WaitForSeconds(.5f);
         GameObject player = Instantiate(_playerPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(.5f);
         Destroy(gameObject);
