@@ -54,28 +54,30 @@ public class OpenButton : Interactable
         yield return new WaitForSeconds(destroyed.RespawnStartTime);
         while (time < destroyed.RespawnTime)
         {
+            while (destroyed.respawnable.IsRepawnBlocked)
+            {
+                yield return null;
+            }         
+            for (int i = 0; i < destroyed.Colliders.Count; i++)
+            {
+                destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", -1f + (time / destroyed.RespawnTime));
+            }
             time += Time.deltaTime;
             destroyed.currentTime = time;
-
-            //Shader de resolve progressif sur la dur�e (time/respawnTime)
             yield return null;
         }
+
         for (int i = 0; i < destroyed.Colliders.Count; i++)
         {
             destroyed.Colliders[i].enabled = true;
-            destroyed.Renderers[i].enabled = true;
+            destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", 0);
         }
         if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime||time>hightestRespawnTime)
         {
             _spriteRenderer.sprite = _sprite;
             _isRespawning = false;
         }
-        while (destroyed.respawnable.IsRepawnBlocked)
-        {
-           //destroyed.Renderers[]
-            //time += Time.deltaTime;
-            yield return null;
-        }
+
         yield return null;
     }
     public void ReStart()
@@ -90,29 +92,6 @@ public class OpenButton : Interactable
             }
         }
     }
-    IEnumerator ReStartBuilding(ObectToDestroy destroyed)
-    {
-        float time = destroyed.currentTime;
-        yield return new WaitForSeconds(destroyed.RespawnStartTime);
-        while (time < destroyed.RespawnTime)
-        {
-            time += Time.deltaTime;
-            destroyed.currentTime = time;
-            //Shader de resolve progressif sur la dur�e (time/respawnTime)
-            yield return null;
-        }
-        for (int i = 0; i < destroyed.Colliders.Count; i++)
-        {
-            destroyed.Colliders[i].enabled = true;
-            destroyed.Renderers[i].enabled = true;
-        }
-        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime || time > hightestRespawnTime)
-        {
-            _spriteRenderer.sprite = _sprite;
-            _isRespawning = false;
-        }
-        yield return null;
-    }
 
     protected override void Interact()
     {
@@ -125,6 +104,7 @@ public class OpenButton : Interactable
 
                     for (int i = 0; i < toRemove.Colliders.Count; i++)
                     {
+                        toRemove.currentTime = 0;
                         toRemove.Colliders[i].enabled = false;
                     StartCoroutine(Disolve(toRemove.Renderers[i]));
                     }
@@ -142,10 +122,11 @@ public class OpenButton : Interactable
         Material mat = renderer.material;
         while (timer < disolveDuration)
         {
-            mat.SetFloat("_Disolve_Cursor2", 1 - (timer / disolveDuration) * 1.5f);
+            mat.SetFloat("_Disolve_Cursor2", - (timer / disolveDuration));
             timer += Time.deltaTime;
             yield return null;
         }
+        mat.SetFloat("_Disolve_Cursor2", -1);
         yield return null;
     }
 }
