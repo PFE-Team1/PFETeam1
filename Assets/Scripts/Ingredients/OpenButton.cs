@@ -14,6 +14,7 @@ public class OpenButton : Interactable
     private SpriteRenderer _spriteRenderer ;
     private List<Coroutine> _coroutines=new List<Coroutine>();
     float hightestRespawnTime=0;
+    bool _cantInterract;
 
 
     protected override void Start()
@@ -60,7 +61,7 @@ public class OpenButton : Interactable
             }         
             for (int i = 0; i < destroyed.Colliders.Count; i++)
             {
-                destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", -1f + (time / destroyed.RespawnTime));
+                destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", -1.2f + (time / destroyed.RespawnTime)*2.2f);
             }
             time += Time.deltaTime;
             destroyed.currentTime = time;
@@ -76,6 +77,7 @@ public class OpenButton : Interactable
         {
             _spriteRenderer.sprite = _sprite;
             _isRespawning = false;
+            _cantInterract = false;
         }
 
         yield return null;
@@ -95,8 +97,11 @@ public class OpenButton : Interactable
 
     protected override void Interact()
     {
-        if (IsInRange)
+        if (!_cantInterract)
         {
+            if (IsInRange)
+            {
+                _cantInterract = true;
                 _spriteRenderer.sprite = null;
                 _isRespawning = true;
                 foreach (ObectToDestroy toRemove in _objectsToRemove)
@@ -106,15 +111,16 @@ public class OpenButton : Interactable
                     {
                         toRemove.currentTime = 0;
                         toRemove.Colliders[i].enabled = false;
-                    StartCoroutine(Disolve(toRemove.Renderers[i]));
+                        StartCoroutine(Disolve(toRemove.Renderers[i]));
                     }
                     if (toRemove.IsRespawnable == true)
                     {
                         _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
                     }
-                
+
                 }
             }
+        }
     }
     IEnumerator Disolve(Renderer renderer)
     {
@@ -122,11 +128,11 @@ public class OpenButton : Interactable
         Material mat = renderer.material;
         while (timer < disolveDuration)
         {
-            mat.SetFloat("_Disolve_Cursor2", - (timer / disolveDuration));
+            mat.SetFloat("_Disolve_Cursor2", 1- (timer / disolveDuration)*2.2f);
             timer += Time.deltaTime;
             yield return null;
         }
-        mat.SetFloat("_Disolve_Cursor2", -1);
+        mat.SetFloat("_Disolve_Cursor2", -1.2f);
         yield return null;
     }
 }

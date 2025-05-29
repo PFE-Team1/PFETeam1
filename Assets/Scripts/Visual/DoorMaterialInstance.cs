@@ -25,7 +25,7 @@ public class DoorMaterialInstance : MonoBehaviour
     IEnumerator FadeIn()
     {
         float appearance = _material.GetFloat("_Cursor_Appearance_Corridor");
-        float newAppearance= 0;
+        float newAppearance= appearance;
         float timer = 0;
         while (timer < 3)
         {
@@ -38,7 +38,7 @@ public class DoorMaterialInstance : MonoBehaviour
     IEnumerator FadeOut(DoorVFX door)
     {
         float appearance = _material.GetFloat("_Cursor_Appearance_Corridor");
-        float newAppearance = 0;
+        float newAppearance = appearance;
         float timer = 0;
         while (timer < 3)
         {
