@@ -84,7 +84,7 @@ public class DoorMaterialInstance : MonoBehaviour
        yield return null;
     }
 
-public void InversePath(DoorVFX door)
+public void InversePath(DoorVFX door)//à retravailler si j'ai le temps
     {
         if (_coroutine!=null)
         {
