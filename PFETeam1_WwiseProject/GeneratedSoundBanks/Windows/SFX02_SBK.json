@@ -11,7 +11,7 @@
     "GUID": "{B993DCAA-2E59-4CF6-B933-CE574F5C4745}",
     "Color": "8",
     "Language": "SFX",
-    "Hash": "{74FC86CF-2777-6D03-EDE5-4CB1030324B7}",
+    "Hash": "{D79E65E3-BC6B-3C22-B8A2-C52324E06C95}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\SFX02_SBK",
     "ShortName": "SFX02_SBK",
     "Path": "SFX02_SBK.bnk",
@@ -39,6 +39,14 @@
       "Location": "Memory",
       "ShortName": "SFX_DisparitionToile_01.wav",
       "CachePath": "63/{63A619F2-AE6D-5E6E-41FD-321CE0A6DB4D}.wem"
+     },
+     {
+      "Id": "84217540",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SFX_Connexion_Toile.wav",
+      "CachePath": "BE/{BE7B48A5-70B6-79E9-14D6-689C89C2F492}.wem"
      },
      {
       "Id": "124049659",
@@ -179,6 +187,20 @@
       ]
      },
      {
+      "Id": "2928311883",
+      "Name": "Play_SFX_Connexion_Toile",
+      "ObjectPath": "\\Events\\SFX02_WU\\Play_SFX_Connexion_Toile",
+      "GUID": "{8B09E879-4C56-4DC0-B008-9C8DF4107222}",
+      "Color": "8",
+      "MaxAttenuation": "18",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "84217540"
+       }
+      ]
+     },
+     {
       "Id": "1864381592",
       "Name": "Play_Switch_Clone",
       "ObjectPath": "\\Events\\SFX02_WU\\Play_Switch_Clone",
@@ -202,6 +224,6 @@
     ]
    }
   ],
-  "FileHash": "{54E74CF7-D679-8C43-D83F-A0BC59365828}"
+  "FileHash": "{CA8EE4C1-4EE7-9745-188F-4BF0B73FCA5F}"
  }
 }

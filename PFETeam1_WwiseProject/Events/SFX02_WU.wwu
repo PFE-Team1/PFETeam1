@@ -51,6 +51,30 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_SFX_Connexion_Toile" ID="{8B09E879-4C56-4DC0-B008-9C8DF4107222}">
+					<ChildrenList>
+						<Action Name="" ID="{CEBB1C54-2ADF-4D8F-8EFC-C58B9A85FF49}" ShortID="128521437">
+							<PropertyList>
+								<Property Name="Probability" Type="Real64" Value="33"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Connexion_Toile" ID="{DDAD6BA1-0F8D-4546-9628-AB55F0F52FCD}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{6DCBBB1B-8A6E-4587-855D-89194E243949}" ShortID="758061652">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="36"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Connexion_Toile" ID="{DDAD6BA1-0F8D-4546-9628-AB55F0F52FCD}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
