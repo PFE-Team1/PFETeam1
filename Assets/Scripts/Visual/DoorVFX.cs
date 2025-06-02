@@ -76,13 +76,6 @@ public class DoorVFX : MonoBehaviour
         }
         _isOut = false;
     }
-    /*private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player") &&! _isPlayerInter)
-        {
-            _isPlayerInter = true;
-        }
-    }*/
     private void OnTriggerExit(Collider other)
     {
         _isPlayerInter = false;
@@ -93,8 +86,9 @@ public class DoorVFX : MonoBehaviour
             {
                 _levelDoorManager.UpdateDoor();
             }
-            if (!_otherDoorVFX|| !_otherDoorVFX.IsPlayerInter)//verifie si le joueur est sorti de l'autre partie du passage pour faire le changer de parent
+            if (!_otherDoorVFX.IsPlayerInter)//verifie si le joueur est sorti de l'autre partie du passage pour faire le changer de parent
             {
+                print("feurPorte");
                 other.GetComponent<Clone>().ChangeParent();
             }
         }

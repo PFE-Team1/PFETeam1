@@ -7,6 +7,7 @@ public class LevelDoorManage : MonoBehaviour
 {
     [SerializeField]List<Door> _doors = new List<Door>();
     [SerializeField]bool _isEnd;
+    bool _wasRemoved;
 
     private void Start()
     {
@@ -40,12 +41,18 @@ public class LevelDoorManage : MonoBehaviour
         }
 
     }
-    private void OnDisable()
+    private void OnEnable()
+    {
+        
+    }
+
+    public void Disable()
     {
         if (_isEnd) return;
         if (_doors.Count <= 0) return;
         foreach(Door d in _doors)
         {
+            _wasRemoved = true;
             d?.OtherDoor?.Close();
             d?.Close();
         }
