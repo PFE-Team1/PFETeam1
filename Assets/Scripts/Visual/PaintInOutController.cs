@@ -150,6 +150,7 @@ public class PaintInOutController : MonoBehaviour
         {
             foreach (Transform VARIABLE in root.transform)
             {
+                if(VARIABLE.gameObject.layer!=3)
                 Searcher(list, VARIABLE.gameObject);
             }
         }
