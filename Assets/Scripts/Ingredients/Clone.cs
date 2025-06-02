@@ -79,6 +79,7 @@ public class Clone : MonoBehaviour
 
                 CompositeCollider2D composite = hitObject.GetComponent<CompositeCollider2D>();
                 if (composite != null)
+
                 {
                     Collider2D[] childColliders = hitObject.GetComponentsInChildren<Collider2D>();
                     foreach (var child in childColliders)
@@ -102,7 +103,6 @@ public class Clone : MonoBehaviour
                                 }
                                 foreach (SkeletonPartsRenderer skel in _skeletonPartRend) 
                                 {
-                                    print(skel.name+"  "+ skel.MeshRenderer.sortingLayerID);
                                     skel.MeshRenderer.sortingLayerID = val;
                                 }
                                 return;

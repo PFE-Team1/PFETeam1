@@ -50,6 +50,7 @@ public class PaintInOutController : MonoBehaviour
 
         Reset();
         Setup(paint);
+        paint.GetComponent<LevelDoorManage>().Disable();
         _coroutine = StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
@@ -59,7 +60,6 @@ public class PaintInOutController : MonoBehaviour
         yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime + .5f);
         while (timer < _durationIn)
         {
-            Debug.Log($"{timer / _durationIn}");
             _line.material.SetFloat("_CursorAppearance", (timer / _durationIn) * 2);
             foreach (Renderer rend in _appearanceAddOns)
             {
@@ -68,7 +68,6 @@ public class PaintInOutController : MonoBehaviour
             timer += Time.deltaTime;//remplacer line avec shader d'aurore
             yield return null;
         }
-        print("feur");
         paint.layer = 0;
          foreach (GameObject child in AllChilds(paint))
         {

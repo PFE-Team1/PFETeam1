@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -73,7 +74,7 @@ public class UIToolTipZone : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach (GameObject gameObject in _CollidingGameObjects)
+        foreach (GameObject gameObject in _CollidingGameObjects.Where(gameObject => gameObject != null))
         {
             ToolTipManager toolTipManager = gameObject.GetComponentInChildren<ToolTipManager>();
             if (toolTipManager != null)
@@ -86,7 +87,7 @@ public class UIToolTipZone : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach (GameObject gameObject in _CollidingGameObjects)
+        foreach (GameObject gameObject in _CollidingGameObjects.Where(gameObject=>gameObject!=null))
         {
             ToolTipManager toolTipManager = gameObject.GetComponentInChildren<ToolTipManager>();
             if (toolTipManager != null)

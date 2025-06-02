@@ -18,19 +18,16 @@ public class ScenesManager : MonoBehaviour
     }
     public void LoadMenu()
     {
-        SceneManager.LoadSceneAsync(_menuScene);
+        SceneManager.LoadScene(_menuScene);
         
     }
     public void LoadNextScene()
     {
-        SceneManager.LoadSceneAsync(_nextScene);
         if (InputsManager.instance != null)
         {
-            if (InputsManager.instance.InputRestarting)
-            {
-                InputsManager.instance.InputRestarting = false;
-                StartCoroutine(Deload());
-            }
+
+                StartCoroutine(LoadingNext());
+
         }
     }
 
@@ -38,13 +35,19 @@ public class ScenesManager : MonoBehaviour
     {
         InputsManager.instance.InputRestarting = false;
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-        StartCoroutine(Deload());
+        StartCoroutine(ReLoading());
         SettingsManager.Instance.IsMainMenuActive = false;
     }
-    IEnumerator Deload()
+    IEnumerator LoadingNext()
     {
         yield return new WaitForSeconds(1);//dur e de l'anim
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        SceneManager.LoadScene(_nextScene);
+        yield return null;
+    }
+    IEnumerator ReLoading()
+    {
+        yield return new WaitForSeconds(1);//dur e de l'anim
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         yield return null;
     }
 }

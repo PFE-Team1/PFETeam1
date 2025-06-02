@@ -25,7 +25,7 @@ public class DoorMaterialInstance : MonoBehaviour
     IEnumerator FadeIn()
     {
         float appearance = _material.GetFloat("_Cursor_Appearance_Corridor");
-        float newAppearance= 0;
+        float newAppearance= appearance;
         float timer = 0;
         while (timer < 3)
         {
@@ -38,7 +38,7 @@ public class DoorMaterialInstance : MonoBehaviour
     IEnumerator FadeOut(DoorVFX door)
     {
         float appearance = _material.GetFloat("_Cursor_Appearance_Corridor");
-        float newAppearance = 0;
+        float newAppearance = appearance;
         float timer = 0;
         while (timer < 3)
         {
@@ -47,8 +47,7 @@ public class DoorMaterialInstance : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        yield return new WaitForSeconds(2);
-        Destroy(door.gameObject);
+
     }
     IEnumerator InversingPath(DoorVFX door)
     {
@@ -85,7 +84,7 @@ public class DoorMaterialInstance : MonoBehaviour
        yield return null;
     }
 
-public void InversePath(DoorVFX door)
+public void InversePath(DoorVFX door)//à retravailler si j'ai le temps
     {
         if (_coroutine!=null)
         {

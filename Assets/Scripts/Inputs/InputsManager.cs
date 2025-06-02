@@ -151,11 +151,12 @@ public class InputsManager : MonoBehaviour
         }
         else
         {
+            print("Setting up inputs");
             instance = this;
+            SetupInputs();
         }
+        transform.parent = null;
         DontDestroyOnLoad(this.gameObject);
-        SetupInputs();
-
         // Initialisation du Game Manager...
     }
 
@@ -178,11 +179,13 @@ public class InputsManager : MonoBehaviour
 
     private void SetupInputs()
     {
+
         _playerInputs = gameObject.AddComponent<PlayerInput>();
         _playerInputs.camera = FindFirstObjectByType<Camera>();
         _playerInputs.notificationBehavior = PlayerNotifications.InvokeUnityEvents;
         _playerInputs.actions = _inputActionAsset;
 
+        
         foreach (var action in _playerInputs.actions)
         {
             action.performed += ctx => InvokeInputMethod($"On{action.name}", ctx);

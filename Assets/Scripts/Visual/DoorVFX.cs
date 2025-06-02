@@ -45,9 +45,12 @@ public class DoorVFX : MonoBehaviour
     public void StopDoorVFX()
     {
         // _otherDoorVFX.DoorVFXInstance = null;
-        foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
+        if (_doorVFXInstance)
         {
-            child.Out(this);
+            foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
+            {
+                child.Out(this);
+            }
         }
         _doorVFXInstance = null;
         //_otherDoorVFX.OtherDoorVFX = null;
@@ -69,18 +72,10 @@ public class DoorVFX : MonoBehaviour
         if (other.CompareTag("Player") && (!_isPlayerInter)&& other.isTrigger == false)
         {
             _isPlayerInter = true;
-            print("x2rF5dne");
             other.GetComponent<Clone>().ChangeToLayerX("Inter");
         }
         _isOut = false;
     }
-    /*private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player") &&! _isPlayerInter)
-        {
-            _isPlayerInter = true;
-        }
-    }*/
     private void OnTriggerExit(Collider other)
     {
         _isPlayerInter = false;
@@ -91,8 +86,9 @@ public class DoorVFX : MonoBehaviour
             {
                 _levelDoorManager.UpdateDoor();
             }
-            if (!_otherDoorVFX|| !_otherDoorVFX.IsPlayerInter)//verifie si le joueur est sorti de l'autre partie du passage pour faire le changer de parent
+            if (!_otherDoorVFX.IsPlayerInter)//verifie si le joueur est sorti de l'autre partie du passage pour faire le changer de parent
             {
+                print("feurPorte");
                 other.GetComponent<Clone>().ChangeParent();
             }
         }
