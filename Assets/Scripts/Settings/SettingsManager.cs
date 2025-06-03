@@ -15,6 +15,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _firstPauseItem;
+    [SerializeField] private GameObject _settingsCanva;
     [SerializeField] private TMP_Dropdown _resolutionDropDown;
     [SerializeField] private TMP_Dropdown _screenTypeDropDown;
     [SerializeField] private Slider _masterVolumeSlider;
@@ -27,14 +28,14 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _controlsPrefab;
     [SerializeField] private Transform _controlsParent;
 
-    [Header ("Camera Transition")]
+    [Header("Camera Transition")]
     [SerializeField] private GameObject _objectToZoom;
     [SerializeField] private float _zoomSpeed = 5f;
-    
+
     [Header("FirstController")]
     [SerializeField] private GameObject _firstItem;
 
-    [Header ("Volume")]
+    [Header("Volume")]
     [SerializeField] private AK.Wwise.RTPC _masterVolumeRTPC;
     [SerializeField] private AK.Wwise.RTPC _ambianceVolumeRTPC;
     [SerializeField] private AK.Wwise.RTPC _musicVolumeRTPC;
@@ -62,7 +63,7 @@ public class SettingsManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -142,8 +143,8 @@ public class SettingsManager : MonoBehaviour
             if (action.bindings.Count > 0)
             {
                 GameObject control = Instantiate(_controlsPrefab, _controlsParent);
-                control.GetComponent<TextUpdater>().Key = action.name;
-                control.GetComponent<TextMeshProUGUI>().text = action.name;
+                control.GetComponentInChildren<TextUpdater>().Key = action.name;
+                control.GetComponentInChildren<TextMeshProUGUI>().text = action.name;
                 control.GetComponentsInChildren<TextMeshProUGUI>()[1].text = action.bindings.First(b => b.groups.Contains(actions.currentControlScheme)).ToDisplayString();
                 control.GetComponentInChildren<Button>().onClick.AddListener(() =>
                 {
@@ -154,7 +155,7 @@ public class SettingsManager : MonoBehaviour
                     .OnComplete(operation => { operation.Dispose(); SetNewControls(); })
                     .Start();
                 });
-                control.GetComponent<TextUpdater>().UpdateText();
+                control.GetComponentInChildren<TextUpdater>().UpdateText();
             }
         }
     }
@@ -174,7 +175,7 @@ public class SettingsManager : MonoBehaviour
     public void SetScreenType()
     {
         int screenTypes = _screenTypeDropDown.value;
-        
+
         switch (screenTypes)
         {
             case 0:
