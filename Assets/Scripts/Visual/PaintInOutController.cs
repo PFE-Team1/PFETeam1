@@ -50,6 +50,7 @@ public class PaintInOutController : MonoBehaviour
 
         Reset();
         Setup(paint);
+        paint.GetComponent<LevelDoorManage>().Disable();
         _coroutine = StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
