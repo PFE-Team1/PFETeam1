@@ -129,6 +129,7 @@ public class PaintingController : Interactable
         {
             Destroy(Instantiate(VFX_GrabToile, transform), 1f);
         }
+        UnfreezePos();
         AudioManager.Instance.SFX_GrabToile.Post(gameObject);
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
@@ -141,6 +142,16 @@ public class PaintingController : Interactable
         PlayerC.heldObject = gameObject;
         if (!GetComponentInChildren<UIToolTipZone>()) return;
         GetComponentInChildren<UIToolTipZone>().enabled = false;
+    }
+    public void FreezePos()
+    {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+    public void UnfreezePos()
+    {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
     }
     public void PlayVFXSocle()
     {
