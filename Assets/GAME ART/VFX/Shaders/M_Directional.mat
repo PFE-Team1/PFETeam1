@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Plateform_Sketch
-  m_Shader: {fileID: 4800000, guid: 5c3e0abe677d28949ae8e562b0b2a96f, type: 3}
+  m_Name: M_Directional
+  m_Shader: {fileID: 4800000, guid: 9167128f528cca14394967e50b927c0d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,16 +23,20 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Brush_Tex:
-        m_Texture: {fileID: 2800000, guid: 9ca0bd696107918428e1f750a8a41cab, type: 3}
+    - _MainTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Noise_Back:
-        m_Texture: {fileID: 2800000, guid: 9a2e1e543103aaa44a58c847f43f3ab5, type: 3}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 834cddd609027c7408c8fbe7a3c177fb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TextureSample2:
-        m_Texture: {fileID: 2800000, guid: 9a2e1e543103aaa44a58c847f43f3ab5, type: 3}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: ba2517464c1841a4c888dd889242e36c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -50,34 +54,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
-    - _B_Max_degrade: 0
-    - _B_Min_degrade: 0
-    - _D_Max_degrade: 0.31
-    - _D_Min_degrade: 0.04
-    - _Disolve_Cursor2: 1
-    - _Dist_Max: 1.2
-    - _Dist_Min: 0
-    - _Dist_Pan_Speed: -1
-    - _Dist_Scale: 2.74
-    - _Dist_intensity: 1
-    - _Divide_Offset: 10
-    - _G_Max_degrade: 0.15
-    - _G_Min_degrade: -0.72
-    - _HDR: 13.8
-    - _H_Max_degrade: 0
-    - _H_Min_degrade: 0
-    - _N2_Back_Speed: -0.21
-    - _N2_X_Scale: 0
-    - _N2_Y_Scale: 0
-    - _Noise_Back_Deform: 0.163
-    - _Noise_Back_Scale: 0.25
-    - _Noise_Back_Spped: -0.13
-    - _Noise_Scale1: 4.35
-    - _Smooth_B: 0
-    - _Smooth_D: 1.12
-    - _Smooth_G: 0.41
-    - _Smooth_H: 1.31093
+    - _Arrow_X: 1.17
+    - _Arrow_Y: 1.06
+    - _Courbe: 0.053
+    - _Deformation_Arrow: 0.037
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tex_Scale: {r: 4.23, g: 1, b: 0, a: 0}
+    - _Velocite_Mouvement: {r: 1.45, g: 0, b: 0, a: 0}
+    - _Vitesse: {r: 0.49, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
