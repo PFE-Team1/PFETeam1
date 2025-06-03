@@ -11,7 +11,7 @@
     "GUID": "{66CD8657-BB27-4ABF-A6E7-231484986B7D}",
     "Color": "10",
     "Language": "SFX",
-    "Hash": "{C3B6D99F-D32D-E1BC-95EE-E1C4C882A5C6}",
+    "Hash": "{CED29A15-5E19-BAE2-AF9B-343E544EAFA5}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI_SBK",
     "ShortName": "UI_SBK",
     "Path": "UI_SBK.bnk",
@@ -49,12 +49,28 @@
       "CachePath": "7A/{7A8C2D7F-4BD5-9801-6BB0-01E58DBE8276}.wem"
      },
      {
+      "Id": "526980125",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SUI_Play.wav",
+      "CachePath": "C8/{C8BF622C-6D9F-FA25-8E26-C9D7182EC206}.wem"
+     },
+     {
       "Id": "544975433",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SUI_PressAnyKey.wav",
       "CachePath": "5F/{5F498433-2C03-2EC5-48E6-26F8E7AE42FF}.wem"
+     },
+     {
+      "Id": "623534711",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SUI_Pause.wav",
+      "CachePath": "D4/{D47620CD-5B2E-6B7E-3CFB-6071629669F6}.wem"
      },
      {
       "Id": "625961359",
@@ -134,6 +150,36 @@
       ]
      },
      {
+      "Id": "3195014792",
+      "Name": "Play_SUI_Pause",
+      "ObjectPath": "\\Events\\UI_WU\\Play_SUI_Pause",
+      "GUID": "{32D66CD7-3547-4E3C-BAE5-4C05215909EE}",
+      "Color": "10",
+      "DurationType": "OneShot",
+      "DurationMin": "0.524625",
+      "DurationMax": "0.524625",
+      "MediaRefs": [
+       {
+        "Id": "623534711"
+       }
+      ]
+     },
+     {
+      "Id": "1261390384",
+      "Name": "Play_SUI_Play",
+      "ObjectPath": "\\Events\\UI_WU\\Play_SUI_Play",
+      "GUID": "{40226FDD-AA2B-46A1-BF17-0329705108C0}",
+      "Color": "10",
+      "DurationType": "OneShot",
+      "DurationMin": "0.3293125",
+      "DurationMax": "0.3293125",
+      "MediaRefs": [
+       {
+        "Id": "526980125"
+       }
+      ]
+     },
+     {
       "Id": "3626919780",
       "Name": "Play_SUI_PressAnyKey",
       "ObjectPath": "\\Events\\UI_WU\\Play_SUI_PressAnyKey",
@@ -178,6 +224,6 @@
     ]
    }
   ],
-  "FileHash": "{F670109D-D01F-D4C8-8E93-53755809DF9C}"
+  "FileHash": "{F4CDE47F-47B2-8811-5682-CA5DDFD9D9CF}"
  }
 }

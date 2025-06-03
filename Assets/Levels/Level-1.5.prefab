@@ -1410,6 +1410,7 @@ MonoBehaviour:
     respawnable: {fileID: 0}
     Colliders: []
     Renderers: []
+  disolveDuration: 0
 --- !u!114 &4343386619704610405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,8 +1423,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ControllerIcon: {fileID: 475807334, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ShouldDestroyOnExit: 0
 --- !u!1 &1945144292948176017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,8 +2959,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: switch
-  KeyIcon: {fileID: 1062942897, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
+  ShouldDestroyOnExit: 0
 --- !u!65 &3709575744782582379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4891,6 +4894,7 @@ GameObject:
   - component: {fileID: 790294656669981504}
   - component: {fileID: 6787440894091201665}
   - component: {fileID: 1549979190782772791}
+  - component: {fileID: 557828822028091745}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -4985,6 +4989,27 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000001, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &557828822028091745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5116627456216890132}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1, y: 1.6, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5176594621198159986
 GameObject:
@@ -6637,6 +6662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f438742b7cfc76646aa725d95e598cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doors: []
+  _isEnd: 0
 --- !u!331 &7142935885684365906
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -7134,14 +7161,6 @@ MonoBehaviour:
   CollidingPlayers: []
   isSocle: 0
   _level: {fileID: 0}
-  _curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _displacementDuration: 0
-  _endPos: {fileID: 0}
   _endEffect: {fileID: 0}
 --- !u!135 &8731141038683155914
 SphereCollider:
@@ -10621,6 +10640,7 @@ MonoBehaviour:
     respawnable: {fileID: 0}
     Colliders: []
     Renderers: []
+  disolveDuration: 0
 --- !u!114 &3357284050212860665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10633,8 +10653,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ControllerIcon: {fileID: 475807334, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ShouldDestroyOnExit: 0
 --- !u!1 &9104915749148188287
 GameObject:
   m_ObjectHideFlags: 0

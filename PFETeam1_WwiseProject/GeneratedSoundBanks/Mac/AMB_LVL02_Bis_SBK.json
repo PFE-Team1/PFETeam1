@@ -11,7 +11,7 @@
     "GUID": "{1420C154-9952-470C-869D-DF3AB5116FB5}",
     "Color": "4",
     "Language": "SFX",
-    "Hash": "{63297FF0-7766-9FD8-D515-BE01BAF79673}",
+    "Hash": "{85255E2E-350E-BBDA-FBB5-8F18D2A86879}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\AMB_LVL02_Bis_SBK",
     "ShortName": "AMB_LVL02_Bis_SBK",
     "Path": "AMB_LVL02_Bis_SBK.bnk",
@@ -25,12 +25,36 @@
       "CachePath": "64/{64065FD6-785D-95E8-BAE9-31CE2A030660}.wem"
      },
      {
+      "Id": "35274605",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AMB_Toile2_Niveau2_LP.wav",
+      "CachePath": "E7/{E7B59E75-1EFB-31E5-359F-EF81B5CD53EA}.wem"
+     },
+     {
+      "Id": "95563811",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AMB_Toile2_Niveau2_Vase_03.wav",
+      "CachePath": "31/{31B1D667-D7B1-FFB5-D472-0BDB30F6EF02}.wem"
+     },
+     {
       "Id": "138789414",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AMB_Toile3_Niveau2_WoodCreak_07.wav",
       "CachePath": "F3/{F3911010-C94F-6A17-4D9B-BEB479B0CF9B}.wem"
+     },
+     {
+      "Id": "148938675",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AMB_Toile2_Niveau2_Vase_04.wav",
+      "CachePath": "32/{32525303-5AA4-0075-D007-C56A476F4098}.wem"
      },
      {
       "Id": "186268831",
@@ -62,7 +86,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AMB_Toile3_Niveau2_LP.wav",
-      "CachePath": "00/{001A711E-0E26-98B3-5CEB-241CC954A48C}.wem"
+      "CachePath": "65/{65DAFB4F-3542-4655-7E8E-FB93FAE6F61A}.wem"
      },
      {
       "Id": "450630037",
@@ -121,6 +145,22 @@
       "CachePath": "05/{051EBD4A-49D4-6832-7383-1D674B0A3D6C}.wem"
      },
      {
+      "Id": "670177150",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AMB_Toile2_Niveau2_Vase_05.wav",
+      "CachePath": "5E/{5E61A98A-D37D-4CD1-3B8F-759C29610EEA}.wem"
+     },
+     {
+      "Id": "704034817",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AMB_Toile2_Niveau2_Vase_02.wav",
+      "CachePath": "C2/{C2CFD404-A5F7-3545-42BB-E4665760C2E9}.wem"
+     },
+     {
       "Id": "739878207",
       "Language": "SFX",
       "Streaming": "false",
@@ -143,6 +183,14 @@
       "Location": "Memory",
       "ShortName": "AMB_Toile3_Niveau2_Fenetre_LP.wav",
       "CachePath": "C7/{C70F781D-EA70-CE4B-8C35-1560F007E943}.wem"
+     },
+     {
+      "Id": "902497734",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AMB_Toile2_Niveau2_Vase_01.wav",
+      "CachePath": "BD/{BD0F8378-46B7-B20D-FE55-C7F0CBD69A23}.wem"
      },
      {
       "Id": "921907304",
@@ -255,12 +303,38 @@
       ]
      },
      {
+      "Id": "3975281599",
+      "Name": "Play_AMB_RFX_Toile02_Vase",
+      "ObjectPath": "\\Events\\AMB_WU\\Toile02_Niv02\\Play_AMB_RFX_Toile02_Vase",
+      "GUID": "{FEC9AA7B-8191-4CAF-BBAC-788849C2AD23}",
+      "Color": "4",
+      "MaxAttenuation": "15",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "95563811"
+       },
+       {
+        "Id": "148938675"
+       },
+       {
+        "Id": "670177150"
+       },
+       {
+        "Id": "704034817"
+       },
+       {
+        "Id": "902497734"
+       }
+      ]
+     },
+     {
       "Id": "3332009233",
       "Name": "Play_AMB_Toile3_Niveau2_Fenetre_LP",
       "ObjectPath": "\\Events\\AMB_WU\\Toile03_Niv02\\Play_AMB_Toile3_Niveau2_Fenetre_LP",
       "GUID": "{85F751E4-E0DF-41B5-AF64-BFBF225A2EEF}",
       "Color": "4",
-      "MaxAttenuation": "10",
+      "MaxAttenuation": "18",
       "DurationType": "Infinite",
       "MediaRefs": [
        {
@@ -274,18 +348,31 @@
       "ObjectPath": "\\Events\\AMB_WU\\Toile03_Niv02\\Play_AMB_Toile3_Niveau2_LP",
       "GUID": "{A4961DCD-C0DB-4A3C-9F83-838E4CAE3F53}",
       "Color": "4",
-      "DurationType": "OneShot",
-      "DurationMin": "161.11098",
-      "DurationMax": "161.11098",
+      "MaxAttenuation": "10",
+      "DurationType": "Infinite",
       "MediaRefs": [
        {
         "Id": "319492407"
+       }
+      ]
+     },
+     {
+      "Id": "2433991459",
+      "Name": "Play_AMB_Toile3_Niveau2_LP_01",
+      "ObjectPath": "\\Events\\AMB_WU\\Toile02_Niv02\\Play_AMB_Toile3_Niveau2_LP_01",
+      "GUID": "{4F750880-FB3E-4668-8CC2-E514C9EC6579}",
+      "Color": "4",
+      "MaxAttenuation": "10",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "35274605"
        }
       ]
      }
     ]
    }
   ],
-  "FileHash": "{4654F763-535C-90CA-4947-E87810ADE26A}"
+  "FileHash": "{01262BF3-ABF0-9B7E-1A05-58084E27FAFC}"
  }
 }

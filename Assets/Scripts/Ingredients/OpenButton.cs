@@ -7,12 +7,14 @@ using UnityEngine;
 public class OpenButton : Interactable
 {
     [SerializeField] private List<ObectToDestroy> _objectsToRemove = new List<ObectToDestroy>();
+    [SerializeField] private float disolveDuration;
     private bool _isRespawning ;
     private bool _pause ;
     private Sprite _sprite ;
     private SpriteRenderer _spriteRenderer ;
     private List<Coroutine> _coroutines=new List<Coroutine>();
     float hightestRespawnTime=0;
+    bool _cantInterract;
 
 
     protected override void Start()
@@ -53,32 +55,31 @@ public class OpenButton : Interactable
         yield return new WaitForSeconds(destroyed.RespawnStartTime);
         while (time < destroyed.RespawnTime)
         {
-            time += Time.deltaTime;
-            destroyed.currentTime = time;
-
-            //Shader de resolve progressif sur la dur�e (time/respawnTime)
-            yield return null;
-        }
-        while (destroyed.respawnable.IsRepawnBlocked)
-        {
-            if (_isRespawning) 
+            while (destroyed.respawnable.IsRepawnBlocked)
             {
-                _spriteRenderer.sprite = null;
-                _isRespawning = true;
+                yield return null;
+            }         
+            for (int i = 0; i < destroyed.Colliders.Count; i++)
+            {
+                destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", -1.2f + (time / destroyed.RespawnTime)*2.2f);
             }
             time += Time.deltaTime;
+            destroyed.currentTime = time;
             yield return null;
         }
+
         for (int i = 0; i < destroyed.Colliders.Count; i++)
         {
             destroyed.Colliders[i].enabled = true;
-            destroyed.Renderers[i].enabled = true;
+            destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", 0);
         }
         if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime||time>hightestRespawnTime)
         {
             _spriteRenderer.sprite = _sprite;
             _isRespawning = false;
+            _cantInterract = false;
         }
+
         yield return null;
     }
     public void ReStart()
@@ -93,34 +94,14 @@ public class OpenButton : Interactable
             }
         }
     }
-    IEnumerator ReStartBuilding(ObectToDestroy destroyed)
-    {
-        float time = destroyed.currentTime;
-        yield return new WaitForSeconds(destroyed.RespawnStartTime);
-        while (time < destroyed.RespawnTime)
-        {
-            time += Time.deltaTime;
-            destroyed.currentTime = time;
-            //Shader de resolve progressif sur la dur�e (time/respawnTime)
-            yield return null;
-        }
-        for (int i = 0; i < destroyed.Colliders.Count; i++)
-        {
-            destroyed.Colliders[i].enabled = true;
-            destroyed.Renderers[i].enabled = true;
-        }
-        if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime || time > hightestRespawnTime)
-        {
-            _spriteRenderer.sprite = _sprite;
-            _isRespawning = false;
-        }
-        yield return null;
-    }
 
     protected override void Interact()
     {
-        if (IsInRange)
+        if (!_cantInterract)
         {
+            if (IsInRange)
+            {
+                _cantInterract = true;
                 _spriteRenderer.sprite = null;
                 _isRespawning = true;
                 foreach (ObectToDestroy toRemove in _objectsToRemove)
@@ -128,16 +109,31 @@ public class OpenButton : Interactable
 
                     for (int i = 0; i < toRemove.Colliders.Count; i++)
                     {
+                        toRemove.currentTime = 0;
                         toRemove.Colliders[i].enabled = false;
-                        toRemove.Renderers[i].enabled = false;
+                        StartCoroutine(Disolve(toRemove.Renderers[i]));
                     }
                     if (toRemove.IsRespawnable == true)
                     {
                         _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
                     }
-                
+
                 }
             }
+        }
+    }
+    IEnumerator Disolve(Renderer renderer)
+    {
+        float timer = 0;
+        Material mat = renderer.material;
+        while (timer < disolveDuration)
+        {
+            mat.SetFloat("_Disolve_Cursor2", 1- (timer / disolveDuration)*2.2f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        mat.SetFloat("_Disolve_Cursor2", -1.2f);
+        yield return null;
     }
 }
 

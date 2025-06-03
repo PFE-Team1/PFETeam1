@@ -10,7 +10,9 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField] private SpriteRenderer _eraseRend;
     [SerializeField] private Camera _camera;
     [SerializeField]float _durationIn=5f;
+    [SerializeField]float _durationCameraIn=5f;
     [SerializeField]float _durationOut=3f;
+    [SerializeField]float _durationCameraOut=3f;
     [SerializeField]float _cameraMoveDuration=0.5f;
     [SerializeField]float _delayFill=3f;
     [SerializeField]GameObject _firstPaint;
@@ -50,13 +52,14 @@ public class PaintInOutController : MonoBehaviour
 
         Reset();
         Setup(paint);
+        paint.GetComponent<LevelDoorManage>().Disable();
         _coroutine = StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
         CameraManager.Instance.SeeCurrentLevel(paint);
         float timer = 0;
-        yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime + .5f);
+        yield return new WaitForSeconds(_durationCameraIn);
         while (timer < _durationIn)
         {
             _line.material.SetFloat("_CursorAppearance", (timer / _durationIn) * 2);
@@ -84,7 +87,7 @@ public class PaintInOutController : MonoBehaviour
     IEnumerator ShaderOut(GameObject paint)
     {
         CameraManager.Instance.SeeCurrentLevel(paint);
-        yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime + .5f);
+        yield return new WaitForSeconds(_durationCameraOut);
         _eraseRend.material.SetFloat("_CursorErase", -1);
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
@@ -147,6 +150,7 @@ public class PaintInOutController : MonoBehaviour
         {
             foreach (Transform VARIABLE in root.transform)
             {
+                if(VARIABLE.gameObject.layer!=3)
                 Searcher(list, VARIABLE.gameObject);
             }
         }
