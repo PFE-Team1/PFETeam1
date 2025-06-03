@@ -1422,8 +1422,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ControllerIcon: {fileID: 475807334, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ShouldDestroyOnExit: 0
 --- !u!1 &1945144292948176017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,8 +2958,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: switch
-  KeyIcon: {fileID: 1062942897, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
+  ShouldDestroyOnExit: 0
 --- !u!65 &3709575744782582379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6637,6 +6639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f438742b7cfc76646aa725d95e598cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doors: []
+  _isEnd: 0
 --- !u!331 &7142935885684365906
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -7134,14 +7138,6 @@ MonoBehaviour:
   CollidingPlayers: []
   isSocle: 0
   _level: {fileID: 0}
-  _curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _displacementDuration: 0
-  _endPos: {fileID: 0}
   _endEffect: {fileID: 0}
 --- !u!135 &8731141038683155914
 SphereCollider:
@@ -10633,8 +10629,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ControllerIcon: {fileID: 475807334, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  ShouldDestroyOnExit: 0
 --- !u!1 &9104915749148188287
 GameObject:
   m_ObjectHideFlags: 0

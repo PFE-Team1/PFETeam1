@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8178119679323678283}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PaintingTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 9204341156864484754}
   - component: {fileID: 3447073323450768053}
   - component: {fileID: 269884668803641789}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 5246930047359014605}
   - component: {fileID: 6951806372250624286}
   - component: {fileID: 4472944988096750482}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spine Mecanim GameObject (Setup_Character Design)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,6 +335,7 @@ MonoBehaviour:
   BodyPartRenderer: {fileID: 9189744339307645033}
   ArmPartRenderer: {fileID: 269884668803641789}
   SkeletonMecanim: {fileID: 0}
+  CurrentPaintingController: {fileID: 0}
 --- !u!1 &5924915213179185848
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +347,7 @@ GameObject:
   - component: {fileID: 3883092055931868854}
   - component: {fileID: 2406533811787831550}
   - component: {fileID: 8521899120599954945}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +422,7 @@ GameObject:
   - component: {fileID: 1565237410294016932}
   - component: {fileID: 3823928657673739956}
   - component: {fileID: 8414576403336754847}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +500,7 @@ GameObject:
   - component: {fileID: 7804348895779608419}
   - component: {fileID: 6249525387625661987}
   - component: {fileID: 969789591783442109}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ToolTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,6 +618,8 @@ MonoBehaviour:
   InsideZone: 0
   Speed: 1
   KeyIcon: {fileID: 8752562432643052597}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
 --- !u!1 &7536148830518666615
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8199334467831828604}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +665,7 @@ GameObject:
   - component: {fileID: 8702759285611047569}
   - component: {fileID: 5521943252484299713}
   - component: {fileID: 8752562432643052597}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,7 +741,7 @@ GameObject:
   - component: {fileID: 7140130048810414313}
   - component: {fileID: 4858146038755125675}
   - component: {fileID: 9189744339307645033}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +838,7 @@ GameObject:
   - component: {fileID: 262938854672269801}
   - component: {fileID: 5451584468589004706}
   - component: {fileID: 8320267410946993262}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: CurrentPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6342664553632736339}
   - component: {fileID: 744157802880073649}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,7 +1003,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 434292973231471639, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
       propertyPath: m_Name
-      value: PlayerWithAnimator
+      value: PlayerWithAnimator_Enzo
+      objectReference: {fileID: 0}
+    - target: {fileID: 434292973231471639, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 434292973231471639, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
       propertyPath: m_TagString
