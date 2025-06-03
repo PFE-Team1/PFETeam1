@@ -105,6 +105,7 @@ public class LevelSpawner : Interactable
         CameraManager.Instance.SetNewLevel(_newlevel);
         FindPlayer(true);
         isAlreadySpawned = true;
+        paintingController.PlayVFXSocle();
         paintingController.AnimateDropPainting(transform);
     }
 
