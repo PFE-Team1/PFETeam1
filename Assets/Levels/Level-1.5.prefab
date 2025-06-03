@@ -1410,6 +1410,7 @@ MonoBehaviour:
     respawnable: {fileID: 0}
     Colliders: []
     Renderers: []
+  disolveDuration: 0
 --- !u!114 &4343386619704610405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4893,6 +4894,7 @@ GameObject:
   - component: {fileID: 790294656669981504}
   - component: {fileID: 6787440894091201665}
   - component: {fileID: 1549979190782772791}
+  - component: {fileID: 557828822028091745}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -4987,6 +4989,27 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000001, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &557828822028091745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5116627456216890132}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1, y: 1.6, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5176594621198159986
 GameObject:
@@ -10617,6 +10640,7 @@ MonoBehaviour:
     respawnable: {fileID: 0}
     Colliders: []
     Renderers: []
+  disolveDuration: 0
 --- !u!114 &3357284050212860665
 MonoBehaviour:
   m_ObjectHideFlags: 0
