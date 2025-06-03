@@ -40,6 +40,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_SUI_Pause" ID="{32D66CD7-3547-4E3C-BAE5-4C05215909EE}">
+					<ChildrenList>
+						<Action Name="" ID="{A6364F92-DEAC-4C78-8894-41EF99BA4086}" ShortID="278597870">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SUI_Pause" ID="{9E480F19-6AA5-4DFD-8B7B-CC4472BAC2C6}" WorkUnitID="{64176F3B-4D36-4122-918A-4ADB720DECC9}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_SUI_Play" ID="{40226FDD-AA2B-46A1-BF17-0329705108C0}">
+					<ChildrenList>
+						<Action Name="" ID="{F3FB076E-249D-417F-B0C3-655D88133F5D}" ShortID="910991629">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SUI_Play" ID="{8F2E8169-85A1-4C16-9000-4ED5A024268E}" WorkUnitID="{64176F3B-4D36-4122-918A-4ADB720DECC9}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

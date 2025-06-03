@@ -82,9 +82,6 @@ public class LevelSpawner : Interactable
             _newlevel = CameraManager.Instance.Levels.Find(level => level.name == newLevelPrefab.name);
             _newlevel.SetActive(true);
         }
-
-        _heldObject.transform.SetParent(transform);
-        _heldObject.transform.localPosition = Vector3.zero;
         _paint = PlayerC.heldObject;
 
         var newLevelBounds = _newlevel.GetComponent<SpriteRenderer>().bounds.size;
@@ -108,7 +105,7 @@ public class LevelSpawner : Interactable
         CameraManager.Instance.SetNewLevel(_newlevel);
         FindPlayer(true);
         isAlreadySpawned = true;
-        paintingController.AnimateDropPainting();
+        paintingController.AnimateDropPainting(transform);
     }
 
     private void SetNewPosition()
