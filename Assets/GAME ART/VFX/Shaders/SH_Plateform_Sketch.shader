@@ -308,7 +308,7 @@ Shader "SH_Plateform_Sketch"
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
-				Gradient gradient167 = NewGradient( 0, 8, 2, float4( 1, 0.8386485, 0.5803922, 0.06097505 ), float4( 0.1512731, 0.1383652, 0.2665261, 0.1568017 ), float4( 0.0172982, 0.01535244, 0.2169811, 0.2299687 ), float4( 1, 0.8392157, 0.5803922, 0.3066148 ), float4( 0.01568628, 0.01568628, 0.2156863, 0.4337987 ), float4( 1, 0.8392157, 0.5803922, 0.6550546 ), float4( 0.01568628, 0.01568628, 0.2156863, 0.9198596 ), float4( 1, 0.8392157, 0.5803922, 1 ), float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
+				Gradient gradient167 = NewGradient( 0, 6, 2, float4( 1, 0.7333333, 0.3058824, 0.05575646 ), float4( 0.2745098, 0.09694008, 0.03137255, 0.1568017 ), float4( 0.2735849, 0.09803922, 0.02968139, 0.273518 ), float4( 0.2745098, 0.09803922, 0.03137255, 0.6550546 ), float4( 0.2745098, 0.09803922, 0.03137255, 0.9198596 ), float4( 1, 0.7333333, 0.3058824, 1 ), 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				float2 texCoord78 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult94 = (float2(0.0 , -( _Dist_intensity / _Divide_Offset )));
 				float2 appendResult162 = (float2(0.0 , _Dist_Pan_Speed));
@@ -632,7 +632,7 @@ Shader "SH_Plateform_Sketch"
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
-				Gradient gradient167 = NewGradient( 0, 8, 2, float4( 1, 0.8386485, 0.5803922, 0.06097505 ), float4( 0.1512731, 0.1383652, 0.2665261, 0.1568017 ), float4( 0.0172982, 0.01535244, 0.2169811, 0.2299687 ), float4( 1, 0.8392157, 0.5803922, 0.3066148 ), float4( 0.01568628, 0.01568628, 0.2156863, 0.4337987 ), float4( 1, 0.8392157, 0.5803922, 0.6550546 ), float4( 0.01568628, 0.01568628, 0.2156863, 0.9198596 ), float4( 1, 0.8392157, 0.5803922, 1 ), float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
+				Gradient gradient167 = NewGradient( 0, 6, 2, float4( 1, 0.7333333, 0.3058824, 0.05575646 ), float4( 0.2745098, 0.09694008, 0.03137255, 0.1568017 ), float4( 0.2735849, 0.09803922, 0.02968139, 0.273518 ), float4( 0.2745098, 0.09803922, 0.03137255, 0.6550546 ), float4( 0.2745098, 0.09803922, 0.03137255, 0.9198596 ), float4( 1, 0.7333333, 0.3058824, 1 ), 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				float2 texCoord78 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult94 = (float2(0.0 , -( _Dist_intensity / _Divide_Offset )));
 				float2 appendResult162 = (float2(0.0 , _Dist_Pan_Speed));
@@ -931,7 +931,7 @@ Shader "SH_Plateform_Sketch"
 
 			half4 frag(VertexOutput IN) : SV_TARGET
 			{
-				Gradient gradient167 = NewGradient( 0, 8, 2, float4( 1, 0.8386485, 0.5803922, 0.06097505 ), float4( 0.1512731, 0.1383652, 0.2665261, 0.1568017 ), float4( 0.0172982, 0.01535244, 0.2169811, 0.2299687 ), float4( 1, 0.8392157, 0.5803922, 0.3066148 ), float4( 0.01568628, 0.01568628, 0.2156863, 0.4337987 ), float4( 1, 0.8392157, 0.5803922, 0.6550546 ), float4( 0.01568628, 0.01568628, 0.2156863, 0.9198596 ), float4( 1, 0.8392157, 0.5803922, 1 ), float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
+				Gradient gradient167 = NewGradient( 0, 6, 2, float4( 1, 0.7333333, 0.3058824, 0.05575646 ), float4( 0.2745098, 0.09694008, 0.03137255, 0.1568017 ), float4( 0.2735849, 0.09803922, 0.02968139, 0.273518 ), float4( 0.2745098, 0.09803922, 0.03137255, 0.6550546 ), float4( 0.2745098, 0.09803922, 0.03137255, 0.9198596 ), float4( 1, 0.7333333, 0.3058824, 1 ), 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				float2 texCoord78 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult94 = (float2(0.0 , -( _Dist_intensity / _Divide_Offset )));
 				float2 appendResult162 = (float2(0.0 , _Dist_Pan_Speed));
@@ -1209,7 +1209,7 @@ Shader "SH_Plateform_Sketch"
 
 			half4 frag(VertexOutput IN ) : SV_TARGET
 			{
-				Gradient gradient167 = NewGradient( 0, 8, 2, float4( 1, 0.8386485, 0.5803922, 0.06097505 ), float4( 0.1512731, 0.1383652, 0.2665261, 0.1568017 ), float4( 0.0172982, 0.01535244, 0.2169811, 0.2299687 ), float4( 1, 0.8392157, 0.5803922, 0.3066148 ), float4( 0.01568628, 0.01568628, 0.2156863, 0.4337987 ), float4( 1, 0.8392157, 0.5803922, 0.6550546 ), float4( 0.01568628, 0.01568628, 0.2156863, 0.9198596 ), float4( 1, 0.8392157, 0.5803922, 1 ), float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
+				Gradient gradient167 = NewGradient( 0, 6, 2, float4( 1, 0.7333333, 0.3058824, 0.05575646 ), float4( 0.2745098, 0.09694008, 0.03137255, 0.1568017 ), float4( 0.2735849, 0.09803922, 0.02968139, 0.273518 ), float4( 0.2745098, 0.09803922, 0.03137255, 0.6550546 ), float4( 0.2745098, 0.09803922, 0.03137255, 0.9198596 ), float4( 1, 0.7333333, 0.3058824, 1 ), 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				float2 texCoord78 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult94 = (float2(0.0 , -( _Dist_intensity / _Divide_Offset )));
 				float2 appendResult162 = (float2(0.0 , _Dist_Pan_Speed));
@@ -1344,9 +1344,9 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;123;-64,1056;Inherit;True;4;4;0;FL
 Node;AmplifyShaderEditor.RangedFloatNode;199;128,-48;Inherit;False;Property;_Noise_Scale1;Noise_Scale;2;0;Create;True;0;0;0;False;0;False;4.35;4.35;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;135;512,-480;Inherit;True;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;200;352,-80;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.GradientNode;167;480,-864;Inherit;False;0;8;2;1,0.8386485,0.5803922,0.06097505;0.1512731,0.1383652,0.2665261,0.1568017;0.0172982,0.01535244,0.2169811,0.2299687;1,0.8392157,0.5803922,0.3066148;0.01568628,0.01568628,0.2156863,0.4337987;1,0.8392157,0.5803922,0.6550546;0.01568628,0.01568628,0.2156863,0.9198596;1,0.8392157,0.5803922,1;1,0;1,1;0;1;OBJECT;0
+Node;AmplifyShaderEditor.GradientNode;167;480,-864;Inherit;False;0;6;2;1,0.7333333,0.3058824,0.05575646;0.2745098,0.09694008,0.03137255,0.1568017;0.2735849,0.09803922,0.02968139,0.273518;0.2745098,0.09803922,0.03137255,0.6550546;0.2745098,0.09803922,0.03137255,0.9198596;1,0.7333333,0.3058824,1;1,0;1,1;0;1;OBJECT;0
 Node;AmplifyShaderEditor.GradientSampleNode;166;768,-608;Inherit;True;2;0;OBJECT;;False;1;FLOAT;0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;154;928,-320;Inherit;False;Property;_HDR;HDR;30;0;Create;True;0;0;0;False;0;False;0.75;13.8;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;154;928,-320;Inherit;False;Property;_HDR;HDR;30;0;Create;True;0;0;0;False;0;False;0.75;14.79;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.FunctionNode;201;384,368;Inherit;True;Polar Coordinates;-1;;11;7dab8e02884cf104ebefaa2e788e4162;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0.5,0.5;False;3;FLOAT;1;False;4;FLOAT;1;False;3;FLOAT2;0;FLOAT;55;FLOAT;56
 Node;AmplifyShaderEditor.SamplerNode;202;640,0;Inherit;True;Property;_TextureSample2;Texture Sample 2;4;0;Create;True;0;0;0;False;0;False;-1;None;9a2e1e543103aaa44a58c847f43f3ab5;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;153;1120,-608;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
@@ -1466,4 +1466,4 @@ WireConnection;212;2;183;0
 WireConnection;212;3;210;0
 WireConnection;0;1;212;0
 ASEEND*/
-//CHKSM=A2EEAB8FCCAC24D178D988AA2F655C82EFD1C084
+//CHKSM=A02A1EB41A697251325999C56848E655D5720910
