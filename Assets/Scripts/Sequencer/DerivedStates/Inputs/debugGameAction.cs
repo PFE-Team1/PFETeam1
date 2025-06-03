@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class debugGameAction : AGameAction
 {
-    [Header("Debug Settings")]
+
+    [Header("Action Settings")]
     [SerializeField] private string debugMessage = "Debug Game Action Executed";
     protected override void OnExecute()
     {

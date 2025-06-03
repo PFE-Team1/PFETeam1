@@ -1,13 +1,16 @@
+// Fichier 1: AGameAction.cs
 using UnityEngine;
 
 public abstract class AGameAction : MonoBehaviour
 {
-    [Header("Action Settings")]
-    [SerializeField] protected float duration = 1f;
+    [Header("Debug Settings")]
     [SerializeField] protected ActionStartCondition startCondition = ActionStartCondition.WaitForPrevious;
+    protected float duration = 0f;
 
-    [Header("Delay Settings")]
-    [SerializeField] protected float delayAmount = 0f; // Délai en secondes pour DelayAfterPrevious et DelayFromStart
+    // Le champ delayAmount ne s'affiche que si startCondition est DelayAfterPrevious ou DelayFromStart
+    [SerializeField]
+    [ConditionalField("startCondition", ActionStartCondition.DelayAfterPrevious, ActionStartCondition.DelayFromStart)]
+    protected float delayAmount = 0f; // Délai en secondes pour DelayAfterPrevious et DelayFromStart
 
     protected float _currentTime = 0f;
     protected bool _isFinished = false;
@@ -20,11 +23,9 @@ public abstract class AGameAction : MonoBehaviour
     public virtual void Execute()
     {
         if (_hasStarted) return;
-
         _hasStarted = true;
         _currentTime = 0f;
         _isFinished = false;
-
         OnExecute();
 
         if (duration <= 0f)
@@ -38,7 +39,6 @@ public abstract class AGameAction : MonoBehaviour
         if (!_hasStarted || _isFinished) return;
 
         _currentTime += deltaTime;
-
         OnUpdate(deltaTime);
 
         if (_currentTime >= duration)
@@ -51,7 +51,6 @@ public abstract class AGameAction : MonoBehaviour
     public virtual void End()
     {
         if (!_hasStarted) return;
-
         OnEnd();
         Reset();
     }
@@ -67,7 +66,6 @@ public abstract class AGameAction : MonoBehaviour
     public virtual void Skip()
     {
         if (!_hasStarted) return;
-
         _currentTime = duration;
         _isFinished = true;
         OnSkip();
