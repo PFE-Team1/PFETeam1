@@ -10,11 +10,12 @@ public class PaintingController : Interactable
 {
     [SerializeField] private GameObject _newLevelPrefab;
     [SerializeField] private GameObject _spawnPoint;
+    [SerializeField] private GameObject _VFXPoseSocle;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
     private SpriteRenderer _spriteRenderer;
     private PaintHandler _paintHandlerAccessor;
-    private Collider2D _targetCollider;
+    private Transform _targetTransform;
     private PaintHandler _paintHandler { get => getPaintHandler(); set => _paintHandler = value; }
     public bool _isHeld = false;
     public PlayerStateMachine CurrentHoldingStateMachine;
@@ -64,7 +65,7 @@ public class PaintingController : Interactable
         return spawnPoint.transform;
     }
 
-    public void AnimateDropPainting()
+    public void AnimateDropPainting(Transform Parent = null)
     {
         Vector3 releasePosition = transform.position;
         RaycastHit2D[] hits = Physics2D.RaycastAll(releasePosition, Vector3.back);
@@ -86,7 +87,7 @@ public class PaintingController : Interactable
                         {
                             PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                             _paintHandler.CurrentPaintingController = this;
-                            _targetCollider = child;
+                            _targetTransform = Parent ? Parent : child.GetComponentInChildren<SpriteMask>().transform;
                             PlayerC.heldObject = null;
                             _isHeld = false;
                             CurrentHoldingStateMachine = null;
@@ -103,12 +104,13 @@ public class PaintingController : Interactable
     public void DropPainting()
     {
         // Visuel de peinture
-        transform.SetParent(_targetCollider.GetComponentInChildren<SpriteMask>().transform);
+        transform.SetParent(_targetTransform);
         transform.localRotation = Quaternion.Euler(0, 0, 0);
         transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-
         _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 1);
         boneFollower.SkeletonRenderer = null;
+
+        if (transform.parent.GetComponent<LevelSpawner>() != null) transform.localPosition = Vector3.zero;
 
         return;
     }
@@ -127,6 +129,7 @@ public class PaintingController : Interactable
         {
             Destroy(Instantiate(VFX_GrabToile, transform), 1f);
         }
+        UnfreezePos();
         AudioManager.Instance.SFX_GrabToile.Post(gameObject);
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
@@ -139,5 +142,19 @@ public class PaintingController : Interactable
         PlayerC.heldObject = gameObject;
         if (!GetComponentInChildren<UIToolTipZone>()) return;
         GetComponentInChildren<UIToolTipZone>().enabled = false;
+    }
+    public void FreezePos()
+    {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+    public void UnfreezePos()
+    {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+    }
+    public void PlayVFXSocle()
+    {
+        _VFXPoseSocle.SetActive(true);
     }
 }

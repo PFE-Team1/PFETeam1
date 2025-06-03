@@ -18,6 +18,17 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
+								<Action Name="" ID="{AC086885-A476-4B0D-9107-86AC8E4823C6}" ShortID="366280631">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="36"/>
+										<Property Name="SeekPercent" Type="Real64" Value="50"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Toile1_Niveau1_LP" ID="{85D1A1A7-AFA8-45D4-97E4-1AAEFE7EB8B9}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="Play_AMB_RFX_Toile01_CraquementBois_RC" ID="{75200F58-0E8C-4FA5-B642-0F63A6DC5E33}">
@@ -60,6 +71,17 @@
 						<Event Name="Play_AMB_Toile2_Niveau01_LP" ID="{B9F0AC8C-1702-4221-9935-51F4400CB05D}">
 							<ChildrenList>
 								<Action Name="" ID="{3D410527-65E0-45BC-920C-FF7161FC9A6E}" ShortID="797466833">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Toile2_Niveau01_LP" ID="{ADE2ACEC-7FC0-41BA-B121-741523F282B3}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{CE190F88-B023-4EF0-B147-121C69B6DE80}" ShortID="686549595">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="36"/>
+										<Property Name="SeekPercent" Type="Real64" Value="50"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="AMB_Toile2_Niveau01_LP" ID="{ADE2ACEC-7FC0-41BA-B121-741523F282B3}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
@@ -125,6 +147,17 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
+								<Action Name="" ID="{B5E4D08C-D239-476C-A4FE-0B4DC0A950D3}" ShortID="302103484">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="36"/>
+										<Property Name="SeekPercent" Type="Real64" Value="50"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Toile3_Niveau2_LP" ID="{28DC167D-C815-45FD-A796-22F561AA9FF5}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="Play_AMB_RFX_Toile01_WoodCreak" ID="{58343657-EE0A-4EA8-8B3A-B3BAF6877493}">
@@ -141,6 +174,17 @@
 						<Event Name="Play_AMB_Toile3_Niveau2_Fenetre_LP" ID="{85F751E4-E0DF-41B5-AF64-BFBF225A2EEF}">
 							<ChildrenList>
 								<Action Name="" ID="{3A0A896E-5F84-4147-B531-52553AA6BACC}" ShortID="895971918">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Toile3_Niveau2_Fenetre_LP" ID="{43FD3FC1-8B81-4797-AFEB-98850A77B2B7}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{B947D36A-47EC-487A-9FC1-891234DFC692}" ShortID="83381805">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="36"/>
+										<Property Name="SeekPercent" Type="Real64" Value="40"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="AMB_Toile3_Niveau2_Fenetre_LP" ID="{43FD3FC1-8B81-4797-AFEB-98850A77B2B7}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
@@ -177,6 +221,43 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="AMB_RFX_Toile01_Spatule" ID="{60330CCC-B559-4783-8A40-E543791B1777}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Toile02_Niv02" ID="{1A310A04-0230-4303-B9A6-769457A8085D}" ShortID="588823091">
+					<ChildrenList>
+						<Event Name="Play_AMB_Toile3_Niveau2_LP_01" ID="{4F750880-FB3E-4668-8CC2-E514C9EC6579}">
+							<ChildrenList>
+								<Action Name="" ID="{49A55AB7-52CC-42C1-9A0C-6D6A68B8E217}" ShortID="1061018268">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Toile3_Niveau2_LP" ID="{2734F084-77F6-4887-A01D-A89153F0F35F}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{70EFC5C6-CD02-4163-A2D4-B6FCB1B4C06A}" ShortID="240953137">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="36"/>
+										<Property Name="SeekPercent" Type="Real64" Value="40"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Toile3_Niveau2_LP" ID="{2734F084-77F6-4887-A01D-A89153F0F35F}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_AMB_RFX_Toile02_Vase" ID="{FEC9AA7B-8191-4CAF-BBAC-788849C2AD23}">
+							<ChildrenList>
+								<Action Name="" ID="{822936D1-E9B1-420B-8749-D4B2F14ED19A}" ShortID="730553124">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_RFX_Toile02_Vase" ID="{9615D33C-92E8-49FD-A987-A9D4924201DC}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
