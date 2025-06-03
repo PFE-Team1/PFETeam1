@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Deformation
-  m_Shader: {fileID: 4800000, guid: a0a0f5cb20b9bbf448120114fc506fea, type: 3}
+  m_Name: M_Canvas Hauteur
+  m_Shader: {fileID: 4800000, guid: bd0c0e1ad73fc6d4ca720b360c1d115e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,24 +23,40 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Cadre_Tex:
+        m_Texture: {fileID: 2800000, guid: 6d52ea6a0a1322e4a9bd9c2a01914f1d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TextureCanvas:
-        m_Texture: {fileID: 2800000, guid: 61ac4bb5c5276264580c988b076dcd09, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample0:
+    - _Main_Tex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
-        m_Texture: {fileID: 2800000, guid: 61ac4bb5c5276264580c988b076dcd09, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9a2e1e543103aaa44a58c847f43f3ab5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample2:
-        m_Texture: {fileID: 2800000, guid: 61ac4bb5c5276264580c988b076dcd09, type: 3}
+        m_Texture: {fileID: 2800000, guid: b3351448e33b1ab4cb027e961e9d7411, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 2800000, guid: 6d52ea6a0a1322e4a9bd9c2a01914f1d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample4:
+        m_Texture: {fileID: 2800000, guid: 6d52ea6a0a1322e4a9bd9c2a01914f1d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample5:
+        m_Texture: {fileID: 2800000, guid: 6d52ea6a0a1322e4a9bd9c2a01914f1d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample6:
+        m_Texture: {fileID: 2800000, guid: 6d52ea6a0a1322e4a9bd9c2a01914f1d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -62,11 +78,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
-    - _Float0: 0.5025486
-    - _G_Deformation: 0.039
-    - _H_Deformation: 0.042
-    - _Speed_H: -0.2
-    - _Speed_X: 0.3
+    - _B_Degrade: 0.043
+    - _B_Line_Mask: 0.017
+    - _D_Degrade: 0.041
+    - _D_Line_Mask: 0.02
+    - _Float0: 0.108
+    - _G_Degrade: 0.253
+    - _G_Line_Mask: 0.046
+    - _H_Degrade: 0.037
+    - _H_Line_Mask: 0.01
+    - _Scale: 0.05
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
