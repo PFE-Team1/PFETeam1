@@ -9,7 +9,6 @@ using System;
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Sprite clearButtonImage;
-    [SerializeField] private string[] textChoices;
     [SerializeField] private Image[] choiceImage;
     Sprite selectedButtonImage;
     Image currentButtonImage;

@@ -295,16 +295,6 @@ public class SettingsManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_firstPauseItem);
     }
 
-    public void SetParallax()
-    {
-        wantParallax = !wantParallax;
-    }
-
-    public void SetScreenShake()
-    {
-        wantScreenShake = !wantScreenShake;
-    }
-
     public void QuitGame()
     {
         Application.Quit();
