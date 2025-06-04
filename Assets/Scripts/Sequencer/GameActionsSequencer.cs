@@ -110,6 +110,8 @@ public class GameActionsSequencer : MonoBehaviour
 
         switch (action.StartCondition)
         {
+            case AGameAction.ActionStartCondition.Conditional:
+                return action.ConditionMet;
             case AGameAction.ActionStartCondition.WaitForPrevious:
                 return previousActionData.hasBeenExecuted && !previousActionData.isActive;
 

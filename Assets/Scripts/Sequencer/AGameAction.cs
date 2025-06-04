@@ -1,10 +1,13 @@
-// Fichier 1: AGameAction.cs
+// Fichier: AGameAction.cs
 using UnityEngine;
 
 public abstract class AGameAction : MonoBehaviour
 {
     [Header("Debug Settings")]
-    [SerializeField] protected ActionStartCondition startCondition = ActionStartCondition.WaitForPrevious;
+    [SerializeField]
+    [ExcludeEnum(ActionStartCondition.Conditional)] // Exclut "Conditional" de l'affichage
+    protected ActionStartCondition startCondition = ActionStartCondition.WaitForPrevious;
+
     protected float duration = 0f;
 
     // Le champ delayAmount ne s'affiche que si startCondition est DelayAfterPrevious ou DelayFromStart
@@ -15,10 +18,12 @@ public abstract class AGameAction : MonoBehaviour
     protected float _currentTime = 0f;
     protected bool _isFinished = false;
     protected bool _hasStarted = false;
+    protected bool _ConditionMet = false;
 
     public float Duration => duration;
     public float DelayAmount => delayAmount;
     public ActionStartCondition StartCondition => startCondition;
+    public bool ConditionMet => _ConditionMet;
 
     public virtual void Execute()
     {
@@ -27,7 +32,6 @@ public abstract class AGameAction : MonoBehaviour
         _currentTime = 0f;
         _isFinished = false;
         OnExecute();
-
         if (duration <= 0f)
         {
             _isFinished = true;
@@ -37,10 +41,8 @@ public abstract class AGameAction : MonoBehaviour
     public virtual void ActionUpdate(float deltaTime)
     {
         if (!_hasStarted || _isFinished) return;
-
         _currentTime += deltaTime;
         OnUpdate(deltaTime);
-
         if (_currentTime >= duration)
         {
             _isFinished = true;
@@ -108,6 +110,7 @@ public abstract class AGameAction : MonoBehaviour
         WaitForPrevious,        // Attendre que l'action précédente se termine
         DelayAfterPrevious,     // Attendre delayAmount secondes après la fin de l'action précédente
         Simultaneous,           // Se lancer en même temps que l'action précédente
-        DelayFromStart          // Se lancer delayAmount secondes après le début de la première action
+        DelayFromStart,         // Se lancer delayAmount secondes après le début de la première action
+        Conditional             // Se lancer si une condition spécifique est remplie (à définir dans les classes dérivées)
     }
 }
