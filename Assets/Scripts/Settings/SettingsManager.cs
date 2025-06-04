@@ -293,7 +293,6 @@ public class SettingsManager : MonoBehaviour
     public void DisplayPauseMenu()
     {
         _pauseMenu.SetActive(!_pauseMenu.activeSelf);
-        if (_pauseMenu.activeSelf && _firstPauseItem != null)
         EventSystem.current.SetSelectedGameObject(_firstPauseItem);
     }
 
