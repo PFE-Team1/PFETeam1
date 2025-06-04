@@ -58,7 +58,7 @@ public class UIToolTipZone : MonoBehaviour
         if (ShouldDestroyOnExit)
         {
             EventManager.instance.OnInput.RemoveAllListeners();
-            Destroy(other.gameObject);
+            Destroy(gameObject);
             return;
         }
         ToolTipManager toolTipManager = other.GetComponentInChildren<ToolTipManager>();
