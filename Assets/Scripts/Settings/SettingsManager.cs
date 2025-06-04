@@ -93,6 +93,7 @@ public class SettingsManager : MonoBehaviour
 
         InitVolume();
         SetControls();
+        _mainMenu.SetActive(false);
     }
 
     void Update()
@@ -103,6 +104,7 @@ public class SettingsManager : MonoBehaviour
             AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
             isMainMenuActive = true;
+            _mainMenu.SetActive(true);
             _zoomCoroutine = StartCoroutine(UIZoom(() =>
             {
                 if (_firstItem != null)
@@ -113,11 +115,9 @@ public class SettingsManager : MonoBehaviour
 
     IEnumerator UIZoom(System.Action onComplete)
     {
-        //play both animation 
         _firstMenuAnimator.Play(_firstMenuAnimation.name);
         _secondMenuAnimator.Play(_secondMenuAnimation.name);
         yield return new WaitForSeconds(_firstMenuAnimation.length);
-
         onComplete?.Invoke();
     }
 
