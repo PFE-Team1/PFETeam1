@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,32 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &614548105 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8280208368659155336, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
-  m_PrefabInstance: {fileID: 900104613}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &614548109
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614548105}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.077301, y: 17.353111, z: 0.3707112}
-  m_Center: {x: 0.13480377, y: 8.4911995, z: 0}
 --- !u!1001 &900104613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -157,6 +131,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1691748762}
     m_Modifications:
+    - target: {fileID: 55998994363435513, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 64.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 55998994363435513, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 281135444854500610, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 281135444854500610, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 281135444854500610, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 281135444854500610, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Positions.Array.data[2].x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 281135444854500610, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 281135444854500610, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 281135444854500610, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.8388349
+      objectReference: {fileID: 0}
     - target: {fileID: 1251044905732385597, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 83.350006
@@ -267,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7403543624835366224, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: _objectsToRemove.Array.data[0].RespawnTime
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9070706936985301211, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
       propertyPath: m_Name
@@ -276,10 +286,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8280208368659155336, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 614548109}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501f58435cf7ff64095d24071838b13a, type: 3}
 --- !u!61 &900104614 stripped
 BoxCollider2D:
@@ -811,11 +818,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6820811530077196720, guid: 8bbd7c9d904028244aca94edfe344894, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -81.22
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 6820811530077196720, guid: 8bbd7c9d904028244aca94edfe344894, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 7.9
       objectReference: {fileID: 0}
     - target: {fileID: 6820811530077196720, guid: 8bbd7c9d904028244aca94edfe344894, type: 3}
       propertyPath: m_LocalPosition.z
