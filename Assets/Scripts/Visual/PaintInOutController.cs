@@ -27,10 +27,6 @@ public class PaintInOutController : MonoBehaviour
     {
         PaintIn(_firstPaint);
     }
-    private void Awake()
-    {
-        Reset();
-    }
     public float DurationOut { get => _durationOut; }
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}

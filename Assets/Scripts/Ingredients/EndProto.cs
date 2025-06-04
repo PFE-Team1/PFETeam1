@@ -10,10 +10,15 @@ public class EndProto : Interactable
     [SerializeField]private GameObject _level;
     [SerializeField] PaintInOutController _endEffect;
     private SpriteRenderer _fissure;
+    private SpriteRenderer _renderer;
+    private Animator _animator;
 
     protected override void Start()
     {
         base.Start();
+        _renderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        OpenRift();
         // Make it move up and down a litle based on his original position using a tween 
         transform.DOLocalMoveY(transform.localPosition.y + 0.25f, 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         _endEffect = FindFirstObjectByType<PaintInOutController>();
@@ -34,13 +39,7 @@ public class EndProto : Interactable
     {
         CameraManager.Instance.SeeCurrentLevel(_level);
         yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime);
-        foreach (Level level in FindObjectsOfType<Level>())
-        {
-            if (level.gameObject != _level)
-            {
-                Destroy(level.gameObject);
-            }
-        }
+        DestroyOtherLevel();
         if (_endEffect != null)
         {
             _endEffect.PaintOut(_level);
@@ -54,7 +53,26 @@ public class EndProto : Interactable
         yield return null;
 
     }
+    public void DestroyOtherLevel()
+    {
+        foreach (Level level in FindObjectsOfType<Level>())
+        {
+            if (level.gameObject != _level)
+            {
+                Destroy(level.gameObject);
+            }
+        }
+    }
+    public void OpenRift()
+    {
+        _renderer.enabled = true;//+anim du perso qui sort /tombe.
+        _animator.SetBool("Openning", true);
+    }
 
+    public void CloseRift()
+    {
+        _animator.SetBool("Closing", true);
+    }
 
     protected override void Interact()
     {
