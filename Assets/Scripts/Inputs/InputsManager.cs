@@ -173,6 +173,24 @@ public class InputsManager : MonoBehaviour
         }
     }
 
+    #region InputDisabling
+    public void DisableAllInputs()
+    {
+        foreach (var action in _playerInputs.actions)
+        {
+            action.Disable();
+        }
+    }
+
+    public void EnableAllInputs()
+    {
+        foreach (var action in _playerInputs.actions)
+        {
+            action.Enable();
+        }
+    }
+    #endregion
+
     #region Init/InputAction
     public PlayerInput _playerInputs;
     [SerializeField] private InputActionAsset _inputActionAsset;
