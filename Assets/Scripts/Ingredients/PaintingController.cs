@@ -10,6 +10,7 @@ public class PaintingController : Interactable
 {
     [SerializeField] private GameObject _newLevelPrefab;
     [SerializeField] private GameObject _spawnPoint;
+    [SerializeField] private GameObject _VFXPoseSocle;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
     private SpriteRenderer _spriteRenderer;
@@ -128,6 +129,7 @@ public class PaintingController : Interactable
         {
             Destroy(Instantiate(VFX_GrabToile, transform), 1f);
         }
+        UnfreezePos();
         AudioManager.Instance.SFX_GrabToile.Post(gameObject);
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
@@ -140,5 +142,19 @@ public class PaintingController : Interactable
         PlayerC.heldObject = gameObject;
         if (!GetComponentInChildren<UIToolTipZone>()) return;
         GetComponentInChildren<UIToolTipZone>().enabled = false;
+    }
+    public void FreezePos()
+    {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+    public void UnfreezePos()
+    {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+    }
+    public void PlayVFXSocle()
+    {
+        _VFXPoseSocle.SetActive(true);
     }
 }

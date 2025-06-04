@@ -54,7 +54,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1966c60e5442c7d4891d923c5efde9a7, type: 2}
+  - {fileID: 2100000, guid: 9660b3db619dd4e4198d7f54761dfe6b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -491,8 +491,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea83a4648b306a4b8418e327c38d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyName: interact
-  KeyIcon: {fileID: -229713360, guid: 8796074406b0de34783794b5c157e050, type: 3}
+  KeyboardIcon: {fileID: 0}
+  ControllerIcon: {fileID: 0}
+  ShouldDestroyOnExit: 0
 --- !u!1 &2192119892729295383
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +683,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1966c60e5442c7d4891d923c5efde9a7, type: 2}
+  - {fileID: 2100000, guid: 9660b3db619dd4e4198d7f54761dfe6b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -998,6 +999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f438742b7cfc76646aa725d95e598cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doors: []
+  _isEnd: 0
 --- !u!114 &7429980433336528054
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -308,7 +308,7 @@ Shader "New Amplify Shader"
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
-				Gradient gradient167 = NewGradient( 0, 7, 2, float4( 1, 0.9177689, 0.5801887, 0.07490654 ), float4( 1, 0.6212161, 0.1273585, 0.2264744 ), float4( 1, 0.8959579, 0.5562341, 0.3083696 ), float4( 1, 0.6196079, 0.1254902, 0.4337987 ), float4( 1, 0.9254902, 0.6196079, 0.6550546 ), float4( 1, 0.6196079, 0.1254902, 0.9198596 ), float4( 1, 0.9242194, 0.6179246, 1 ), 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
+				Gradient gradient167 = NewGradient( 0, 7, 2, float4( 1, 0.9176471, 0.5803922, 0.07316701 ), float4( 1, 0.6196079, 0.1254902, 0.2299687 ), float4( 1, 0.9176471, 0.5803922, 0.3066148 ), float4( 1, 0.6196079, 0.1254902, 0.4337987 ), float4( 1, 0.9176471, 0.5803922, 0.6550546 ), float4( 1, 0.6196079, 0.1254902, 0.9198596 ), float4( 1, 0.9176471, 0.5803922, 1 ), 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				float2 texCoord78 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult94 = (float2(0.0 , -( _Dist_intensity / _Divide_Offset )));
 				float2 appendResult162 = (float2(0.0 , _Dist_Pan_Speed));
@@ -348,16 +348,16 @@ Shader "New Amplify Shader"
 				float smoothstepResult150 = smoothstep( _H_Min_degrade , _H_Max_degrade , ( _Smooth_H - texCoord119.y ));
 				float temp_output_135_0 = ( tex2D( _Brush_Tex, ( (texCoord78*_Tex_Scale + appendResult94) + ( smoothstepResult77 * _Dist_intensity ) ) ).r * smoothstepResult134 * ( smoothstepResult122 * smoothstepResult127 * smoothstepResult144 * smoothstepResult150 ) );
 				float4 appendResult96 = (float4(( SampleGradient( gradient167, temp_output_135_0 ) * _HDR ).rgb , temp_output_135_0));
-				float4 temp_output_2_0_g7 = ( appendResult96 * temp_output_135_0 );
+				float4 temp_output_2_0_g12 = ( appendResult96 * temp_output_135_0 );
 				float2 temp_cast_7 = (_Noise_Scale1).xx;
 				float2 texCoord200 = IN.texCoord0.xy * temp_cast_7 + float2( 0,0 );
 				float2 temp_output_34_0_g11 = ( IN.texCoord0.xy - float2( 0.5,0.5 ) );
 				float2 break39_g11 = temp_output_34_0_g11;
 				float2 appendResult50_g11 = (float2(( 1.0 * ( length( temp_output_34_0_g11 ) * 2.0 ) ) , ( ( atan2( break39_g11.x , break39_g11.y ) * ( 1.0 / TWO_PI ) ) * 1.0 )));
-				float temp_output_2_0_g12 = step( ( 1.0 - ( tex2D( _TextureSample2, texCoord200 ).r + 0.0 ) ) , ( appendResult50_g11.x + _Disolve_Cursor2 ) );
-				float4 appendResult4_g13 = (float4((temp_output_2_0_g7).rgb , ( (temp_output_2_0_g12).x * (temp_output_2_0_g7).a )));
+				float temp_output_2_0_g13 = step( ( 1.0 - ( tex2D( _TextureSample2, texCoord200 ).r + 0.0 ) ) , ( appendResult50_g11.x + _Disolve_Cursor2 ) );
+				float4 appendResult4_g14 = (float4((temp_output_2_0_g12).rgb , ( (temp_output_2_0_g13).x * (temp_output_2_0_g12).a )));
 				
-				float4 Color = appendResult4_g13;
+				float4 Color = appendResult4_g14;
 
 				#if ETC1_EXTERNAL_ALPHA
 					float4 alpha = SAMPLE_TEXTURE2D(_AlphaTex, sampler_AlphaTex, IN.texCoord0.xy);
@@ -632,7 +632,7 @@ Shader "New Amplify Shader"
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
-				Gradient gradient167 = NewGradient( 0, 7, 2, float4( 1, 0.9177689, 0.5801887, 0.07490654 ), float4( 1, 0.6212161, 0.1273585, 0.2264744 ), float4( 1, 0.8959579, 0.5562341, 0.3083696 ), float4( 1, 0.6196079, 0.1254902, 0.4337987 ), float4( 1, 0.9254902, 0.6196079, 0.6550546 ), float4( 1, 0.6196079, 0.1254902, 0.9198596 ), float4( 1, 0.9242194, 0.6179246, 1 ), 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
+				Gradient gradient167 = NewGradient( 0, 7, 2, float4( 1, 0.9176471, 0.5803922, 0.07316701 ), float4( 1, 0.6196079, 0.1254902, 0.2299687 ), float4( 1, 0.9176471, 0.5803922, 0.3066148 ), float4( 1, 0.6196079, 0.1254902, 0.4337987 ), float4( 1, 0.9176471, 0.5803922, 0.6550546 ), float4( 1, 0.6196079, 0.1254902, 0.9198596 ), float4( 1, 0.9176471, 0.5803922, 1 ), 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				float2 texCoord78 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult94 = (float2(0.0 , -( _Dist_intensity / _Divide_Offset )));
 				float2 appendResult162 = (float2(0.0 , _Dist_Pan_Speed));
@@ -672,16 +672,16 @@ Shader "New Amplify Shader"
 				float smoothstepResult150 = smoothstep( _H_Min_degrade , _H_Max_degrade , ( _Smooth_H - texCoord119.y ));
 				float temp_output_135_0 = ( tex2D( _Brush_Tex, ( (texCoord78*_Tex_Scale + appendResult94) + ( smoothstepResult77 * _Dist_intensity ) ) ).r * smoothstepResult134 * ( smoothstepResult122 * smoothstepResult127 * smoothstepResult144 * smoothstepResult150 ) );
 				float4 appendResult96 = (float4(( SampleGradient( gradient167, temp_output_135_0 ) * _HDR ).rgb , temp_output_135_0));
-				float4 temp_output_2_0_g7 = ( appendResult96 * temp_output_135_0 );
+				float4 temp_output_2_0_g12 = ( appendResult96 * temp_output_135_0 );
 				float2 temp_cast_7 = (_Noise_Scale1).xx;
 				float2 texCoord200 = IN.texCoord0.xy * temp_cast_7 + float2( 0,0 );
 				float2 temp_output_34_0_g11 = ( IN.texCoord0.xy - float2( 0.5,0.5 ) );
 				float2 break39_g11 = temp_output_34_0_g11;
 				float2 appendResult50_g11 = (float2(( 1.0 * ( length( temp_output_34_0_g11 ) * 2.0 ) ) , ( ( atan2( break39_g11.x , break39_g11.y ) * ( 1.0 / TWO_PI ) ) * 1.0 )));
-				float temp_output_2_0_g12 = step( ( 1.0 - ( tex2D( _TextureSample2, texCoord200 ).r + 0.0 ) ) , ( appendResult50_g11.x + _Disolve_Cursor2 ) );
-				float4 appendResult4_g13 = (float4((temp_output_2_0_g7).rgb , ( (temp_output_2_0_g12).x * (temp_output_2_0_g7).a )));
+				float temp_output_2_0_g13 = step( ( 1.0 - ( tex2D( _TextureSample2, texCoord200 ).r + 0.0 ) ) , ( appendResult50_g11.x + _Disolve_Cursor2 ) );
+				float4 appendResult4_g14 = (float4((temp_output_2_0_g12).rgb , ( (temp_output_2_0_g13).x * (temp_output_2_0_g12).a )));
 				
-				float4 Color = appendResult4_g13;
+				float4 Color = appendResult4_g14;
 
 				#if ETC1_EXTERNAL_ALPHA
 					float4 alpha = SAMPLE_TEXTURE2D( _AlphaTex, sampler_AlphaTex, IN.texCoord0.xy );
@@ -931,7 +931,7 @@ Shader "New Amplify Shader"
 
 			half4 frag(VertexOutput IN) : SV_TARGET
 			{
-				Gradient gradient167 = NewGradient( 0, 7, 2, float4( 1, 0.9177689, 0.5801887, 0.07490654 ), float4( 1, 0.6212161, 0.1273585, 0.2264744 ), float4( 1, 0.8959579, 0.5562341, 0.3083696 ), float4( 1, 0.6196079, 0.1254902, 0.4337987 ), float4( 1, 0.9254902, 0.6196079, 0.6550546 ), float4( 1, 0.6196079, 0.1254902, 0.9198596 ), float4( 1, 0.9242194, 0.6179246, 1 ), 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
+				Gradient gradient167 = NewGradient( 0, 7, 2, float4( 1, 0.9176471, 0.5803922, 0.07316701 ), float4( 1, 0.6196079, 0.1254902, 0.2299687 ), float4( 1, 0.9176471, 0.5803922, 0.3066148 ), float4( 1, 0.6196079, 0.1254902, 0.4337987 ), float4( 1, 0.9176471, 0.5803922, 0.6550546 ), float4( 1, 0.6196079, 0.1254902, 0.9198596 ), float4( 1, 0.9176471, 0.5803922, 1 ), 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				float2 texCoord78 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult94 = (float2(0.0 , -( _Dist_intensity / _Divide_Offset )));
 				float2 appendResult162 = (float2(0.0 , _Dist_Pan_Speed));
@@ -971,16 +971,16 @@ Shader "New Amplify Shader"
 				float smoothstepResult150 = smoothstep( _H_Min_degrade , _H_Max_degrade , ( _Smooth_H - texCoord119.y ));
 				float temp_output_135_0 = ( tex2D( _Brush_Tex, ( (texCoord78*_Tex_Scale + appendResult94) + ( smoothstepResult77 * _Dist_intensity ) ) ).r * smoothstepResult134 * ( smoothstepResult122 * smoothstepResult127 * smoothstepResult144 * smoothstepResult150 ) );
 				float4 appendResult96 = (float4(( SampleGradient( gradient167, temp_output_135_0 ) * _HDR ).rgb , temp_output_135_0));
-				float4 temp_output_2_0_g7 = ( appendResult96 * temp_output_135_0 );
+				float4 temp_output_2_0_g12 = ( appendResult96 * temp_output_135_0 );
 				float2 temp_cast_7 = (_Noise_Scale1).xx;
 				float2 texCoord200 = IN.ase_texcoord.xy * temp_cast_7 + float2( 0,0 );
 				float2 temp_output_34_0_g11 = ( IN.ase_texcoord.xy - float2( 0.5,0.5 ) );
 				float2 break39_g11 = temp_output_34_0_g11;
 				float2 appendResult50_g11 = (float2(( 1.0 * ( length( temp_output_34_0_g11 ) * 2.0 ) ) , ( ( atan2( break39_g11.x , break39_g11.y ) * ( 1.0 / TWO_PI ) ) * 1.0 )));
-				float temp_output_2_0_g12 = step( ( 1.0 - ( tex2D( _TextureSample2, texCoord200 ).r + 0.0 ) ) , ( appendResult50_g11.x + _Disolve_Cursor2 ) );
-				float4 appendResult4_g13 = (float4((temp_output_2_0_g7).rgb , ( (temp_output_2_0_g12).x * (temp_output_2_0_g7).a )));
+				float temp_output_2_0_g13 = step( ( 1.0 - ( tex2D( _TextureSample2, texCoord200 ).r + 0.0 ) ) , ( appendResult50_g11.x + _Disolve_Cursor2 ) );
+				float4 appendResult4_g14 = (float4((temp_output_2_0_g12).rgb , ( (temp_output_2_0_g13).x * (temp_output_2_0_g12).a )));
 				
-				float4 Color = appendResult4_g13;
+				float4 Color = appendResult4_g14;
 
 				half4 outColor = half4(_ObjectId, _PassValue, 1.0, 1.0);
 				return outColor;
@@ -1209,7 +1209,7 @@ Shader "New Amplify Shader"
 
 			half4 frag(VertexOutput IN ) : SV_TARGET
 			{
-				Gradient gradient167 = NewGradient( 0, 7, 2, float4( 1, 0.9177689, 0.5801887, 0.07490654 ), float4( 1, 0.6212161, 0.1273585, 0.2264744 ), float4( 1, 0.8959579, 0.5562341, 0.3083696 ), float4( 1, 0.6196079, 0.1254902, 0.4337987 ), float4( 1, 0.9254902, 0.6196079, 0.6550546 ), float4( 1, 0.6196079, 0.1254902, 0.9198596 ), float4( 1, 0.9242194, 0.6179246, 1 ), 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
+				Gradient gradient167 = NewGradient( 0, 7, 2, float4( 1, 0.9176471, 0.5803922, 0.07316701 ), float4( 1, 0.6196079, 0.1254902, 0.2299687 ), float4( 1, 0.9176471, 0.5803922, 0.3066148 ), float4( 1, 0.6196079, 0.1254902, 0.4337987 ), float4( 1, 0.9176471, 0.5803922, 0.6550546 ), float4( 1, 0.6196079, 0.1254902, 0.9198596 ), float4( 1, 0.9176471, 0.5803922, 1 ), 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				float2 texCoord78 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult94 = (float2(0.0 , -( _Dist_intensity / _Divide_Offset )));
 				float2 appendResult162 = (float2(0.0 , _Dist_Pan_Speed));
@@ -1249,16 +1249,16 @@ Shader "New Amplify Shader"
 				float smoothstepResult150 = smoothstep( _H_Min_degrade , _H_Max_degrade , ( _Smooth_H - texCoord119.y ));
 				float temp_output_135_0 = ( tex2D( _Brush_Tex, ( (texCoord78*_Tex_Scale + appendResult94) + ( smoothstepResult77 * _Dist_intensity ) ) ).r * smoothstepResult134 * ( smoothstepResult122 * smoothstepResult127 * smoothstepResult144 * smoothstepResult150 ) );
 				float4 appendResult96 = (float4(( SampleGradient( gradient167, temp_output_135_0 ) * _HDR ).rgb , temp_output_135_0));
-				float4 temp_output_2_0_g7 = ( appendResult96 * temp_output_135_0 );
+				float4 temp_output_2_0_g12 = ( appendResult96 * temp_output_135_0 );
 				float2 temp_cast_7 = (_Noise_Scale1).xx;
 				float2 texCoord200 = IN.ase_texcoord.xy * temp_cast_7 + float2( 0,0 );
 				float2 temp_output_34_0_g11 = ( IN.ase_texcoord.xy - float2( 0.5,0.5 ) );
 				float2 break39_g11 = temp_output_34_0_g11;
 				float2 appendResult50_g11 = (float2(( 1.0 * ( length( temp_output_34_0_g11 ) * 2.0 ) ) , ( ( atan2( break39_g11.x , break39_g11.y ) * ( 1.0 / TWO_PI ) ) * 1.0 )));
-				float temp_output_2_0_g12 = step( ( 1.0 - ( tex2D( _TextureSample2, texCoord200 ).r + 0.0 ) ) , ( appendResult50_g11.x + _Disolve_Cursor2 ) );
-				float4 appendResult4_g13 = (float4((temp_output_2_0_g7).rgb , ( (temp_output_2_0_g12).x * (temp_output_2_0_g7).a )));
+				float temp_output_2_0_g13 = step( ( 1.0 - ( tex2D( _TextureSample2, texCoord200 ).r + 0.0 ) ) , ( appendResult50_g11.x + _Disolve_Cursor2 ) );
+				float4 appendResult4_g14 = (float4((temp_output_2_0_g12).rgb , ( (temp_output_2_0_g13).x * (temp_output_2_0_g12).a )));
 				
-				float4 Color = appendResult4_g13;
+				float4 Color = appendResult4_g14;
 				half4 outColor = _SelectionID;
 				return outColor;
 			}
@@ -1341,16 +1341,16 @@ Node;AmplifyShaderEditor.SmoothstepOpNode;150;-384,1904;Inherit;True;3;0;FLOAT;0
 Node;AmplifyShaderEditor.SamplerNode;81;-272,-112;Inherit;True;Property;_Brush_Tex;_Brush_Tex;10;0;Create;True;0;0;0;False;0;False;-1;8956793f9998699479029495a21097c3;9ca0bd696107918428e1f750a8a41cab;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.SmoothstepOpNode;134;176,-816;Inherit;True;3;0;FLOAT;0;False;1;FLOAT;1.37;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;123;-64,1056;Inherit;True;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;199;128,-48;Inherit;False;Property;_Noise_Scale1;Noise_Scale;2;0;Create;True;0;0;0;False;0;False;4.35;1.48;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;199;128,-48;Inherit;False;Property;_Noise_Scale1;Noise_Scale;2;0;Create;True;0;0;0;False;0;False;4.35;4.35;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;135;512,-480;Inherit;True;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.GradientNode;167;480,-864;Inherit;False;0;7;2;1,0.9177689,0.5801887,0.07490654;1,0.6212161,0.1273585,0.2264744;1,0.8959579,0.5562341,0.3083696;1,0.6196079,0.1254902,0.4337987;1,0.9254902,0.6196079,0.6550546;1,0.6196079,0.1254902,0.9198596;1,0.9242194,0.6179246,1;1,0;1,1;0;1;OBJECT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;200;352,-80;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.GradientNode;167;480,-864;Inherit;False;0;7;2;1,0.9176471,0.5803922,0.07316701;1,0.6196079,0.1254902,0.2299687;1,0.9176471,0.5803922,0.3066148;1,0.6196079,0.1254902,0.4337987;1,0.9176471,0.5803922,0.6550546;1,0.6196079,0.1254902,0.9198596;1,0.9176471,0.5803922,1;1,0;1,1;0;1;OBJECT;0
 Node;AmplifyShaderEditor.GradientSampleNode;166;768,-608;Inherit;True;2;0;OBJECT;;False;1;FLOAT;0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;154;928,-320;Inherit;False;Property;_HDR;HDR;30;0;Create;True;0;0;0;False;0;False;0.75;6.54;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;154;928,-320;Inherit;False;Property;_HDR;HDR;30;0;Create;True;0;0;0;False;0;False;0.75;13.8;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.FunctionNode;201;384,368;Inherit;True;Polar Coordinates;-1;;11;7dab8e02884cf104ebefaa2e788e4162;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0.5,0.5;False;3;FLOAT;1;False;4;FLOAT;1;False;3;FLOAT2;0;FLOAT;55;FLOAT;56
-Node;AmplifyShaderEditor.SamplerNode;202;640,0;Inherit;True;Property;_TextureSample2;Texture Sample 2;4;0;Create;True;0;0;0;False;0;False;-1;None;babe5b65a5abcae47aba08de105876bd;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
+Node;AmplifyShaderEditor.SamplerNode;202;640,0;Inherit;True;Property;_TextureSample2;Texture Sample 2;4;0;Create;True;0;0;0;False;0;False;-1;None;9a2e1e543103aaa44a58c847f43f3ab5;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;153;1120,-608;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;203;880,672;Inherit;False;Property;_Disolve_Cursor2;Disolve_Cursor;1;0;Create;True;0;0;0;False;0;False;0.37;2.36;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;203;880,672;Inherit;False;Property;_Disolve_Cursor2;Disolve_Cursor;1;0;Create;True;0;0;0;False;0;False;0.37;1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.BreakToComponentsNode;204;816,416;Inherit;True;FLOAT2;1;0;FLOAT2;0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
 Node;AmplifyShaderEditor.SimpleAddOpNode;205;992,48;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.DynamicAppendNode;96;1376,-624;Inherit;True;COLOR;4;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;COLOR;0
@@ -1358,14 +1358,14 @@ Node;AmplifyShaderEditor.SimpleAddOpNode;206;1104,416;Inherit;True;2;2;0;FLOAT;0
 Node;AmplifyShaderEditor.OneMinusNode;207;1328,320;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;168;1632,-528;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.StepOpNode;208;1472,320;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.FunctionNode;183;1886.909,-401.9104;Inherit;False;Alpha Split;-1;;7;07dab7960105b86429ac8eebd729ed6d;0;1;2;COLOR;0,0,0,0;False;2;FLOAT3;0;FLOAT;6
-Node;AmplifyShaderEditor.FunctionNode;209;1632,304;Inherit;False;Alpha Split;-1;;12;07dab7960105b86429ac8eebd729ed6d;0;1;2;FLOAT;0;False;2;FLOAT3;0;FLOAT;6
+Node;AmplifyShaderEditor.FunctionNode;183;1886.909,-401.9104;Inherit;False;Alpha Split;-1;;12;07dab7960105b86429ac8eebd729ed6d;0;1;2;COLOR;0,0,0,0;False;2;FLOAT3;0;FLOAT;6
+Node;AmplifyShaderEditor.FunctionNode;209;1632,304;Inherit;False;Alpha Split;-1;;13;07dab7960105b86429ac8eebd729ed6d;0;1;2;FLOAT;0;False;2;FLOAT3;0;FLOAT;6
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;210;1856,272;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;84;-2992,688;Inherit;True;Constant;_Float1;Float 1;8;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;108;-2288,-1200;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;156;1376,-288;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.VertexColorNode;155;1184,-256;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.FunctionNode;212;2064,256;Inherit;True;Alpha Merge;-1;;13;e0d79828992f19c4f90bfc29aa19b7a5;0;2;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;1;FLOAT4;0
+Node;AmplifyShaderEditor.FunctionNode;212;2064,256;Inherit;True;Alpha Merge;-1;;14;e0d79828992f19c4f90bfc29aa19b7a5;0;2;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;1;FLOAT4;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit Forward;0;1;Sprite Unlit Forward;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;SceneSelectionPass;0;2;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=SceneSelectionPass;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;ScenePickingPass;0;3;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;;0;0;Standard;0;False;0
@@ -1466,4 +1466,4 @@ WireConnection;212;2;183;0
 WireConnection;212;3;210;0
 WireConnection;0;1;212;0
 ASEEND*/
-//CHKSM=5E5B0CCC2074AD9BD90DDFC583CBF15E848A6D8F
+//CHKSM=07310227F1B613622E81FA423F732FC2D550977F
