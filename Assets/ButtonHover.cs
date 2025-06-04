@@ -6,13 +6,14 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
     [SerializeField] private Sprite clearButtonImage;
     [SerializeField] private Image[] choiceImage;
     Sprite selectedButtonImage;
     Image currentButtonImage;
     TextMeshProUGUI[] buttonText;
+    [SerializeField] private bool isFirstButton = false;
 
     void Start()
     {
@@ -24,21 +25,99 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             Debug.LogWarning("Aucun composant Image trouvé sur cet objet.");
         }
         currentButtonImage.sprite = clearButtonImage;
-        foreach (TextMeshProUGUI text in buttonText)
+        if (!isFirstButton)
         {
-            if (text != null)
+            foreach (TextMeshProUGUI text in buttonText)
             {
-                text.color = new Color32(87, 77, 66, 255);
+                if (text != null)
+                {
+                    text.color = new Color32(87, 77, 66, 255);
+                }
+            }
+            foreach (Image image in choiceImage)
+            {
+                if (image != null)
+                {
+                    image.color = new Color32(87, 77, 66, 255);
+                }
             }
         }
-        foreach (Image image in choiceImage)
+        else
         {
-            if (image != null)
+            currentButtonImage.sprite = selectedButtonImage;
+            foreach (TextMeshProUGUI text in buttonText)
             {
-                image.color = new Color32(87, 77, 66, 255);
+                if (text != null)
+                {
+                    text.color = new Color32(234, 215, 190, 255);
+                }
+            }
+            foreach (Image image in choiceImage)
+            {
+                if (image != null)
+                {
+                    image.color = new Color32(234, 215, 190, 255);
+                }
             }
         }
     }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        if (selectedButtonImage != null)
+        {
+            currentButtonImage.sprite = selectedButtonImage;
+        }
+        if (buttonText != null)
+        {
+            foreach (TextMeshProUGUI text in buttonText)
+            {
+                if (text != null)
+                {
+                    text.color = new Color32(234, 215, 190, 255);
+                }
+            }
+        }
+        if (choiceImage != null)
+        {
+            foreach (Image image in choiceImage)
+            {
+                if (image != null)
+                {
+                    image.color = new Color32(234, 215, 190, 255);
+                }
+            }
+        }
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        if (selectedButtonImage != null)
+        {
+            currentButtonImage.sprite = clearButtonImage;
+        }
+        if (buttonText != null)
+        {
+            foreach (TextMeshProUGUI text in buttonText)
+            {
+                if (text != null)
+                {
+                    text.color = new Color32(87, 77, 66, 255);
+                }
+            }
+        }
+        if (choiceImage != null)
+        {
+            foreach (Image image in choiceImage)
+            {
+                if (image != null)
+                {
+                    image.color = new Color32(87, 77, 66, 255);
+                }
+            }
+        }
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (selectedButtonImage != null)

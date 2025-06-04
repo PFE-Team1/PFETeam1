@@ -14,7 +14,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _pauseMenu;
-    [SerializeField] private GameObject _firstPauseItem;
+
     [SerializeField] private GameObject _settingsCanva;
     [SerializeField] private TMP_Dropdown _resolutionDropDown;
     [SerializeField] private TMP_Dropdown _screenTypeDropDown;
@@ -34,6 +34,7 @@ public class SettingsManager : MonoBehaviour
 
     [Header("FirstController")]
     [SerializeField] private GameObject _firstItem;
+    [SerializeField] private GameObject _firstPauseItem;
 
     [Header("Volume")]
     [SerializeField] private AK.Wwise.RTPC _masterVolumeRTPC;
@@ -95,7 +96,7 @@ public class SettingsManager : MonoBehaviour
     void Update()
     {
         if (isMainMenuActive) return;
-        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown && !isMainMenuActive)
+        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown)
         {
             AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
@@ -108,7 +109,6 @@ public class SettingsManager : MonoBehaviour
                 if (_firstItem != null)
                     EventSystem.current.SetSelectedGameObject(_firstItem);
             }));
-
         }
     }
 
@@ -293,6 +293,7 @@ public class SettingsManager : MonoBehaviour
     public void DisplayPauseMenu()
     {
         _pauseMenu.SetActive(!_pauseMenu.activeSelf);
+        if (_pauseMenu.activeSelf && _firstPauseItem != null)
         EventSystem.current.SetSelectedGameObject(_firstPauseItem);
     }
 
