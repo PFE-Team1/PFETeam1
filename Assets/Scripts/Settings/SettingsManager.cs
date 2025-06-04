@@ -14,7 +14,8 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _pauseMenu;
-    [SerializeField] private GameObject _firstPauseItem;
+
+    [SerializeField] private GameObject _settingsCanva;
     [SerializeField] private TMP_Dropdown _resolutionDropDown;
     [SerializeField] private TMP_Dropdown _screenTypeDropDown;
     [SerializeField] private Slider _masterVolumeSlider;
@@ -27,14 +28,17 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _controlsPrefab;
     [SerializeField] private Transform _controlsParent;
 
-    [Header ("Camera Transition")]
-    [SerializeField] private GameObject _objectToZoom;
-    [SerializeField] private float _zoomSpeed = 5f;
-    
     [Header("FirstController")]
     [SerializeField] private GameObject _firstItem;
+    [SerializeField] private GameObject _firstPauseItem;
 
-    [Header ("Volume")]
+    [Header("Animation")]
+    [SerializeField] private Animator _firstMenuAnimator;
+    [SerializeField] private Animator _secondMenuAnimator;
+    [SerializeField] private AnimationClip _firstMenuAnimation;
+    [SerializeField] private AnimationClip _secondMenuAnimation;
+
+    [Header("Volume")]
     [SerializeField] private AK.Wwise.RTPC _masterVolumeRTPC;
     [SerializeField] private AK.Wwise.RTPC _ambianceVolumeRTPC;
     [SerializeField] private AK.Wwise.RTPC _musicVolumeRTPC;
@@ -62,7 +66,7 @@ public class SettingsManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -89,42 +93,31 @@ public class SettingsManager : MonoBehaviour
 
         InitVolume();
         SetControls();
+        _mainMenu.SetActive(false);
     }
 
     void Update()
     {
         if (isMainMenuActive) return;
-        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown && !isMainMenuActive)
+        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown )
         {
             AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
             isMainMenuActive = true;
+            _mainMenu.SetActive(true);
             _zoomCoroutine = StartCoroutine(UIZoom(() =>
             {
-                _objectToZoom.SetActive(false);
-                _landingMenu.SetActive(false);
-                _mainMenu.SetActive(true);
                 if (_firstItem != null)
                     EventSystem.current.SetSelectedGameObject(_firstItem);
             }));
-
         }
     }
 
     IEnumerator UIZoom(System.Action onComplete)
     {
-        _objectToZoom.GetComponent<Image>().enabled = true;
-        float timer = 0f;
-        Vector2 startSize = _objectToZoom.GetComponent<RectTransform>().sizeDelta;
-        Vector2 targetSize = new Vector2(Screen.width, Screen.height);
-        while (timer < _zoomSpeed)
-        {
-            timer += Time.deltaTime;
-            RectTransform rectTransform = _objectToZoom.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = Vector2.Lerp(startSize, targetSize, timer / _zoomSpeed);
-            rectTransform.position = Vector2.Lerp(rectTransform.position, new Vector2(Screen.width / 2, Screen.height / 2), timer / _zoomSpeed);
-            yield return null;
-        }
+        _firstMenuAnimator.Play(_firstMenuAnimation.name);
+        _secondMenuAnimator.Play(_secondMenuAnimation.name);
+        yield return new WaitForSeconds(_firstMenuAnimation.length);
         onComplete?.Invoke();
     }
 
@@ -142,8 +135,8 @@ public class SettingsManager : MonoBehaviour
             if (action.bindings.Count > 0)
             {
                 GameObject control = Instantiate(_controlsPrefab, _controlsParent);
-                control.GetComponent<TextUpdater>().Key = action.name;
-                control.GetComponent<TextMeshProUGUI>().text = action.name;
+                control.GetComponentInChildren<TextUpdater>().Key = action.name;
+                control.GetComponentInChildren<TextMeshProUGUI>().text = action.name;
                 control.GetComponentsInChildren<TextMeshProUGUI>()[1].text = action.bindings.First(b => b.groups.Contains(actions.currentControlScheme)).ToDisplayString();
                 control.GetComponentInChildren<Button>().onClick.AddListener(() =>
                 {
@@ -154,7 +147,7 @@ public class SettingsManager : MonoBehaviour
                     .OnComplete(operation => { operation.Dispose(); SetNewControls(); })
                     .Start();
                 });
-                control.GetComponent<TextUpdater>().UpdateText();
+                control.GetComponentInChildren<TextUpdater>().UpdateText();
             }
         }
     }
@@ -174,7 +167,7 @@ public class SettingsManager : MonoBehaviour
     public void SetScreenType()
     {
         int screenTypes = _screenTypeDropDown.value;
-        
+
         switch (screenTypes)
         {
             case 0:
@@ -293,16 +286,6 @@ public class SettingsManager : MonoBehaviour
     {
         _pauseMenu.SetActive(!_pauseMenu.activeSelf);
         EventSystem.current.SetSelectedGameObject(_firstPauseItem);
-    }
-
-    public void SetParallax()
-    {
-        wantParallax = !wantParallax;
-    }
-
-    public void SetScreenShake()
-    {
-        wantScreenShake = !wantScreenShake;
     }
 
     public void QuitGame()

@@ -26,7 +26,9 @@ public class PaintingController : Interactable
     [SerializeField] private ParticleSystem VFX_PoseToile;
 
     private BoneFollower boneFollower;
+    private bool _hasSpawned;
 
+    public bool HasSpawned { get => _hasSpawned; set => _hasSpawned = value; }
     private PaintHandler getPaintHandler()
     {
         _paintHandlerAccessor = Player.GetComponentInChildren<PaintHandler>();
