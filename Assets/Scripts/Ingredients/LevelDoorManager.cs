@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class LevelDoorManage : MonoBehaviour
 {
-    List<Door> _doors = new List<Door>();
+    [SerializeField]List<Door> _doors = new List<Door>();
+    [SerializeField]bool _isEnd;
+    bool _wasRemoved;
 
     private void Start()
     {
@@ -22,8 +24,8 @@ public class LevelDoorManage : MonoBehaviour
         {
             foreach (Door d in _doors)
             {
+                if (d == null) continue;
                 DoorVFX vfx = d.GetComponent<DoorVFX>();
-                print(vfx.IsDirection);
                 if (!vfx.IsDirection)
                 {
                     
@@ -39,21 +41,28 @@ public class LevelDoorManage : MonoBehaviour
         }
 
     }
-    private void OnDisable()
+    private void OnEnable()
     {
+        
+    }
+
+    public void Disable()
+    {
+        if (_isEnd) return;
         if (_doors.Count <= 0) return;
         foreach(Door d in _doors)
         {
-            d.OtherDoor?.Close();
-            d.Close();
+            _wasRemoved = true;
+            d?.OtherDoor?.Close();
+            d?.Close();
         }
     }
-    private void OnEnable()
+    /*private void OnEnable()
     {
         if (_doors.Count <= 0) return;
         foreach (Door d in _doors)
         {
             d.OtherDoor = null;
         }
-    }
+    }*/
 }

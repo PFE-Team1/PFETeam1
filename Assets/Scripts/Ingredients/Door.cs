@@ -6,6 +6,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] private Collider _collider;
+    [SerializeField] private Collider _triggerCollider;
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private Door _otherDoor;
     [SerializeField] private DoorVFX _vfxOpen;
@@ -15,6 +16,7 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
+        _triggerCollider.excludeLayers = 0;
         _closedDoorVFX.SetActive(false);
         _collider.isTrigger = true;
         _sprite.enabled = false;
@@ -23,6 +25,7 @@ public class Door : MonoBehaviour
     }
     public  void Close()
     {
+        _triggerCollider.excludeLayers = 8;
         _closedDoorVFX.SetActive(true);
         _collider.isTrigger = false;
         _sprite.enabled = true;
@@ -40,5 +43,4 @@ public class Door : MonoBehaviour
         }
 
     }
-  
 }

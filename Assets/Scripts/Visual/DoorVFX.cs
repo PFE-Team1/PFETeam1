@@ -32,15 +32,26 @@ public class DoorVFX : MonoBehaviour
         if (IsDirection == true&&_doorVFXInstance==null)
         {
             _doorVFXInstance = Instantiate(_doorVFXPrefab, (transform.position + otherDoor.transform.position) / 2, transform.rotation);
+
             _otherDoorVFX.DoorVFXInstance = _doorVFXInstance;
             _otherDoorVFX.IsDirection = false;
+            foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
+            {
+                child.In();
+            }
         }
 
     }
     public void StopDoorVFX()
     {
-       // _otherDoorVFX.DoorVFXInstance = null;
-        Destroy(_doorVFXInstance);
+        // _otherDoorVFX.DoorVFXInstance = null;
+        if (_doorVFXInstance)
+        {
+            foreach (DoorMaterialInstance child in _doorVFXInstance.transform.GetChild(0).GetComponentsInChildren<DoorMaterialInstance>())
+            {
+                child.Out(this);
+            }
+        }
         _doorVFXInstance = null;
         //_otherDoorVFX.OtherDoorVFX = null;
         _otherDoorVFX = null;
@@ -58,33 +69,26 @@ public class DoorVFX : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && (!_isPlayerInter))
+        if (other.CompareTag("Player") && (!_isPlayerInter)&& other.isTrigger == false)
         {
             _isPlayerInter = true;
-            print("x2rF5dne");
             other.GetComponent<Clone>().ChangeToLayerX("Inter");
         }
         _isOut = false;
     }
-    /*private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player") &&! _isPlayerInter)
-        {
-            _isPlayerInter = true;
-        }
-    }*/
     private void OnTriggerExit(Collider other)
     {
         _isPlayerInter = false;
-        if (other.CompareTag("Player")&&!_isOut)
+        if (other.CompareTag("Player")&&!_isOut&&other.isTrigger==false)
         {
             _isOut = true;
             if (!IsDirection)
             {
                 _levelDoorManager.UpdateDoor();
             }
-            if (!_otherDoorVFX|| !_otherDoorVFX.IsPlayerInter)//verifie si le joueur est sorti de l'autre partie du passage pour faire le changer de parent
+            if (_otherDoorVFX&&!_otherDoorVFX.IsPlayerInter)//verifie si le joueur est sorti de l'autre partie du passage pour faire le changer de parent
             {
+                print("feurPorte");
                 other.GetComponent<Clone>().ChangeParent();
             }
         }

@@ -33,10 +33,15 @@
 								</ModifierInfo>
 							</ModifierList>
 						</Property>
-						<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="4"/>
+						<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-13</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -187,10 +192,15 @@
 								</ModifierInfo>
 							</ModifierList>
 						</Property>
-						<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="4"/>
+						<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-18</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -315,6 +325,79 @@
 						</Sound>
 					</ChildrenList>
 				</RandomSequenceContainer>
+				<Sound Name="SUI_PressAnyKey" ID="{4FACC1EE-D385-41E4-80FF-DE8F43BA4439}" ShortID="640569451">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-11</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="SUI_PressAnyKey" ID="{9757E7FD-5E34-4CF8-9F22-0EBD8327EFF3}">
+							<Language>SFX</Language>
+							<AudioFile>SUI_PressAnyKey.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="544975433"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="SUI_PressAnyKey" ID="{9757E7FD-5E34-4CF8-9F22-0EBD8327EFF3}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="SUI_Pause" ID="{9E480F19-6AA5-4DFD-8B7B-CC4472BAC2C6}" ShortID="670209967">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="SUI_Pause" ID="{D5DC6983-3BB5-4736-A157-C6D87D01B350}">
+							<Language>SFX</Language>
+							<AudioFile>SUI_Pause.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="623534711"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="SUI_Pause" ID="{D5DC6983-3BB5-4736-A157-C6D87D01B350}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="SUI_Play" ID="{8F2E8169-85A1-4C16-9000-4ED5A024268E}" ShortID="837746783">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="SUI_Play" ID="{FB7C1422-1A44-4C81-8020-4B72DDE751DC}">
+							<Language>SFX</Language>
+							<AudioFile>SUI_Play.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="526980125"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="SUI_Play" ID="{FB7C1422-1A44-4C81-8020-4B72DDE751DC}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

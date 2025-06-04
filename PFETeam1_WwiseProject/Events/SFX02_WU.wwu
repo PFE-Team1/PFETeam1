@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B5516DF6-51C4-4270-93BA-02A911AD8D6A}" SchemaVersion="123">
+	<Events>
+		<WorkUnit Name="SFX02_WU" ID="{B5516DF6-51C4-4270-93BA-02A911AD8D6A}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="8"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="Play_Switch_Clone" ID="{3FBCCBFE-2939-4F3F-B60D-FD46C9D96D01}">
+					<ChildrenList>
+						<Action Name="" ID="{983DBB2A-F1A6-400B-B6CB-A5D230161F40}" ShortID="46057409">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Switch_Clone_RC" ID="{EB044F4C-B71A-4A98-9C3C-2224709D7C2A}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Reformation_Toile" ID="{3E40E616-C543-41BE-904F-11C756545CDB}">
+					<ChildrenList>
+						<Action Name="" ID="{C5ACD67D-D99A-4C07-BFFD-965087E57193}" ShortID="556842547">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Reformation_Toile" ID="{FE02C98F-FE7B-439D-BE74-7987CA8372D0}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_PoseToile_RC" ID="{46EADF9C-F151-440C-981B-B8D66EC804FE}">
+					<ChildrenList>
+						<Action Name="" ID="{2867EDAC-EA95-4E69-A843-EE1CAADB33A2}" ShortID="31369534">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="PoseToile_RC" ID="{982FD591-685C-4649-8497-4435F0531367}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_DisparitionToile" ID="{3E13298B-E57C-4C3E-927F-D78A6079D5AD}">
+					<ChildrenList>
+						<Action Name="" ID="{AA26AEBF-B25F-4D1B-A0A5-A9B11DF392E9}" ShortID="729701803">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_DisparitionToile_RC" ID="{82554452-AF0B-4201-A6FB-6782CBECA224}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_SFX_Connexion_Toile" ID="{8B09E879-4C56-4DC0-B008-9C8DF4107222}">
+					<ChildrenList>
+						<Action Name="" ID="{CEBB1C54-2ADF-4D8F-8EFC-C58B9A85FF49}" ShortID="128521437">
+							<PropertyList>
+								<Property Name="Probability" Type="Real64" Value="33"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Connexion_Toile" ID="{DDAD6BA1-0F8D-4546-9628-AB55F0F52FCD}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{6DCBBB1B-8A6E-4587-855D-89194E243949}" ShortID="758061652">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="36"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Connexion_Toile" ID="{DDAD6BA1-0F8D-4546-9628-AB55F0F52FCD}" WorkUnitID="{434B312C-90A9-47EF-8E07-029F016A4E48}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

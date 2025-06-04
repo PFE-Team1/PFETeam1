@@ -7,6 +7,7 @@ public class PaintHandler : MonoBehaviour
     [SerializeField] public SkeletonPartsRenderer BodyPartRenderer;
     [SerializeField] public SkeletonPartsRenderer ArmPartRenderer;
     [HideInInspector] public SkeletonMecanim SkeletonMecanim;
+    [HideInInspector] public PaintingController CurrentPaintingController;
 
     private Spine.AnimationState spineAnimationState;
 
@@ -26,6 +27,11 @@ public class PaintHandler : MonoBehaviour
     // to capture event "Footstep" when it's placed outside of folders
     void Grab()
     {
+        print("Grab called");
+        if (CurrentPaintingController != null)
+        {
+            CurrentPaintingController.GrabPainting();
+        }
     }
     void Clonecreation()
     {
@@ -37,9 +43,19 @@ public class PaintHandler : MonoBehaviour
 
     void Place()
     {
+        print("Place called");
+        if (CurrentPaintingController != null)
+        {
+            CurrentPaintingController.DropPainting();
+        }
     }
 
     void Pushbutton()
     {
+    }
+
+    void Footstep()
+    {
+        AudioManager.Instance.FOL_Pas.Post(gameObject);
     }
 }

@@ -2,6 +2,7 @@ using KeyIconHelper;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InputsManager : MonoBehaviour
@@ -29,6 +30,8 @@ public class InputsManager : MonoBehaviour
     public bool InputRestarting { get => _inputRestarting; set => _inputRestarting = value; }
     public float MoveX { get => _moveX; }
     public Vector2 Lookaround { get => _lookaround;}
+
+    public bool IsKeyboard = true;
     #endregion
 
     #region InputMethodes
@@ -36,6 +39,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputJumping = true;
         }
 
@@ -48,6 +52,8 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
+            EventManager.instance.OnInputInteract.Invoke();
             _inputInteract = true;
         }
         
@@ -60,6 +66,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputZooming = true;
         }
 
@@ -72,6 +79,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputDezooming = true;
         }
 
@@ -84,6 +92,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputSwitching = true;
         }
 
@@ -96,6 +105,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputRestarting = true;
         }
 
@@ -108,6 +118,7 @@ public class InputsManager : MonoBehaviour
     {
         if (context.performed)
         {
+            IsKeyboard = context.control.device is Keyboard;
             _inputPausing = true;
             SettingsManager.Instance.DisplayPauseMenu();
         }
@@ -119,10 +130,12 @@ public class InputsManager : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
+        IsKeyboard = context.control.device is Keyboard;
         _moveX = context.ReadValue<Vector2>().x;
     }
     public void OnLook(InputAction.CallbackContext context)
     {
+        IsKeyboard = context.control.device is Keyboard;
         _lookaround = context.ReadValue<Vector2>();
     }
 
@@ -138,11 +151,12 @@ public class InputsManager : MonoBehaviour
         }
         else
         {
+            print("Setting up inputs");
             instance = this;
+            SetupInputs();
         }
+        transform.parent = null;
         DontDestroyOnLoad(this.gameObject);
-        SetupInputs();
-
         // Initialisation du Game Manager...
     }
 
@@ -165,14 +179,17 @@ public class InputsManager : MonoBehaviour
 
     private void SetupInputs()
     {
+
         _playerInputs = gameObject.AddComponent<PlayerInput>();
         _playerInputs.camera = FindFirstObjectByType<Camera>();
         _playerInputs.notificationBehavior = PlayerNotifications.InvokeUnityEvents;
         _playerInputs.actions = _inputActionAsset;
 
+        
         foreach (var action in _playerInputs.actions)
         {
             action.performed += ctx => InvokeInputMethod($"On{action.name}", ctx);
+            action.performed += ctx => EventManager.instance.OnInput.Invoke();
             action.canceled += ctx => InvokeInputMethod($"On{action.name}", ctx);
             action.Enable();
         }

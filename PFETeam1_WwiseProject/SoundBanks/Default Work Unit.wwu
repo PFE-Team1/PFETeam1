@@ -3,13 +3,13 @@
 	<SoundBanks>
 		<WorkUnit Name="Default Work Unit" ID="{0C7E1A5B-EE34-4E41-9DC1-F3835973309B}" PersistMode="Standalone">
 			<ChildrenList>
-				<SoundBank Name="SFX_SBK" ID="{ACF4EBF5-5B2F-4F00-87F5-2A8C349F43B6}">
+				<SoundBank Name="SFX01_SBK" ID="{ACF4EBF5-5B2F-4F00-87F5-2A8C349F43B6}">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="8"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ObjectInclusionList>
-						<ObjectRef Name="SFX_WU" ID="{C87981A4-F36A-489C-AF68-1069BA57DB04}" WorkUnitID="{C87981A4-F36A-489C-AF68-1069BA57DB04}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="SFX01_WU" ID="{C87981A4-F36A-489C-AF68-1069BA57DB04}" WorkUnitID="{C87981A4-F36A-489C-AF68-1069BA57DB04}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
@@ -25,13 +25,13 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
-				<SoundBank Name="AMB_SBK" ID="{8298C9FD-9857-4007-AB1F-040C6BB35C2E}">
+				<SoundBank Name="AMB_LVL01_SBK" ID="{8298C9FD-9857-4007-AB1F-040C6BB35C2E}">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="4"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ObjectInclusionList>
-						<ObjectRef Name="AMB_WU" ID="{AA8ACAA1-5C1C-40BA-8A3B-F1BC2C8E9B1B}" WorkUnitID="{AA8ACAA1-5C1C-40BA-8A3B-F1BC2C8E9B1B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Toile01" ID="{CA9E805D-5089-4E19-929F-0DE93AEF9F71}" WorkUnitID="{AA8ACAA1-5C1C-40BA-8A3B-F1BC2C8E9B1B}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
@@ -54,6 +54,39 @@
 					</PropertyList>
 					<ObjectInclusionList>
 						<ObjectRef Name="UI_WU" ID="{38E29BAB-D86F-4D50-917A-5C99D0DA3795}" WorkUnitID="{38E29BAB-D86F-4D50-917A-5C99D0DA3795}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="AMB_LVL02_SBK" ID="{9650419E-7B36-46F6-8CAB-DC9270D2F89D}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="4"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="Toile02" ID="{0B7B9F79-3571-4899-A708-3F39DA45ADEB}" WorkUnitID="{AA8ACAA1-5C1C-40BA-8A3B-F1BC2C8E9B1B}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SFX02_SBK" ID="{B993DCAA-2E59-4CF6-B933-CE574F5C4745}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="8"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="SFX02_WU" ID="{B5516DF6-51C4-4270-93BA-02A911AD8D6A}" WorkUnitID="{B5516DF6-51C4-4270-93BA-02A911AD8D6A}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="AMB_LVL02_Bis_SBK" ID="{1420C154-9952-470C-869D-DF3AB5116FB5}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="4"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="Toile03_Niv02" ID="{EA1E5D62-D31A-4A57-B606-40665DAC4924}" WorkUnitID="{AA8ACAA1-5C1C-40BA-8A3B-F1BC2C8E9B1B}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
