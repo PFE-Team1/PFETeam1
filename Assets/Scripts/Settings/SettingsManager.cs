@@ -28,13 +28,15 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject _controlsPrefab;
     [SerializeField] private Transform _controlsParent;
 
-    [Header("Camera Transition")]
-    [SerializeField] private GameObject _objectToZoom;
-    [SerializeField] private float _zoomSpeed = 5f;
-
     [Header("FirstController")]
     [SerializeField] private GameObject _firstItem;
     [SerializeField] private GameObject _firstPauseItem;
+
+    [Header("Animation")]
+    [SerializeField] private Animator _firstMenuAnimator;
+    [SerializeField] private Animator _secondMenuAnimator;
+    [SerializeField] private AnimationClip _firstMenuAnimation;
+    [SerializeField] private AnimationClip _secondMenuAnimation;
 
     [Header("Volume")]
     [SerializeField] private AK.Wwise.RTPC _masterVolumeRTPC;
@@ -96,16 +98,13 @@ public class SettingsManager : MonoBehaviour
     void Update()
     {
         if (isMainMenuActive) return;
-        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown)
+        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown )
         {
             AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
             isMainMenuActive = true;
             _zoomCoroutine = StartCoroutine(UIZoom(() =>
             {
-                _objectToZoom.SetActive(false);
-                _landingMenu.SetActive(false);
-                _mainMenu.SetActive(true);
                 if (_firstItem != null)
                     EventSystem.current.SetSelectedGameObject(_firstItem);
             }));
@@ -114,18 +113,11 @@ public class SettingsManager : MonoBehaviour
 
     IEnumerator UIZoom(System.Action onComplete)
     {
-        _objectToZoom.GetComponent<Image>().enabled = true;
-        float timer = 0f;
-        Vector2 startSize = _objectToZoom.GetComponent<RectTransform>().sizeDelta;
-        Vector2 targetSize = new Vector2(Screen.width, Screen.height);
-        while (timer < _zoomSpeed)
-        {
-            timer += Time.deltaTime;
-            RectTransform rectTransform = _objectToZoom.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = Vector2.Lerp(startSize, targetSize, timer / _zoomSpeed);
-            rectTransform.position = Vector2.Lerp(rectTransform.position, new Vector2(Screen.width / 2, Screen.height / 2), timer / _zoomSpeed);
-            yield return null;
-        }
+        //play both animation 
+        _firstMenuAnimator.Play(_firstMenuAnimation.name);
+        _secondMenuAnimator.Play(_secondMenuAnimation.name);
+        yield return new WaitForSeconds(_firstMenuAnimation.length);
+
         onComplete?.Invoke();
     }
 
