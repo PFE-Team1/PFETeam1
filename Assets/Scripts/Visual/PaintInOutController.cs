@@ -39,21 +39,24 @@ public class PaintInOutController : MonoBehaviour
             child.layer = 6;
         }
         float timer = 0;
-        Reset();        
+        Reset(paint);        
         Setup(paint);
         _coroutine = StartCoroutine(ShaderIn(paint));
     }
     public void PaintOut(GameObject paint)// objet , position taille
     {
 
-        Reset();
+        Reset(paint);
         Setup(paint);
         paint.GetComponent<LevelDoorManage>().Disable();
         _coroutine = StartCoroutine(ShaderOut(paint));
     }
     IEnumerator ShaderIn(GameObject paint)
     {
-        CameraManager.Instance.SeeCurrentLevel(paint);
+        if (!paint.GetComponent<Level>().WasAlreadySpawned)
+        {
+            CameraManager.Instance.SeeCurrentLevel(paint);
+        }
         float timer = 0;
         yield return new WaitForSeconds(_durationCameraIn);
         while (timer < _durationIn)
@@ -71,7 +74,10 @@ public class PaintInOutController : MonoBehaviour
         {
             child.layer = 0;
         }
-        CameraManager.Instance.FocusCamera();
+        if (!paint.GetComponent<Level>().WasAlreadySpawned)
+        {
+            CameraManager.Instance.FocusCamera();
+        }
         _image.enabled = false;
         _line.material.SetFloat("_CursorAppearance", 0);
         foreach (Renderer rend in _appearanceAddOns)
@@ -82,7 +88,10 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderOut(GameObject paint)
     {
-        CameraManager.Instance.SeeCurrentLevel(paint);
+        if (paint != _endPaint && !paint.GetComponent<Level>().WasAlreadySpawned)
+        {
+            CameraManager.Instance.SeeCurrentLevel(paint);
+        }
         yield return new WaitForSeconds(_durationCameraOut);
         _eraseRend.material.SetFloat("_CursorErase", -1);
         paint.layer = 6;
@@ -105,8 +114,9 @@ public class PaintInOutController : MonoBehaviour
         }
         paint.SetActive(false);
         _image.enabled = false;
-        if(paint!= _endPaint)
+        if(paint!= _endPaint&& !paint.GetComponent<Level>().WasAlreadySpawned)
         {
+            paint.GetComponent<Level>().WasAlreadySpawned = true;
             CameraManager.Instance.FocusCamera();
             CameraManager.Instance.ReEvaluate();
         }
@@ -124,7 +134,7 @@ public class PaintInOutController : MonoBehaviour
         }
         return result;
     }
-    private void Reset()
+    private void Reset(GameObject paint)
     {
         if (_coroutine != null)
         {
@@ -136,8 +146,11 @@ public class PaintInOutController : MonoBehaviour
             {
                 rend.material.SetFloat("_ResolveCursor", 1);
             }
+        if (_endPaint != paint)
+        {
             CameraManager.Instance.FocusCamera();
-            _image.enabled = false;
+        }
+        _image.enabled = false;
     }
     private void Searcher(List<GameObject> list, GameObject root)
     {

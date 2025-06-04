@@ -37,18 +37,21 @@ public class EndProto : Interactable
     }
     IEnumerator EndOfLevel()
     {
+        
+        Destroy(PlayerC.gameObject) ;
+        CloseRift();
+        yield return new WaitForSeconds(.5f);
+        _renderer.enabled = false;
+        yield return new WaitForSeconds(2);
         CameraManager.Instance.SeeCurrentLevel(_level);
         yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime);
         DestroyOtherLevel();
         if (_endEffect != null)
         {
             _endEffect.PaintOut(_level);
-            yield return new WaitForSeconds(_endEffect.DurationOut );
-            CameraManager.Instance.MainCamera.Follow = transform;
-            float timer = 0;
-            Vector3 currentPos = transform.position;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(_endEffect.DurationOut +3);
         }
+
         ScenesManager.instance.LoadNextScene();
         yield return null;
 
