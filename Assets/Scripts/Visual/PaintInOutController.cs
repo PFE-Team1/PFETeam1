@@ -146,10 +146,6 @@ public class PaintInOutController : MonoBehaviour
             {
                 rend.material.SetFloat("_ResolveCursor", 1);
             }
-        if (_endPaint != paint)
-        {
-            CameraManager.Instance.FocusCamera();
-        }
         _image.enabled = false;
     }
     private void Searcher(List<GameObject> list, GameObject root)
