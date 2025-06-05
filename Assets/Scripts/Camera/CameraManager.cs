@@ -264,7 +264,7 @@ public class CameraManager : MonoBehaviour
 
     public void ShowNewLevel()
     {
-        //StartCoroutine(ShowAndHideLevel()); mesure temporaire
+        StartCoroutine(ShowAndHideLevel());
     }
 
     IEnumerator ShowAndHideLevel()
