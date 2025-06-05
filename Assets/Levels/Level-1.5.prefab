@@ -1454,7 +1454,7 @@ LineRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 250
   m_Positions:
-  - {x: 0, y: 0, z: 0}
+  - {x: 0.48, y: 0.17, z: 0}
   - {x: -2, y: 0, z: 0}
   - {x: -2, y: -3, z: 0}
   m_Parameters:
@@ -3142,15 +3142,25 @@ LineRenderer:
   m_SortingOrder: 250
   m_Positions:
   - {x: 0, y: 0, z: 0}
+  - {x: -1.23, y: 0.08, z: 0}
   - {x: -3.5, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.77733606
+    widthMultiplier: 0.60350925
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
+        value: 0.5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.2548135
         value: 1
         inSlope: 0
         outSlope: 0
@@ -3159,8 +3169,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.28125697
-        value: 0.45744705
+        time: 0.5384568
+        value: 0.5053196
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -3168,7 +3178,7 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.5504807
+        time: 0.76923776
         value: 1
         inSlope: 0
         outSlope: 0
@@ -3177,17 +3187,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.79807687
-        value: 0.5053192
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.9903845
-        value: 1
+        time: 1
+        value: 0.53723335
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -4947,7 +4948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25, y: -15.3}
+  m_AnchoredPosition: {x: -26, y: -15.3}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6206290402754780416
@@ -6207,8 +6208,10 @@ LineRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 250
   m_Positions:
-  - {x: 0.36964417, y: 0.1, z: 0}
+  - {x: 0.36964417, y: 0.31, z: 0}
+  - {x: -1.02, y: -0.11, z: 0}
   - {x: -2.9455376, y: 0.2, z: 0}
+  - {x: -4.33, y: -0.12, z: 0}
   - {x: -6, y: -0.36964118, z: 0}
   m_Parameters:
     serializedVersion: 3
@@ -6217,8 +6220,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0048402706
-        value: 0.631016
+        time: 0
+        value: 0.4076197
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -6226,8 +6229,35 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 0.23516765
+        value: 0.7340431
+        inSlope: 0.20337135
+        outSlope: 0.20337135
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.50937784
+        value: 0.5924158
+        inSlope: -0.35145855
+        outSlope: -0.35145855
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.76329273
+        value: 0.52659607
+        inSlope: 0.30847594
+        outSlope: 0.30847594
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 1
-        value: 0.8388349
+        value: 0.22181141
         inSlope: -0.76660496
         outSlope: -0.76660496
         tangentMode: 0
@@ -8270,7 +8300,7 @@ LineRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 250
   m_Positions:
-  - {x: 0.48, y: -0.38, z: 0}
+  - {x: -1.85, y: -0.12, z: 0}
   - {x: -5.978569, y: -0.22403717, z: 0}
   - {x: -7.5865784, y: -0.09, z: 0}
   - {x: -11.436054, y: 0.117053986, z: 0}
@@ -11610,9 +11640,8 @@ LineRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 250
   m_Positions:
-  - {x: 0, y: 0, z: 0}
   - {x: 0.005722046, y: 2.8769608, z: 0}
-  - {x: -0.040672302, y: 6.5193186, z: 0}
+  - {x: 0.26, y: 6.5193186, z: 0}
   - {x: 0.052131653, y: 8, z: 0}
   m_Parameters:
     serializedVersion: 3
@@ -12048,6 +12077,7 @@ GameObject:
   - component: {fileID: 1247237461211523833}
   - component: {fileID: 2606119531793313956}
   - component: {fileID: 8000453818543601703}
+  - component: {fileID: 3010040551879396864}
   m_Layer: 0
   m_Name: Line_Wall (2)
   m_TagString: Untagged
@@ -12244,6 +12274,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -1.2
   depth: 1
+--- !u!65 &3010040551879396864
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089936093188264017}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.16, y: 5.7, z: 1.9709808}
+  m_Center: {x: 0.006467819, y: 2.75, z: 0}
 --- !u!1 &7140048069053947235
 GameObject:
   m_ObjectHideFlags: 0
@@ -13966,8 +14017,16 @@ LineRenderer:
   m_SortingOrder: 250
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: -100.77079, y: 0.011507034, z: 0}
+  - {x: -5.63, y: -0.17, z: 0}
+  - {x: -17.17, y: 0.11, z: 0}
+  - {x: -33.88, y: -0.3, z: 0}
+  - {x: -46.04, y: -0.2, z: 0}
+  - {x: -55.83, y: 0.22, z: 0}
+  - {x: -64.88, y: -0.2, z: 0}
+  - {x: -75.67, y: 0, z: 0}
+  - {x: -87.78, y: 0.8, z: 0}
+  - {x: -96.39, y: -0.2, z: 0}
+  - {x: -100.8, y: -0.6, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.9615011
@@ -14680,6 +14739,7 @@ GameObject:
   - component: {fileID: 1338863761424148944}
   - component: {fileID: 7902465684795838367}
   - component: {fileID: 7030518682555942005}
+  - component: {fileID: 6335555140554578852}
   m_Layer: 0
   m_Name: Line_Wall (1)
   m_TagString: Untagged
@@ -14878,6 +14938,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -1.2
   depth: 1
+--- !u!65 &6335555140554578852
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280208368659155336}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.91, y: 17.3, z: 1.9634938}
+  m_Center: {x: 0.32, y: 8.4912, z: 0}
 --- !u!1 &8286438860187588237
 GameObject:
   m_ObjectHideFlags: 0
@@ -15964,7 +16045,7 @@ Transform:
   m_GameObject: {fileID: 8669288811544219723}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.34, y: -17.17, z: 0.00056934357}
+  m_LocalPosition: {x: -24.34, y: -17.17, z: 0.00056934357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16824,7 +16905,9 @@ LineRenderer:
   m_SortingOrder: 250
   m_Positions:
   - {x: 0.37, y: 0.1, z: 0}
+  - {x: -0.32, y: 0.14, z: 0}
   - {x: -2, y: 0.1, z: 0}
+  - {x: -3.44, y: -0.05, z: 0}
   - {x: -4.79, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
@@ -16834,13 +16917,13 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.6898403
-        inSlope: -1.434073
-        outSlope: -1.434073
+        value: 0.22175425
+        inSlope: 1.09705
+        outSlope: 1.09705
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.15712906
+        outWeight: 0.23255683
       - serializedVersion: 3
         time: 0.4651468
         value: 0.7989335
@@ -16852,12 +16935,12 @@ LineRenderer:
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 0.62780744
-        inSlope: 0.6313214
-        outSlope: 0.6313214
+        value: 0.34589368
+        inSlope: -0.6200397
+        outSlope: -0.6200397
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.22171813
+        inWeight: 0.2561811
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -17059,7 +17142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42.18, y: -7.45}
+  m_AnchoredPosition: {x: 43.18, y: -7.45}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &5482631713236971983
