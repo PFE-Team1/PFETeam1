@@ -12076,8 +12076,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1247237461211523833}
   - component: {fileID: 2606119531793313956}
-  - component: {fileID: 8000453818543601703}
   - component: {fileID: 3010040551879396864}
+  - component: {fileID: 6493092865903108802}
   m_Layer: 0
   m_Name: Line_Wall (2)
   m_TagString: Untagged
@@ -12094,7 +12094,7 @@ Transform:
   m_GameObject: {fileID: 7089936093188264017}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.96, y: -8.73, z: 0.00056934357}
+  m_LocalPosition: {x: 40.96, y: -8.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12260,20 +12260,6 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &8000453818543601703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7089936093188264017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: -1.2
-  depth: 1
 --- !u!65 &3010040551879396864
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12294,6 +12280,27 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.16, y: 5.7, z: 1.9709808}
+  m_Center: {x: 0.006467819, y: 2.75, z: 0}
+--- !u!65 &6493092865903108802
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089936093188264017}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9839164, y: 5.81, z: 1.9709808}
   m_Center: {x: 0.006467819, y: 2.75, z: 0}
 --- !u!1 &7140048069053947235
 GameObject:
@@ -14756,7 +14763,7 @@ Transform:
   m_GameObject: {fileID: 8280208368659155336}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75.75, y: -8.65, z: 0.00056934357}
+  m_LocalPosition: {x: 75.99, y: -8.65, z: 0.00056934357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16029,6 +16036,8 @@ GameObject:
   - component: {fileID: 6831798775815584854}
   - component: {fileID: 5559002377662272530}
   - component: {fileID: 1085390218689352735}
+  - component: {fileID: 8058464348156724688}
+  - component: {fileID: 3558606078655545475}
   m_Layer: 0
   m_Name: Line_Wall (7)
   m_TagString: Untagged
@@ -16229,6 +16238,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.8
   depth: 1
+--- !u!65 &8058464348156724688
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669288811544219723}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1890855, y: 7.673996, z: 1.9634938}
+  m_Center: {x: 0.68045735, y: 3.6781998, z: 0}
+--- !u!65 &3558606078655545475
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669288811544219723}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.6607, y: 2.2619362, z: 1.9634938}
+  m_Center: {x: -2.7439795, y: 6.35921, z: 0}
 --- !u!1 &8738798796077853355
 GameObject:
   m_ObjectHideFlags: 0
