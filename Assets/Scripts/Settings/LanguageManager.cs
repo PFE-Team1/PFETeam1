@@ -10,7 +10,6 @@ using System.Xml;
 public class LanguageManager : MonoBehaviour
 {
     public static LanguageManager instance;
-    [SerializeField] private TMP_Dropdown _languageDropDown;
     [SerializeField] private TextAsset _languageFile;
     [SerializeField] private string _desiredLanguage;
     public string DesiredLanguage { get => _desiredLanguage; set => _desiredLanguage = value; }
@@ -42,7 +41,7 @@ public class LanguageManager : MonoBehaviour
 
     public void SetAllTextToLanguage()
     {
-        _desiredLanguage = _languageDropDown.options[_languageDropDown.value].text;
+        //_desiredLanguage = _languageDropDown.options[_languageDropDown.value].text;
         foreach (var text in FindObjectsByType<TextUpdater>(FindObjectsSortMode.None))
         {
             if (text.GetComponent<TextUpdater>() != null)
