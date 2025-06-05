@@ -20,16 +20,18 @@ public class InputsManager : MonoBehaviour
     private Vector2 _lookaround;
     #endregion
     #region InputPropri�t�s 
-    public bool InputJumping { get => _inputJumping;}
+    
+    // Needs to be setter for the GameActions
+    public bool InputJumping { get => _inputJumping; set=> _inputJumping = value; }
     public bool InputInteract { get => _inputInteract; set => _inputInteract=value; }
 
-    public bool InputZooming { get => _inputZooming;}
-    public bool InputDezooming { get => _inputDezooming;}
+    public bool InputZooming { get => _inputZooming; set => _inputZooming = value; }
+    public bool InputDezooming { get => _inputDezooming; set => _inputDezooming = value; }
     public bool InputSwitching { get => _inputSwitching; set => _inputSwitching = value; }
-    public bool InputPausing { get => _inputPausing;}
+    public bool InputPausing { get => _inputPausing; set => _inputPausing = value; }
     public bool InputRestarting { get => _inputRestarting; set => _inputRestarting = value; }
-    public float MoveX { get => _moveX; }
-    public Vector2 Lookaround { get => _lookaround;}
+    public float MoveX { get => _moveX; set => _moveX = value; }
+    public Vector2 Lookaround { get => _lookaround; set => _lookaround = value; }
 
     public bool IsKeyboard = true;
     #endregion

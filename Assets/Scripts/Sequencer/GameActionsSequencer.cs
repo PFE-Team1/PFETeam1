@@ -10,7 +10,7 @@ public class GameActionsSequencer : MonoBehaviour
     private float _sequenceStartTime = 0f;
 
     [Header("AutoPlay")]
-    public bool autoPlay = false;
+    public ActionTrigger actionTrigger = ActionTrigger.AutoStart;
 
     // Structure pour stocker les données d'exécution de chaque action
     private class ActionExecutionData
@@ -45,8 +45,18 @@ public class GameActionsSequencer : MonoBehaviour
 
     private void Start()
     {
-        if (autoPlay)
+        if (actionTrigger == ActionTrigger.AutoStart)
         {
+            Play();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (actionTrigger == ActionTrigger.Trigger && !_isRunning)
+        {
+            //destroy the trigger
+            Destroy(gameObject.GetComponent<BoxCollider>());
             Play();
         }
     }
@@ -247,5 +257,10 @@ public class GameActionsSequencer : MonoBehaviour
                 return i;
         }
         return -1;
+    }
+    public enum ActionTrigger
+    {
+        AutoStart,
+        Trigger,
     }
 }
