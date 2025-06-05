@@ -29,8 +29,18 @@ public class PaintInOutController : MonoBehaviour
     }
     public float DurationOut { get => _durationOut; }
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
-    public float DurationIn { get => _durationIn;}
-
+    public float DurationIn
+    {
+        get => _durationIn;
+        set
+        {
+            if (value <= 0)
+            {
+                value = 0.01f;
+            }
+            _durationIn = value;
+        }
+    }
     public void PaintIn(GameObject paint)// objet , position taille
     {
         paint.layer = 6;

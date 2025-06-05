@@ -13,13 +13,13 @@ public class SpawnManager : MonoBehaviour
     {
         _renderer=GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        StartCoroutine(StartSequence());
+        //StartCoroutine(StartSequence());
     }
     IEnumerator StartSequence()
     {
         if (_paintVisual)
         {
-            _paintVisual.PaintIn(_firstPaint);
+           // _paintVisual.PaintIn(_firstPaint);
             yield return new WaitForSeconds(_paintVisual.DurationIn+ CameraManager.Instance.CameraDezoomTime+2);
         }
         OpenRift();
