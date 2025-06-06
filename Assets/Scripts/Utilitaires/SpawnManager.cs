@@ -22,11 +22,17 @@ public class SpawnManager : MonoBehaviour
             _paintVisual.PaintIn(_firstPaint);
             yield return new WaitForSeconds(_paintVisual.DurationIn+ CameraManager.Instance.CameraDezoomTime+2);
         }
-        OpenRift();
-        yield return new WaitForSeconds(1f);
+        if (_renderer!=null)
+        {
+            OpenRift();
+            yield return new WaitForSeconds(1f);
+        }
         InstatiatePlayer();
-        yield return new WaitForSeconds(3f);
-        CloseRift();
+        if (_renderer != null)
+        {
+            yield return new WaitForSeconds(3f);
+            CloseRift();
+        }
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
         yield return null;
