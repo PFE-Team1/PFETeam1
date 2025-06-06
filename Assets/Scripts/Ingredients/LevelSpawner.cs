@@ -103,6 +103,7 @@ public class LevelSpawner : Interactable
             openButton.ReStart();
         }
         CameraManager.Instance.SetNewLevel(_newlevel);
+
         FindPlayer(true);
         isAlreadySpawned = true;
         paintingController.PlayVFXSocle();
@@ -228,6 +229,7 @@ public class LevelSpawner : Interactable
         paintingController.AnimateGrabPainting();
         _paint = null;
         CameraManager.Instance?.RemoveLevel(_newlevel);
+
     }
 
     void FindPlayer(bool active)
@@ -261,6 +263,30 @@ public class LevelSpawner : Interactable
                     RemoveNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
                     AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
+            }
+        }
+    }
+    private List<GameObject> AllChilds(GameObject root)
+    {
+        List<GameObject> result = new List<GameObject>();
+        if (root.transform.childCount > 0)
+        {
+            foreach (Transform VARIABLE in root.transform)
+            {
+                Searcher(result, VARIABLE.gameObject);
+            }
+        }
+        return result;
+    }
+    private void Searcher(List<GameObject> list, GameObject root)
+    {
+        list.Add(root);
+        if (root.transform.childCount > 0)
+        {
+            foreach (Transform VARIABLE in root.transform)
+            {
+                if (VARIABLE.gameObject.layer != 3)
+                    Searcher(list, VARIABLE.gameObject);
             }
         }
     }

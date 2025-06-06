@@ -289,7 +289,7 @@ public class CameraManager : MonoBehaviour
 
     public void FocusCamera()
     {
-        if (_globalCamera != null)
+        if (_globalCamera != null&&_playerTransform!=null)
         {
             if (_zoomCoroutine != null || _dezoomCoroutine != null) return;            
             _zoomCoroutine = StartCoroutine(ZoomEffect(() =>

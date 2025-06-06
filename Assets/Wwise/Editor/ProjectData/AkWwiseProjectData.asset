@@ -151,7 +151,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 5b1a7e0c34ee414e9dc1f3835973309b
     GuidInternal: 
-    m_lastTime: -8584524724933476465
+    m_lastTime: -8584525593236925954
     List:
     - name: AMB_LVL01_SBK
       guid: fdc9988257980740ab1f040c6bb35c2e
@@ -209,9 +209,9 @@ MonoBehaviour:
         ObjectType: 7
         guid: 4af1800409a1da45b060ea3c24dd5d8b
       Path: SoundBanks\Default Work Unit\FOL_SBK
-    - name: MUS_SBK
+    - name: MUS_01_SBK
       guid: bff3fe550da7004aa751ca87997d0e79
-      id: 552161325
+      id: 215490443
       PathAndIcons:
       - ElementName: SoundBanks
         ObjectType: 5
@@ -219,10 +219,24 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 5b1a7e0c34ee414e9dc1f3835973309b
-      - ElementName: MUS_SBK
+      - ElementName: MUS_01_SBK
         ObjectType: 7
         guid: bff3fe550da7004aa751ca87997d0e79
-      Path: SoundBanks\Default Work Unit\MUS_SBK
+      Path: SoundBanks\Default Work Unit\MUS_01_SBK
+    - name: MUS_02_SBK
+      guid: 4c219170a980844ca259f8386a0f95a3
+      id: 3557985392
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 5b1a7e0c34ee414e9dc1f3835973309b
+      - ElementName: MUS_02_SBK
+        ObjectType: 7
+        guid: 4c219170a980844ca259f8386a0f95a3
+      Path: SoundBanks\Default Work Unit\MUS_02_SBK
     - name: SFX01_SBK
       guid: f5ebf4ac2f5b004f87f52a8c349f43b6
       id: 776845020
@@ -781,18 +795,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.6309837
       minDuration: 0.4558711
-  - PhysicalPath: Events\MUS_WU.wwu
+  - PhysicalPath: Events\MUS_WU_01.wwu
     PathAndIcons:
     - ElementName: Events
       ObjectType: 5
       guid: 00000000000000000000000000000000
-    - ElementName: MUS_WU
+    - ElementName: MUS_WU_01
       ObjectType: 12
       guid: 95f36ea541cd1f499d6e1f5174a625d0
-    ParentPath: Events\MUS_WU
+    ParentPath: Events\MUS_WU_01
     guid: 95f36ea541cd1f499d6e1f5174a625d0
     GuidInternal: 
-    m_lastTime: -8584524724962777624
+    m_lastTime: -8584525593357795292
     List:
     - name: Play_Toile_1_PC
       guid: 7e5112db7ccbce4b8f14d066a54551d0
@@ -801,13 +815,13 @@ MonoBehaviour:
       - ElementName: Events
         ObjectType: 5
         guid: 00000000000000000000000000000000
-      - ElementName: MUS_WU
+      - ElementName: MUS_WU_01
         ObjectType: 12
         guid: 95f36ea541cd1f499d6e1f5174a625d0
       - ElementName: Play_Toile_1_PC
         ObjectType: 3
         guid: 7e5112db7ccbce4b8f14d066a54551d0
-      Path: Events\MUS_WU\Play_Toile_1_PC
+      Path: Events\MUS_WU_01\Play_Toile_1_PC
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -818,13 +832,43 @@ MonoBehaviour:
       - ElementName: Events
         ObjectType: 5
         guid: 00000000000000000000000000000000
-      - ElementName: MUS_WU
+      - ElementName: MUS_WU_01
         ObjectType: 12
         guid: 95f36ea541cd1f499d6e1f5174a625d0
       - ElementName: Play_Toile_2_PC
         ObjectType: 3
         guid: 064cf30254e1fa4e92fdafe18a3d0f2e
-      Path: Events\MUS_WU\Play_Toile_2_PC
+      Path: Events\MUS_WU_01\Play_Toile_2_PC
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+  - PhysicalPath: Events\MUS_WU_02_01.wwu
+    PathAndIcons:
+    - ElementName: Events
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: MUS_WU_02_01
+      ObjectType: 12
+      guid: 4ad0cd2b3bf715488ad85932db493f46
+    ParentPath: Events\MUS_WU_02_01
+    guid: 4ad0cd2b3bf715488ad85932db493f46
+    GuidInternal: 
+    m_lastTime: -8584525593357729165
+    List:
+    - name: Play_Main_Menu_PC_01
+      guid: f491a3d2ef204a4785ad89240ba02df4
+      id: 1638865919
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MUS_WU_02_01
+        ObjectType: 12
+        guid: 4ad0cd2b3bf715488ad85932db493f46
+      - ElementName: Play_Main_Menu_PC_01
+        ObjectType: 3
+        guid: f491a3d2ef204a4785ad89240ba02df4
+      Path: Events\MUS_WU_02_01\Play_Main_Menu_PC_01
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
