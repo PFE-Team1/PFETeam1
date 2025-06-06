@@ -11,7 +11,7 @@ public class hideLetterBoxGameAction : AGameAction
     [SerializeField] private float TweenDuration = 1f; // Durée de l'action en secondes
     [SerializeField] private LetterBoxType letterBoxType = LetterBoxType.UpDown; // Type de letterbox
 
-    protected new ActionStartCondition startCondition = ActionStartCondition.Conditional;
+    public override ActionEndCondition EndCondition => ActionEndCondition.ConditionMet;
     protected override void OnExecute()
     {
         if (UIManager.Instance == null)

@@ -12,7 +12,7 @@ public class showLetterBoxGameAction : AGameAction
     [SerializeField] private float openingRatio = 0.7f; // Ratio d'ouverture de la letterbox
     [SerializeField] private LetterBoxType letterBoxType = LetterBoxType.UpDown; // Type de letterbox
 
-    protected new ActionStartCondition startCondition = ActionStartCondition.Conditional;
+    public override ActionEndCondition EndCondition => ActionEndCondition.ConditionMet;
     protected override void OnExecute()
     {
         if (UIManager.Instance == null)
