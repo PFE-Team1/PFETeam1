@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    bool _wasAlreadySpawned;
+    public bool _wasAlreadySpawned;
 
     public bool WasAlreadySpawned { get => _wasAlreadySpawned; set => _wasAlreadySpawned = value; }
 

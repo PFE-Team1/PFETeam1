@@ -105,6 +105,10 @@ public class Clone : MonoBehaviour
                                     {
                                         change.GetComponent<Renderer>().sortingLayerID = val;
                                     }
+                                    if (change.GetComponent<ParticleSystemRenderer>())
+                                    {
+                                        change.GetComponent<ParticleSystemRenderer>().sortingLayerID = val;
+                                    }
                                 }
                                 foreach (SkeletonPartsRenderer skel in _skeletonPartRend) 
                                 {
