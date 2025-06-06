@@ -58,19 +58,19 @@ public class CameraManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            AudioManager.Instance.SFX_Dezoom.Post(gameObject);
-            SeeAllLevels();
+          //  AudioManager.Instance.SFX_Dezoom.Post(gameObject);
+        //    SeeAllLevels();
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            AudioManager.Instance.SFX_Zoom.Post(gameObject);
-            FocusCamera();
+           // AudioManager.Instance.SFX_Zoom.Post(gameObject);
+          //  FocusCamera();
         }
 
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            SeeCurrentLevel(_levels[0]);
+          //  SeeCurrentLevel(_levels[0]);
         }
 
         if (Input.GetKeyDown(KeyCode.F4))

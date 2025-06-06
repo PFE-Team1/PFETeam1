@@ -7,7 +7,6 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Collider _collider;
     [SerializeField] private Collider _triggerCollider;
-    [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private Door _otherDoor;
     [SerializeField] private DoorVFX _vfxOpen;
     [SerializeField] private GameObject _groundOpen;
@@ -19,7 +18,6 @@ public class Door : MonoBehaviour
         _triggerCollider.excludeLayers = 0;
         _closedDoorVFX.SetActive(false);
         _collider.isTrigger = true;
-        _sprite.enabled = false;
             _vfxOpen.PlayDoorVFX(_otherDoor); 
         _groundOpen.SetActive(true);
     }
@@ -28,7 +26,6 @@ public class Door : MonoBehaviour
         _triggerCollider.excludeLayers = 8;
         _closedDoorVFX.SetActive(true);
         _collider.isTrigger = false;
-        _sprite.enabled = true;
         _vfxOpen.StopDoorVFX();
         _groundOpen.SetActive(false);
 

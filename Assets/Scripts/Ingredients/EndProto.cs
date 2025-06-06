@@ -22,8 +22,6 @@ public class EndProto : Interactable
         // Make it move up and down a litle based on his original position using a tween 
         transform.DOLocalMoveY(transform.localPosition.y + 0.25f, 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         _endEffect = FindFirstObjectByType<PaintInOutController>();
-        if (_endEffect == null) return;
-        _endEffect.EndPaint = _level;
         _fissure = GetComponent<SpriteRenderer>();
         StartCoroutine(OpenFissure());
     }
@@ -37,7 +35,7 @@ public class EndProto : Interactable
     }
     IEnumerator EndOfLevel()
     {
-        
+        _endEffect.EndPaint = _level;
         Destroy(PlayerC.gameObject) ;
         CloseRift();
         yield return new WaitForSeconds(.5f);

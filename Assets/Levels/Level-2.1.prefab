@@ -7705,6 +7705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa980aa6019621342a710a22a5aec92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _wasAlreadySpawned: 0
   offset: 2
 --- !u!1 &4022571950774228943
 GameObject:
@@ -23796,9 +23797,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8801188359208695302, guid: 4abea8fd2facc004290e4c8c1d135c21, type: 3}
+      propertyPath: m_Size.x
+      value: 13.047852
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801188359208695302, guid: 4abea8fd2facc004290e4c8c1d135c21, type: 3}
+      propertyPath: m_Size.y
+      value: 20.666668
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801188359208695302, guid: 4abea8fd2facc004290e4c8c1d135c21, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 026e285b5f22fc14981f2a1426bdb635, type: 3}
+      objectReference: {fileID: 21300000, guid: 99d68eba334332e479aa4f243e333989, type: 3}
     - target: {fileID: 8801188359208695302, guid: 4abea8fd2facc004290e4c8c1d135c21, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -23806,6 +23815,10 @@ PrefabInstance:
     - target: {fileID: 8801188359208695302, guid: 4abea8fd2facc004290e4c8c1d135c21, type: 3}
       propertyPath: m_SortingLayerID
       value: -695904943
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801188359208695302, guid: 4abea8fd2facc004290e4c8c1d135c21, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

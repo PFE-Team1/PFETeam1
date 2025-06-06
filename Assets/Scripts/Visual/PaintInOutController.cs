@@ -114,7 +114,7 @@ public class PaintInOutController : MonoBehaviour
         }
         paint.SetActive(false);
         _image.enabled = false;
-        if(paint!= _endPaint&& !paint.GetComponent<Level>().WasAlreadySpawned)
+        if(paint!= _endPaint&&!paint.GetComponent<Level>().WasAlreadySpawned)
         {
             paint.GetComponent<Level>().WasAlreadySpawned = true;
             CameraManager.Instance.FocusCamera();
