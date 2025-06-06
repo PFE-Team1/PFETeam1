@@ -11,6 +11,8 @@ public class PaintingController : Interactable
     [SerializeField] private GameObject _newLevelPrefab;
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private GameObject _VFXPoseSocle;
+    [SerializeField] private ParticleSystem _VFXTrail;
+    [SerializeField] private bool _needsRotation;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
     private SpriteRenderer _spriteRenderer;
@@ -108,6 +110,11 @@ public class PaintingController : Interactable
     public void DropPainting()
     {
         // Visuel de peinture
+        if (_needsRotation)
+        {
+            PlayerC.PaintingTransform.Rotate(new Vector3(0, 0, 1), -90f);
+        }
+        _VFXTrail.Play(true);
         _rigidBody.useGravity = true;
         transform.SetParent(_targetTransform);
         transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -130,9 +137,14 @@ public class PaintingController : Interactable
     }
     public void GrabPainting()
     {
+        _VFXTrail.Stop(true);
         if (VFX_GrabToile != null)
         {
             Destroy(Instantiate(VFX_GrabToile, transform), 1f);
+        }
+        if (_needsRotation)
+        {
+            transform.Rotate(new Vector3(0, 0, 1), 90f);
         }
         UnfreezePos();
         _rigidBody.useGravity = false;
@@ -156,6 +168,7 @@ public class PaintingController : Interactable
     public void UnfreezePos()
     {
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
     }

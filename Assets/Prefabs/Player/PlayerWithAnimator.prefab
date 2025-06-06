@@ -1053,6 +1053,10 @@ PrefabInstance:
       propertyPath: m_SpriteSortPoint
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2090370044665964963, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3049459012460121757, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
       propertyPath: _clone
       value: 
@@ -1118,9 +1122,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4515051955276103870, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: _jumpVFX
+      value: 
+      objectReference: {fileID: 5978504867243117432, guid: aa83569f58bcbcb4185c4b9ce03063a9, type: 3}
+    - target: {fileID: 4515051955276103870, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: _landVFX
+      value: 
+      objectReference: {fileID: 1694657517537803507, guid: 2911a454c1362ee41b7274b7da7c5e6f, type: 3}
+    - target: {fileID: 4515051955276103870, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: _walkVFX
+      value: 
+      objectReference: {fileID: 462736448830760902}
+    - target: {fileID: 4515051955276103870, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
       propertyPath: _playerRenderer
       value: 
       objectReference: {fileID: 4758601017466862578}
+    - target: {fileID: 4515051955276103870, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: _relativePositionJumpVFX.y
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381870523817746654, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_positionOffsetData.positionOffset.y
+      value: -2.051177
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354826115271065594, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823742037637565668, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8271765362207550925, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+      propertyPath: m_SortingOrder
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 8530188775646297504, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
       propertyPath: m_Height
       value: 3.7
@@ -1197,6 +1233,8 @@ PrefabInstance:
     - {fileID: 1335213646195064767, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6700865436177754771, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+    - {fileID: 9130049767020673947, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+    - {fileID: 2250483842598209776, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
       insertIndex: -1
@@ -1215,6 +1253,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4735811076322215158}
   m_SourcePrefab: {fileID: 100100000, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+--- !u!198 &462736448830760902 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7354826115271065594, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}
+  m_PrefabInstance: {fileID: 6951991275475277884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1639141888688183678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8558257557379563842, guid: 2356f0f9de4cfd147a32f462bd85d394, type: 3}

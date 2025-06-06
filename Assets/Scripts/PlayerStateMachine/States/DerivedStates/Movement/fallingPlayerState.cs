@@ -19,6 +19,7 @@ public class FallingPlayerState : PlayerState
 
     protected override void OnStateExit(PlayerState nextState)
     {
+        EventManager.instance.OnLand.Invoke();
         AudioManager.Instance.FOL_Atterissage.Post(StateMachine.gameObject);
     }
 
