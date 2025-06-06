@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" SchemaVersion="123">
+	<Events>
+		<WorkUnit Name="MUS_WU" ID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="12"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="Play_Toile_1_PC" ID="{DB12517E-CB7C-4BCE-8F14-D066A54551D0}">
+					<ChildrenList>
+						<Action Name="" ID="{1EFCA7B5-2E34-4C2A-BB07-4A850A6A45BF}" ShortID="783637089">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Level" ID="{19721471-C01B-4F2A-9240-F71DB31E7BB7}" WorkUnitID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Toile_2_PC" ID="{02F34C06-E154-4EFA-92FD-AFE18A3D0F2E}">
+					<ChildrenList>
+						<Action Name="" ID="{0CB998CB-916B-4752-B9F8-474C07FC2859}" ShortID="515467863">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Level" ID="{19721471-C01B-4F2A-9240-F71DB31E7BB7}" WorkUnitID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Toile_Tuto_PC" ID="{774E5D97-761D-4C74-8057-CF2745D2EA26}">
+					<ChildrenList>
+						<Action Name="" ID="{F088569F-16F6-4153-A69D-B2B98B6C1342}" ShortID="392226535">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LevelTransition" ID="{454A2AEF-091F-45DF-9228-F3C3897569BD}" WorkUnitID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{C9E9BF08-19DE-4B22-940B-D12DEAB02875}" ShortID="1019255156">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Part1_PC" ID="{66D05BC0-5EA7-4B15-8786-B4F32487284A}" WorkUnitID="{9FFD7200-4F7D-419C-ABEF-78E7E3B7A00D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{9E7698D4-2291-42D3-A268-63639841971A}" ShortID="459186204">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="3"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Main_Menu_PC" ID="{51E7420C-EAF1-47D8-A64B-96A0610B8554}" WorkUnitID="{9FFD7200-4F7D-419C-ABEF-78E7E3B7A00D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Toile_1_5_PC" ID="{FAE04BF9-F86D-4434-A1D3-B5F125EDBA2A}">
+					<ChildrenList>
+						<Action Name="" ID="{841CFA3B-A7B1-46E6-9026-201EC5C32255}" ShortID="465042625">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LevelTransition" ID="{454A2AEF-091F-45DF-9228-F3C3897569BD}" WorkUnitID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{CF9D0F47-E8F5-48EB-9C5E-3C9234A2524B}" ShortID="997643920">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Part2_PC" ID="{1000335A-8C03-4EFC-A954-30E1DCF5348B}" WorkUnitID="{9FFD7200-4F7D-419C-ABEF-78E7E3B7A00D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Main_Menu_PC" ID="{CCDD7BF5-0FF9-4693-9B25-6DFB0EE50ADE}">
+					<ChildrenList>
+						<Action Name="" ID="{CA7F8E3C-8A61-46F2-A40D-A1B2DBE9B147}" ShortID="755241136">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="3"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Main_Menu_PC" ID="{51E7420C-EAF1-47D8-A64B-96A0610B8554}" WorkUnitID="{9FFD7200-4F7D-419C-ABEF-78E7E3B7A00D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{3A0862ED-466F-42FA-A60D-581C4965C235}" ShortID="616449188">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LevelTransition" ID="{454A2AEF-091F-45DF-9228-F3C3897569BD}" WorkUnitID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Toile_1_PC" ID="{15235AE8-F5F7-4D70-A208-081E1A56520C}">
+					<ChildrenList>
+						<Action Name="" ID="{188B9656-7642-46C4-AEB1-75EA8CD925C3}" ShortID="66519091">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Part1_PC" ID="{66D05BC0-5EA7-4B15-8786-B4F32487284A}" WorkUnitID="{9FFD7200-4F7D-419C-ABEF-78E7E3B7A00D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Main_Menu_PC" ID="{B4789110-F8CC-407F-B215-479AC42ED6AE}">
+					<ChildrenList>
+						<Action Name="" ID="{8CD22A2F-D1FC-4D11-AA4B-D1EE8646869B}" ShortID="613364448">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Main_Menu_PC" ID="{51E7420C-EAF1-47D8-A64B-96A0610B8554}" WorkUnitID="{9FFD7200-4F7D-419C-ABEF-78E7E3B7A00D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{3264787D-6CAA-4943-90C2-04C35C8C3054}" ShortID="767084895">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LevelTransition" ID="{454A2AEF-091F-45DF-9228-F3C3897569BD}" WorkUnitID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
