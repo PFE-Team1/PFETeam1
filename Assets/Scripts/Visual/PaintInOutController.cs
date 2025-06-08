@@ -8,7 +8,6 @@ public class PaintInOutController : MonoBehaviour
 {
     [SerializeField] private LineRenderer _line;
     [SerializeField] private SpriteRenderer _eraseRend;
-    [SerializeField] private Camera _camera;
     [SerializeField]float _durationIn=5f;
     [SerializeField]float _durationCameraIn=5f;
     [SerializeField]float _durationOut=3f;
@@ -20,6 +19,7 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField] List<Renderer> _appearanceAddOns;
     [SerializeField] RectTransform _rectTransform;
     [SerializeField]RawImage _image;
+    [SerializeField] Material _mat;
     Coroutine _coroutine;
 
     [Button("Paint In")]
@@ -31,6 +31,10 @@ public class PaintInOutController : MonoBehaviour
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}
 
+    private void Awake()
+    {
+        _mat = _image.material;
+    }
     public void PaintIn(GameObject paint)// objet , position taille
     {
         paint.layer = 6;
@@ -169,14 +173,9 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.sizeDelta = paintRect.sizeDelta;
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
+        _image.texture = paint.GetComponent<Level>().LevelTexture;
+        _mat.SetTexture("_MainTex", _image.texture);
         _image.enabled = true;
-        if (paintRect.sizeDelta.y < paintRect.sizeDelta.x)
-        {
-            _camera.orthographicSize = paintRect.sizeDelta.y / 2;
-        }
-        else
-        {
-            _camera.orthographicSize = paintRect.sizeDelta.x / 2;
-        }
+
     }
 }
