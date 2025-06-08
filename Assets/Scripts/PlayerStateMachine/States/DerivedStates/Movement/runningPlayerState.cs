@@ -12,8 +12,6 @@ public class RunningPlayerState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.maxSpeed * _playerMovementParameters.accelerationTime;
-        AudioManager.Instance.FOL_Pas.Post(null);
-        EventManager.instance.OnStartWalking.Invoke();
     }
 
     protected override void OnStateExit(PlayerState nextState)
