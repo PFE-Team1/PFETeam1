@@ -136,7 +136,7 @@ public class CameraManager : MonoBehaviour
         if(level.TryGetComponent(out RectTransform rt))
         {
             _globalCamera.m_Lens.Orthographic = true;
-            if (rt.sizeDelta.y < rt.sizeDelta.x)
+            if (rt.sizeDelta.y > rt.sizeDelta.x)
             {
                 _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.y/2;
             }
