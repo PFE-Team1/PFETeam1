@@ -29,6 +29,15 @@ public class CameraManager : MonoBehaviour
     public GameObject CompositeParent { get => _compositeParent; set => _compositeParent = value; }
     public List<GameObject> Levels { get => _levels; set => _levels = value; }
     public float CameraDezoomTime { get => _cameraDezoomTime; }
+    public Transform PlayerTransform {
+        get => _playerTransform;
+        set
+        {
+            _playerTransform = value;
+            MainCamera.Follow = _playerTransform;
+        }
+    }
+
 
     void Awake()
     {
@@ -48,7 +57,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        _playerTransform = _mainCamera.transform;
+        PlayerTransform = FindAnyObjectByType<SpawnManager>().transform;
         initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
         CalculateCameraBounds();
         DefineCameraBounds();
@@ -138,11 +147,11 @@ public class CameraManager : MonoBehaviour
             _globalCamera.m_Lens.Orthographic = true;
             if (rt.sizeDelta.y > rt.sizeDelta.x)
             {
-                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.y/2;
+                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.y/3;
             }
             else
             {
-                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.x/2;
+                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.x/3;
             }
             _globalCamera.transform.position = new Vector3(level.transform.position.x, level.transform.position.y, _mainCamera.transform.position.z);
         }
@@ -289,6 +298,7 @@ public class CameraManager : MonoBehaviour
 
     public void FocusCamera()
     {
+        _mainCamera.Follow = null;
         if (_globalCamera != null&&_playerTransform!=null)
         {
             if (_zoomCoroutine != null || _dezoomCoroutine != null) return;            
@@ -296,6 +306,7 @@ public class CameraManager : MonoBehaviour
             {
                 _zoomCoroutine = null;
             }));
+            _mainCamera.Follow=_playerTransform;
         }
     }
 

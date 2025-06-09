@@ -9,8 +9,10 @@ public class Level : MonoBehaviour
     public bool WasAlreadySpawned { get => _wasAlreadySpawned; set => _wasAlreadySpawned = value; }
 
     [SerializeField] private float offset = 2f;
+    [SerializeField] GameObject _end;
     public float Offset { get => offset; set => offset = value; }
     public Texture LevelTexture { get => _levelTexture; }
+    public GameObject End { get => _end; set => _end = value; }
 
     void Awake()
     {
