@@ -58,7 +58,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        PlayerTransform = FindAnyObjectByType<SpawnManager>().transform;
+        if (FindAnyObjectByType<SpawnManager>() != null) PlayerTransform = FindAnyObjectByType<SpawnManager>().transform;
         initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
         CalculateCameraBounds();
         DefineCameraBounds();
