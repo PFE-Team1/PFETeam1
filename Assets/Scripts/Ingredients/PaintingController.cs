@@ -91,6 +91,7 @@ public class PaintingController : Interactable
                         SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
                         if (sr != null)
                         {
+                            print("avant ou après moi");
                             PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                             _paintHandler.CurrentPaintingController = this;
                             _targetTransform = Parent ? Parent : child.GetComponentInChildren<SpriteMask>().transform;
@@ -109,8 +110,8 @@ public class PaintingController : Interactable
     }
     public void DropPainting()
     {
-        // Visuel de peinture
-        if (_needsRotation)
+        FreezePos();
+         if (_needsRotation)
         {
             PlayerC.PaintingTransform.Rotate(new Vector3(0, 0, 1), -90f);
         }
@@ -119,7 +120,7 @@ public class PaintingController : Interactable
         transform.SetParent(_targetTransform);
         transform.localRotation = Quaternion.Euler(0, 0, 0);
         transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 1);
+        _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 2);
         boneFollower.SkeletonRenderer = null;
 
         if (transform.parent.GetComponent<LevelSpawner>() != null) transform.localPosition = Vector3.zero;
@@ -167,10 +168,8 @@ public class PaintingController : Interactable
     }
     public void UnfreezePos()
     {
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
     }
     public void PlayVFXSocle()
     {

@@ -242,7 +242,8 @@ public class LevelSpawner : Interactable
     }
 
     protected override void Interact()
-    {
+    { 
+        Buffer = 5;
         if (PlayerC != null)
         {
             _heldObject = PlayerC.heldObject;
