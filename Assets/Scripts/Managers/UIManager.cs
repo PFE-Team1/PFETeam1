@@ -134,6 +134,14 @@ public class UIManager : MonoBehaviour
         return CanvasGroup.DOFade(0f, duration).SetEase(ease);
     }
 
+    public void SetFadeValue(float value)
+    {
+        if (CanvasGroup != null)
+        {
+            CanvasGroup.alpha = Mathf.Clamp01(value);
+        }
+    }
+
 
     // create naughty attributes buttons to test the letterbox effects
     [Button("Test UpDown LetterBox")]

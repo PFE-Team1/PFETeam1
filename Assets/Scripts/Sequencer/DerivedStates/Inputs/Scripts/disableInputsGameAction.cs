@@ -13,7 +13,6 @@ public class disableInputsGameAction : AGameAction
         InputsManager inputsManager = InputsManager.instance;
         inputsManager.DisableAllInputs();
     }
-
     protected override void OnUpdate(float deltaTime)
     {
     }
