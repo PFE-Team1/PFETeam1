@@ -49,7 +49,7 @@ public class MusicScenePermanent : MonoBehaviour
             var stopEvent = _stopMusicEvents[_currentMusicIndex];
             if (stopEvent != null)
             {
-                Debug.Log($"Stopping music for index: {_currentMusicIndex}");
+                Debug.Log("Stopping music for index: " + _currentMusicIndex);
                 stopEvent.Post(gameObject);
             }
         }
