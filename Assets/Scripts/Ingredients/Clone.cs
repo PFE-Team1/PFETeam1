@@ -26,6 +26,7 @@ public class Clone : MonoBehaviour
 
     private void Start()
     {
+        CVC = CameraManager.Instance.MainCamera;
         CameraManager.Instance.PlayerTransform = transform;
         _inputs = InputsManager.instance;
         _playerStateMachine = GetComponent<PlayerStateMachine>();

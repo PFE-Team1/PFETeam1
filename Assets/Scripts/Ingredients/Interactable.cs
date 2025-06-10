@@ -11,7 +11,7 @@ public abstract class Interactable : MonoBehaviour
     private Clone _playerC;
     private PlayerStateMachine _playerStateMachine;
     [SerializeField] private bool isInRange = false;
-    [SerializeField] private float _buffer=-1;
+   private float _buffer=-1;
 
     public GameObject Player { get => player; set => player = value; }
 
@@ -19,6 +19,7 @@ public abstract class Interactable : MonoBehaviour
     public Clone PlayerC { get => _playerC; set => _playerC = value; }
     public PlayerStateMachine PlayerStateMachine { get => _playerStateMachine; set => _playerStateMachine = value; }
     public bool IsInRange { get => isInRange; set => isInRange = value; }
+    public float Buffer { get => _buffer; set => _buffer = value; }
 
     public bool isSocle = false;
 
@@ -28,10 +29,9 @@ public abstract class Interactable : MonoBehaviour
     {
         EventManager.instance.OnInputInteract.AddListener(()=>
         {
-            if (PlayerStateMachine && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState&&_buffer<0)
+            if (PlayerStateMachine && PlayerStateMachine.CurrentState != PlayerStateMachine.CloneState&& Buffer < 0)
             {
                 Interact();
-                _buffer = 1;
             }
         });
     }
@@ -78,6 +78,7 @@ public abstract class Interactable : MonoBehaviour
             if (CollidingPlayers.Count == 0)
             {
                 isInRange = false;
+                print("il est parti");
                 player = null;
                 _playerC = null;
                 _playerStateMachine = null;
@@ -92,9 +93,9 @@ public abstract class Interactable : MonoBehaviour
     }
     private void Update()
     {
-        if (_buffer > 0)
+        if (Buffer > 0)
         {
-            _buffer -= Time.deltaTime;
+            Buffer -= Time.deltaTime;
         }
     }
 }

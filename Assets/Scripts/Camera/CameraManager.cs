@@ -147,7 +147,7 @@ public class CameraManager : MonoBehaviour
             _globalCamera.m_Lens.Orthographic = true;
             if (rt.sizeDelta.y > rt.sizeDelta.x)
             {
-                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.y/3;
+                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.y/2.5f;
             }
             else
             {
