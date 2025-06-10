@@ -6,6 +6,7 @@ public class LineToMeshCollider : MonoBehaviour
 {
     public float width = 0.2f;
     public float depth = 1f;
+    [SerializeField] bool _isRespawnableWall;
 
     void Awake()
     {
@@ -16,6 +17,10 @@ public class LineToMeshCollider : MonoBehaviour
         Mesh mesh = BuildExtrudedMesh(positions, width, depth);
 
         MeshCollider collider = gameObject.AddComponent<MeshCollider>();
+        if (_isRespawnableWall)
+        {
+            collider.excludeLayers = 0;
+        }
         collider.sharedMesh = mesh;
         collider.convex = false; // laisser en false pour une forme précise
     }
