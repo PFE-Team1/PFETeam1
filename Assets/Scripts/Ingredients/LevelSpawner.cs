@@ -243,7 +243,7 @@ public class LevelSpawner : Interactable
 
     protected override void Interact()
     { 
-        Buffer = 5;
+  
         if (PlayerC != null)
         {
             _heldObject = PlayerC.heldObject;
@@ -251,16 +251,18 @@ public class LevelSpawner : Interactable
         if (IsInRange)
         {
             if (isSpawnOnStart && isFixed) return;
-            if (!isAlreadySpawned)
+            if (!isAlreadySpawned&&_heldObject!=null)
             {
-                    SpawnNewLevel();
+                Buffer = 5;
+                SpawnNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
                     //CameraManager.Instance.ShowNewLevel();
             }
             else if (isAlreadySpawned)
             {
-                    CameraManager.Instance.CameraShake(1, 1);
+                Buffer = 5;
+                CameraManager.Instance.CameraShake(1, 1);
                     RemoveNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
                     AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
