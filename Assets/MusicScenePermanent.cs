@@ -46,16 +46,22 @@ public class MusicScenePermanent : MonoBehaviour
     {
         if (_stopMusicEvents.Length > 0 && _currentMusicIndex < _stopMusicEvents.Length)
         {
-            _stopMusicEvents[_currentMusicIndex].Post(gameObject);
+            var stopEvent = _stopMusicEvents[_currentMusicIndex];
+            if (stopEvent != null)
+            {
+                Debug.Log($"Stopping music for index: {_currentMusicIndex}");
+                stopEvent.Post(gameObject);
+            }
         }
         
         yield return new WaitForSeconds(_transitionDelay);
         
         _currentMusicIndex = (_currentMusicIndex + 1) % _playMusicEvents.Length;
-        
+
         if (_playMusicEvents.Length > 0)
         {
             _playMusicEvents[_currentMusicIndex].Post(gameObject);
+            Debug.Log("Music changed to index: " + _currentMusicIndex);
         }
         
         _musicTransitionCoroutine = null;
