@@ -48,6 +48,10 @@ public class Clone : MonoBehaviour
             //EventManager.instance?.OnJump.Invoke();
             _inputs.InputSwitching = false;
         }
+        if (gameObject.layer != 3)
+        {
+            ChangeLayer(3);
+        }
     }
 
     public void Cloned(GameObject spawnPoint, string InitialSkinName)// mettre dans des �tats pour la state machine
@@ -92,13 +96,18 @@ public class Clone : MonoBehaviour
 
                             if (levelBounds.Intersects(paintingBounds))
                             {
-                                transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform); List<GameObject> changement=AllChilds(gameObject);
+                                transform.SetParent(child.GetComponentInChildren<SpriteMask>().transform);
+                                List<GameObject> changement=AllChilds(gameObject);
                                 int val= child.GetComponent<Renderer>().sortingLayerID;
                                 foreach (GameObject change in changement)
                                 {
                                     if (change.GetComponent<Renderer>())
                                     {
                                         change.GetComponent<Renderer>().sortingLayerID = val;
+                                    }
+                                    if (change.GetComponent<ParticleSystemRenderer>())
+                                    {
+                                        change.GetComponent<ParticleSystemRenderer>().sortingLayerID = val;
                                     }
                                 }
                                 foreach (SkeletonPartsRenderer skel in _skeletonPartRend) 
@@ -142,6 +151,14 @@ public class Clone : MonoBehaviour
             {
                 Searcher(list, VARIABLE.gameObject);
             }
+        }
+    }
+    public void ChangeLayer(int layerID)
+    {
+        gameObject.layer = 3;
+        foreach (GameObject child in AllChilds(gameObject))
+        {
+            child.layer = 3;
         }
     }
 }

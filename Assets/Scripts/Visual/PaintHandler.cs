@@ -56,6 +56,7 @@ public class PaintHandler : MonoBehaviour
 
     void Footstep()
     {
+        print("Footstep");
         AudioManager.Instance.FOL_Pas.Post(gameObject);
     }
 }

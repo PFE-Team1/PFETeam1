@@ -255,7 +255,7 @@ public class LevelSpawner : Interactable
                     SpawnNewLevel();
                     PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                     AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
-                    CameraManager.Instance.ShowNewLevel();
+                    //CameraManager.Instance.ShowNewLevel();
             }
             else if (isAlreadySpawned)
             {

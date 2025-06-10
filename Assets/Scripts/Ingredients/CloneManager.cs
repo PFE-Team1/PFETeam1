@@ -8,9 +8,9 @@ using UnityEngine.InputSystem;
 public class CloneManager : MonoBehaviour
 {
     // poura �tre utiliser pour appliquer un �tat � tout les personnages en m�me temps ou d'autres choses dans le futur.
-    [SerializeField] List<Clone> _characters=new List<Clone>();
+    [SerializeField] List<Clone> _characters = new List<Clone>();
     [SerializeField] int _currentPlayer = 0;
-    
+
     public List<Clone> Characters { get => _characters; set => _characters = value; }
     public int CurrentPlayer { get => _currentPlayer; }
 
@@ -32,7 +32,7 @@ public class CloneManager : MonoBehaviour
         {
             return;
         }
-        
+
         while (mustSkip == true)
         {
             charID++;
@@ -72,5 +72,19 @@ public class CloneManager : MonoBehaviour
         }
         return mustSkip;
     }
-    
+
+    public PlayerStateMachine GetCurrentStateMachine()
+    {
+        if (_characters.Count == 0) return null;
+        PlayerStateMachine currentStateMachine = _characters[_currentPlayer].GetComponent<PlayerStateMachine>();
+        if (currentStateMachine == null)
+        {
+            Debug.LogError("Current player does not have a PlayerStateMachine component.");
+            return null;
+        }
+        else
+        {
+            return currentStateMachine;
+        }
+    }
 }

@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class EventManager : MonoBehaviour
 {
     public static EventManager instance;
+    public UnityEvent OnStartWalking;
+    public UnityEvent OnStopWalking;
     public UnityEvent OnJump;
     public UnityEvent OnLand;
     public UnityEvent OnPickUpPainting;
