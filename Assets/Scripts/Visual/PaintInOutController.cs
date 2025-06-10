@@ -14,6 +14,7 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField]float _durationCameraOut=3f;
     [SerializeField]float _cameraMoveDuration=0.5f;
     [SerializeField]float _delayFill=3f;
+    [SerializeField]float _delayZoomOnEnd=3f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField]GameObject _endPaint;
     [SerializeField] List<Renderer> _appearanceAddOns;
@@ -90,7 +91,7 @@ public class PaintInOutController : MonoBehaviour
                 if (buffer?.GetComponent<Clone>())
                 {
                     print("huh?");
-                    yield return new WaitForSeconds(2);
+                    yield return new WaitForSeconds(_delayZoomOnEnd);
                     CameraManager.Instance.PlayerTransform =buffer;
 
                 }

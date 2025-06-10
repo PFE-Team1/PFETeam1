@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EndIntro : Interactable
 {
-
+    [SerializeField] private bool didOnce = false;
     private string _sceneToLoad;
 
     protected override void Interact()
@@ -15,11 +15,12 @@ public class EndIntro : Interactable
     // Update is called once per frame
     void Update()
     {
-        if (IsInRange)
+        if (IsInRange && !didOnce)
         {
-                //Application.Quit();
-                ScenesManager.instance.LoadNextScene();
-                //SceneManager.LoadScene(_sceneToLoad);
+            //Application.Quit();
+            ScenesManager.instance.LoadNextScene();
+            didOnce = true;
+            //SceneManager.LoadScene(_sceneToLoad);
         }
     }
 }
