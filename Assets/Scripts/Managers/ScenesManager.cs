@@ -67,4 +67,9 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene(currentScene, LoadSceneMode.Additive);
         yield return null;
     }
+
+    public void LoadScene(string SceneName)
+    {
+        SceneManager.LoadScene(SceneName);
+    }
 }
