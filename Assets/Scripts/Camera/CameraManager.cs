@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject _compositeParent;
     [SerializeField] private float _cameraZoomTime;
     [SerializeField] private float _cameraDezoomTime;
+    [SerializeField] private float duration = 5f;
     [SerializeField] private Ease _cameraDezoomEase = Ease.OutBack;
     [SerializeField] private Ease _cameraZoomEase = Ease.OutBack;
     private PaintInOutController _paintInOutController;
@@ -75,7 +76,7 @@ public class CameraManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            CameraShake(0.5f, 1f);
+            //CameraShake(0.5f, 1f);
         }
     }
 
@@ -270,7 +271,7 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShowAndHideLevel()
     {
         SeeAllLevels();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(duration);
         FocusCamera();
     }
 
