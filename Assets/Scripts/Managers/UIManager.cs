@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
             Instance = this;
         }
         else Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        this.gameObject.SetActive(true);
     }
 
     private void Start()
