@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -103,7 +104,8 @@ public class SettingsManager : MonoBehaviour
     void Update()
     {
         if (didOnce) return;
-        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown )
+        if (!SplashScreen.isFinished) return;
+        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown)
         {
             MusicScenePermanent.instance.StartFirstMusic();
             didOnce = true;
@@ -112,8 +114,7 @@ public class SettingsManager : MonoBehaviour
             _mainMenu.SetActive(true);
             _zoomCoroutine = StartCoroutine(UIZoom(() =>
             {
-                if (_firstItem != null)
-                    EventSystem.current.SetSelectedGameObject(_firstItem);
+
             }));
         }
     }
@@ -123,6 +124,8 @@ public class SettingsManager : MonoBehaviour
         _firstMenuAnimator.Play(_firstMenuAnimation.name);
         _secondMenuAnimator.Play(_secondMenuAnimation.name);
         yield return new WaitForSeconds(_firstMenuAnimation.length);
+
+        EventSystem.current.SetSelectedGameObject(_firstItem);
         onComplete?.Invoke();
     }
 
@@ -293,10 +296,22 @@ public class SettingsManager : MonoBehaviour
         {
             _pauseMenu.SetActive(!_pauseMenu.activeSelf);
             _settingsMenu.SetActive(false);
-            isInPause = _pauseMenu.activeSelf;
             EventSystem.current.SetSelectedGameObject(_firstPauseItem);
+            isInPause = _pauseMenu.activeSelf;
         }
     }
+
+    public void SetNewEvent()
+    {
+        if (isInPause)
+        {
+            EventSystem.current.SetSelectedGameObject(_firstPauseItem);
+        }
+        else 
+        {
+            EventSystem.current.SetSelectedGameObject(_firstItem);
+        }
+}
 
     public void ZoomForPlay()
     {
