@@ -86,7 +86,6 @@ public class OpenButton : Interactable
     {
         foreach (ObectToDestroy toRemove in _objectsToRemove)
         {
-            Debug.Log(toRemove.currentTime);
             if (toRemove.currentTime <= toRemove.RespawnTime&&toRemove.currentTime>0)
             {
                 _coroutines.Add(StartCoroutine(Rebuilding(toRemove)));
