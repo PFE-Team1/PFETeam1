@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IdlePlayerState : PlayerState
 {
+    private bool Idling = false;
     protected override void OnStateInit()
     {
     }
@@ -24,6 +25,10 @@ public class IdlePlayerState : PlayerState
 
     protected override void OnStateUpdate()
     {
+        if (_timeSinceEnteredState>3 && !Idling)
+        {
+            StateMachine.Animator.SetTrigger("Rest");
+        }
         if (StateMachine.IsMovementLocked) return;
         if (!StateMachine.CollisionInfo.isCollidingBelow)
         {
