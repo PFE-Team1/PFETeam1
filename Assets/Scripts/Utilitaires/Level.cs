@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Level : MonoBehaviour
@@ -20,6 +21,14 @@ public class Level : MonoBehaviour
         if (collider is BoxCollider2D boxCollider)
         {
             boxCollider.size += new Vector2(offset * 2.1f, offset * 2.1f);
+        }
+    }
+   public void FindPlayer(bool active)
+    {
+        List<Clone> clone = GetComponentsInChildren<Clone>(true).ToList();
+        foreach (Clone c in clone)
+        {
+            c.gameObject.SetActive(active);
         }
     }
 }

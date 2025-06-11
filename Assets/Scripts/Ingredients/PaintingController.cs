@@ -113,10 +113,7 @@ public class PaintingController : Interactable
     }
     public void DropPainting()
     {
-         if (_needsRotation)
-        {
-            PlayerC.PaintingTransform.Rotate(new Vector3(0, 0, 1), -90f);
-        }
+
         _VFXTrail.Play(true);
         _rigidBody.useGravity = true;
         transform.SetParent(_targetTransform);
@@ -145,10 +142,6 @@ public class PaintingController : Interactable
         {
             Destroy(Instantiate(VFX_GrabToile, transform), 1f);
         }
-        if (_needsRotation)
-        {
-            transform.Rotate(new Vector3(0, 0, 1), 90f);
-        }
         UnfreezePos();
         _rigidBody.useGravity = false;
         AudioManager.Instance.SFX_GrabToile.Post(gameObject);
@@ -166,12 +159,12 @@ public class PaintingController : Interactable
     }
     public void FreezePos()
     {
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        _rigidBody.constraints = RigidbodyConstraints.FreezeAll;
     }
     public void UnfreezePos()
     {
 
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotation;
+        _rigidBody.constraints = RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotation;
     }
     public void PlayVFXSocle()
     {

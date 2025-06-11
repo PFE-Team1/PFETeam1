@@ -35,17 +35,43 @@ namespace AK
         static const AkUniqueID PLAY_DECHIRURE_TOILE = 268635939U;
         static const AkUniqueID PLAY_DISPARITIONTOILE = 1711433891U;
         static const AkUniqueID PLAY_FOL_ATTERISSAGE_RC = 4231866090U;
-        static const AkUniqueID PLAY_FOL_PAS_RC = 3168559986U;
+        static const AkUniqueID PLAY_FOL_PAS_RUN_RC = 4052677960U;
+        static const AkUniqueID PLAY_FOL_PAS_WALK_RC = 2942527882U;
         static const AkUniqueID PLAY_FOL_SAUT_RC = 1819697263U;
         static const AkUniqueID PLAY_GRABTOILE_RC = 552674189U;
+        static const AkUniqueID PLAY_MAIN_MENU_PC = 1522827403U;
         static const AkUniqueID PLAY_POSETOILE_RC = 295623852U;
         static const AkUniqueID PLAY_REFORMATION_TOILE = 1700749746U;
+        static const AkUniqueID PLAY_SFX_CONNEXION_TOILE = 2928311883U;
         static const AkUniqueID PLAY_SUI_CLIQUEVALIDATIONBOUTON_RC = 129827151U;
+        static const AkUniqueID PLAY_SUI_PAUSE = 3195014792U;
+        static const AkUniqueID PLAY_SUI_PLAY = 1261390384U;
+        static const AkUniqueID PLAY_SUI_PRESSANYKEY = 3626919780U;
         static const AkUniqueID PLAY_SUI_SURVOLBOUTON_RC_01 = 2589902834U;
         static const AkUniqueID PLAY_SWITCH_CLONE = 1864381592U;
+        static const AkUniqueID PLAY_TOILE_1_5_PC = 3706016593U;
         static const AkUniqueID PLAY_TOILE_1_PC = 4192545069U;
         static const AkUniqueID PLAY_TOILE_2_PC = 2815554252U;
+        static const AkUniqueID PLAY_TOILE_TUTO_PC = 3195124104U;
+        static const AkUniqueID STOP_MAIN_MENU_PC = 3636922141U;
+        static const AkUniqueID STOP_TOILE_1_PC = 3844277291U;
     } // namespace EVENTS
+
+    namespace STATES
+    {
+        namespace MUSICLEVEL_TG
+        {
+            static const AkUniqueID GROUP = 3735246380U;
+
+            namespace STATE
+            {
+                static const AkUniqueID LEVEL = 2782712965U;
+                static const AkUniqueID LEVELTRANSITION = 4198606512U;
+                static const AkUniqueID NONE = 748895195U;
+            } // namespace STATE
+        } // namespace MUSICLEVEL_TG
+
+    } // namespace STATES
 
     namespace GAME_PARAMETERS
     {
@@ -53,7 +79,6 @@ namespace AK
         static const AkUniqueID MASTER_VOLUME_RTPC = 2585960002U;
         static const AkUniqueID MUS_BUS_VOLUME_RTPC = 2084185412U;
         static const AkUniqueID SFX_BUS_VOLUME_RTPC = 141893488U;
-        static const AkUniqueID SPATIALBLEND_RTPC = 1982529890U;
         static const AkUniqueID UI_BUS_VOLUME_RTPC = 4047153977U;
     } // namespace GAME_PARAMETERS
 
@@ -64,7 +89,9 @@ namespace AK
         static const AkUniqueID AMB_LVL02_BIS_SBK = 3777429318U;
         static const AkUniqueID AMB_LVL02_SBK = 949270025U;
         static const AkUniqueID FOL_SBK = 2606446995U;
-        static const AkUniqueID MUS_SBK = 552161325U;
+        static const AkUniqueID MUS_MENU_SBK = 1085938327U;
+        static const AkUniqueID MUS_PART1_SBK = 2765504748U;
+        static const AkUniqueID MUS_PART2_SBK = 3717977127U;
         static const AkUniqueID SFX01_SBK = 776845020U;
         static const AkUniqueID SFX02_SBK = 1390160151U;
         static const AkUniqueID UI_SBK = 3630591588U;

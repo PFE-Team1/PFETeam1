@@ -7,7 +7,7 @@ public class MusicScene : MonoBehaviour
 {
     [SerializeField] private string _additiveScene;
 
-    void Awake()
+    void OnEnable()
     {
         if (SceneManager.GetActiveScene().name != _additiveScene)
         {

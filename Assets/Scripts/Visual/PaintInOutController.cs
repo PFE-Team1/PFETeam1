@@ -31,6 +31,7 @@ public class PaintInOutController : MonoBehaviour
     public float DurationOut { get => _durationOut; }
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}
+    public float DelayZoomOnEnd { get => _delayZoomOnEnd;}
 
     private void Awake()
     {
@@ -107,11 +108,13 @@ public class PaintInOutController : MonoBehaviour
         {
             rend.material.SetFloat("_Resolve_Cursor", 1);
         }
+        paintLevel.FindPlayer(true);
         yield return null;
     }
     IEnumerator ShaderOut(GameObject paint)
     {
         Level paintLevel = paint.GetComponent<Level>();
+        paintLevel.GetComponent<Level>().FindPlayer(false);
         if (paint != _endPaint && !paintLevel.WasAlreadySpawned)
         {
             CameraManager.Instance.SeeCurrentLevel(paint);

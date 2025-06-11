@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Wwise;
 
 public class ScenesManager : MonoBehaviour
 {
@@ -49,22 +50,26 @@ public class ScenesManager : MonoBehaviour
         InputsManager.instance.InputRestarting = false;
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         StartCoroutine(ReLoading());
-        SettingsManager.Instance.IsMainMenuActive = false;
     }
 
     IEnumerator LoadingNext()
     {
+        MusicScenePermanent.instance.ChangeMusic();
         yield return new WaitForSeconds(1);
         SceneManager.UnloadSceneAsync(currentScene);
-        SceneManager.LoadScene(_nextScene, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(_nextScene, LoadSceneMode.Additive);
         yield return null;
     }
 
     IEnumerator ReLoading()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.UnloadSceneAsync(currentScene);
-        SceneManager.LoadScene(currentScene, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(currentScene, LoadSceneMode.Additive);
         yield return null;
+    }
+
+    public void LoadScene(string SceneName)
+    {
+        SceneManager.LoadScene(SceneName);
     }
 }
