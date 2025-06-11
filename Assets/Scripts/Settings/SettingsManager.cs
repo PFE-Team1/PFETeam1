@@ -37,6 +37,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Animator _secondMenuAnimator;
     [SerializeField] private AnimationClip _firstMenuAnimation;
     [SerializeField] private AnimationClip _secondMenuAnimation;
+    [SerializeField] private AnimationClip _zoomForPlayAnimation;
 
     [Header("Volume")]
     [SerializeField] private AK.Wwise.RTPC _masterVolumeRTPC;
@@ -47,7 +48,7 @@ public class SettingsManager : MonoBehaviour
 
     bool wantParallax = true;
     bool wantScreenShake = true;
-    bool isMainMenuActive = false;
+    public bool isMainMenuActive;
     Coroutine _zoomCoroutine;
     public bool IsMainMenuActive { get => isMainMenuActive; set => isMainMenuActive = value; }
     Resolution[] resolutions;
@@ -285,7 +286,20 @@ public class SettingsManager : MonoBehaviour
     public void DisplayPauseMenu()
     {
         _pauseMenu.SetActive(!_pauseMenu.activeSelf);
+        _settingsMenu.SetActive(false);
         EventSystem.current.SetSelectedGameObject(_firstPauseItem);
+    }
+
+    public void ZoomForPlay()
+    {
+        _secondMenuAnimator.Play(_zoomForPlayAnimation.name);
+        StartCoroutine(WaitForZoomToComplete(() => ScenesManager.instance.LoadNextScene()));
+    }
+
+    private IEnumerator WaitForZoomToComplete(System.Action onComplete)
+    {
+        yield return new WaitForSeconds(_zoomForPlayAnimation.length);
+        onComplete?.Invoke();
     }
 
     public void QuitGame()

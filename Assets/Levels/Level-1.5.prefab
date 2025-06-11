@@ -3325,7 +3325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: -0.6
+  width: -0.4
   depth: 1
 --- !u!1 &2145959445225920631
 GameObject:
@@ -5941,7 +5941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: -0.7
+  width: -0.6
   depth: 1
 --- !u!1 &3671868757262059054
 GameObject:
@@ -6241,7 +6241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bafaef5d241a84a8bb09bec6e49d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: -0.6
+  width: -0.4
   depth: 1
 --- !u!1 &3778095854943794924
 GameObject:
@@ -10286,7 +10286,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10297,7 +10297,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 23, y: 13}
+  m_Size: {x: 150, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &5358074396780241001
 MonoBehaviour:
@@ -16831,7 +16831,7 @@ LineRenderer:
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 0.7}
-    shadowBias: 0.5
+    shadowBias: 0.4
     generateLightingData: 0
   m_MaskInteraction: 0
   m_UseWorldSpace: 0
@@ -17549,6 +17549,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: _objectsToRemove.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
+      propertyPath: _objectsToRemove.Array.data[0].RespawnTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
+      propertyPath: _objectsToRemove.Array.data[0].IsRespawnable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
+      propertyPath: _objectsToRemove.Array.data[0].ObjectToRemove
+      value: 
+      objectReference: {fileID: 7089936093188264017}
+    - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
+      propertyPath: _objectsToRemove.Array.data[0].RespawnStartTime
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
