@@ -48,7 +48,6 @@ public class ScenesManager : MonoBehaviour
     public void ReloadScene()
     {
         InputsManager.instance.InputRestarting = false;
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         StartCoroutine(ReLoading());
     }
 
@@ -65,12 +64,9 @@ public class ScenesManager : MonoBehaviour
     IEnumerator ReLoading()
     {
         yield return new WaitForSeconds(1);
+        SceneManager.UnloadSceneAsync(currentScene);
         SceneManager.LoadSceneAsync(currentScene, LoadSceneMode.Additive);
         yield return null;
     }
 
-    public void LoadScene(string SceneName)
-    {
-        SceneManager.LoadScene(SceneName);
-    }
 }
