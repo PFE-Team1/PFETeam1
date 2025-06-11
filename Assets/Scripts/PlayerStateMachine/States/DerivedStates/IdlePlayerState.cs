@@ -11,6 +11,8 @@ public class IdlePlayerState : PlayerState
 
     protected override void OnStateEnter(PlayerState previousState)
     {
+        _timeSinceEnteredState = 0;
+        Idling = false;
         if ((previousState is cloneState) && !StateMachine.CollisionInfo.isCollidingBelow)
         {
             StateMachine.ChangeState(StateMachine.FallingState);
@@ -25,9 +27,11 @@ public class IdlePlayerState : PlayerState
 
     protected override void OnStateUpdate()
     {
+        _timeSinceEnteredState += Time.deltaTime;
         if (_timeSinceEnteredState>3 && !Idling)
         {
             StateMachine.Animator.SetTrigger("Rest");
+            Idling = true;
         }
         if (StateMachine.IsMovementLocked) return;
         if (!StateMachine.CollisionInfo.isCollidingBelow)
