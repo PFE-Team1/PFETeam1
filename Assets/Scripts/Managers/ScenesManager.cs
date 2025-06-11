@@ -33,7 +33,7 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(_menuScene, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(_menuScene, LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
@@ -55,6 +55,7 @@ public class ScenesManager : MonoBehaviour
     IEnumerator LoadingNext()
     {
         MusicScenePermanent.instance.ChangeMusic();
+        SettingsManager.Instance.IsMainMenuActive = false;
         yield return new WaitForSeconds(1);
         SceneManager.UnloadSceneAsync(currentScene);
         SceneManager.LoadSceneAsync(_nextScene, LoadSceneMode.Additive);

@@ -16,7 +16,7 @@ public class LevelSpawner : Interactable
     [SerializeField] private bool isAlreadySpawned = false;
     [SerializeField] private bool isFixed = false;
     private GameObject _heldObject;
-    private GameObject _paint;    
+    private GameObject _paint;
     float appliedOffset;
     private GameObject _newlevel;
 
@@ -223,7 +223,7 @@ public class LevelSpawner : Interactable
         //OnRemovePainting.Invoke();
         isAlreadySpawned = false;
         _paint.transform.SetParent(Player.transform);
-        _paint.GetComponent<Collider>().enabled = true ;
+        _paint.GetComponent<Collider>().enabled = true;
 
         var paintingController = _paint.GetComponent<PaintingController>();
         paintingController.AnimateGrabPainting();
@@ -235,15 +235,15 @@ public class LevelSpawner : Interactable
     void FindPlayer(bool active)
     {
         List<Clone> clone = _newlevel.GetComponentsInChildren<Clone>(true).ToList();
-        foreach(Clone c in clone)
+        foreach (Clone c in clone)
         {
             c.gameObject.SetActive(active);
         }
     }
 
     protected override void Interact()
-    { 
-  
+    {
+
         if (PlayerC != null)
         {
             _heldObject = PlayerC.heldObject;
@@ -251,21 +251,21 @@ public class LevelSpawner : Interactable
         if (IsInRange)
         {
             if (isSpawnOnStart && isFixed) return;
-            if (!isAlreadySpawned&&_heldObject!=null)
+            if (!isAlreadySpawned && _heldObject != null)
             {
                 Buffer = 5;
                 SpawnNewLevel();
-                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
-                    AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
-                    //CameraManager.Instance.ShowNewLevel();
+                PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
+                AudioManager.Instance.SFX_ApparitionToile.Post(gameObject);
+                //CameraManager.Instance.ShowNewLevel();
             }
             else if (isAlreadySpawned)
             {
                 Buffer = 5;
                 CameraManager.Instance.CameraShake(1, 1);
-                    RemoveNewLevel();
-                    PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
-                    AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
+                RemoveNewLevel();
+                PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingGrabState);
+                AudioManager.Instance.SFX_DisparitionToile.Post(gameObject);
             }
         }
     }
