@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2901,6 +2901,62 @@ PrefabInstance:
     - target: {fileID: 2525255057628540772, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
       propertyPath: m_LocalPosition.y
       value: 8.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8795767
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.56652045
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime0
+      value: 193
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 22492
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 22834
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime2
+      value: 31283
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599942770071839811, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3056830163591736803, guid: a0447cce0f1fdf249945df7546ca1d30, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6079,69 +6135,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1471561798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3992618566871474541, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
-  m_PrefabInstance: {fileID: 5723980221663169325}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1471561800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471561798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa34c510268035d469ae043d30252aa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: f7e1664c
-  useOtherObject: 0
-  actionOnEventType: 0
-  curveInterpolation: 4
-  enableActionOnEvent: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 51e6ea5ba5d67e24095122db9812ebf4, type: 2}
-  useCallbacks: 0
-  stopSoundOnDestroy: 1
-  Callbacks: []
-  soundEmitterObject: {fileID: 0}
-  transitionDuration: 0
-  eventIdInternal: 0
-  valueGuidInternal: 
-  m_callbackDataInternal: {fileID: 0}
-  MultiPositionType: 1
-  multiPositionTypeLabel: 0
-  attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
-  LargeModePositions: []
-  multiPositionArray: []
---- !u!114 &1471561801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471561798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f88b35b6234e0143a8b2eed54de9c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_listeners:
-    initialListenerList: []
-    useDefaultListeners: 1
-  isEnvironmentAware: 1
-  isStaticObject: 0
-  usePositionOffsetData: 0
-  m_positionOffsetData:
-    KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-  scalingFactor: 1
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
 --- !u!1 &1550975780
 GameObject:
   m_ObjectHideFlags: 0
@@ -7008,6 +7001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e3958f8170fd644ac35b18dd195032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsKeyboard: 1
   _playerInputs: {fileID: 0}
   _inputActionAsset: {fileID: -944628639613478452, guid: 29dcd0c92f808814a9da32fc8bb78653, type: 3}
   UIKeyIconsSet: {fileID: 11400000, guid: 866dcabef1645654a81c42ff82e92674, type: 2}
@@ -9755,12 +9749,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3992618566871474541, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1471561801}
-    - targetCorrespondingSourceObject: {fileID: 3992618566871474541, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1471561800}
     - targetCorrespondingSourceObject: {fileID: 5977482949756633512, guid: 8e8bcb13d4e348448a364a050facfa65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5723980221663169330}
