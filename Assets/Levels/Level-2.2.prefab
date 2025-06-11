@@ -740,6 +740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.2
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &1286385518334880979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,6 +1100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.5
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &2098914398052012952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,6 +1311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.3
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &2147601026025015118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2940,6 +2943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.3
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &3494578698095473229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3155,6 +3159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.4
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &3563223942846137460
 GameObject:
   m_ObjectHideFlags: 0
@@ -3366,6 +3371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.3
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &3683718158651086293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,6 +3748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.2
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &3953745434179357074
 GameObject:
   m_ObjectHideFlags: 0
@@ -4339,6 +4346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.2
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &4475185707962849834
 GameObject:
   m_ObjectHideFlags: 0
@@ -4659,6 +4667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.3
   depth: 1
+  _isRespawnableWall: 0
 --- !u!65 &8732499839578410125
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6408,6 +6417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.2
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &6850478426533211609
 GameObject:
   m_ObjectHideFlags: 0
@@ -6751,6 +6761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.2
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &7281972269120562891
 GameObject:
   m_ObjectHideFlags: 0
@@ -7070,6 +7081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.2
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &7339557106835256049
 GameObject:
   m_ObjectHideFlags: 0
@@ -7279,6 +7291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.2
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &7385530871046826279
 GameObject:
   m_ObjectHideFlags: 0
@@ -7499,6 +7512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.4
   depth: 1
+  _isRespawnableWall: 0
 --- !u!65 &6417513013535328311
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7729,6 +7743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.2
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &7556120110886579138
 GameObject:
   m_ObjectHideFlags: 0
@@ -8075,6 +8090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.2
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &7639756419487389015
 GameObject:
   m_ObjectHideFlags: 0
@@ -8316,6 +8332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: -0.3
   depth: 1
+  _isRespawnableWall: 0
 --- !u!1 &7899691232831577703
 GameObject:
   m_ObjectHideFlags: 0
@@ -10017,6 +10034,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3142455463971938398, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
+      propertyPath: m_Color.b
+      value: 0.06666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142455463971938398, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142455463971938398, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142455463971938398, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: m_SortingLayer
       value: 2
       objectReference: {fileID: 0}
@@ -10066,11 +10095,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698187312977391761, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5698187312977391761, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: m_LocalScale.y
-      value: -0.5
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5698187312977391761, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10086,7 +10115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698187312977391761, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.97629607
+      value: 0.9396927
       objectReference: {fileID: 0}
     - target: {fileID: 5698187312977391761, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -10098,7 +10127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698187312977391761, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.21643952
+      value: -0.3420201
       objectReference: {fileID: 0}
     - target: {fileID: 5698187312977391761, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -10118,7 +10147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698187312977391761, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -25
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: _respawnTime
@@ -10127,6 +10156,10 @@ PrefabInstance:
     - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: _isRespawnable
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
+      propertyPath: disolveDuration
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: _respawnStartTime
@@ -10166,7 +10199,7 @@ PrefabInstance:
       objectReference: {fileID: 187933964679845361}
     - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: _objectsToRemove.Array.data[0].RespawnTime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8720259941041340807, guid: d1527ba94c6c71246806a1351c3d3ad6, type: 3}
       propertyPath: _objectsToRemove.Array.data[1].RespawnTime
