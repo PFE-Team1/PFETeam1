@@ -108,11 +108,13 @@ public class PaintInOutController : MonoBehaviour
         {
             rend.material.SetFloat("_Resolve_Cursor", 1);
         }
+        paintLevel.FindPlayer(true);
         yield return null;
     }
     IEnumerator ShaderOut(GameObject paint)
     {
         Level paintLevel = paint.GetComponent<Level>();
+        paintLevel.GetComponent<Level>().FindPlayer(false);
         if (paint != _endPaint && !paintLevel.WasAlreadySpawned)
         {
             CameraManager.Instance.SeeCurrentLevel(paint);
