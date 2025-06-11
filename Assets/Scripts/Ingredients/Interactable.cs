@@ -78,7 +78,6 @@ public abstract class Interactable : MonoBehaviour
             if (CollidingPlayers.Count == 0)
             {
                 isInRange = false;
-                print("il est parti");
                 player = null;
                 _playerC = null;
                 _playerStateMachine = null;

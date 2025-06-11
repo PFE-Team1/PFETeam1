@@ -42,7 +42,10 @@ public class PaintInOutController : MonoBehaviour
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
-            child.layer = 6;
+            if (child.layer != 3)
+                child.layer = 6;
+            else
+                child.layer = 11;
         }
         float timer = 0;
         Reset(paint);        
@@ -79,7 +82,12 @@ public class PaintInOutController : MonoBehaviour
         paint.layer = 0;
          foreach (GameObject child in AllChilds(paint))
         {
-            child.layer = 0;
+            if (child.layer != 11)
+                child.layer = 0;
+            else
+            {
+                child.layer = 3;
+            }
         }
         if (!paint.GetComponent<Level>().WasAlreadySpawned)
         {
@@ -124,7 +132,10 @@ public class PaintInOutController : MonoBehaviour
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
-            child.layer = 6;
+            if (child.layer != 3)
+                child.layer = 6;
+            else
+                child.layer = 11;
         }
         float timer = 0;
         yield return new WaitForSeconds(_cameraMoveDuration);
