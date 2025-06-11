@@ -96,10 +96,10 @@ public class PaintInOutController : MonoBehaviour
             {
                 Transform buffer = CameraManager.Instance.PlayerTransform;
                 CameraManager.Instance.PlayerTransform = paintLevel.End.transform;
+                yield return new WaitForSeconds(2f);
                 CameraManager.Instance.FocusCamera();
                 if (buffer?.GetComponent<Clone>())
                 {
-                    print("huh?");
                     yield return new WaitForSeconds(_delayZoomOnEnd);
                     CameraManager.Instance.PlayerTransform =buffer;
 

@@ -202,6 +202,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerRenderer: {fileID: 0}
   _jumpVFX: {fileID: 0}
+  _landVFX: {fileID: 0}
+  _walkVFX: {fileID: 0}
   _relativePositionJumpVFX: {x: 0, y: 0, z: 0}
 --- !u!114 &5381870523817746654
 MonoBehaviour:
@@ -308,17 +310,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Run
       objectReference: {fileID: 0}
-    - target: {fileID: 8498412021080902379, guid: ed10f5a4252610948a14545607e5b251, type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: -0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8734372383516921211, guid: ed10f5a4252610948a14545607e5b251, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.009
       objectReference: {fileID: 0}
     - target: {fileID: 8734372383516921211, guid: ed10f5a4252610948a14545607e5b251, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.387
+      value: -1.486
       objectReference: {fileID: 0}
     - target: {fileID: 8734372383516921211, guid: ed10f5a4252610948a14545607e5b251, type: 3}
       propertyPath: m_LocalPosition.z
@@ -351,34 +349,6 @@ PrefabInstance:
     - target: {fileID: 8734372383516921211, guid: ed10f5a4252610948a14545607e5b251, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9183534775862639093, guid: ed10f5a4252610948a14545607e5b251, type: 3}
-      propertyPath: ColorModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9183534775862639093, guid: ed10f5a4252610948a14545607e5b251, type: 3}
-      propertyPath: ColorBySpeedModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9183534775862639093, guid: ed10f5a4252610948a14545607e5b251, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.atime0
-      value: 193
-      objectReference: {fileID: 0}
-    - target: {fileID: 9183534775862639093, guid: ed10f5a4252610948a14545607e5b251, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.atime1
-      value: 30370
-      objectReference: {fileID: 0}
-    - target: {fileID: 9183534775862639093, guid: ed10f5a4252610948a14545607e5b251, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.atime2
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 9183534775862639093, guid: ed10f5a4252610948a14545607e5b251, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.a
-      value: 0.616799
-      objectReference: {fileID: 0}
-    - target: {fileID: 9183534775862639093, guid: ed10f5a4252610948a14545607e5b251, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.m_NumAlphaKeys
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

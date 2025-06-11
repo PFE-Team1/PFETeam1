@@ -1,7 +1,11 @@
 State Group	ID	Name			Wwise Object Path	Notes
+	3470340733	State_Menu_Pause			\Default Work Unit\State_Menu_Pause	
 	3735246380	MusicLevel_TG			\Default Work Unit\MusicLevel_TG	
 
 State	ID	Name	State Group			Notes
+	139557087	Out_Menu	State_Menu_Pause			
+	748895195	None	State_Menu_Pause			
+	1631528850	In_Menu	State_Menu_Pause			
 	748895195	None	MusicLevel_TG			
 	2782712965	Level	MusicLevel_TG			
 	4198606512	LevelTransition	MusicLevel_TG			
@@ -13,11 +17,12 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	4047153977	UI_BUS_Volume_RTPC			\Default Work Unit\UI_BUS_Volume_RTPC	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
-	393239870	SFX			\Default Work Unit\Master Audio Bus\SFX	
-	712897226	MUS			\Default Work Unit\Master Audio Bus\MUS	
-	1083137552	FOL			\Default Work Unit\Master Audio Bus\FOL	
-	1117531639	AMB			\Default Work Unit\Master Audio Bus\AMB	
+	393239870	SFX			\Default Work Unit\Master Audio Bus\All_Without_UI\SFX	
+	712897226	MUS			\Default Work Unit\Master Audio Bus\All_Without_UI\MUS	
+	1083137552	FOL			\Default Work Unit\Master Audio Bus\All_Without_UI\FOL	
+	1117531639	AMB			\Default Work Unit\Master Audio Bus\All_Without_UI\AMB	
 	1551306167	UI			\Default Work Unit\Master Audio Bus\UI	
+	2891835836	All_Without_UI			\Default Work Unit\Master Audio Bus\All_Without_UI	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 
 Audio Devices	ID	Name	Type				Notes

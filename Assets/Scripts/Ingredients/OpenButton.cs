@@ -8,6 +8,7 @@ public class OpenButton : Interactable
 {
     [SerializeField] private List<ObectToDestroy> _objectsToRemove = new List<ObectToDestroy>();
     [SerializeField] private float disolveDuration;
+    [SerializeField] private Renderer _addedRend;
     private bool _isRespawning ;
     private bool _pause ;
     private Sprite _sprite ;
@@ -76,6 +77,10 @@ public class OpenButton : Interactable
         if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime||time>hightestRespawnTime)
         {
             _spriteRenderer.sprite = _sprite;
+            if (_addedRend != null)
+            {
+                _addedRend.enabled=true;
+            }
             _isRespawning = false;
             _cantInterract = false;
         }
@@ -111,6 +116,10 @@ public class OpenButton : Interactable
                         toRemove.currentTime = 0;
                         toRemove.Colliders[i].enabled = false;
                         StartCoroutine(Disolve(toRemove.Renderers[i]));
+                    }
+                    if (_addedRend != null)
+                    {
+                        _addedRend.enabled = false;
                     }
                     if (toRemove.IsRespawnable == true)
                     {
