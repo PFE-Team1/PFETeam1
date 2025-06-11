@@ -8,18 +8,19 @@ public class PaintInOutController : MonoBehaviour
 {
     [SerializeField] private LineRenderer _line;
     [SerializeField] private SpriteRenderer _eraseRend;
-    [SerializeField] private Camera _camera;
     [SerializeField]float _durationIn=5f;
     [SerializeField]float _durationCameraIn=5f;
     [SerializeField]float _durationOut=3f;
     [SerializeField]float _durationCameraOut=3f;
     [SerializeField]float _cameraMoveDuration=0.5f;
     [SerializeField]float _delayFill=3f;
+    [SerializeField]float _delayZoomOnEnd=3f;
     [SerializeField]GameObject _firstPaint;
-    GameObject _endPaint;
+    [SerializeField]GameObject _endPaint;
     [SerializeField] List<Renderer> _appearanceAddOns;
     [SerializeField] RectTransform _rectTransform;
     [SerializeField]RawImage _image;
+    [SerializeField] Material _mat;
     Coroutine _coroutine;
 
     [Button("Paint In")]
@@ -30,7 +31,12 @@ public class PaintInOutController : MonoBehaviour
     public float DurationOut { get => _durationOut; }
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}
+    public float DelayZoomOnEnd { get => _delayZoomOnEnd;}
 
+    private void Awake()
+    {
+        _mat = _image.material;
+    }
     public void PaintIn(GameObject paint)// objet , position taille
     {
         paint.layer = 6;
@@ -53,6 +59,7 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderIn(GameObject paint)
     {
+        Level paintLevel = paint.GetComponent<Level>();
         if (!paint.GetComponent<Level>().WasAlreadySpawned)
         {
             CameraManager.Instance.SeeCurrentLevel(paint);
@@ -76,7 +83,24 @@ public class PaintInOutController : MonoBehaviour
         }
         if (!paint.GetComponent<Level>().WasAlreadySpawned)
         {
-            CameraManager.Instance.FocusCamera();
+            
+            if (paint == EndPaint)
+            {
+                Transform buffer = CameraManager.Instance.PlayerTransform;
+                CameraManager.Instance.PlayerTransform = paintLevel.End.transform;
+                CameraManager.Instance.FocusCamera();
+                if (buffer?.GetComponent<Clone>())
+                {
+                    print("huh?");
+                    yield return new WaitForSeconds(_delayZoomOnEnd);
+                    CameraManager.Instance.PlayerTransform =buffer;
+
+                }
+            }
+            else
+            {
+                CameraManager.Instance.FocusCamera();
+            }
         }
         _image.enabled = false;
         _line.material.SetFloat("_CursorAppearance", 0);
@@ -88,7 +112,8 @@ public class PaintInOutController : MonoBehaviour
     }
     IEnumerator ShaderOut(GameObject paint)
     {
-        if (paint != _endPaint && !paint.GetComponent<Level>().WasAlreadySpawned)
+        Level paintLevel = paint.GetComponent<Level>();
+        if (paint != _endPaint && !paintLevel.WasAlreadySpawned)
         {
             CameraManager.Instance.SeeCurrentLevel(paint);
         }
@@ -114,12 +139,15 @@ public class PaintInOutController : MonoBehaviour
         }
         paint.SetActive(false);
         _image.enabled = false;
-        if(paint!= _endPaint&&!paint.GetComponent<Level>().WasAlreadySpawned)
-        {
-            paint.GetComponent<Level>().WasAlreadySpawned = true;
-            CameraManager.Instance.FocusCamera();
-            CameraManager.Instance.ReEvaluate();
-        }
+        if(!paintLevel.WasAlreadySpawned)
+       {
+            paintLevel.WasAlreadySpawned = true;
+            if (paint != _endPaint)
+            {
+                CameraManager.Instance.FocusCamera();
+                CameraManager.Instance.ReEvaluate();
+            }
+        }  
         yield return null;
     }
     private List<GameObject> AllChilds(GameObject root)
@@ -169,14 +197,9 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.sizeDelta = paintRect.sizeDelta;
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
+        _image.texture = paint.GetComponent<Level>().LevelTexture;
+        _mat.SetTexture("_MainTex", _image.texture);
         _image.enabled = true;
-        if (paintRect.sizeDelta.y < paintRect.sizeDelta.x)
-        {
-            _camera.orthographicSize = paintRect.sizeDelta.y / 2;
-        }
-        else
-        {
-            _camera.orthographicSize = paintRect.sizeDelta.x / 2;
-        }
+
     }
 }

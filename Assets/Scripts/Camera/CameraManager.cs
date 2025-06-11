@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject _compositeParent;
     [SerializeField] private float _cameraZoomTime;
     [SerializeField] private float _cameraDezoomTime;
+    [SerializeField] private float duration = 5f;
     [SerializeField] private Ease _cameraDezoomEase = Ease.OutBack;
     [SerializeField] private Ease _cameraZoomEase = Ease.OutBack;
     private PaintInOutController _paintInOutController;
@@ -29,6 +30,15 @@ public class CameraManager : MonoBehaviour
     public GameObject CompositeParent { get => _compositeParent; set => _compositeParent = value; }
     public List<GameObject> Levels { get => _levels; set => _levels = value; }
     public float CameraDezoomTime { get => _cameraDezoomTime; }
+    public Transform PlayerTransform {
+        get => _playerTransform;
+        set
+        {
+            _playerTransform = value;
+            MainCamera.Follow = _playerTransform;
+        }
+    }
+
 
     void Awake()
     {
@@ -48,7 +58,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        _playerTransform = _mainCamera.transform;
+        if (FindAnyObjectByType<SpawnManager>() != null) PlayerTransform = FindAnyObjectByType<SpawnManager>().transform;
         initOrthoSize = _mainCamera.m_Lens.OrthographicSize;
         CalculateCameraBounds();
         DefineCameraBounds();
@@ -75,7 +85,7 @@ public class CameraManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            CameraShake(0.5f, 1f);
+            //CameraShake(0.5f, 1f);
         }
     }
 
@@ -136,13 +146,13 @@ public class CameraManager : MonoBehaviour
         if(level.TryGetComponent(out RectTransform rt))
         {
             _globalCamera.m_Lens.Orthographic = true;
-            if (rt.sizeDelta.y < rt.sizeDelta.x)
+            if (rt.sizeDelta.y > rt.sizeDelta.x)
             {
-                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.y/2;
+                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.y/2.5f;
             }
             else
             {
-                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.x/2;
+                _globalCamera.m_Lens.OrthographicSize = rt.sizeDelta.x/3;
             }
             _globalCamera.transform.position = new Vector3(level.transform.position.x, level.transform.position.y, _mainCamera.transform.position.z);
         }
@@ -270,7 +280,7 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShowAndHideLevel()
     {
         SeeAllLevels();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(duration);
         FocusCamera();
     }
 
@@ -289,6 +299,7 @@ public class CameraManager : MonoBehaviour
 
     public void FocusCamera()
     {
+        _mainCamera.Follow = null;
         if (_globalCamera != null&&_playerTransform!=null)
         {
             if (_zoomCoroutine != null || _dezoomCoroutine != null) return;            
@@ -296,6 +307,7 @@ public class CameraManager : MonoBehaviour
             {
                 _zoomCoroutine = null;
             }));
+            _mainCamera.Follow=_playerTransform;
         }
     }
 

@@ -27,7 +27,7 @@ public class Clone : MonoBehaviour
     private void Start()
     {
         CVC = CameraManager.Instance.MainCamera;
-        CVC.Follow = transform;
+        CameraManager.Instance.PlayerTransform = transform;
         _inputs = InputsManager.instance;
         _playerStateMachine = GetComponent<PlayerStateMachine>();
         _charID = CloneManager.instance.Characters.Count;

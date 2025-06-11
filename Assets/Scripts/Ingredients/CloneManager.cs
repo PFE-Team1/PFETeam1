@@ -26,12 +26,14 @@ public class CloneManager : MonoBehaviour
 
     public void Switch(int charID)
     {
-        AudioManager.Instance.SFX_SwitchClone.Post(gameObject);
         bool mustSkip = true;
         if (_characters.Count <= 1)
         {
             return;
         }
+
+        AudioManager.Instance.SFX_SwitchClone.Post(gameObject);
+
 
         while (mustSkip == true)
         {

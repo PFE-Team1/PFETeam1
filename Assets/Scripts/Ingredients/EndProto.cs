@@ -18,10 +18,12 @@ public class EndProto : Interactable
         base.Start();
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        _level.GetComponent<Level>().End = gameObject;
         OpenRift();
         // Make it move up and down a litle based on his original position using a tween 
         transform.DOLocalMoveY(transform.localPosition.y + 0.25f, 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         _endEffect = FindFirstObjectByType<PaintInOutController>();
+        _endEffect.EndPaint = _level;
         _fissure = GetComponent<SpriteRenderer>();
         StartCoroutine(OpenFissure());
     }

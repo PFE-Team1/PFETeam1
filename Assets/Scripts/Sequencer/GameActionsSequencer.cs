@@ -11,6 +11,9 @@ public class GameActionsSequencer : MonoBehaviour
 
     [Header("AutoPlay")]
     public ActionTrigger actionTrigger = ActionTrigger.AutoStart;
+    [SerializeField]
+    [ConditionalField("actionTrigger", ActionTrigger.Trigger, ActionTrigger.Trigger)]
+    private bool canBeReTriggered = false;
 
     // Structure pour stocker les données d'exécution de chaque action
     private class ActionExecutionData
@@ -56,7 +59,7 @@ public class GameActionsSequencer : MonoBehaviour
         if (actionTrigger == ActionTrigger.Trigger && !_isRunning)
         {
             //destroy the trigger
-            Destroy(gameObject.GetComponent<BoxCollider>());
+            if(!canBeReTriggered) Destroy(gameObject.GetComponent<BoxCollider>());
             Play();
         }
     }

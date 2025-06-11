@@ -8,8 +8,13 @@ using NaughtyAttributes;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+    [Header("LetterBox Settings")]
     public RectTransform UpDownLetterBox;
     public RectTransform LeftRightLetterBox;
+
+    [Header("Canvas Settings")]
+    public CanvasGroup CanvasGroup; // Pour gérer la transparence du canvas si nécessaire
+    [SerializeField] private bool isCanvasfadedin = false;
     private RectTransform _canvasRectTransform;
 
     void Awake()
@@ -19,6 +24,13 @@ public class UIManager : MonoBehaviour
             Instance = this;
         }
         else Destroy(this.gameObject);
+        if (isCanvasfadedin)
+        {
+            CanvasGroup.alpha = 1f;
+        }
+
+        this.gameObject.SetActive(false);
+        this.gameObject.SetActive(true);
     }
 
     private void Start()
@@ -117,6 +129,27 @@ public class UIManager : MonoBehaviour
         ).SetEase(ease);
     }
 
+    public Tween Fadein(float duration = 1f, Ease ease = Ease.OutQuad)
+    {
+        if (CanvasGroup == null) return null;
+        CanvasGroup.alpha = 0f; // Assurez-vous que le canvas est transparent au début
+        return CanvasGroup.DOFade(1f, duration).SetEase(ease);
+    }
+
+    public Tween FadeOut(float duration = 1f, Ease ease = Ease.OutQuad)
+    {
+        if (CanvasGroup == null) return null;
+        return CanvasGroup.DOFade(0f, duration).SetEase(ease);
+    }
+
+    public void SetFadeValue(float value)
+    {
+        if (CanvasGroup != null)
+        {
+            CanvasGroup.alpha = Mathf.Clamp01(value);
+        }
+    }
+
 
     // create naughty attributes buttons to test the letterbox effects
     [Button("Test UpDown LetterBox")]
@@ -138,5 +171,16 @@ public class UIManager : MonoBehaviour
     public void TestOutLeftRightLetterBox()
     {
         TweenOutLeftRightLetterBox(1f, Ease.OutQuad);
+    }
+
+    [Button("Fade In")]
+    public void TestFadeIn()
+    {
+        Fadein(1f, Ease.OutQuad);
+    }
+    [Button("Fade Out")]
+    public void TestFadeOut()
+    {
+        FadeOut(1f, Ease.OutQuad);
     }
 }

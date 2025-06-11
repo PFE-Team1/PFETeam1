@@ -36,13 +36,14 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
-				<SoundBank Name="MUS_01_SBK" ID="{55FEF3BF-A70D-4A00-A751-CA87997D0E79}">
+				<SoundBank Name="MUS_Menu_SBK" ID="{55FEF3BF-A70D-4A00-A751-CA87997D0E79}">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="13"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ObjectInclusionList>
-						<ObjectRef Name="MUS_WU_01" ID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" WorkUnitID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Main_Menu_PC" ID="{B4789110-F8CC-407F-B215-479AC42ED6AE}" WorkUnitID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_Main_Menu_PC" ID="{CCDD7BF5-0FF9-4693-9B25-6DFB0EE50ADE}" WorkUnitID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
@@ -91,13 +92,27 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
-				<SoundBank Name="MUS_02_SBK" ID="{7091214C-80A9-4C84-A259-F8386A0F95A3}">
+				<SoundBank Name="MUS_Part1_SBK" ID="{7091214C-80A9-4C84-A259-F8386A0F95A3}">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="13"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ObjectInclusionList>
-						<ObjectRef Name="MUS_WU_02_01" ID="{2BCDD04A-F73B-4815-8AD8-5932DB493F46}" WorkUnitID="{2BCDD04A-F73B-4815-8AD8-5932DB493F46}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Toile_1_PC" ID="{DB12517E-CB7C-4BCE-8F14-D066A54551D0}" WorkUnitID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Toile_Tuto_PC" ID="{774E5D97-761D-4C74-8057-CF2745D2EA26}" WorkUnitID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_Toile_1_PC" ID="{15235AE8-F5F7-4D70-A208-081E1A56520C}" WorkUnitID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="MUS_Part2_SBK" ID="{8B61FFC5-B87D-49BC-97C2-7818A43721AE}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="13"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_Toile_1_5_PC" ID="{FAE04BF9-F86D-4434-A1D3-B5F125EDBA2A}" WorkUnitID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Toile_2_PC" ID="{02F34C06-E154-4EFA-92FD-AFE18A3D0F2E}" WorkUnitID="{A56EF395-CD41-491F-9D6E-1F5174A625D0}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
