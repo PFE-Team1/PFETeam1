@@ -151,7 +151,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 5b1a7e0c34ee414e9dc1f3835973309b
     GuidInternal: 
-    m_lastTime: -8584523889590410945
+    m_lastTime: -8584519803938672646
     List:
     - name: AMB_LVL01_SBK
       guid: fdc9988257980740ab1f040c6bb35c2e
@@ -209,9 +209,9 @@ MonoBehaviour:
         ObjectType: 7
         guid: 4af1800409a1da45b060ea3c24dd5d8b
       Path: SoundBanks\Default Work Unit\FOL_SBK
-    - name: MUS_01_SBK
+    - name: MUS_Menu_SBK
       guid: bff3fe550da7004aa751ca87997d0e79
-      id: 215490443
+      id: 1085938327
       PathAndIcons:
       - ElementName: SoundBanks
         ObjectType: 5
@@ -219,13 +219,13 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 5b1a7e0c34ee414e9dc1f3835973309b
-      - ElementName: MUS_01_SBK
+      - ElementName: MUS_Menu_SBK
         ObjectType: 7
         guid: bff3fe550da7004aa751ca87997d0e79
-      Path: SoundBanks\Default Work Unit\MUS_01_SBK
-    - name: MUS_02_SBK
+      Path: SoundBanks\Default Work Unit\MUS_Menu_SBK
+    - name: MUS_Part1_SBK
       guid: 4c219170a980844ca259f8386a0f95a3
-      id: 3557985392
+      id: 2765504748
       PathAndIcons:
       - ElementName: SoundBanks
         ObjectType: 5
@@ -233,10 +233,24 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 5b1a7e0c34ee414e9dc1f3835973309b
-      - ElementName: MUS_02_SBK
+      - ElementName: MUS_Part1_SBK
         ObjectType: 7
         guid: 4c219170a980844ca259f8386a0f95a3
-      Path: SoundBanks\Default Work Unit\MUS_02_SBK
+      Path: SoundBanks\Default Work Unit\MUS_Part1_SBK
+    - name: MUS_Part2_SBK
+      guid: c5ff618b7db8bc4997c27818a43721ae
+      id: 3717977127
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 5b1a7e0c34ee414e9dc1f3835973309b
+      - ElementName: MUS_Part2_SBK
+        ObjectType: 7
+        guid: c5ff618b7db8bc4997c27818a43721ae
+      Path: SoundBanks\Default Work Unit\MUS_Part2_SBK
     - name: SFX01_SBK
       guid: f5ebf4ac2f5b004f87f52a8c349f43b6
       id: 776845020
@@ -795,18 +809,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.6309837
       minDuration: 0.4558711
-  - PhysicalPath: Events\MUS_WU_01.wwu
+  - PhysicalPath: Events\MUS_WU.wwu
     PathAndIcons:
     - ElementName: Events
       ObjectType: 5
       guid: 00000000000000000000000000000000
-    - ElementName: MUS_WU_01
+    - ElementName: MUS_WU
       ObjectType: 12
       guid: 95f36ea541cd1f499d6e1f5174a625d0
-    ParentPath: Events\MUS_WU_01
+    ParentPath: Events\MUS_WU
     guid: 95f36ea541cd1f499d6e1f5174a625d0
     GuidInternal: 
-    m_lastTime: -8584523889602255736
+    m_lastTime: -8584519803988454321
     List:
     - name: Play_Toile_1_PC
       guid: 7e5112db7ccbce4b8f14d066a54551d0
@@ -815,13 +829,13 @@ MonoBehaviour:
       - ElementName: Events
         ObjectType: 5
         guid: 00000000000000000000000000000000
-      - ElementName: MUS_WU_01
+      - ElementName: MUS_WU
         ObjectType: 12
         guid: 95f36ea541cd1f499d6e1f5174a625d0
       - ElementName: Play_Toile_1_PC
         ObjectType: 3
         guid: 7e5112db7ccbce4b8f14d066a54551d0
-      Path: Events\MUS_WU_01\Play_Toile_1_PC
+      Path: Events\MUS_WU\Play_Toile_1_PC
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -832,43 +846,13 @@ MonoBehaviour:
       - ElementName: Events
         ObjectType: 5
         guid: 00000000000000000000000000000000
-      - ElementName: MUS_WU_01
+      - ElementName: MUS_WU
         ObjectType: 12
         guid: 95f36ea541cd1f499d6e1f5174a625d0
       - ElementName: Play_Toile_2_PC
         ObjectType: 3
         guid: 064cf30254e1fa4e92fdafe18a3d0f2e
-      Path: Events\MUS_WU_01\Play_Toile_2_PC
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-  - PhysicalPath: Events\MUS_WU_02_01.wwu
-    PathAndIcons:
-    - ElementName: Events
-      ObjectType: 5
-      guid: 00000000000000000000000000000000
-    - ElementName: MUS_WU_02_01
-      ObjectType: 12
-      guid: 4ad0cd2b3bf715488ad85932db493f46
-    ParentPath: Events\MUS_WU_02_01
-    guid: 4ad0cd2b3bf715488ad85932db493f46
-    GuidInternal: 
-    m_lastTime: -8584523889602240704
-    List:
-    - name: Play_Main_Menu_PC_01
-      guid: f491a3d2ef204a4785ad89240ba02df4
-      id: 1638865919
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: MUS_WU_02_01
-        ObjectType: 12
-        guid: 4ad0cd2b3bf715488ad85932db493f46
-      - ElementName: Play_Main_Menu_PC_01
-        ObjectType: 3
-        guid: f491a3d2ef204a4785ad89240ba02df4
-      Path: Events\MUS_WU_02_01\Play_Main_Menu_PC_01
+      Path: Events\MUS_WU\Play_Toile_2_PC
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -1279,8 +1263,74 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: ade3c0f59ebd6c47bb373552589cde30
     GuidInternal: 
-    m_lastTime: -8584551759257005513
-    List: []
+    m_lastTime: -8584519803938652466
+    List:
+    - name: MusicLevel_TG
+      guid: 64feebe6b5d22f4492197b6291a1c9c3
+      id: 3735246380
+      PathAndIcons:
+      - ElementName: States
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: ade3c0f59ebd6c47bb373552589cde30
+      - ElementName: MusicLevel_TG
+        ObjectType: 9
+        guid: 64feebe6b5d22f4492197b6291a1c9c3
+      Path: States\Default Work Unit\MusicLevel_TG
+      values:
+      - name: Level
+        guid: 711472191bc02a4f9240f71db31e7bb7
+        id: 2782712965
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: ade3c0f59ebd6c47bb373552589cde30
+        - ElementName: MusicLevel_TG
+          ObjectType: 9
+          guid: 64feebe6b5d22f4492197b6291a1c9c3
+        - ElementName: Level
+          ObjectType: 8
+          guid: 711472191bc02a4f9240f71db31e7bb7
+      - name: LevelTransition
+        guid: ef2a4a451f09df459228f3c3897569bd
+        id: 4198606512
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: ade3c0f59ebd6c47bb373552589cde30
+        - ElementName: MusicLevel_TG
+          ObjectType: 9
+          guid: 64feebe6b5d22f4492197b6291a1c9c3
+        - ElementName: LevelTransition
+          ObjectType: 8
+          guid: ef2a4a451f09df459228f3c3897569bd
+      - name: None
+        guid: 58f40f84366fbd4b9013b01b2db68f2b
+        id: 748895195
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: ade3c0f59ebd6c47bb373552589cde30
+        - ElementName: MusicLevel_TG
+          ObjectType: 9
+          guid: 64feebe6b5d22f4492197b6291a1c9c3
+        - ElementName: None
+          ObjectType: 8
+          guid: 58f40f84366fbd4b9013b01b2db68f2b
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     PathAndIcons:
