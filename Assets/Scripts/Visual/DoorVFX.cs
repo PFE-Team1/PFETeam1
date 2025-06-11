@@ -89,7 +89,6 @@ public class DoorVFX : MonoBehaviour
             }
             if (_otherDoorVFX&&!_otherDoorVFX.IsPlayerInter)//verifie si le joueur est sorti de l'autre partie du passage pour faire le changer de parent
             {
-                print("feurPorte");
                 other.GetComponent<Clone>().ChangeParent();
             }
         }
