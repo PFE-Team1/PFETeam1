@@ -52,6 +52,7 @@ public class DoorVFX : MonoBehaviour
                 child.Out(this);
             }
         }
+        Destroy(_doorVFXInstance);
         _doorVFXInstance = null;
         //_otherDoorVFX.OtherDoorVFX = null;
         _otherDoorVFX = null;

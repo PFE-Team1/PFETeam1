@@ -11,9 +11,12 @@ public class PaintingController : Interactable
     [SerializeField] private GameObject _newLevelPrefab;
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private GameObject _VFXPoseSocle;
+    [SerializeField] private ParticleSystem _VFXTrail;
+    [SerializeField] private bool _needsRotation;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
     private SpriteRenderer _spriteRenderer;
+    private Rigidbody _rigidBody;
     private PaintHandler _paintHandlerAccessor;
     private Transform _targetTransform;
     private PaintHandler _paintHandler { get => getPaintHandler(); set => _paintHandler = value; }
@@ -26,7 +29,9 @@ public class PaintingController : Interactable
     [SerializeField] private ParticleSystem VFX_PoseToile;
 
     private BoneFollower boneFollower;
+    private bool _hasSpawned;
 
+    public bool HasSpawned { get => _hasSpawned; set => _hasSpawned = value; }
     private PaintHandler getPaintHandler()
     {
         _paintHandlerAccessor = Player.GetComponentInChildren<PaintHandler>();
@@ -38,22 +43,26 @@ public class PaintingController : Interactable
         base.Start();
         boneFollower = GetComponent<BoneFollower>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidBody = GetComponent<Rigidbody>();
     }
     protected override void Interact()
     {
         print(PlayerC.IsInSocleRange);
-        if (IsInRange && !PlayerC.IsInSocleRange)
+        if (IsInRange)
         {
             if (_isHeld)
             {
-                if (VFX_PoseToile != null)
+                if (!PlayerC.IsInSocleRange)
                 {
-                    Destroy(Instantiate(VFX_PoseToile, transform), 1f);
+                    if (VFX_PoseToile != null)
+                    {
+                        Destroy(Instantiate(VFX_PoseToile, transform), 1f);
+                    }
+                    AudioManager.Instance.SFX_PoseToile.Post(gameObject);
+                    AnimateDropPainting();
                 }
-                AudioManager.Instance.SFX_PoseToile.Post(gameObject);
-                AnimateDropPainting();
             }
-            else
+            else if (!transform.parent.GetComponent<LevelSpawner>()) 
             {
                 AnimateGrabPainting();
             }
@@ -85,6 +94,7 @@ public class PaintingController : Interactable
                         SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
                         if (sr != null)
                         {
+                            print("avant ou après moi");
                             PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                             _paintHandler.CurrentPaintingController = this;
                             _targetTransform = Parent ? Parent : child.GetComponentInChildren<SpriteMask>().transform;
@@ -103,11 +113,16 @@ public class PaintingController : Interactable
     }
     public void DropPainting()
     {
-        // Visuel de peinture
+         if (_needsRotation)
+        {
+            PlayerC.PaintingTransform.Rotate(new Vector3(0, 0, 1), -90f);
+        }
+        _VFXTrail.Play(true);
+        _rigidBody.useGravity = true;
         transform.SetParent(_targetTransform);
         transform.localRotation = Quaternion.Euler(0, 0, 0);
         transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 1);
+        _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 2);
         boneFollower.SkeletonRenderer = null;
 
         if (transform.parent.GetComponent<LevelSpawner>() != null) transform.localPosition = Vector3.zero;
@@ -125,11 +140,17 @@ public class PaintingController : Interactable
     }
     public void GrabPainting()
     {
+        _VFXTrail.Stop(true);
         if (VFX_GrabToile != null)
         {
             Destroy(Instantiate(VFX_GrabToile, transform), 1f);
         }
+        if (_needsRotation)
+        {
+            transform.Rotate(new Vector3(0, 0, 1), 90f);
+        }
         UnfreezePos();
+        _rigidBody.useGravity = false;
         AudioManager.Instance.SFX_GrabToile.Post(gameObject);
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
@@ -149,9 +170,8 @@ public class PaintingController : Interactable
     }
     public void UnfreezePos()
     {
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotation;
     }
     public void PlayVFXSocle()
     {

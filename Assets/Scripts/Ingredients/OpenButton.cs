@@ -71,7 +71,7 @@ public class OpenButton : Interactable
         for (int i = 0; i < destroyed.Colliders.Count; i++)
         {
             destroyed.Colliders[i].enabled = true;
-            destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", 0);
+            destroyed.Renderers[i].material.SetFloat("_Disolve_Cursor2", 1);
         }
         if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime||time>hightestRespawnTime)
         {

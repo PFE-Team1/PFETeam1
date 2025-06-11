@@ -21,7 +21,7 @@ public class PaintHandler : MonoBehaviour
     public void ChangeSortingorder(int sortingOrder)
     {
         ArmPartRenderer.MeshRenderer.sortingOrder = sortingOrder+1;
-        BodyPartRenderer.MeshRenderer.sortingOrder = sortingOrder;
+        BodyPartRenderer.MeshRenderer.sortingOrder = sortingOrder-1;
     }
 
     // to capture event "Footstep" when it's placed outside of folders
@@ -56,6 +56,7 @@ public class PaintHandler : MonoBehaviour
 
     void Footstep()
     {
+        print("Footstep");
         AudioManager.Instance.FOL_Pas.Post(gameObject);
     }
 }

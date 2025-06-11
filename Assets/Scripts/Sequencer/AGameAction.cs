@@ -5,7 +5,6 @@ public abstract class AGameAction : MonoBehaviour
 {
     [Header("Debug Settings")]
     [SerializeField]
-    [ExcludeEnum(ActionStartCondition.Conditional)] // Exclut "Conditional" de l'affichage
     protected ActionStartCondition startCondition = ActionStartCondition.WaitForPrevious;
 
     protected float duration = 0f;
@@ -19,10 +18,11 @@ public abstract class AGameAction : MonoBehaviour
     protected bool _isFinished = false;
     protected bool _hasStarted = false;
     protected bool _ConditionMet = false;
-
+        
     public float Duration => duration;
     public float DelayAmount => delayAmount;
-    public ActionStartCondition StartCondition => startCondition;
+    public virtual ActionStartCondition StartCondition => startCondition;
+    public virtual ActionEndCondition EndCondition => ActionEndCondition.TimeLimit; // Par défaut, on utilise TimeLimit pour la condition de fin
     public bool ConditionMet => _ConditionMet;
 
     public virtual void Execute()
@@ -32,9 +32,21 @@ public abstract class AGameAction : MonoBehaviour
         _currentTime = 0f;
         _isFinished = false;
         OnExecute();
-        if (duration <= 0f)
+        switch (EndCondition)
         {
-            _isFinished = true;
+            case ActionEndCondition.TimeLimit:
+                if (duration <= 0f)
+                {
+                    _isFinished = true;
+                }
+                break;
+            case ActionEndCondition.ConditionMet:
+                _isFinished = _ConditionMet;
+                break;
+            case ActionEndCondition.Manual:
+                break;
+            default:
+                break;
         }
     }
 
@@ -43,10 +55,23 @@ public abstract class AGameAction : MonoBehaviour
         if (!_hasStarted || _isFinished) return;
         _currentTime += deltaTime;
         OnUpdate(deltaTime);
-        if (_currentTime >= duration)
+        switch (EndCondition)
         {
-            _isFinished = true;
-            OnActionFinished();
+            case ActionEndCondition.TimeLimit:
+                if (_currentTime >= duration)
+                {
+                    _isFinished = true;
+                    OnActionFinished();
+                }
+                break;
+            case ActionEndCondition.ConditionMet:
+                _isFinished = _ConditionMet;
+                if (_ConditionMet) OnActionFinished();
+                break;
+            case ActionEndCondition.Manual:
+                break;
+            default:
+                break;
         }
     }
 
@@ -61,6 +86,7 @@ public abstract class AGameAction : MonoBehaviour
     {
         _hasStarted = false;
         _isFinished = false;
+        _ConditionMet = false;
         _currentTime = 0f;
         OnReset();
     }
@@ -70,6 +96,7 @@ public abstract class AGameAction : MonoBehaviour
         if (!_hasStarted) return;
         _currentTime = duration;
         _isFinished = true;
+        _ConditionMet = true;
         OnSkip();
         OnActionFinished();
     }
@@ -111,6 +138,13 @@ public abstract class AGameAction : MonoBehaviour
         DelayAfterPrevious,     // Attendre delayAmount secondes après la fin de l'action précédente
         Simultaneous,           // Se lancer en même temps que l'action précédente
         DelayFromStart,         // Se lancer delayAmount secondes après le début de la première action
-        Conditional             // Se lancer si une condition spécifique est remplie (à définir dans les classes dérivées)
+    }
+
+    public enum ActionEndCondition
+    {
+        None,                   // Pas de condition de fin
+        TimeLimit,              // Fin après un certain temps
+        ConditionMet,           // Fin lorsque la condition est remplie
+        Manual,                 // Fin manuelle via une méthode externe
     }
 }
