@@ -5656,11 +5656,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1018282674807512969, guid: 381296aae57efd84b80de48b790ee447, type: 3}
       propertyPath: _nextScene
-      value: Niveau-Intro
+      value: Niveau-IntroV2
       objectReference: {fileID: 0}
     - target: {fileID: 1018282674807512969, guid: 381296aae57efd84b80de48b790ee447, type: 3}
       propertyPath: currentScene
-      value: Niveau-0
+      value: Niveau-0-FadeToBlackWhenPressPlayed
       objectReference: {fileID: 0}
     - target: {fileID: 5793851086427777838, guid: 381296aae57efd84b80de48b790ee447, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14434,6 +14434,7 @@ MonoBehaviour:
   _secondMenuAnimator: {fileID: 1482086652}
   _firstMenuAnimation: {fileID: 7400000, guid: 652b90a1bbbb57a4bb86166d9b8ae349, type: 2}
   _secondMenuAnimation: {fileID: 7400000, guid: 1ec38a2e855ff6847b00de9962e3359d, type: 2}
+  _zoomForPlayAnimation: {fileID: 0}
   _masterVolumeRTPC:
     idInternal: 0
     valueGuidInternal: 
@@ -14454,6 +14455,7 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 9c3b8116b21d8a04b87cfb993a3db1cd, type: 2}
+  isInPause: 0
 --- !u!4 &1481164771
 Transform:
   m_ObjectHideFlags: 0
