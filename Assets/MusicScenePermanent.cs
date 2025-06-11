@@ -23,12 +23,13 @@ public class MusicScenePermanent : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void Start()
+    
+    public void StartFirstMusic()
     {
-        if (_playMusicEvents.Length > 0)
+        if (_playMusicEvents.Length > 0 && _currentMusicIndex < _playMusicEvents.Length)
         {
             _playMusicEvents[_currentMusicIndex].Post(gameObject);
+            Debug.Log("Starting music at index: " + _currentMusicIndex);
         }
     }
 
@@ -38,7 +39,7 @@ public class MusicScenePermanent : MonoBehaviour
         {
             StopCoroutine(_musicTransitionCoroutine);
         }
-        
+
         _musicTransitionCoroutine = StartCoroutine(MusicTransition());
     }
 

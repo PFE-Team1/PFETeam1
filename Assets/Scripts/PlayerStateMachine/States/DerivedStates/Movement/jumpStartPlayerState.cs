@@ -19,6 +19,11 @@ public class JumpStartPlayerState : PlayerState
 
     protected override void OnStateUpdate()
     {
+        if (SettingsManager.Instance.isInPause)
+        {
+            StateMachine.ChangeState(StateMachine.IdleState);
+            return;
+        }
         _timeSinceEnteredState += Time.deltaTime;
         if (_timeSinceEnteredState > _playerMovementParameters.timeToJump)
         {
