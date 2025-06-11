@@ -94,7 +94,6 @@ public class PaintingController : Interactable
                         SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
                         if (sr != null)
                         {
-                            print("avant ou après moi");
                             PlayerStateMachine.ChangeState(PlayerStateMachine.PaintingDropState);
                             _paintHandler.CurrentPaintingController = this;
                             _targetTransform = Parent ? Parent : child.GetComponentInChildren<SpriteMask>().transform;

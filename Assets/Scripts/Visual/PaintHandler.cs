@@ -27,7 +27,6 @@ public class PaintHandler : MonoBehaviour
     // to capture event "Footstep" when it's placed outside of folders
     void Grab()
     {
-        print("Grab called");
         if (CurrentPaintingController != null)
         {
             CurrentPaintingController.GrabPainting();
@@ -43,7 +42,6 @@ public class PaintHandler : MonoBehaviour
 
     void Place()
     {
-        print("Place called");
         if (CurrentPaintingController != null)
         {
             CurrentPaintingController.DropPainting();
@@ -56,7 +54,6 @@ public class PaintHandler : MonoBehaviour
 
     void Footstep()
     {
-        print("Footstep");
         AudioManager.Instance.FOL_Pas.Post(gameObject);
     }
 }
