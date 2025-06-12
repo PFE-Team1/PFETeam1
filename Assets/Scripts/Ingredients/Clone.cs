@@ -63,7 +63,8 @@ public class Clone : MonoBehaviour
     {
         if (isEnable)
         {
-            CVC.Follow = gameObject.transform;
+            CameraManager.Instance.PlayerTransform = transform;
+            CVC.Follow = transform;
             //CVC.transform.position = transform.position;
         }
         //_playerVFX.CanPlayVFX(isEnable);
