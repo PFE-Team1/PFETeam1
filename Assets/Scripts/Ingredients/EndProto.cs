@@ -40,6 +40,7 @@ public class EndProto : Interactable
     {
         _endEffect.EndPaint = _level;
         Destroy(PlayerC.gameObject) ;
+        DestroyOtherLevel();
         CloseRift();
         _riftEffect.Stop();
         yield return new WaitForSeconds(.5f);
@@ -47,7 +48,6 @@ public class EndProto : Interactable
         yield return new WaitForSeconds(2);
         CameraManager.Instance.SeeCurrentLevel(_level);
         yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime);
-        DestroyOtherLevel();
         if (_endEffect != null)
         {
             _endEffect.PaintOut(_level);
