@@ -1096,6 +1096,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.023096085
       objectReference: {fileID: 0}
+    - target: {fileID: 5803697190936520259, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: RotationZ
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5932823448541861189, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.8859992
@@ -1618,6 +1622,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1464777090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1639228281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6941394460788967206, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+  m_PrefabInstance: {fileID: 1957302952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1639228287
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639228281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
+  m_LookaheadTime: 0
+  m_LookaheadSmoothing: 0
+  m_LookaheadIgnoreY: 0
+  m_XDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 1
+  m_TargetMovementOnly: 1
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
+  m_CameraDistance: 10
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
+  m_DeadZoneDepth: 0
+  m_UnlimitedSoftZone: 0
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 0.8
+  m_BiasX: 0
+  m_BiasY: 0
+  m_CenterOnActivate: 1
+  m_GroupFramingMode: 2
+  m_AdjustmentMode: 0
+  m_GroupFramingSize: 0.8
+  m_MaxDollyIn: 5000
+  m_MaxDollyOut: 5000
+  m_MinimumDistance: 1
+  m_MaximumDistance: 5000
+  m_MinimumFOV: 3
+  m_MaximumFOV: 60
+  m_MinimumOrthoSize: 1
+  m_MaximumOrthoSize: 5000
 --- !u!1 &1720736836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,6 +1917,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.17
       objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_ScreenY
+      value: 0.385
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_DeadZoneWidth
+      value: 0.531
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_LookaheadTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_SoftZoneWidth
+      value: 0.821
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_DeadZoneHeight
+      value: 0.528
+      objectReference: {fileID: 0}
     - target: {fileID: 7590844515293728066, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.64
@@ -1893,13 +1965,17 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 1087
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6254155547487146705, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1545743492806079584, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1429533647}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6941394460788967206, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1639228287}
   m_SourcePrefab: {fileID: 100100000, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
 --- !u!4 &1957302953 stripped
 Transform:
@@ -1939,7 +2015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2054834373
 MonoBehaviour:
   m_ObjectHideFlags: 0
