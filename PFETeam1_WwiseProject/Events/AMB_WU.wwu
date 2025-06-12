@@ -64,6 +64,27 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Play_AMB_Demarrage_LP" ID="{246A5696-1A92-49D7-8D87-CD6CC70F3549}">
+							<ChildrenList>
+								<Action Name="" ID="{8EBFB15C-4FF3-4668-9A82-976FBE2BB84C}" ShortID="512825779">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Demarrage_LP" ID="{465D44ED-77C6-48B7-8AC1-4FE419578ECA}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{376A469A-E1F3-4D5E-B4E2-44EA4212993F}" ShortID="126149429">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Demarrage_Bird" ID="{8636B262-00F2-405E-BAD4-F91EF79B43B7}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Toile02" ID="{0B7B9F79-3571-4899-A708-3F39DA45ADEB}" ShortID="163064503">

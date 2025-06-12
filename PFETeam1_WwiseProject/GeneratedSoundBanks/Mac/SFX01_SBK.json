@@ -11,7 +11,7 @@
     "GUID": "{ACF4EBF5-5B2F-4F00-87F5-2A8C349F43B6}",
     "Color": "8",
     "Language": "SFX",
-    "Hash": "{7EFFFEB7-2846-4880-86C9-B0430F2D5A94}",
+    "Hash": "{A1B5A6D6-DE53-380D-5109-39984273C04F}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\SFX01_SBK",
     "ShortName": "SFX01_SBK",
     "Path": "SFX01_SBK.bnk",
@@ -23,6 +23,14 @@
       "Location": "Memory",
       "ShortName": "SFX_ApparitionToile_02.wav",
       "CachePath": "CE/{CE20370E-6A4B-0074-3CE4-FB98C80F2A59}.wem"
+     },
+     {
+      "Id": "9323136",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SFX_OuvertureMur_03.wav",
+      "CachePath": "5E/{5EE6A033-0D2A-EACC-72C8-F02CCDD282BB}.wem"
      },
      {
       "Id": "34832605",
@@ -89,12 +97,28 @@
       "CachePath": "EC/{EC3F5469-7D7C-311D-CE9C-970A39F4238C}.wem"
      },
      {
+      "Id": "447307835",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SFX_OuvertureMur_02.wav",
+      "CachePath": "01/{013CFAEB-C94B-4709-E86A-C3B1A3A90E39}.wem"
+     },
+     {
       "Id": "520137172",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SFX_Dechirure_01.wav",
       "CachePath": "7F/{7F53CA49-5742-D408-7180-877C2EB41775}.wem"
+     },
+     {
+      "Id": "704304357",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SFX_Scintillement.wav",
+      "CachePath": "FE/{FEA12809-08CD-9AF4-D9EE-24DB91FFA050}.wem"
      },
      {
       "Id": "741335950",
@@ -121,12 +145,28 @@
       "CachePath": "78/{78652B22-AAE3-D049-65EA-91732296B62E}.wem"
      },
      {
+      "Id": "881678214",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SFX_OuvertureMur_01.wav",
+      "CachePath": "AD/{ADC6EBFD-A3E8-C5AA-F61E-89D469D385D1}.wem"
+     },
+     {
       "Id": "891765086",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SFX_GrabToile_01.wav",
       "CachePath": "09/{0961385D-2192-7B07-32F8-98E34EA7B76E}.wem"
+     },
+     {
+      "Id": "974471781",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SFX_OuvertureMur_04.wav",
+      "CachePath": "D8/{D830EF56-DB22-080A-2DAE-E3A3629A8128}.wem"
      },
      {
       "Id": "987230766",
@@ -255,10 +295,49 @@
         "Id": "891765086"
        }
       ]
+     },
+     {
+      "Id": "3243152553",
+      "Name": "Play_OuvertureMur_RC",
+      "ObjectPath": "\\Events\\SFX_WU\\Play_OuvertureMur_RC",
+      "GUID": "{0A12A8B6-C1DD-4E0C-84A8-7D20EB2BD971}",
+      "Color": "8",
+      "MaxAttenuation": "10",
+      "DurationType": "OneShot",
+      "DurationMin": "2.4224374",
+      "DurationMax": "3.228",
+      "MediaRefs": [
+       {
+        "Id": "9323136"
+       },
+       {
+        "Id": "447307835"
+       },
+       {
+        "Id": "881678214"
+       },
+       {
+        "Id": "974471781"
+       }
+      ]
+     },
+     {
+      "Id": "1673264353",
+      "Name": "Play_SFX_Scintillement",
+      "ObjectPath": "\\Events\\SFX_WU\\Play_SFX_Scintillement",
+      "GUID": "{932DD893-5C71-4362-9026-554B3C3D5D8F}",
+      "Color": "8",
+      "MaxAttenuation": "10",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "704304357"
+       }
+      ]
      }
     ]
    }
   ],
-  "FileHash": "{C39FCEB1-5200-8471-69F1-D6EDEDC2B9B0}"
+  "FileHash": "{ADB7A07E-8AC5-BC3F-824D-62A4F9466B4F}"
  }
 }

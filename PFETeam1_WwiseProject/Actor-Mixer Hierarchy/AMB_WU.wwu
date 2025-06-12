@@ -5515,6 +5515,337 @@
 						</ActorMixer>
 					</ChildrenList>
 				</ActorMixer>
+				<ActorMixer Name="AMB_Demarrage" ID="{A12BA145-FE8E-441B-91EF-EA7567D39912}" ShortID="599047215">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<RandomSequenceContainer Name="AMB_Demarrage_Bird" ID="{8636B262-00F2-405E-BAD4-F91EF79B43B7}" ShortID="280198973">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>48</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OverridePositioning" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+								<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="6">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{73B3E515-D637-4E9F-BE89-8C1CE4CB87E9}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="2"/>
+													<Property Name="Min" Type="Real64" Value="-2"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="3"/>
+								<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="AMB_Demarrage_Bird_01" ID="{E4E3502C-600D-4B26-BE06-E13142A59483}" ShortID="698888256">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_01" ID="{8F8639D4-9F69-4368-9CDD-4AF52C0CB402}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="871090038"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_01" ID="{8F8639D4-9F69-4368-9CDD-4AF52C0CB402}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_02" ID="{A1A7D50B-512E-409D-A4C3-8F52A873315C}" ShortID="487312852">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_02" ID="{7F0BB8BF-2DB7-4A46-8A74-20115BAE5E89}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="504369253"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_02" ID="{7F0BB8BF-2DB7-4A46-8A74-20115BAE5E89}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_03" ID="{32FFDA93-D072-450C-903F-38DA4BD10D28}" ShortID="432611505">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_03" ID="{218E4EB5-5412-4EE0-BBEC-A4A4C1EF7754}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="568325932"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_03" ID="{218E4EB5-5412-4EE0-BBEC-A4A4C1EF7754}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_04" ID="{F1A2EAAC-B639-446E-A909-5AE576BAB0B9}" ShortID="1044706425">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_04" ID="{7EB985BD-286D-4A20-BBE9-E323F1F22918}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="981585290"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_04" ID="{7EB985BD-286D-4A20-BBE9-E323F1F22918}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_05" ID="{A3142616-FDF3-4907-98D4-98092D78DFCF}" ShortID="388702168">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_05" ID="{ED0F505A-14C0-449A-84F8-FAE75B5B0DD0}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_05.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="956193745"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_05" ID="{ED0F505A-14C0-449A-84F8-FAE75B5B0DD0}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_06" ID="{D8405CCF-337A-4CB8-82A7-D60C37C8952D}" ShortID="945533662">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_06" ID="{F574B90D-4D9F-49F3-B35A-428DD090E9AA}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_06.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="145407817"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_06" ID="{F574B90D-4D9F-49F3-B35A-428DD090E9AA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_07" ID="{44BC24EA-258D-4320-BF92-89E6463E1621}" ShortID="278965188">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_07" ID="{A6E82FEC-95BB-40C7-8DB8-67F5ED1CAC6A}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_07.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="480404396"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_07" ID="{A6E82FEC-95BB-40C7-8DB8-67F5ED1CAC6A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_08" ID="{53B8A02B-7EC9-429C-86FD-2BAAF7D90B43}" ShortID="803796243">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_08" ID="{629F3AC2-EF2B-4070-A609-FE8F7C049219}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_08.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="588815948"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_08" ID="{629F3AC2-EF2B-4070-A609-FE8F7C049219}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_09" ID="{D957C9A6-6018-40C2-B0DF-2870261A451A}" ShortID="1062440744">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_09" ID="{40ED6C07-1FF1-4B8D-866A-4F35AC3BB226}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_09.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="49077621"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_09" ID="{40ED6C07-1FF1-4B8D-866A-4F35AC3BB226}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_10" ID="{7891D739-B52E-4AB5-A572-D5E1A6D8E83C}" ShortID="936830776">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_10" ID="{DE81A0B2-94F4-46E3-820C-484C23561C70}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_10.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="656923493"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_10" ID="{DE81A0B2-94F4-46E3-820C-484C23561C70}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Demarrage_Bird_11" ID="{B6190904-7761-4466-AB47-B8784C29FA03}" ShortID="63374222">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Demarrage_Bird_11" ID="{4FCE2A68-C512-4E65-B913-FC5B8687B8F6}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Demarrage_Bird_11.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="83083603"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Demarrage_Bird_11" ID="{4FCE2A68-C512-4E65-B913-FC5B8687B8F6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<PositioningInfo>
+								<Panner Name="" ID="{131AB90F-8909-463E-952C-FD92F9F1A30C}">
+									<PropertyList>
+										<Property Name="PanX" Type="Real64" Value="54.3001686340641"/>
+										<Property Name="PanY" Type="Real64" Value="59.6745027124774"/>
+									</PropertyList>
+								</Panner>
+							</PositioningInfo>
+						</RandomSequenceContainer>
+						<Sound Name="AMB_Demarrage_LP" ID="{465D44ED-77C6-48B7-8AC1-4FE419578ECA}" ShortID="179981905">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>9</Value>
+									</ValueList>
+								</Property>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FCCCB99C-725F-440C-8232-1700C12FD759}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3D150F0D-AE6D-428A-A94C-3627E019C690}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="AMB_Demarrage_LP" ID="{A332CB47-B4A0-44B7-AE43-C0F40CE984DE}">
+									<Language>SFX</Language>
+									<AudioFile>AMB_Demarrage_LP.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="773344471"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="AMB_Demarrage_LP" ID="{A332CB47-B4A0-44B7-AE43-C0F40CE984DE}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

@@ -104,7 +104,7 @@ public class LevelSpawner : Interactable
         }
         CameraManager.Instance.SetNewLevel(_newlevel);
 
-        FindPlayer(true);
+        //FindPlayer(true);
         isAlreadySpawned = true;
         paintingController.PlayVFXSocle();
         paintingController.FreezePos();
@@ -219,7 +219,6 @@ public class LevelSpawner : Interactable
 
     public void RemoveNewLevel()
     {
-        FindPlayer(false);
         //OnRemovePainting.Invoke();
         isAlreadySpawned = false;
         _paint.transform.SetParent(Player.transform);
@@ -232,14 +231,7 @@ public class LevelSpawner : Interactable
 
     }
 
-    void FindPlayer(bool active)
-    {
-        List<Clone> clone = _newlevel.GetComponentsInChildren<Clone>(true).ToList();
-        foreach(Clone c in clone)
-        {
-            c.gameObject.SetActive(active);
-        }
-    }
+
 
     protected override void Interact()
     { 
