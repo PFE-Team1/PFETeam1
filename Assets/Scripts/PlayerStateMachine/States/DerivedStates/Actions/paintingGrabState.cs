@@ -24,10 +24,14 @@ public class paintingGrabState : PlayerState
 
     protected override void OnStateUpdate()
     {
-        if (SettingsManager.Instance.isInPause)
+
+        if (SettingsManager.Instance != null)
         {
-            StateMachine.ChangeState(StateMachine.IdleState);
-            return;
+            if (SettingsManager.Instance.isInPause)
+            {
+                StateMachine.ChangeState(StateMachine.IdleState);
+                return;
+            }
         }
         _timeSinceAnimation += Time.deltaTime;
 
