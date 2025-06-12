@@ -108,6 +108,8 @@ public class GameActionsSequencer : MonoBehaviour
         }
     }
 
+    // Remplacez votre méthode _ShouldStartAction par cette version avec debug
+
     private bool _ShouldStartAction(int actionIndex, float currentTime)
     {
         var actionData = _actionExecutionData[actionIndex];
@@ -116,19 +118,32 @@ public class GameActionsSequencer : MonoBehaviour
         // Si l'action a déjà été exécutée, ne pas la redémarrer
         if (actionData.hasBeenExecuted) return false;
 
-        // Première action : démarre toujours immédiatement
-        if (actionIndex == 0) return true;
+        // Première action : vérifier sa condition aussi
+        if (actionIndex == 0)
+        {
+            // Si la première action a DelayFromStart, elle doit attendre aussi
+            if (action.StartCondition == AGameAction.ActionStartCondition.DelayFromStart)
+            {
+                bool delayReached = currentTime >= action.DelayAmount;
+                return delayReached;
+            }
+            // Sinon, démarrer immédiatement
+            return true;
+        }
 
         var previousActionData = _actionExecutionData[actionIndex - 1];
 
         switch (action.StartCondition)
         {
             case AGameAction.ActionStartCondition.WaitForPrevious:
-                return previousActionData.hasBeenExecuted && !previousActionData.isActive;
+                bool shouldStart = previousActionData.hasBeenExecuted && !previousActionData.isActive;
+                return shouldStart;
 
             case AGameAction.ActionStartCondition.DelayAfterPrevious:
                 if (!previousActionData.hasBeenExecuted || previousActionData.isActive)
+                {
                     return false;
+                }
 
                 if (!actionData.isWaitingForDelay)
                 {
@@ -138,19 +153,24 @@ public class GameActionsSequencer : MonoBehaviour
                 }
 
                 actionData.delayTimer += Time.deltaTime;
-                return actionData.delayTimer >= action.DelayAmount;
+                bool delayFinished = actionData.delayTimer >= action.DelayAmount;
+                return delayFinished;
 
             case AGameAction.ActionStartCondition.Simultaneous:
-                return previousActionData.hasBeenExecuted;
+                bool simultaneous = previousActionData.hasBeenExecuted;
+                return simultaneous;
 
             case AGameAction.ActionStartCondition.DelayFromStart:
-                if (actionIndex == 0) return true;
-
+                // Vérifier que la première action a démarré
                 var firstActionData = _actionExecutionData[0];
-                if (!firstActionData.hasBeenExecuted) return false;
+                if (!firstActionData.hasBeenExecuted)
+                {
+                    return false;
+                }
 
-                float timeSinceFirstAction = currentTime - firstActionData.actionStartTime;
-                return timeSinceFirstAction >= action.DelayAmount;
+                // Le délai est calculé depuis le début de la séquence
+                bool delayFromStartReached = currentTime >= action.DelayAmount;
+                return delayFromStartReached;
 
             default:
                 return false;
