@@ -34,6 +34,8 @@ public class InputsManager : MonoBehaviour
     public Vector2 Lookaround { get => _lookaround; set => _lookaround = value; }
 
     public bool IsKeyboard = true;
+
+    private bool isInputLocked = false;
     #endregion
 
     #region InputMethodes
@@ -42,12 +44,13 @@ public class InputsManager : MonoBehaviour
         if (context.performed)
         {
             IsKeyboard = context.control.device is Keyboard;
-            _inputJumping = true;
+            EventManager.instance.OnInputJump.Invoke();
+            if (!isInputLocked) _inputJumping = true;
         }
 
         if (context.canceled)
         {
-            _inputJumping = false;
+            if (!isInputLocked) _inputJumping = false;
         }
     }
     public void OnInteract(InputAction.CallbackContext context)
@@ -56,12 +59,12 @@ public class InputsManager : MonoBehaviour
         {
             IsKeyboard = context.control.device is Keyboard;
             EventManager.instance.OnInputInteract.Invoke();
-            _inputInteract = true;
+            if (!isInputLocked) _inputInteract = true;
         }
         
         if (context.canceled)
         {
-            _inputInteract = false;
+            if (!isInputLocked) _inputInteract = false;
         }
     }
     public void OnZoom(InputAction.CallbackContext context)
@@ -69,12 +72,12 @@ public class InputsManager : MonoBehaviour
         if (context.performed)
         {
             IsKeyboard = context.control.device is Keyboard;
-            _inputZooming = true;
+            if (!isInputLocked)  _inputZooming = true;
         }
 
         if (context.canceled)
         {
-            _inputZooming = false;
+            if (!isInputLocked) _inputZooming = false;
         }
     }
     public void OnDezoom(InputAction.CallbackContext context)
@@ -82,12 +85,12 @@ public class InputsManager : MonoBehaviour
         if (context.performed)
         {
             IsKeyboard = context.control.device is Keyboard;
-            _inputDezooming = true;
+            if (!isInputLocked) _inputDezooming = true;
         }
 
         if (context.canceled)
         {
-            _inputDezooming = false;
+            if (!isInputLocked) _inputDezooming = false;
         }
     }
     public void OnSwitch(InputAction.CallbackContext context)
@@ -95,12 +98,13 @@ public class InputsManager : MonoBehaviour
         if (context.performed)
         {
             IsKeyboard = context.control.device is Keyboard;
-            _inputSwitching = true;
+            EventManager.instance.OnInputSwitch.Invoke();
+            if (!isInputLocked) _inputSwitching = true;
         }
 
         if (context.canceled)
         {
-            _inputSwitching = false;
+            if (!isInputLocked) _inputSwitching = false;
         }
     }
     public void OnRestart(InputAction.CallbackContext context)
@@ -108,12 +112,12 @@ public class InputsManager : MonoBehaviour
         if (context.performed)
         {
             IsKeyboard = context.control.device is Keyboard;
-            _inputRestarting = true;
+            if (!isInputLocked) _inputRestarting = true;
         }
 
         if (context.canceled)
         {
-            _inputRestarting = false;
+            if (!isInputLocked) _inputRestarting = false;
         }
     }
     public void OnPause(InputAction.CallbackContext context)
@@ -121,24 +125,25 @@ public class InputsManager : MonoBehaviour
         if (context.performed)
         {
             IsKeyboard = context.control.device is Keyboard;
-            _inputPausing = true;
+            if (!isInputLocked) _inputPausing = true;
             SettingsManager.Instance.DisplayPauseMenu();
         }
 
         if (context.canceled)
         {
-            _inputPausing = false;
+            if (!isInputLocked) _inputPausing = false;
         }
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         IsKeyboard = context.control.device is Keyboard;
-        _moveX = context.ReadValue<Vector2>().x;
+        EventManager.instance.OnInputMove.Invoke();
+        if (!isInputLocked) _moveX = context.ReadValue<Vector2>().x;
     }
     public void OnLook(InputAction.CallbackContext context)
     {
         IsKeyboard = context.control.device is Keyboard;
-        _lookaround = context.ReadValue<Vector2>();
+        if (!isInputLocked) _lookaround = context.ReadValue<Vector2>();
     }
 
     #endregion
@@ -178,18 +183,30 @@ public class InputsManager : MonoBehaviour
     #region InputDisabling
     public void DisableAllInputs()
     {
-        foreach (var action in _playerInputs.actions)
-        {
-            action.Disable();
-        }
+        isInputLocked = true;
+        _inputJumping = false;
+        _inputInteract = false;
+        _inputZooming = false;
+        _inputDezooming = false;
+        _inputSwitching = false;
+        _inputPausing = false;
+        _inputRestarting = false;
+        _moveX = 0f;
+        _lookaround = Vector2.zero;
     }
 
     public void EnableAllInputs()
     {
-        foreach (var action in _playerInputs.actions)
-        {
-            action.Enable();
-        }
+        isInputLocked = false;
+        _inputJumping = false;
+        _inputInteract = false;
+        _inputZooming = false;
+        _inputDezooming = false;
+        _inputSwitching = false;
+        _inputPausing = false;
+        _inputRestarting = false;
+        _moveX = 0f;
+        _lookaround = Vector2.zero;
     }
     #endregion
 
@@ -220,4 +237,12 @@ public class InputsManager : MonoBehaviour
     [SerializeField] public UIKeyIconsSet UIKeyIconsSet;
 
     #endregion
+
+    public enum InputType
+    {
+        Jump,
+        Interact,
+        Move,
+        Switch,
+    }
 }
