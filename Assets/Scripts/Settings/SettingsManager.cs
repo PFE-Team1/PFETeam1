@@ -50,6 +50,9 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private AK.Wwise.Event _pauseEvent;
     [SerializeField] private AK.Wwise.Event _unpauseEvent;
 
+    [Header("Ce gros dégueulasse de JN qui vient tout crasser")]
+    [SerializeField] private GameActionsSequencer _sequencer;
+
     bool wantParallax = true;
     bool wantScreenShake = true;
     bool isMainMenuActive = true;
@@ -324,6 +327,7 @@ public class SettingsManager : MonoBehaviour
 
     public void ZoomForPlay()
     {
+        _sequencer.Play();
         _secondMenuAnimator.Play(_zoomForPlayAnimation.name);
         StartCoroutine(WaitForZoomToComplete(() => ScenesManager.instance.LoadNextScene()));
     }
