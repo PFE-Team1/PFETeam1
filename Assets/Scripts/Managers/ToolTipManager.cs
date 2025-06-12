@@ -35,7 +35,7 @@ public class ToolTipManager : MonoBehaviour
         }
     }
 
-    private void ChangeIconDependingOnController()
+    public void ChangeIconDependingOnController()
     {
         if (KeyboardIcon == null)
         {
