@@ -9,6 +9,7 @@ public class EndProto : Interactable
 
     [SerializeField]private GameObject _level;
     [SerializeField] PaintInOutController _endEffect;
+    [SerializeField] ParticleSystem _riftEffect;
     private SpriteRenderer _fissure;
     private SpriteRenderer _renderer;
     private Animator _animator;
@@ -40,6 +41,7 @@ public class EndProto : Interactable
         _endEffect.EndPaint = _level;
         Destroy(PlayerC.gameObject) ;
         CloseRift();
+        _riftEffect.Stop();
         yield return new WaitForSeconds(.5f);
         _renderer.enabled = false;
         yield return new WaitForSeconds(2);
@@ -66,14 +68,15 @@ public class EndProto : Interactable
             }
         }
     }
-    public void OpenRift()
+    private void OpenRift()
     {
         _renderer.enabled = true;//+anim du perso qui sort /tombe.
         _animator.SetBool("Openning", true);
     }
 
-    public void CloseRift()
+    private void CloseRift()
     {
+
         _animator.SetBool("Closing", true);
     }
 
