@@ -112,7 +112,7 @@ public class SettingsManager : MonoBehaviour
         if (!SplashScreen.isFinished) return;
         if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown)
         {
-            MusicScenePermanent.instance.StartFirstMusic();
+            
             didOnce = true;
             AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
@@ -131,6 +131,8 @@ public class SettingsManager : MonoBehaviour
         yield return new WaitForSeconds(_firstMenuAnimation.length);
 
         EventSystem.current.SetSelectedGameObject(_firstItem);
+        yield return new WaitForSeconds(2f);
+        MusicScenePermanent.instance.StartFirstMusic();
         onComplete?.Invoke();
     }
 
