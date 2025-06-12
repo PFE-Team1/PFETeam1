@@ -112,7 +112,7 @@ public class PaintingController : Interactable
     }
     public void DropPainting()
     {
-        _VFXTrail.Play(true);
+        
         _rigidBody.useGravity = true;
         transform.SetParent(_targetTransform);
         transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -121,7 +121,7 @@ public class PaintingController : Interactable
         boneFollower.SkeletonRenderer = null;
 
         if (transform.parent.GetComponent<LevelSpawner>() != null) transform.localPosition = Vector3.zero;
-
+        else { _VFXTrail.Play(true); }
         return;
     }
 
