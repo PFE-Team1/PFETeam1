@@ -48,18 +48,21 @@ public class PaintingController : Interactable
     protected override void Interact()
     {
         print(PlayerC.IsInSocleRange);
-        if (IsInRange && !PlayerC.IsInSocleRange)
+        if (IsInRange)
         {
             if (_isHeld)
             {
-                if (VFX_PoseToile != null)
+                if (!PlayerC.IsInSocleRange)
                 {
-                    Destroy(Instantiate(VFX_PoseToile, transform), 1f);
+                    if (VFX_PoseToile != null)
+                    {
+                        Destroy(Instantiate(VFX_PoseToile, transform), 1f);
+                    }
+                    AudioManager.Instance.SFX_PoseToile.Post(gameObject);
+                    AnimateDropPainting();
                 }
-                AudioManager.Instance.SFX_PoseToile.Post(gameObject);
-                AnimateDropPainting();
             }
-            else
+            else if (!transform.parent.GetComponent<LevelSpawner>()) 
             {
                 AnimateGrabPainting();
             }
@@ -114,7 +117,7 @@ public class PaintingController : Interactable
         transform.SetParent(_targetTransform);
         transform.localRotation = Quaternion.Euler(0, 0, 0);
         transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 1);
+        _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 2);
         boneFollower.SkeletonRenderer = null;
 
         if (transform.parent.GetComponent<LevelSpawner>() != null) transform.localPosition = Vector3.zero;
@@ -156,14 +159,12 @@ public class PaintingController : Interactable
     }
     public void FreezePos()
     {
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        _rigidBody.constraints = RigidbodyConstraints.FreezeAll;
     }
     public void UnfreezePos()
     {
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        _rigidBody.constraints = RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotation;
     }
     public void PlayVFXSocle()
     {

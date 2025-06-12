@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Animator _secondMenuAnimator;
     [SerializeField] private AnimationClip _firstMenuAnimation;
     [SerializeField] private AnimationClip _secondMenuAnimation;
+    [SerializeField] private AnimationClip _zoomForPlayAnimation;
 
     [Header("Volume")]
     [SerializeField] private AK.Wwise.RTPC _masterVolumeRTPC;
@@ -47,9 +49,12 @@ public class SettingsManager : MonoBehaviour
 
     bool wantParallax = true;
     bool wantScreenShake = true;
-    bool isMainMenuActive = false;
+    bool isMainMenuActive = true;
+    public bool isInPause = false;
+    bool didOnce;
     Coroutine _zoomCoroutine;
     public bool IsMainMenuActive { get => isMainMenuActive; set => isMainMenuActive = value; }
+    public bool IsInPause { get => isInPause; set => isInPause = value; }
     Resolution[] resolutions;
     public bool WantParallax { get => wantParallax; set => wantParallax = value; }
     public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
@@ -98,17 +103,18 @@ public class SettingsManager : MonoBehaviour
 
     void Update()
     {
-        if (isMainMenuActive) return;
-        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown )
+        if (didOnce) return;
+        if (!SplashScreen.isFinished) return;
+        if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown)
         {
+            MusicScenePermanent.instance.StartFirstMusic();
+            didOnce = true;
             AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
-            isMainMenuActive = true;
             _mainMenu.SetActive(true);
             _zoomCoroutine = StartCoroutine(UIZoom(() =>
             {
-                if (_firstItem != null)
-                    EventSystem.current.SetSelectedGameObject(_firstItem);
+
             }));
         }
     }
@@ -118,6 +124,8 @@ public class SettingsManager : MonoBehaviour
         _firstMenuAnimator.Play(_firstMenuAnimation.name);
         _secondMenuAnimator.Play(_secondMenuAnimation.name);
         yield return new WaitForSeconds(_firstMenuAnimation.length);
+
+        EventSystem.current.SetSelectedGameObject(_firstItem);
         onComplete?.Invoke();
     }
 
@@ -284,8 +292,37 @@ public class SettingsManager : MonoBehaviour
 
     public void DisplayPauseMenu()
     {
-        _pauseMenu.SetActive(!_pauseMenu.activeSelf);
-        EventSystem.current.SetSelectedGameObject(_firstPauseItem);
+        if (!isMainMenuActive)
+        {
+            _pauseMenu.SetActive(!_pauseMenu.activeSelf);
+            _settingsMenu.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(_firstPauseItem);
+            isInPause = _pauseMenu.activeSelf;
+        }
+    }
+
+    public void SetNewEvent()
+    {
+        if (isInPause)
+        {
+            EventSystem.current.SetSelectedGameObject(_firstPauseItem);
+        }
+        else 
+        {
+            EventSystem.current.SetSelectedGameObject(_firstItem);
+        }
+}
+
+    public void ZoomForPlay()
+    {
+        _secondMenuAnimator.Play(_zoomForPlayAnimation.name);
+        StartCoroutine(WaitForZoomToComplete(() => ScenesManager.instance.LoadNextScene()));
+    }
+
+    private IEnumerator WaitForZoomToComplete(System.Action onComplete)
+    {
+        yield return new WaitForSeconds(_zoomForPlayAnimation.length);
+        onComplete?.Invoke();
     }
 
     public void QuitGame()

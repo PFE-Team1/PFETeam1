@@ -26,6 +26,7 @@ public class Clone : MonoBehaviour
 
     private void Start()
     {
+        CVC = CameraManager.Instance.MainCamera;
         CameraManager.Instance.PlayerTransform = transform;
         _inputs = InputsManager.instance;
         _playerStateMachine = GetComponent<PlayerStateMachine>();
@@ -47,10 +48,7 @@ public class Clone : MonoBehaviour
             //EventManager.instance?.OnJump.Invoke();
             _inputs.InputSwitching = false;
         }
-        if (gameObject.layer != 3)
-        {
-            ChangeLayer(3);
-        }
+        
     }
 
     public void Cloned(GameObject spawnPoint, string InitialSkinName)// mettre dans des �tats pour la state machine
@@ -160,4 +158,5 @@ public class Clone : MonoBehaviour
             child.layer = 3;
         }
     }
+
 }

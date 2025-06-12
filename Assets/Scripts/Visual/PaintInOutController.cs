@@ -14,6 +14,7 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField]float _durationCameraOut=3f;
     [SerializeField]float _cameraMoveDuration=0.5f;
     [SerializeField]float _delayFill=3f;
+    [SerializeField]float _delayZoomOnEnd=3f;
     [SerializeField]GameObject _firstPaint;
     [SerializeField]GameObject _endPaint;
     [SerializeField] List<Renderer> _appearanceAddOns;
@@ -30,6 +31,7 @@ public class PaintInOutController : MonoBehaviour
     public float DurationOut { get => _durationOut; }
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}
+    public float DelayZoomOnEnd { get => _delayZoomOnEnd;}
 
     private void Awake()
     {
@@ -40,7 +42,10 @@ public class PaintInOutController : MonoBehaviour
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
-            child.layer = 6;
+            if (child.layer != 3)
+                child.layer = 6;
+            else
+                child.layer = 11;
         }
         float timer = 0;
         Reset(paint);        
@@ -77,7 +82,12 @@ public class PaintInOutController : MonoBehaviour
         paint.layer = 0;
          foreach (GameObject child in AllChilds(paint))
         {
-            child.layer = 0;
+            if (child.layer != 11)
+                child.layer = 0;
+            else
+            {
+                child.layer = 3;
+            }
         }
         if (!paint.GetComponent<Level>().WasAlreadySpawned)
         {
@@ -86,11 +96,11 @@ public class PaintInOutController : MonoBehaviour
             {
                 Transform buffer = CameraManager.Instance.PlayerTransform;
                 CameraManager.Instance.PlayerTransform = paintLevel.End.transform;
+                yield return new WaitForSeconds(2f);
                 CameraManager.Instance.FocusCamera();
                 if (buffer?.GetComponent<Clone>())
                 {
-                    print("huh?");
-                    yield return new WaitForSeconds(2);
+                    yield return new WaitForSeconds(_delayZoomOnEnd);
                     CameraManager.Instance.PlayerTransform =buffer;
 
                 }
@@ -106,11 +116,13 @@ public class PaintInOutController : MonoBehaviour
         {
             rend.material.SetFloat("_Resolve_Cursor", 1);
         }
+        paintLevel.FindPlayer(true);
         yield return null;
     }
     IEnumerator ShaderOut(GameObject paint)
     {
         Level paintLevel = paint.GetComponent<Level>();
+        paintLevel.GetComponent<Level>().FindPlayer(false);
         if (paint != _endPaint && !paintLevel.WasAlreadySpawned)
         {
             CameraManager.Instance.SeeCurrentLevel(paint);
@@ -120,7 +132,10 @@ public class PaintInOutController : MonoBehaviour
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
-            child.layer = 6;
+            if (child.layer != 3)
+                child.layer = 6;
+            else
+                child.layer = 11;
         }
         float timer = 0;
         yield return new WaitForSeconds(_cameraMoveDuration);

@@ -1,58 +1,72 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Wwise;
 
 public class ScenesManager : MonoBehaviour
 {
-    public static ScenesManager  instance = null;
-    [SerializeField]private string _nextScene;
-    [SerializeField]private string _menuScene;
+    public static ScenesManager instance = null;
+    [SerializeField] private string _nextScene;
+    [SerializeField] private string currentScene;
+    [SerializeField] private string _menuScene;
+
     private void Awake()
     {
         instance = this;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(currentScene));
+    }
+
     private void Update()
     {
         if (InputsManager.instance == null) return;
     }
+
     public void LoadMenu()
     {
-        SceneManager.LoadScene(_menuScene);
-        
+        SceneManager.LoadSceneAsync(_menuScene, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }
+
     public void LoadNextScene()
     {
         if (InputsManager.instance != null)
         {
-
-                StartCoroutine(LoadingNext());
-
+            StartCoroutine(LoadingNext());
         }
     }
 
     public void ReloadScene()
     {
         InputsManager.instance.InputRestarting = false;
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         StartCoroutine(ReLoading());
-        SettingsManager.Instance.IsMainMenuActive = false;
     }
+
     IEnumerator LoadingNext()
     {
-        yield return new WaitForSeconds(1);//dur e de l'anim
-        SceneManager.LoadScene(_nextScene);
-        yield return null;
-    }
-    IEnumerator ReLoading()
-    {
-        yield return new WaitForSeconds(1);//dur e de l'anim
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        MusicScenePermanent.instance.ChangeMusic();
+        SettingsManager.Instance.IsMainMenuActive = false;
+        yield return new WaitForSeconds(1);
+        SceneManager.UnloadSceneAsync(currentScene);
+        SceneManager.LoadSceneAsync(_nextScene, LoadSceneMode.Additive);
         yield return null;
     }
 
-    public void LoadScene(string sceneName)
+    IEnumerator ReLoading()
     {
-        SceneManager.LoadScene(sceneName);
+        yield return new WaitForSeconds(1);
+        SceneManager.UnloadSceneAsync(currentScene);
+        SceneManager.LoadSceneAsync(currentScene, LoadSceneMode.Additive);
+        yield return null;
     }
+
 }

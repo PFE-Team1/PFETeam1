@@ -12,6 +12,7 @@ public class RunningPlayerState : PlayerState
     protected override void OnStateEnter(PlayerState previousState)
     {
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.maxSpeed * _playerMovementParameters.accelerationTime;
+        EventManager.instance.OnStartWalking.Invoke();
     }
 
     protected override void OnStateExit(PlayerState nextState)
@@ -21,6 +22,14 @@ public class RunningPlayerState : PlayerState
 
     protected override void OnStateUpdate()
     {
+        if (SettingsManager.Instance != null)
+        {
+            if (SettingsManager.Instance.isInPause)
+            {
+                StateMachine.ChangeState(StateMachine.IdleState);
+                return;
+            }
+        }
         if (StateMachine.JumpBuffer > 0)
         {
             StateMachine.JumpBuffer = 0;

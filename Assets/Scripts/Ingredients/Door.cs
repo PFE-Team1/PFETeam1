@@ -11,6 +11,7 @@ public class Door : MonoBehaviour
     [SerializeField] private DoorVFX _vfxOpen;
     [SerializeField] private GameObject _groundOpen;
     [SerializeField] private GameObject _closedDoorVFX;
+    private GameObject _player;
     public Door OtherDoor { get => _otherDoor; set => _otherDoor = null; }
 
     public void Open()
@@ -28,6 +29,13 @@ public class Door : MonoBehaviour
         _collider.isTrigger = false;
         _vfxOpen.StopDoorVFX();
         _groundOpen.SetActive(false);
+        if (_player != null)
+        {
+            _player.SetActive(false);
+            _player.transform.position = Vector3.zero;
+            _player.SetActive(true);
+            _player = null;
+        }
 
     }
     private void OnTriggerEnter(Collider other)
@@ -38,6 +46,16 @@ public class Door : MonoBehaviour
             //_otherDoor.Open();
             Open();
         }
-
+        if (other.CompareTag("Player"))
+        {
+            _player = other.gameObject;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _player = null;
+        }
     }
 }

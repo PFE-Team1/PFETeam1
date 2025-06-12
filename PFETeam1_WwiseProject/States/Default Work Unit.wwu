@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}" SchemaVersion="123">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="MusicLevel_TG" ID="{E6EBFE64-D2B5-442F-9219-7B6291A1C9C3}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="1.5"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{840FF458-6F36-4BBD-9013-B01B2DB68F2B}"/>
+						<State Name="LevelTransition" ID="{454A2AEF-091F-45DF-9228-F3C3897569BD}"/>
+						<State Name="Level" ID="{19721471-C01B-4F2A-9240-F71DB31E7BB7}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="State_Menu_Pause" ID="{64B34366-0203-4B02-9D42-A965D6C16E8D}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="0.1"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{792E8352-F263-46ED-B0C9-B7A0A6B65334}"/>
+						<State Name="In_Menu" ID="{DEC17865-6F66-4B66-9CF6-CF49B6AC553B}"/>
+						<State Name="Out_Menu" ID="{EDB2561C-4D88-4B53-8BFB-BBBC1E032476}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

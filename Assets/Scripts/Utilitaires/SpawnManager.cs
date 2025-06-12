@@ -20,7 +20,7 @@ public class SpawnManager : MonoBehaviour
         if (_paintVisual)
         {
             _paintVisual.PaintIn(_firstPaint);
-            yield return new WaitForSeconds(_paintVisual.DurationIn+ CameraManager.Instance.CameraDezoomTime+3);
+            yield return new WaitForSeconds(_paintVisual.DurationIn+ CameraManager.Instance.CameraDezoomTime+_paintVisual.DelayZoomOnEnd);
         }
         if (_renderer!=null)
         {

@@ -1,0 +1,115 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "154",
+  "SoundBanks": [
+   {
+    "Id": "3717977127",
+    "Type": "User",
+    "GUID": "{8B61FFC5-B87D-49BC-97C2-7818A43721AE}",
+    "Color": "13",
+    "Language": "SFX",
+    "Hash": "{23B41A3A-270B-1494-5974-95ABEB12BC7C}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\MUS_Part2_SBK",
+    "ShortName": "MUS_Part2_SBK",
+    "Path": "MUS_Part2_SBK.bnk",
+    "Media": [
+     {
+      "Id": "61109733",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Koï_Toile_1.5.wav",
+      "CachePath": "0E/{0E70052D-1476-D5F8-8D6C-F0CE8CC99F50}.wem"
+     },
+     {
+      "Id": "520516479",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Koï_Toile_2_LP.wav",
+      "CachePath": "49/{49EC6A5A-71D1-0EC6-8E00-EDBFB8B38AF9}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "3706016593",
+      "Name": "Play_Toile_1_5_PC",
+      "ObjectPath": "\\Events\\MUS_WU\\Play_Toile_1_5_PC",
+      "GUID": "{FAE04BF9-F86D-4434-A1D3-B5F125EDBA2A}",
+      "Color": "12",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "61109733"
+       },
+       {
+        "Id": "520516479"
+       }
+      ],
+      "ActionSetState": [
+       {
+        "GroupId": "3735246380",
+        "Id": "4198606512",
+        "Name": "LevelTransition",
+        "ObjectPath": "\\States\\Default Work Unit\\MusicLevel_TG\\LevelTransition",
+        "GUID": "{454A2AEF-091F-45DF-9228-F3C3897569BD}"
+       }
+      ]
+     },
+     {
+      "Id": "2815554252",
+      "Name": "Play_Toile_2_PC",
+      "ObjectPath": "\\Events\\MUS_WU\\Play_Toile_2_PC",
+      "GUID": "{02F34C06-E154-4EFA-92FD-AFE18A3D0F2E}",
+      "Color": "12",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "ActionSetState": [
+       {
+        "GroupId": "3735246380",
+        "Id": "2782712965",
+        "Name": "Level",
+        "ObjectPath": "\\States\\Default Work Unit\\MusicLevel_TG\\Level",
+        "GUID": "{19721471-C01B-4F2A-9240-F71DB31E7BB7}"
+       }
+      ]
+     }
+    ],
+    "StateGroups": [
+     {
+      "Id": "3735246380",
+      "Name": "MusicLevel_TG",
+      "ObjectPath": "\\States\\Default Work Unit\\MusicLevel_TG",
+      "GUID": "{E6EBFE64-D2B5-442F-9219-7B6291A1C9C3}",
+      "States": [
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\MusicLevel_TG\\None",
+        "GUID": "{840FF458-6F36-4BBD-9013-B01B2DB68F2B}"
+       },
+       {
+        "Id": "2782712965",
+        "Name": "Level",
+        "ObjectPath": "\\States\\Default Work Unit\\MusicLevel_TG\\Level",
+        "GUID": "{19721471-C01B-4F2A-9240-F71DB31E7BB7}"
+       },
+       {
+        "Id": "4198606512",
+        "Name": "LevelTransition",
+        "ObjectPath": "\\States\\Default Work Unit\\MusicLevel_TG\\LevelTransition",
+        "GUID": "{454A2AEF-091F-45DF-9228-F3C3897569BD}"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{766195E7-FEC2-4DBA-BF20-3FF797BBB979}"
+ }
+}

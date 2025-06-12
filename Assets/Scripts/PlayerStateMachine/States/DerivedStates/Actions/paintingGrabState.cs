@@ -24,6 +24,15 @@ public class paintingGrabState : PlayerState
 
     protected override void OnStateUpdate()
     {
+
+        if (SettingsManager.Instance != null)
+        {
+            if (SettingsManager.Instance.isInPause)
+            {
+                StateMachine.ChangeState(StateMachine.IdleState);
+                return;
+            }
+        }
         _timeSinceAnimation += Time.deltaTime;
 
         if (_timeSinceAnimation > _playerMovementParameters.timeToGrab)
@@ -60,12 +69,12 @@ public class paintingGrabState : PlayerState
             #region Xvelocity
             float targetValue = 0;
 
-            // Déterminer si nous accélérons ou décélérons
+            // Dï¿½terminer si nous accï¿½lï¿½rons ou dï¿½cï¿½lï¿½rons
             bool isAccelerating = ((_timeSinceEnteredState >= 0 && targetValue > _timeSinceEnteredState) ||
                                    (_timeSinceEnteredState <= 0 && targetValue < _timeSinceEnteredState));
 
 
-            // Choisir le bon pas d'interpolation en fonction de si on accélère ou décélère
+            // Choisir le bon pas d'interpolation en fonction de si on accï¿½lï¿½re ou dï¿½cï¿½lï¿½re
             float step;
             if (isAccelerating)
             {
@@ -86,7 +95,7 @@ public class paintingGrabState : PlayerState
                 _timeSinceEnteredState = Mathf.Max(_timeSinceEnteredState - step, targetValue);
             }
 
-            // Calcul de la vitesse en fonction du temps écoulé
+            // Calcul de la vitesse en fonction du temps ï¿½coulï¿½
             float speedRatio = _timeSinceEnteredState / _playerMovementParameters.fallAccelerationTime;
             StateMachine.Velocity.x = speedRatio * _playerMovementParameters.fallMaxSpeedX;
 
