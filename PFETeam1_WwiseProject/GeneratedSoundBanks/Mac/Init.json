@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{E5871333-4C20-3310-FC94-78F8699E23BC}",
+    "Hash": "{BAB5A5D8-A919-742E-F09F-6557C43C6B12}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -38,28 +38,28 @@
      {
       "Id": "393239870",
       "Name": "SFX",
-      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\SFX",
+      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\All_Without_UI\\SFX",
       "GUID": "{DAAE26CF-C86F-45A1-A469-BE27A617CDE8}",
       "Color": "8"
      },
      {
       "Id": "712897226",
       "Name": "MUS",
-      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\MUS",
+      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\All_Without_UI\\MUS",
       "GUID": "{CE6F02E2-392B-4B97-B4C0-BFC5183D0B93}",
       "Color": "12"
      },
      {
       "Id": "1083137552",
       "Name": "FOL",
-      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\FOL",
+      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\All_Without_UI\\FOL",
       "GUID": "{33BDE37D-6310-4602-859C-A1DEEDDCEA41}",
       "Color": "2"
      },
      {
       "Id": "1117531639",
       "Name": "AMB",
-      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\AMB",
+      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\All_Without_UI\\AMB",
       "GUID": "{52B7FEAB-5548-47DB-AFB5-2A92C328A467}",
       "Color": "4"
      },
@@ -69,6 +69,12 @@
       "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\UI",
       "GUID": "{22DB930F-3AC8-42F0-AF90-A3B8B66CB09F}",
       "Color": "10"
+     },
+     {
+      "Id": "2891835836",
+      "Name": "All_Without_UI",
+      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus\\All_Without_UI",
+      "GUID": "{351D70AB-076E-4755-B66C-565CD4CB18C3}"
      },
      {
       "Id": "3803692087",
@@ -111,6 +117,32 @@
     ],
     "StateGroups": [
      {
+      "Id": "3470340733",
+      "Name": "State_Menu_Pause",
+      "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause",
+      "GUID": "{64B34366-0203-4B02-9D42-A965D6C16E8D}",
+      "States": [
+       {
+        "Id": "139557087",
+        "Name": "Out_Menu",
+        "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause\\Out_Menu",
+        "GUID": "{EDB2561C-4D88-4B53-8BFB-BBBC1E032476}"
+       },
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause\\None",
+        "GUID": "{792E8352-F263-46ED-B0C9-B7A0A6B65334}"
+       },
+       {
+        "Id": "1631528850",
+        "Name": "In_Menu",
+        "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause\\In_Menu",
+        "GUID": "{DEC17865-6F66-4B66-9CF6-CF49B6AC553B}"
+       }
+      ]
+     },
+     {
       "Id": "3735246380",
       "Name": "MusicLevel_TG",
       "ObjectPath": "\\States\\Default Work Unit\\MusicLevel_TG",
@@ -139,6 +171,6 @@
     ]
    }
   ],
-  "FileHash": "{F5CD4E00-861B-B69A-3B97-EBB0FBA8F36F}"
+  "FileHash": "{167AFF94-3B75-08C9-233C-5E9B34104F8B}"
  }
 }

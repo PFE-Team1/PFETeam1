@@ -11,7 +11,7 @@
     "GUID": "{66CD8657-BB27-4ABF-A6E7-231484986B7D}",
     "Color": "10",
     "Language": "SFX",
-    "Hash": "{B1AC2659-0546-CCF9-71A9-AD3C23A9E4F1}",
+    "Hash": "{FC994F14-260F-2837-DFAF-BACE4A066CAA}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI_SBK",
     "ShortName": "UI_SBK",
     "Path": "UI_SBK.bnk",
@@ -123,6 +123,46 @@
     ],
     "Events": [
      {
+      "Id": "2027606521",
+      "Name": "Play_State_In_Menu",
+      "ObjectPath": "\\Events\\UI_WU\\Play_State_In_Menu",
+      "GUID": "{25B29888-F0E4-443B-AF0D-EDDA02A5F0B6}",
+      "Color": "10",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "ActionSetState": [
+       {
+        "GroupId": "3470340733",
+        "Id": "1631528850",
+        "Name": "In_Menu",
+        "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause\\In_Menu",
+        "GUID": "{DEC17865-6F66-4B66-9CF6-CF49B6AC553B}"
+       }
+      ]
+     },
+     {
+      "Id": "3911561590",
+      "Name": "Play_State_Out_Menu",
+      "ObjectPath": "\\Events\\UI_WU\\Play_State_Out_Menu",
+      "GUID": "{7A9333CE-896B-44FB-AD3D-1DEC56BC93B4}",
+      "Color": "10",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "ActionSetState": [
+       {
+        "GroupId": "3470340733",
+        "Id": "139557087",
+        "Name": "Out_Menu",
+        "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause\\Out_Menu",
+        "GUID": "{EDB2561C-4D88-4B53-8BFB-BBBC1E032476}"
+       }
+      ]
+     },
+     {
       "Id": "129827151",
       "Name": "Play_SUI_CliqueValidationBouton_RC",
       "ObjectPath": "\\Events\\UI_WU\\Play_SUI_CliqueValidationBouton_RC",
@@ -221,9 +261,37 @@
        }
       ]
      }
+    ],
+    "StateGroups": [
+     {
+      "Id": "3470340733",
+      "Name": "State_Menu_Pause",
+      "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause",
+      "GUID": "{64B34366-0203-4B02-9D42-A965D6C16E8D}",
+      "States": [
+       {
+        "Id": "139557087",
+        "Name": "Out_Menu",
+        "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause\\Out_Menu",
+        "GUID": "{EDB2561C-4D88-4B53-8BFB-BBBC1E032476}"
+       },
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause\\None",
+        "GUID": "{792E8352-F263-46ED-B0C9-B7A0A6B65334}"
+       },
+       {
+        "Id": "1631528850",
+        "Name": "In_Menu",
+        "ObjectPath": "\\States\\Default Work Unit\\State_Menu_Pause\\In_Menu",
+        "GUID": "{DEC17865-6F66-4B66-9CF6-CF49B6AC553B}"
+       }
+      ]
+     }
     ]
    }
   ],
-  "FileHash": "{A4E1735E-987D-CC1E-69D5-3599A3D6E299}"
+  "FileHash": "{4E9774DA-6577-346D-D287-FA41B0C4D553}"
  }
 }
