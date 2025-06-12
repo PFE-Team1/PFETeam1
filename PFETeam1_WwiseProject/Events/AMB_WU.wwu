@@ -85,6 +85,32 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Stop_AMB_Demarrage_LP" ID="{ED2C8BD9-BED8-4D5E-9898-77DA51EC1D24}">
+							<ChildrenList>
+								<Action Name="" ID="{5AD4C1FD-4F1D-4189-92C3-215A50EF4E18}" ShortID="800711379">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeTime" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Demarrage_LP" ID="{465D44ED-77C6-48B7-8AC1-4FE419578ECA}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{B1C2F621-B89A-4F1A-9533-695363134CAF}" ShortID="484563848">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeTime" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Demarrage_Bird" ID="{8636B262-00F2-405E-BAD4-F91EF79B43B7}" WorkUnitID="{77E12E30-A8D1-4655-BD06-AC1B218FAC21}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Toile02" ID="{0B7B9F79-3571-4899-A708-3F39DA45ADEB}" ShortID="163064503">

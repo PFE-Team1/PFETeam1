@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c4051c8f9e25c4cb75ed80187f4862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextScene: Niveau-0
+  _nextScene: Niveau-2.5 V2
   currentScene: Niveau-2
   _menuScene: Niveau-0
 --- !u!4 &117614098
@@ -284,6 +284,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnInputInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInputJump:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInputMove:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInputSwitch:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &224437055
@@ -1022,6 +1031,10 @@ PrefabInstance:
     - target: {fileID: 5632542256862713726, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
       propertyPath: m_SortingLayerID
       value: -695904943
+      objectReference: {fileID: 0}
+    - target: {fileID: 5803697190936520259, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: RotationZ
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5803697190936520259, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
       propertyPath: _needsRotation

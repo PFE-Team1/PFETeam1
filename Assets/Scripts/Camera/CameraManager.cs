@@ -94,6 +94,8 @@ public class CameraManager : MonoBehaviour
     {
         if (_levels.Count - 1 == 0) return;
 
+        if (_levels[0] == null) return;
+
         Bounds worldBounds = _levels[0].GetComponent<SpriteRenderer>().bounds;
 
         foreach (var level in _levels)

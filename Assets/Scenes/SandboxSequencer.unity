@@ -1228,6 +1228,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.023096085
       objectReference: {fileID: 0}
+    - target: {fileID: 5803697190936520259, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
+      propertyPath: RotationZ
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5932823448541861189, guid: b2c8b53a7fb0a3745afa4d3400a17d72, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.8859992
@@ -2012,6 +2016,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.17
       objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_ScreenY
+      value: 0.385
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_DeadZoneWidth
+      value: 0.531
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_LookaheadTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_SoftZoneWidth
+      value: 0.821
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480232629819741737, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      propertyPath: m_DeadZoneHeight
+      value: 0.528
+      objectReference: {fileID: 0}
     - target: {fileID: 7590844515293728066, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.64
@@ -2040,13 +2064,17 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 1087
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6254155547487146705, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1545743492806079584, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1429533647}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6941394460788967206, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1639228287}
   m_SourcePrefab: {fileID: 100100000, guid: 078be7d96504cdc4dbc1e64d5d6806b9, type: 3}
 --- !u!4 &1957302953 stripped
 Transform:

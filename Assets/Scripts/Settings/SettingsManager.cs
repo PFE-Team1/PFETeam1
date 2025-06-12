@@ -11,8 +11,7 @@ using UnityEngine.Rendering;
 public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager Instance { get; private set; }
-    [SerializeField] private GameObject _landingMenu;
-    [SerializeField] private GameObject _mainMenu;
+    
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _pauseMenu;
 
@@ -59,6 +58,7 @@ public class SettingsManager : MonoBehaviour
     Coroutine _zoomCoroutine;
     public bool IsMainMenuActive { get => isMainMenuActive; set => isMainMenuActive = value; }
     public bool IsInPause { get => isInPause; set => isInPause = value; }
+    public bool DidOnce { get => didOnce; set => didOnce = value; }
     Resolution[] resolutions;
     public bool WantParallax { get => wantParallax; set => wantParallax = value; }
     public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
@@ -102,7 +102,7 @@ public class SettingsManager : MonoBehaviour
 
         InitVolume();
         SetControls();
-        _mainMenu.SetActive(false);
+        
         _unpauseEvent.Post(gameObject);
     }
 
@@ -116,7 +116,7 @@ public class SettingsManager : MonoBehaviour
             didOnce = true;
             AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
-            _mainMenu.SetActive(true);
+            MainMenuManager.Instance.MainMenu.SetActive(true);
             _zoomCoroutine = StartCoroutine(UIZoom(() =>
             {
 

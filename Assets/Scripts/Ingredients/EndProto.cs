@@ -9,6 +9,7 @@ public class EndProto : Interactable
 
     [SerializeField]private GameObject _level;
     [SerializeField] PaintInOutController _endEffect;
+    [SerializeField] ParticleSystem _riftEffect;
     private SpriteRenderer _fissure;
     private SpriteRenderer _renderer;
     private Animator _animator;
@@ -33,25 +34,24 @@ public class EndProto : Interactable
         yield return new WaitForSeconds(5f);
         _fissure.enabled = true;
 
-        //_fissure.le truc là anim et tout;
+        //_fissure.le truc lï¿½ anim et tout;
     }
     IEnumerator EndOfLevel()
     {
         _endEffect.EndPaint = _level;
         Destroy(PlayerC.gameObject) ;
+        if (_endEffect != null)
+        {
+            _endEffect.PaintOut(_level);
+        }
+        DestroyOtherLevel();
         CloseRift();
+        _riftEffect.Stop();
         yield return new WaitForSeconds(.5f);
         _renderer.enabled = false;
         yield return new WaitForSeconds(2);
         CameraManager.Instance.SeeCurrentLevel(_level);
-        yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime);
-        DestroyOtherLevel();
-        if (_endEffect != null)
-        {
-            _endEffect.PaintOut(_level);
-            yield return new WaitForSeconds(_endEffect.DurationOut +3);
-        }
-
+        yield return new WaitForSeconds(CameraManager.Instance.CameraDezoomTime + _endEffect.DurationOut + 3);
         ScenesManager.instance.LoadNextScene();
         yield return null;
 
@@ -66,13 +66,14 @@ public class EndProto : Interactable
             }
         }
     }
-    public void OpenRift()
+    private void OpenRift()
     {
         _renderer.enabled = true;//+anim du perso qui sort /tombe.
         _animator.SetBool("Openning", true);
+        AudioManager.Instance.SFX_DÃ©chirure.Post(gameObject);
     }
 
-    public void CloseRift()
+    private void CloseRift()
     {
         _animator.SetBool("Closing", true);
     }
