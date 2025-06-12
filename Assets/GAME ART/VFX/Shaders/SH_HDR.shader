@@ -6,7 +6,7 @@ Shader "SH_HDR"
 	{
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
-		_MainTex("_MainTex", 2D) = "white" {}
+		_sample_key("sample_key", 2D) = "white" {}
 		_Disolve_Key("Disolve_Key", Range( -3 , 0)) = 0.37
 		_Noise_Scale1("Noise_Scale", Float) = 4.35
 		_TextureSample2("Texture Sample 2", 2D) = "white" {}
@@ -88,12 +88,13 @@ Shader "SH_HDR"
 			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/SurfaceData2D.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Debug/Debugging2D.hlsl"
 
-			
+			#include "Packages/com.unity.shadergraph/ShaderGraphLibrary/Functions.hlsl"
 
-			sampler2D _MainTex;
+
+			sampler2D _sample_key;
 			sampler2D _TextureSample2;
 			CBUFFER_START( UnityPerMaterial )
-			float4 _MainTex_ST;
+			float4 _sample_key_ST;
 			float _Noise_Scale1;
 			float _Disolve_Key;
 			CBUFFER_END
@@ -129,6 +130,29 @@ Shader "SH_HDR"
 			float4 _RendererColor;
 
 			
+			float4 SampleGradient( Gradient gradient, float time )
+			{
+				float3 color = gradient.colors[0].rgb;
+				UNITY_UNROLL
+				for (int c = 1; c < 8; c++)
+				{
+				float colorPos = saturate((time - gradient.colors[c-1].w) / ( 0.00001 + (gradient.colors[c].w - gradient.colors[c-1].w)) * step(c, gradient.colorsLength-1));
+				color = lerp(color, gradient.colors[c].rgb, lerp(colorPos, step(0.01, colorPos), gradient.type));
+				}
+				#ifndef UNITY_COLORSPACE_GAMMA
+				color = SRGBToLinear(color);
+				#endif
+				float alpha = gradient.alphas[0].x;
+				UNITY_UNROLL
+				for (int a = 1; a < 8; a++)
+				{
+				float alphaPos = saturate((time - gradient.alphas[a-1].y) / ( 0.00001 + (gradient.alphas[a].y - gradient.alphas[a-1].y)) * step(a, gradient.alphasLength-1));
+				alpha = lerp(alpha, gradient.alphas[a].x, lerp(alphaPos, step(0.01, alphaPos), gradient.type));
+				}
+				return float4(color, alpha);
+			}
+			
+
 			VertexOutput vert( VertexInput v  )
 			{
 				VertexOutput o = (VertexOutput)0;
@@ -166,16 +190,17 @@ Shader "SH_HDR"
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
-				float2 uv_MainTex = IN.texCoord0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-				float4 tex2DNode6 = tex2D( _MainTex, uv_MainTex );
+				float2 uv_sample_key = IN.texCoord0.xy * _sample_key_ST.xy + _sample_key_ST.zw;
+				float4 tex2DNode6 = tex2D( _sample_key, uv_sample_key );
 				float4 appendResult7 = (float4(tex2DNode6.rgb , tex2DNode6.r));
 				float2 temp_cast_0 = (_Noise_Scale1).xx;
 				float2 texCoord11 = IN.texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float2 temp_output_34_0_g4 = ( IN.texCoord0.xy - float2( 0.5,0.5 ) );
 				float2 break39_g4 = temp_output_34_0_g4;
 				float2 appendResult50_g4 = (float2(( 1.0 * ( length( temp_output_34_0_g4 ) * 2.0 ) ) , ( ( atan2( break39_g4.x , break39_g4.y ) * ( 1.0 / TWO_PI ) ) * 1.0 )));
+				Gradient gradient20 = NewGradient( 0, 2, 2, float4( 0.1882353, 0.1803922, 0.3882353, 0 ), float4( 0.1882353, 0.1803922, 0.3882353, 1 ), 0, 0, 0, 0, 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				
-				float4 Color = ( appendResult7 * step( ( 1.0 - ( tex2D( _TextureSample2, texCoord11 ).r + 0.0 ) ) , -( _Disolve_Key + appendResult50_g4.x ) ) );
+				float4 Color = ( appendResult7 * step( ( 1.0 - ( tex2D( _TextureSample2, texCoord11 ).r + 0.0 ) ) , -( _Disolve_Key + appendResult50_g4.x ) ) * SampleGradient( gradient20, 0.0 ) );
 
 				#if ETC1_EXTERNAL_ALPHA
 					float4 alpha = SAMPLE_TEXTURE2D(_AlphaTex, sampler_AlphaTex, IN.texCoord0.xy);
@@ -256,12 +281,13 @@ Shader "SH_HDR"
 			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/SurfaceData2D.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Debug/Debugging2D.hlsl"
 
-			
+			#include "Packages/com.unity.shadergraph/ShaderGraphLibrary/Functions.hlsl"
 
-			sampler2D _MainTex;
+
+			sampler2D _sample_key;
 			sampler2D _TextureSample2;
 			CBUFFER_START( UnityPerMaterial )
-			float4 _MainTex_ST;
+			float4 _sample_key_ST;
 			float _Noise_Scale1;
 			float _Disolve_Key;
 			CBUFFER_END
@@ -297,6 +323,29 @@ Shader "SH_HDR"
 			float4 _RendererColor;
 
 			
+			float4 SampleGradient( Gradient gradient, float time )
+			{
+				float3 color = gradient.colors[0].rgb;
+				UNITY_UNROLL
+				for (int c = 1; c < 8; c++)
+				{
+				float colorPos = saturate((time - gradient.colors[c-1].w) / ( 0.00001 + (gradient.colors[c].w - gradient.colors[c-1].w)) * step(c, gradient.colorsLength-1));
+				color = lerp(color, gradient.colors[c].rgb, lerp(colorPos, step(0.01, colorPos), gradient.type));
+				}
+				#ifndef UNITY_COLORSPACE_GAMMA
+				color = SRGBToLinear(color);
+				#endif
+				float alpha = gradient.alphas[0].x;
+				UNITY_UNROLL
+				for (int a = 1; a < 8; a++)
+				{
+				float alphaPos = saturate((time - gradient.alphas[a-1].y) / ( 0.00001 + (gradient.alphas[a].y - gradient.alphas[a-1].y)) * step(a, gradient.alphasLength-1));
+				alpha = lerp(alpha, gradient.alphas[a].x, lerp(alphaPos, step(0.01, alphaPos), gradient.type));
+				}
+				return float4(color, alpha);
+			}
+			
+
 			VertexOutput vert( VertexInput v  )
 			{
 				VertexOutput o = (VertexOutput)0;
@@ -334,16 +383,17 @@ Shader "SH_HDR"
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
-				float2 uv_MainTex = IN.texCoord0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-				float4 tex2DNode6 = tex2D( _MainTex, uv_MainTex );
+				float2 uv_sample_key = IN.texCoord0.xy * _sample_key_ST.xy + _sample_key_ST.zw;
+				float4 tex2DNode6 = tex2D( _sample_key, uv_sample_key );
 				float4 appendResult7 = (float4(tex2DNode6.rgb , tex2DNode6.r));
 				float2 temp_cast_0 = (_Noise_Scale1).xx;
 				float2 texCoord11 = IN.texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float2 temp_output_34_0_g4 = ( IN.texCoord0.xy - float2( 0.5,0.5 ) );
 				float2 break39_g4 = temp_output_34_0_g4;
 				float2 appendResult50_g4 = (float2(( 1.0 * ( length( temp_output_34_0_g4 ) * 2.0 ) ) , ( ( atan2( break39_g4.x , break39_g4.y ) * ( 1.0 / TWO_PI ) ) * 1.0 )));
+				Gradient gradient20 = NewGradient( 0, 2, 2, float4( 0.1882353, 0.1803922, 0.3882353, 0 ), float4( 0.1882353, 0.1803922, 0.3882353, 1 ), 0, 0, 0, 0, 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				
-				float4 Color = ( appendResult7 * step( ( 1.0 - ( tex2D( _TextureSample2, texCoord11 ).r + 0.0 ) ) , -( _Disolve_Key + appendResult50_g4.x ) ) );
+				float4 Color = ( appendResult7 * step( ( 1.0 - ( tex2D( _TextureSample2, texCoord11 ).r + 0.0 ) ) , -( _Disolve_Key + appendResult50_g4.x ) ) * SampleGradient( gradient20, 0.0 ) );
 
 				#if ETC1_EXTERNAL_ALPHA
 					float4 alpha = SAMPLE_TEXTURE2D( _AlphaTex, sampler_AlphaTex, IN.texCoord0.xy );
@@ -413,12 +463,13 @@ Shader "SH_HDR"
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
-			
+			#include "Packages/com.unity.shadergraph/ShaderGraphLibrary/Functions.hlsl"
 
-			sampler2D _MainTex;
+
+			sampler2D _sample_key;
 			sampler2D _TextureSample2;
 			CBUFFER_START( UnityPerMaterial )
-			float4 _MainTex_ST;
+			float4 _sample_key_ST;
 			float _Noise_Scale1;
 			float _Disolve_Key;
 			CBUFFER_END
@@ -444,6 +495,29 @@ Shader "SH_HDR"
             int _PassValue;
 
 			
+			float4 SampleGradient( Gradient gradient, float time )
+			{
+				float3 color = gradient.colors[0].rgb;
+				UNITY_UNROLL
+				for (int c = 1; c < 8; c++)
+				{
+				float colorPos = saturate((time - gradient.colors[c-1].w) / ( 0.00001 + (gradient.colors[c].w - gradient.colors[c-1].w)) * step(c, gradient.colorsLength-1));
+				color = lerp(color, gradient.colors[c].rgb, lerp(colorPos, step(0.01, colorPos), gradient.type));
+				}
+				#ifndef UNITY_COLORSPACE_GAMMA
+				color = SRGBToLinear(color);
+				#endif
+				float alpha = gradient.alphas[0].x;
+				UNITY_UNROLL
+				for (int a = 1; a < 8; a++)
+				{
+				float alphaPos = saturate((time - gradient.alphas[a-1].y) / ( 0.00001 + (gradient.alphas[a].y - gradient.alphas[a-1].y)) * step(a, gradient.alphasLength-1));
+				alpha = lerp(alpha, gradient.alphas[a].x, lerp(alphaPos, step(0.01, alphaPos), gradient.type));
+				}
+				return float4(color, alpha);
+			}
+			
+
 			VertexOutput vert(VertexInput v )
 			{
 				VertexOutput o = (VertexOutput)0;
@@ -477,16 +551,17 @@ Shader "SH_HDR"
 
 			half4 frag(VertexOutput IN) : SV_TARGET
 			{
-				float2 uv_MainTex = IN.ase_texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-				float4 tex2DNode6 = tex2D( _MainTex, uv_MainTex );
+				float2 uv_sample_key = IN.ase_texcoord.xy * _sample_key_ST.xy + _sample_key_ST.zw;
+				float4 tex2DNode6 = tex2D( _sample_key, uv_sample_key );
 				float4 appendResult7 = (float4(tex2DNode6.rgb , tex2DNode6.r));
 				float2 temp_cast_0 = (_Noise_Scale1).xx;
 				float2 texCoord11 = IN.ase_texcoord.xy * temp_cast_0 + float2( 0,0 );
 				float2 temp_output_34_0_g4 = ( IN.ase_texcoord.xy - float2( 0.5,0.5 ) );
 				float2 break39_g4 = temp_output_34_0_g4;
 				float2 appendResult50_g4 = (float2(( 1.0 * ( length( temp_output_34_0_g4 ) * 2.0 ) ) , ( ( atan2( break39_g4.x , break39_g4.y ) * ( 1.0 / TWO_PI ) ) * 1.0 )));
+				Gradient gradient20 = NewGradient( 0, 2, 2, float4( 0.1882353, 0.1803922, 0.3882353, 0 ), float4( 0.1882353, 0.1803922, 0.3882353, 1 ), 0, 0, 0, 0, 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				
-				float4 Color = ( appendResult7 * step( ( 1.0 - ( tex2D( _TextureSample2, texCoord11 ).r + 0.0 ) ) , -( _Disolve_Key + appendResult50_g4.x ) ) );
+				float4 Color = ( appendResult7 * step( ( 1.0 - ( tex2D( _TextureSample2, texCoord11 ).r + 0.0 ) ) , -( _Disolve_Key + appendResult50_g4.x ) ) * SampleGradient( gradient20, 0.0 ) );
 
 				half4 outColor = half4(_ObjectId, _PassValue, 1.0, 1.0);
 				return outColor;
@@ -536,12 +611,13 @@ Shader "SH_HDR"
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
-        	
+        	#include "Packages/com.unity.shadergraph/ShaderGraphLibrary/Functions.hlsl"
 
-			sampler2D _MainTex;
+
+			sampler2D _sample_key;
 			sampler2D _TextureSample2;
 			CBUFFER_START( UnityPerMaterial )
-			float4 _MainTex_ST;
+			float4 _sample_key_ST;
 			float _Noise_Scale1;
 			float _Disolve_Key;
 			CBUFFER_END
@@ -566,6 +642,29 @@ Shader "SH_HDR"
             float4 _SelectionID;
 
 			
+			float4 SampleGradient( Gradient gradient, float time )
+			{
+				float3 color = gradient.colors[0].rgb;
+				UNITY_UNROLL
+				for (int c = 1; c < 8; c++)
+				{
+				float colorPos = saturate((time - gradient.colors[c-1].w) / ( 0.00001 + (gradient.colors[c].w - gradient.colors[c-1].w)) * step(c, gradient.colorsLength-1));
+				color = lerp(color, gradient.colors[c].rgb, lerp(colorPos, step(0.01, colorPos), gradient.type));
+				}
+				#ifndef UNITY_COLORSPACE_GAMMA
+				color = SRGBToLinear(color);
+				#endif
+				float alpha = gradient.alphas[0].x;
+				UNITY_UNROLL
+				for (int a = 1; a < 8; a++)
+				{
+				float alphaPos = saturate((time - gradient.alphas[a-1].y) / ( 0.00001 + (gradient.alphas[a].y - gradient.alphas[a-1].y)) * step(a, gradient.alphasLength-1));
+				alpha = lerp(alpha, gradient.alphas[a].x, lerp(alphaPos, step(0.01, alphaPos), gradient.type));
+				}
+				return float4(color, alpha);
+			}
+			
+
 			VertexOutput vert(VertexInput v  )
 			{
 				VertexOutput o = (VertexOutput)0;
@@ -599,16 +698,17 @@ Shader "SH_HDR"
 
 			half4 frag(VertexOutput IN ) : SV_TARGET
 			{
-				float2 uv_MainTex = IN.ase_texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-				float4 tex2DNode6 = tex2D( _MainTex, uv_MainTex );
+				float2 uv_sample_key = IN.ase_texcoord.xy * _sample_key_ST.xy + _sample_key_ST.zw;
+				float4 tex2DNode6 = tex2D( _sample_key, uv_sample_key );
 				float4 appendResult7 = (float4(tex2DNode6.rgb , tex2DNode6.r));
 				float2 temp_cast_0 = (_Noise_Scale1).xx;
 				float2 texCoord11 = IN.ase_texcoord.xy * temp_cast_0 + float2( 0,0 );
 				float2 temp_output_34_0_g4 = ( IN.ase_texcoord.xy - float2( 0.5,0.5 ) );
 				float2 break39_g4 = temp_output_34_0_g4;
 				float2 appendResult50_g4 = (float2(( 1.0 * ( length( temp_output_34_0_g4 ) * 2.0 ) ) , ( ( atan2( break39_g4.x , break39_g4.y ) * ( 1.0 / TWO_PI ) ) * 1.0 )));
+				Gradient gradient20 = NewGradient( 0, 2, 2, float4( 0.1882353, 0.1803922, 0.3882353, 0 ), float4( 0.1882353, 0.1803922, 0.3882353, 1 ), 0, 0, 0, 0, 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 				
-				float4 Color = ( appendResult7 * step( ( 1.0 - ( tex2D( _TextureSample2, texCoord11 ).r + 0.0 ) ) , -( _Disolve_Key + appendResult50_g4.x ) ) );
+				float4 Color = ( appendResult7 * step( ( 1.0 - ( tex2D( _TextureSample2, texCoord11 ).r + 0.0 ) ) , -( _Disolve_Key + appendResult50_g4.x ) ) * SampleGradient( gradient20, 0.0 ) );
 				half4 outColor = _SelectionID;
 				return outColor;
 			}
@@ -629,15 +729,17 @@ Node;AmplifyShaderEditor.TextureCoordinatesNode;11;-1328,80;Inherit;False;0;-1;2
 Node;AmplifyShaderEditor.FunctionNode;12;-1296,528;Inherit;True;Polar Coordinates;-1;;4;7dab8e02884cf104ebefaa2e788e4162;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0.5,0.5;False;3;FLOAT;1;False;4;FLOAT;1;False;3;FLOAT2;0;FLOAT;55;FLOAT;56
 Node;AmplifyShaderEditor.SamplerNode;13;-1040,160;Inherit;True;Property;_TextureSample2;Texture Sample 2;3;0;Create;True;0;0;0;False;0;False;-1;None;babe5b65a5abcae47aba08de105876bd;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.BreakToComponentsNode;15;-912,560;Inherit;True;FLOAT2;1;0;FLOAT2;0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
-Node;AmplifyShaderEditor.RangedFloatNode;14;-976,832;Inherit;False;Property;_Disolve_Key;Disolve_Key;1;0;Create;True;0;0;0;False;0;False;0.37;-3;-3;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;14;-1024,832;Inherit;False;Property;_Disolve_Key;Disolve_Key;1;0;Create;True;0;0;0;False;0;False;0.37;-2.876293;-3;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;16;-688,208;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;17;-608,592;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;-0.2;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SamplerNode;6;-480,-128;Inherit;True;Property;_MainTex;_MainTex;0;0;Create;True;0;0;0;False;0;False;-1;None;1fc8a5b05cf5ccf4a9527f24ee35173f;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.OneMinusNode;8;-384,432;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.NegateNode;18;-400,576;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.DynamicAppendNode;7;-144,-64;Inherit;False;COLOR;4;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SamplerNode;6;-640,-144;Inherit;True;Property;_sample_key;sample_key;0;0;Create;True;0;0;0;False;0;False;-1;None;fcc6829e691077f4098d6c6edaf3d0c5;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
+Node;AmplifyShaderEditor.GradientNode;20;-960,-448;Inherit;False;0;2;2;0.1882353,0.1803922,0.3882353,0;0.1882353,0.1803922,0.3882353,1;1,0;1,1;0;1;OBJECT;0
 Node;AmplifyShaderEditor.StepOpNode;9;-208,480;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;5;16,-16;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.DynamicAppendNode;7;-272,-80;Inherit;False;COLOR;4;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.GradientSampleNode;19;-624,-464;Inherit;True;2;0;OBJECT;;False;1;FLOAT;0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;5;16,-16;Inherit;True;3;3;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;416,-32;Float;False;True;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;15;SH_HDR;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit;0;0;Sprite Unlit;4;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=Universal2D;False;False;0;;0;0;Standard;3;Vertex Position;1;0;Debug Display;0;0;External Alpha;0;0;0;4;True;True;True;True;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit Forward;0;1;Sprite Unlit Forward;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;SceneSelectionPass;0;2;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=SceneSelectionPass;False;False;0;;0;0;Standard;0;False;0
@@ -650,12 +752,14 @@ WireConnection;17;0;14;0
 WireConnection;17;1;15;0
 WireConnection;8;0;16;0
 WireConnection;18;0;17;0
-WireConnection;7;0;6;5
-WireConnection;7;3;6;1
 WireConnection;9;0;8;0
 WireConnection;9;1;18;0
+WireConnection;7;0;6;5
+WireConnection;7;3;6;1
+WireConnection;19;0;20;0
 WireConnection;5;0;7;0
 WireConnection;5;1;9;0
+WireConnection;5;2;19;0
 WireConnection;0;1;5;0
 ASEEND*/
-//CHKSM=E2E5AA75023309DFFAC8745A09CAC9AE1D3B63D9
+//CHKSM=51D76FD587D2ECADBBCBBF0BEB4DD0E13BF8A906
