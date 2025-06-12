@@ -108,6 +108,7 @@ Shader "SH_Canvas"
 			
 
 			sampler2D _TextureSample2;
+			sampler2D _TextureSample8;
 			sampler2D _TextureSample3;
 			sampler2D _TextureSample4;
 			sampler2D _TextureSample5;
@@ -116,25 +117,24 @@ Shader "SH_Canvas"
 			sampler2D _Sampler6032;
 			sampler2D _Cadre_Tex;
 			sampler2D _Sampler6056;
-			sampler2D _TextureSample8;
 			CBUFFER_START( UnityPerMaterial )
+			float4 _TextureSample5_ST;
 			float4 _TextureSample3_ST;
 			float4 _TextureSample4_ST;
-			float4 _TextureSample5_ST;
 			float4 _TextureSample6_ST;
-			float _Scale;
-			float _Step_Mask_R;
 			float _Float0;
 			float _H_Degrade;
 			float _H_Line_Mask;
+			float _B_Degrade;
 			float _B_Line_Mask;
-			float _Step_Mask_D;
+			float _Scale;
 			float _D_Degrade;
 			float _D_Line_Mask;
 			float _G_Degrade;
 			float _G_Line_Mask;
-			float _B_Degrade;
 			float _Cursor_Erase_Canva;
+			float _Step_Mask_R;
+			float _Step_Mask_D;
 			CBUFFER_END
 
 
@@ -244,6 +244,8 @@ Shader "SH_Canvas"
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
 				float3 ase_positionWS = IN.ase_texcoord3.xyz;
+				float2 appendResult108 = (float2(_Cursor_Erase_Canva , 0.0));
+				float2 texCoord109 = IN.texCoord0.xy * float2( 1,1 ) + appendResult108;
 				float2 texCoord7 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult33 = smoothstep( _G_Line_Mask , _G_Degrade , ( ( texCoord7.x - -0.12 ) * step( ( texCoord7.x - 1.24 ) , 0.15 ) ));
 				float2 uv_TextureSample3 = IN.texCoord0.xy * _TextureSample3_ST.xy + _TextureSample3_ST.zw;
@@ -308,9 +310,7 @@ Shader "SH_Canvas"
 				float2 texCoord85 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult92 = smoothstep( 0.0 , 0.0 , ( ( texCoord85.x - 0.0 ) * step( ( texCoord85.x - 1.18 ) , _Step_Mask_R ) ));
 				float smoothstepResult99 = smoothstep( 0.0 , 0.0 , ( ( 1.0 - texCoord85.x ) * step( ( -0.29 - texCoord85.x ) , _Step_Mask_D ) ));
-				float2 appendResult108 = (float2(_Cursor_Erase_Canva , 0.0));
-				float2 texCoord109 = IN.texCoord0.xy * float2( 1,1 ) + appendResult108;
-				float4 temp_output_2_0_g4 = ( 1.0 - ( saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( appendResult63 * tex2D( _Cadre_Tex, ( texCoord58 + ( smoothstepResult62 * _Float0 ) ) ).r ) + ( smoothstepResult92 + smoothstepResult99 ) ) ) * tex2D( _TextureSample8, texCoord109 ) ) );
+				float4 temp_output_2_0_g4 = saturate( ( tex2D( _TextureSample8, texCoord109 ).r + ( 1.0 - saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( appendResult63 * tex2D( _Cadre_Tex, ( texCoord58 + ( smoothstepResult62 * _Float0 ) ) ).r ) + ( smoothstepResult92 + smoothstepResult99 ) ) ) ) ) );
 				float4 appendResult4_g5 = (float4(tex2D( _TextureSample2, ( ase_positionWS * _Scale ).xy ).rgb , (temp_output_2_0_g4).a));
 				
 				float4 Color = appendResult4_g5;
@@ -397,6 +397,7 @@ Shader "SH_Canvas"
 			
 
 			sampler2D _TextureSample2;
+			sampler2D _TextureSample8;
 			sampler2D _TextureSample3;
 			sampler2D _TextureSample4;
 			sampler2D _TextureSample5;
@@ -405,25 +406,24 @@ Shader "SH_Canvas"
 			sampler2D _Sampler6032;
 			sampler2D _Cadre_Tex;
 			sampler2D _Sampler6056;
-			sampler2D _TextureSample8;
 			CBUFFER_START( UnityPerMaterial )
+			float4 _TextureSample5_ST;
 			float4 _TextureSample3_ST;
 			float4 _TextureSample4_ST;
-			float4 _TextureSample5_ST;
 			float4 _TextureSample6_ST;
-			float _Scale;
-			float _Step_Mask_R;
 			float _Float0;
 			float _H_Degrade;
 			float _H_Line_Mask;
+			float _B_Degrade;
 			float _B_Line_Mask;
-			float _Step_Mask_D;
+			float _Scale;
 			float _D_Degrade;
 			float _D_Line_Mask;
 			float _G_Degrade;
 			float _G_Line_Mask;
-			float _B_Degrade;
 			float _Cursor_Erase_Canva;
+			float _Step_Mask_R;
+			float _Step_Mask_D;
 			CBUFFER_END
 
 
@@ -533,6 +533,8 @@ Shader "SH_Canvas"
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
 				float3 ase_positionWS = IN.ase_texcoord3.xyz;
+				float2 appendResult108 = (float2(_Cursor_Erase_Canva , 0.0));
+				float2 texCoord109 = IN.texCoord0.xy * float2( 1,1 ) + appendResult108;
 				float2 texCoord7 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult33 = smoothstep( _G_Line_Mask , _G_Degrade , ( ( texCoord7.x - -0.12 ) * step( ( texCoord7.x - 1.24 ) , 0.15 ) ));
 				float2 uv_TextureSample3 = IN.texCoord0.xy * _TextureSample3_ST.xy + _TextureSample3_ST.zw;
@@ -597,9 +599,7 @@ Shader "SH_Canvas"
 				float2 texCoord85 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult92 = smoothstep( 0.0 , 0.0 , ( ( texCoord85.x - 0.0 ) * step( ( texCoord85.x - 1.18 ) , _Step_Mask_R ) ));
 				float smoothstepResult99 = smoothstep( 0.0 , 0.0 , ( ( 1.0 - texCoord85.x ) * step( ( -0.29 - texCoord85.x ) , _Step_Mask_D ) ));
-				float2 appendResult108 = (float2(_Cursor_Erase_Canva , 0.0));
-				float2 texCoord109 = IN.texCoord0.xy * float2( 1,1 ) + appendResult108;
-				float4 temp_output_2_0_g4 = ( 1.0 - ( saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( appendResult63 * tex2D( _Cadre_Tex, ( texCoord58 + ( smoothstepResult62 * _Float0 ) ) ).r ) + ( smoothstepResult92 + smoothstepResult99 ) ) ) * tex2D( _TextureSample8, texCoord109 ) ) );
+				float4 temp_output_2_0_g4 = saturate( ( tex2D( _TextureSample8, texCoord109 ).r + ( 1.0 - saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( appendResult63 * tex2D( _Cadre_Tex, ( texCoord58 + ( smoothstepResult62 * _Float0 ) ) ).r ) + ( smoothstepResult92 + smoothstepResult99 ) ) ) ) ) );
 				float4 appendResult4_g5 = (float4(tex2D( _TextureSample2, ( ase_positionWS * _Scale ).xy ).rgb , (temp_output_2_0_g4).a));
 				
 				float4 Color = appendResult4_g5;
@@ -675,6 +675,7 @@ Shader "SH_Canvas"
 			
 
 			sampler2D _TextureSample2;
+			sampler2D _TextureSample8;
 			sampler2D _TextureSample3;
 			sampler2D _TextureSample4;
 			sampler2D _TextureSample5;
@@ -683,25 +684,24 @@ Shader "SH_Canvas"
 			sampler2D _Sampler6032;
 			sampler2D _Cadre_Tex;
 			sampler2D _Sampler6056;
-			sampler2D _TextureSample8;
 			CBUFFER_START( UnityPerMaterial )
+			float4 _TextureSample5_ST;
 			float4 _TextureSample3_ST;
 			float4 _TextureSample4_ST;
-			float4 _TextureSample5_ST;
 			float4 _TextureSample6_ST;
-			float _Scale;
-			float _Step_Mask_R;
 			float _Float0;
 			float _H_Degrade;
 			float _H_Line_Mask;
+			float _B_Degrade;
 			float _B_Line_Mask;
-			float _Step_Mask_D;
+			float _Scale;
 			float _D_Degrade;
 			float _D_Line_Mask;
 			float _G_Degrade;
 			float _G_Line_Mask;
-			float _B_Degrade;
 			float _Cursor_Erase_Canva;
+			float _Step_Mask_R;
+			float _Step_Mask_D;
 			CBUFFER_END
 
 
@@ -797,6 +797,8 @@ Shader "SH_Canvas"
 			half4 frag(VertexOutput IN) : SV_TARGET
 			{
 				float3 ase_positionWS = IN.ase_texcoord.xyz;
+				float2 appendResult108 = (float2(_Cursor_Erase_Canva , 0.0));
+				float2 texCoord109 = IN.ase_texcoord1.xy * float2( 1,1 ) + appendResult108;
 				float2 texCoord7 = IN.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult33 = smoothstep( _G_Line_Mask , _G_Degrade , ( ( texCoord7.x - -0.12 ) * step( ( texCoord7.x - 1.24 ) , 0.15 ) ));
 				float2 uv_TextureSample3 = IN.ase_texcoord1.xy * _TextureSample3_ST.xy + _TextureSample3_ST.zw;
@@ -861,9 +863,7 @@ Shader "SH_Canvas"
 				float2 texCoord85 = IN.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult92 = smoothstep( 0.0 , 0.0 , ( ( texCoord85.x - 0.0 ) * step( ( texCoord85.x - 1.18 ) , _Step_Mask_R ) ));
 				float smoothstepResult99 = smoothstep( 0.0 , 0.0 , ( ( 1.0 - texCoord85.x ) * step( ( -0.29 - texCoord85.x ) , _Step_Mask_D ) ));
-				float2 appendResult108 = (float2(_Cursor_Erase_Canva , 0.0));
-				float2 texCoord109 = IN.ase_texcoord1.xy * float2( 1,1 ) + appendResult108;
-				float4 temp_output_2_0_g4 = ( 1.0 - ( saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( appendResult63 * tex2D( _Cadre_Tex, ( texCoord58 + ( smoothstepResult62 * _Float0 ) ) ).r ) + ( smoothstepResult92 + smoothstepResult99 ) ) ) * tex2D( _TextureSample8, texCoord109 ) ) );
+				float4 temp_output_2_0_g4 = saturate( ( tex2D( _TextureSample8, texCoord109 ).r + ( 1.0 - saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( appendResult63 * tex2D( _Cadre_Tex, ( texCoord58 + ( smoothstepResult62 * _Float0 ) ) ).r ) + ( smoothstepResult92 + smoothstepResult99 ) ) ) ) ) );
 				float4 appendResult4_g5 = (float4(tex2D( _TextureSample2, ( ase_positionWS * _Scale ).xy ).rgb , (temp_output_2_0_g4).a));
 				
 				float4 Color = appendResult4_g5;
@@ -919,6 +919,7 @@ Shader "SH_Canvas"
         	
 
 			sampler2D _TextureSample2;
+			sampler2D _TextureSample8;
 			sampler2D _TextureSample3;
 			sampler2D _TextureSample4;
 			sampler2D _TextureSample5;
@@ -927,25 +928,24 @@ Shader "SH_Canvas"
 			sampler2D _Sampler6032;
 			sampler2D _Cadre_Tex;
 			sampler2D _Sampler6056;
-			sampler2D _TextureSample8;
 			CBUFFER_START( UnityPerMaterial )
+			float4 _TextureSample5_ST;
 			float4 _TextureSample3_ST;
 			float4 _TextureSample4_ST;
-			float4 _TextureSample5_ST;
 			float4 _TextureSample6_ST;
-			float _Scale;
-			float _Step_Mask_R;
 			float _Float0;
 			float _H_Degrade;
 			float _H_Line_Mask;
+			float _B_Degrade;
 			float _B_Line_Mask;
-			float _Step_Mask_D;
+			float _Scale;
 			float _D_Degrade;
 			float _D_Line_Mask;
 			float _G_Degrade;
 			float _G_Line_Mask;
-			float _B_Degrade;
 			float _Cursor_Erase_Canva;
+			float _Step_Mask_R;
+			float _Step_Mask_D;
 			CBUFFER_END
 
 
@@ -1040,6 +1040,8 @@ Shader "SH_Canvas"
 			half4 frag(VertexOutput IN ) : SV_TARGET
 			{
 				float3 ase_positionWS = IN.ase_texcoord.xyz;
+				float2 appendResult108 = (float2(_Cursor_Erase_Canva , 0.0));
+				float2 texCoord109 = IN.ase_texcoord1.xy * float2( 1,1 ) + appendResult108;
 				float2 texCoord7 = IN.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult33 = smoothstep( _G_Line_Mask , _G_Degrade , ( ( texCoord7.x - -0.12 ) * step( ( texCoord7.x - 1.24 ) , 0.15 ) ));
 				float2 uv_TextureSample3 = IN.ase_texcoord1.xy * _TextureSample3_ST.xy + _TextureSample3_ST.zw;
@@ -1104,9 +1106,7 @@ Shader "SH_Canvas"
 				float2 texCoord85 = IN.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult92 = smoothstep( 0.0 , 0.0 , ( ( texCoord85.x - 0.0 ) * step( ( texCoord85.x - 1.18 ) , _Step_Mask_R ) ));
 				float smoothstepResult99 = smoothstep( 0.0 , 0.0 , ( ( 1.0 - texCoord85.x ) * step( ( -0.29 - texCoord85.x ) , _Step_Mask_D ) ));
-				float2 appendResult108 = (float2(_Cursor_Erase_Canva , 0.0));
-				float2 texCoord109 = IN.ase_texcoord1.xy * float2( 1,1 ) + appendResult108;
-				float4 temp_output_2_0_g4 = ( 1.0 - ( saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( appendResult63 * tex2D( _Cadre_Tex, ( texCoord58 + ( smoothstepResult62 * _Float0 ) ) ).r ) + ( smoothstepResult92 + smoothstepResult99 ) ) ) * tex2D( _TextureSample8, texCoord109 ) ) );
+				float4 temp_output_2_0_g4 = saturate( ( tex2D( _TextureSample8, texCoord109 ).r + ( 1.0 - saturate( ( ( ( smoothstepResult33 * tex2D( _TextureSample3, uv_TextureSample3 ).r ) * ( tex2D( _TextureSample4, uv_TextureSample4 ).r * smoothstepResult34 ) * ( tex2D( _TextureSample5, uv_TextureSample5 ).r * smoothstepResult35 ) * ( tex2D( _TextureSample6, uv_TextureSample6 ).r * smoothstepResult36 ) ) + ( appendResult63 * tex2D( _Cadre_Tex, ( texCoord58 + ( smoothstepResult62 * _Float0 ) ) ).r ) + ( smoothstepResult92 + smoothstepResult99 ) ) ) ) ) );
 				float4 appendResult4_g5 = (float4(tex2D( _TextureSample2, ( ase_positionWS * _Scale ).xy ).rgb , (temp_output_2_0_g4).a));
 				
 				float4 Color = appendResult4_g5;
@@ -1190,22 +1190,23 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;45;-2112,992;Inherit;True;2;2;0;FL
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;43;-2112,-448;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SmoothstepOpNode;92;-336,928;Inherit;True;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SmoothstepOpNode;99;-416,1360;Inherit;True;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;107;-256,624;Inherit;False;Property;_Cursor_Erase_Canva;Cursor_Erase_Canva;0;0;Create;True;0;0;0;False;0;False;-0.2402835;-1;-1;2;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;49;-128,-912;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;48;-1648,-464;Inherit;True;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;106;112,784;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.DynamicAppendNode;108;128,608;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.RangedFloatNode;107;-176,400;Inherit;False;Property;_Cursor_Erase_Canva;Cursor_Erase_Canva;0;0;Create;True;0;0;0;False;0;False;-0.2402835;-0.27;-1;2;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;50;320,-32;Inherit;True;3;3;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;109;336,560;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SaturateNode;51;640,-32;Inherit;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SamplerNode;110;592,384;Inherit;True;Property;_TextureSample8;Texture Sample 0;3;0;Create;True;0;0;0;False;0;False;-1;69b8fa25cee5ab144a22527081812f67;69b8fa25cee5ab144a22527081812f67;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
+Node;AmplifyShaderEditor.DynamicAppendNode;108;128,400;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.SaturateNode;51;560,-32;Inherit;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;109;320,352;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.OneMinusNode;69;752,-32;Inherit;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SamplerNode;110;560,336;Inherit;True;Property;_TextureSample8;Texture Sample 0;3;0;Create;True;0;0;0;False;0;False;-1;69b8fa25cee5ab144a22527081812f67;69b8fa25cee5ab144a22527081812f67;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.WorldPosInputsNode;73;1056,-400;Inherit;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.RangedFloatNode;75;1104,-240;Inherit;False;Property;_Scale;Scale;2;0;Create;True;0;0;0;False;0;False;0;0.05;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;114;896,64;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;115;944,-32;Inherit;True;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;74;1296,-384;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.OneMinusNode;69;1152,16;Inherit;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SaturateNode;116;1216,-16;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SamplerNode;71;1472,-384;Inherit;True;Property;_TextureSample2;Texture Sample 2;18;0;Create;True;0;0;0;False;0;False;-1;None;43617b76d26cf7b47ad73b535d6b1e88;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
-Node;AmplifyShaderEditor.FunctionNode;64;1360,-32;Inherit;False;Alpha Split;-1;;4;07dab7960105b86429ac8eebd729ed6d;0;1;2;COLOR;0,0,0,0;False;2;FLOAT3;0;FLOAT;6
+Node;AmplifyShaderEditor.FunctionNode;64;1456,-16;Inherit;False;Alpha Split;-1;;4;07dab7960105b86429ac8eebd729ed6d;0;1;2;COLOR;0,0,0,0;False;2;FLOAT3;0;FLOAT;6
 Node;AmplifyShaderEditor.FunctionNode;65;1776,-144;Inherit;True;Alpha Merge;-1;;5;e0d79828992f19c4f90bfc29aa19b7a5;0;2;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;1;FLOAT4;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;2048,-144;Float;False;True;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;15;SH_Canvas;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit;0;0;Sprite Unlit;4;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=Universal2D;False;False;0;;0;0;Standard;3;Vertex Position;1;0;Debug Display;0;0;External Alpha;0;0;0;4;True;True;True;True;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI;0;15;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit Forward;0;1;Sprite Unlit Forward;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;;0;0;Standard;0;False;0
@@ -1284,22 +1285,23 @@ WireConnection;48;2;44;0
 WireConnection;48;3;45;0
 WireConnection;106;0;92;0
 WireConnection;106;1;99;0
-WireConnection;108;0;107;0
 WireConnection;50;0;48;0
 WireConnection;50;1;49;0
 WireConnection;50;2;106;0
-WireConnection;109;1;108;0
+WireConnection;108;0;107;0
 WireConnection;51;0;50;0
+WireConnection;109;1;108;0
+WireConnection;69;0;51;0
 WireConnection;110;1;109;0
-WireConnection;114;0;51;0
-WireConnection;114;1;110;0
+WireConnection;115;0;110;1
+WireConnection;115;1;69;0
 WireConnection;74;0;73;0
 WireConnection;74;1;75;0
-WireConnection;69;0;114;0
+WireConnection;116;0;115;0
 WireConnection;71;1;74;0
-WireConnection;64;2;69;0
+WireConnection;64;2;116;0
 WireConnection;65;2;71;5
 WireConnection;65;3;64;6
 WireConnection;0;1;65;0
 ASEEND*/
-//CHKSM=3796FC07F0897ED29709221E6A9E540AA42D840D
+//CHKSM=8EAC2F7979F1CC68ABCEAFEAF635F6272E967997
