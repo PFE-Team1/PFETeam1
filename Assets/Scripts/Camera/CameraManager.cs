@@ -382,4 +382,23 @@ public class CameraManager : MonoBehaviour
         CalculateCameraBounds();
         DefineCameraBounds();
     }
+
+    public void SetFollow(GameObject gameObject)
+    {
+        if (gameObject != null)
+        {
+            PlayerTransform = gameObject.transform;
+            _mainCamera.Follow = PlayerTransform;
+        }
+        else
+        {
+            PlayerTransform = null;
+            _mainCamera.Follow = null;
+        }
+    }
+
+    public CinemachineVirtualCamera GetCurrentCamera()
+    {
+        return _mainCamera;
+    }
 }
