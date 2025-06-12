@@ -26,6 +26,7 @@ public class MainMenuManager : MonoBehaviour
     {
         _mainMenu.SetActive(false);
         SettingsManager.Instance.IsMainMenuActive = true;
+        SettingsManager.Instance.DidOnce = false;
         _landingMenu.SetActive(true);
     }
 }

@@ -39,6 +39,7 @@ public class SpawnManager : MonoBehaviour
     }
     public void OpenRift()
     {
+        AudioManager.Instance.SFX_ReformationToile.Post(gameObject);
         _renderer.enabled = true;//+anim du perso qui sort /tombe.
         _animator.SetBool("Openning", true);
     }

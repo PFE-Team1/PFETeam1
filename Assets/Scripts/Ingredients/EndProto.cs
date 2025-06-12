@@ -33,7 +33,7 @@ public class EndProto : Interactable
         yield return new WaitForSeconds(5f);
         _fissure.enabled = true;
 
-        //_fissure.le truc là anim et tout;
+        //_fissure.le truc lï¿½ anim et tout;
     }
     IEnumerator EndOfLevel()
     {
@@ -70,6 +70,7 @@ public class EndProto : Interactable
     {
         _renderer.enabled = true;//+anim du perso qui sort /tombe.
         _animator.SetBool("Openning", true);
+        AudioManager.Instance.SFX_DÃ©chirure.Post(gameObject);
     }
 
     public void CloseRift()

@@ -58,6 +58,7 @@ public class SettingsManager : MonoBehaviour
     Coroutine _zoomCoroutine;
     public bool IsMainMenuActive { get => isMainMenuActive; set => isMainMenuActive = value; }
     public bool IsInPause { get => isInPause; set => isInPause = value; }
+    public bool DidOnce { get => didOnce; set => didOnce = value; }
     Resolution[] resolutions;
     public bool WantParallax { get => wantParallax; set => wantParallax = value; }
     public bool WantScreenShake { get => wantScreenShake; set => wantScreenShake = value; }
