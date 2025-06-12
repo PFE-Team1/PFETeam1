@@ -93,7 +93,7 @@
 						<Action Name="" ID="{CA7F8E3C-8A61-46F2-A40D-A1B2DBE9B147}" ShortID="755241136">
 							<PropertyList>
 								<Property Name="ActionType" Type="int16" Value="2"/>
-								<Property Name="FadeTime" Type="Real64" Value="3"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
@@ -118,6 +118,7 @@
 						<Action Name="" ID="{188B9656-7642-46C4-AEB1-75EA8CD925C3}" ShortID="66519091">
 							<PropertyList>
 								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
@@ -143,6 +144,21 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="LevelTransition" ID="{454A2AEF-091F-45DF-9228-F3C3897569BD}" WorkUnitID="{F5C0E3AD-BD9E-476C-BB37-3552589CDE30}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Toile_2_PC" ID="{0CE766EB-4580-41DD-A99D-17026385D816}">
+					<ChildrenList>
+						<Action Name="" ID="{BC79EE5C-5809-4D63-AF76-829432571842}" ShortID="35575878">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Part2_PC" ID="{1000335A-8C03-4EFC-A954-30E1DCF5348B}" WorkUnitID="{9FFD7200-4F7D-419C-ABEF-78E7E3B7A00D}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
