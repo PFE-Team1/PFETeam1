@@ -12,7 +12,7 @@ public class PaintingController : Interactable
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private GameObject _VFXPoseSocle;
     [SerializeField] private ParticleSystem _VFXTrail;
-    [SerializeField] private bool _needsRotation;
+    [SerializeField] private float RotationZ = 0f;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
     private SpriteRenderer _spriteRenderer;
@@ -112,8 +112,7 @@ public class PaintingController : Interactable
     }
     public void DropPainting()
     {
-
-        _VFXTrail.Play(true);
+        
         _rigidBody.useGravity = true;
         transform.SetParent(_targetTransform);
         transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -122,7 +121,7 @@ public class PaintingController : Interactable
         boneFollower.SkeletonRenderer = null;
 
         if (transform.parent.GetComponent<LevelSpawner>() != null) transform.localPosition = Vector3.zero;
-
+        else { _VFXTrail.Play(true); }
         return;
     }
 
@@ -147,6 +146,8 @@ public class PaintingController : Interactable
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
         boneFollower.boneName = "Target_Arm_R";
+        boneFollower.followBoneRotation = false;
+        transform.localRotation = Quaternion.Euler(0, 0, RotationZ);
         transform.SetParent(_currentlyGrabbingTransform);
         transform.position = _currentlyGrabbingTransform.position;
         _paintHandler.ChangeLayer(_spriteRenderer.sortingLayerID);

@@ -39,6 +39,7 @@ public class UIToolTipZone : MonoBehaviour
     {
         // Trouve dans les objets de l'enfant le premier ToolTipManager
         _toolTipManager = other.GetComponentInChildren<ToolTipManager>();
+        if(_toolTipManager) _toolTipManager.ChangeIconDependingOnController();
         if (!_CollidingGameObjects.Contains(other.gameObject))
         {
             _CollidingGameObjects.Add(other.gameObject);

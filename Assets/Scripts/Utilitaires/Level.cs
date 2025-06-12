@@ -11,9 +11,11 @@ public class Level : MonoBehaviour
 
     [SerializeField] private float offset = 2f;
     [SerializeField] GameObject _end;
+    [SerializeField] GameObject _bords;
     public float Offset { get => offset; set => offset = value; }
     public Texture LevelTexture { get => _levelTexture; }
     public GameObject End { get => _end; set => _end = value; }
+    public GameObject Bords { get => _bords; }
 
     void Awake()
     {

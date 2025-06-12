@@ -128,6 +128,7 @@ public class OpenButton : Interactable
 
                 }
             }
+            _objectsToRemove.RemoveAll(obj => obj.IsRespawnable == false);
         }
     }
     IEnumerator Disolve(Renderer renderer)
