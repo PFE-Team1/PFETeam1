@@ -8448,6 +8448,7 @@ MonoBehaviour:
   _levelTexture: {fileID: 8400000, guid: a80608a65c3963b42b4e7e0d71d78bf3, type: 2}
   offset: 2
   _end: {fileID: 0}
+  _bords: {fileID: 7262613726808564378}
 --- !u!1 &6227001217546921633
 GameObject:
   m_ObjectHideFlags: 0
@@ -12201,10 +12202,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4725576599989869359, guid: de6b5df16d9bb3d48877daa141122c50, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4910549751048934466, guid: de6b5df16d9bb3d48877daa141122c50, type: 3}
       propertyPath: _level
       value: 
       objectReference: {fileID: 6225650997376922306}
+    - target: {fileID: 4910549751048934466, guid: de6b5df16d9bb3d48877daa141122c50, type: 3}
+      propertyPath: _riftEffect
+      value: 
+      objectReference: {fileID: 7517619585397130048}
     - target: {fileID: 5935027798015342362, guid: de6b5df16d9bb3d48877daa141122c50, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12249,6 +12258,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6353084013130267268, guid: de6b5df16d9bb3d48877daa141122c50, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12257,5 +12270,10 @@ PrefabInstance:
 --- !u!4 &1728445011794967350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5935027798015342362, guid: de6b5df16d9bb3d48877daa141122c50, type: 3}
+  m_PrefabInstance: {fileID: 5017537487624490028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7517619585397130048 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3310758068682084204, guid: de6b5df16d9bb3d48877daa141122c50, type: 3}
   m_PrefabInstance: {fileID: 5017537487624490028}
   m_PrefabAsset: {fileID: 0}
