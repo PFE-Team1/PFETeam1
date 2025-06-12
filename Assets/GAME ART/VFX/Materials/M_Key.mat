@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_key_HDR
-  m_Shader: {fileID: 4800000, guid: e1d6cd92b655f2c4297c960370fec03b, type: 3}
+  m_Name: M_Key
+  m_Shader: {fileID: 4800000, guid: d2a98d6b06c56f647b8dd8ef615e0af8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,12 +23,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f2288ba33a50b5b4caae6d1176751e5a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _TextureSample2:
         m_Texture: {fileID: 2800000, guid: babe5b65a5abcae47aba08de105876bd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _sample_key:
+        m_Texture: {fileID: 2800000, guid: 787a871a12c1eec459bd7412b3e204ba, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -51,7 +51,6 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _Disolve_Key: -3
-    - _HDR: 2.37
     - _Noise_Scale1: 1.48
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
