@@ -38,8 +38,25 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: 0d0f153d6dae8a42a94c3627e019c690
     GuidInternal: 
-    m_lastTime: -8584533590862039674
+    m_lastTime: -8584518960510125861
     List:
+    - name: All_Without_UI
+      guid: ab701d356e075547b66c565cd4cb18c3
+      id: 2891835836
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0d0f153d6dae8a42a94c3627e019c690
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: All_Without_UI
+        ObjectType: 2
+        guid: ab701d356e075547b66c565cd4cb18c3
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\All_Without_UI
     - name: AMB
       guid: abfeb7524855db47afb52a92c328a467
       id: 1117531639
@@ -53,10 +70,13 @@ MonoBehaviour:
       - ElementName: Master Audio Bus
         ObjectType: 2
         guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: All_Without_UI
+        ObjectType: 2
+        guid: ab701d356e075547b66c565cd4cb18c3
       - ElementName: AMB
         ObjectType: 2
         guid: abfeb7524855db47afb52a92c328a467
-      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\AMB
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\All_Without_UI\AMB
     - name: FOL
       guid: 7de3bd3310630246859ca1deeddcea41
       id: 1083137552
@@ -70,10 +90,13 @@ MonoBehaviour:
       - ElementName: Master Audio Bus
         ObjectType: 2
         guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: All_Without_UI
+        ObjectType: 2
+        guid: ab701d356e075547b66c565cd4cb18c3
       - ElementName: FOL
         ObjectType: 2
         guid: 7de3bd3310630246859ca1deeddcea41
-      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\FOL
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\All_Without_UI\FOL
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
       id: 3803692087
@@ -101,10 +124,13 @@ MonoBehaviour:
       - ElementName: Master Audio Bus
         ObjectType: 2
         guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: All_Without_UI
+        ObjectType: 2
+        guid: ab701d356e075547b66c565cd4cb18c3
       - ElementName: MUS
         ObjectType: 2
         guid: e2026fce2b39974bb4c0bfc5183d0b93
-      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\MUS
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\All_Without_UI\MUS
     - name: SFX
       guid: cf26aeda6fc8a145a469be27a617cde8
       id: 393239870
@@ -118,10 +144,13 @@ MonoBehaviour:
       - ElementName: Master Audio Bus
         ObjectType: 2
         guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: All_Without_UI
+        ObjectType: 2
+        guid: ab701d356e075547b66c565cd4cb18c3
       - ElementName: SFX
         ObjectType: 2
         guid: cf26aeda6fc8a145a469be27a617cde8
-      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFX
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\All_Without_UI\SFX
     - name: UI
       guid: 0f93db22c83af042af90a3b8b66cb09f
       id: 1551306167
@@ -305,8 +334,28 @@ MonoBehaviour:
     ParentPath: Events\AMB_WU
     guid: a1ca8aaa1c5cba408a3bf1bc2c8e9b1b
     GuidInternal: 
-    m_lastTime: -8584525653864014130
+    m_lastTime: -8584518960775783965
     List:
+    - name: Play_AMB_Demarrage_LP
+      guid: 96566a24921ad7498d87cd6cc70f3549
+      id: 4158865498
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: AMB_WU
+        ObjectType: 12
+        guid: a1ca8aaa1c5cba408a3bf1bc2c8e9b1b
+      - ElementName: Toile01
+        ObjectType: 4
+        guid: 5d809eca8950194e929f0de93aef9f71
+      - ElementName: Play_AMB_Demarrage_LP
+        ObjectType: 3
+        guid: 96566a24921ad7498d87cd6cc70f3549
+      Path: Events\AMB_WU\Toile01\Play_AMB_Demarrage_LP
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Play_AMB_RFX_Toile01_CraquementBois_RC
       guid: 580f20758c0ea54fb6420f63a6dc5e33
       id: 1182040807
@@ -544,9 +593,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 7baac9fe9181af4cbbac788849c2ad23
       Path: Events\AMB_WU\Toile02_Niv02\Play_AMB_RFX_Toile02_Vase
-      maxAttenuation: 15
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_AMB_Toile1_Niveau1_LP
       guid: d8a8d8df2ee6bf4ba4044af867f53f20
       id: 1171349980
@@ -644,9 +693,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 8008754f3efb68468cc2e514c9ec6579
       Path: Events\AMB_WU\Toile02_Niv02\Play_AMB_Toile3_Niveau2_LP_01
-      maxAttenuation: 10
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Toile01
       guid: 5d809eca8950194e929f0de93aef9f71
       id: 2950916523
@@ -952,7 +1001,7 @@ MonoBehaviour:
     ParentPath: Events\SFX_WU
     guid: a48179c86af39c48af681069ba57db04
     GuidInternal: 
-    m_lastTime: -8584525653863904885
+    m_lastTime: -8584518960774364891
     List:
     - name: Play_ApparitionToile
       guid: 7dd5bf9f280d074c910db7fc91b2ef10
@@ -1056,6 +1105,40 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.41664582
       minDuration: 0.34310415
+    - name: Play_OuvertureMur_RC
+      guid: b6a8120addc10c4e84a87d20eb2bd971
+      id: 3243152553
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: SFX_WU
+        ObjectType: 12
+        guid: a48179c86af39c48af681069ba57db04
+      - ElementName: Play_OuvertureMur_RC
+        ObjectType: 3
+        guid: b6a8120addc10c4e84a87d20eb2bd971
+      Path: Events\SFX_WU\Play_OuvertureMur_RC
+      maxAttenuation: 10
+      maxDuration: 3.228
+      minDuration: 2.4224374
+    - name: Play_SFX_Scintillement
+      guid: 93d82d93715c62439026554b3c3d5d8f
+      id: 1673264353
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: SFX_WU
+        ObjectType: 12
+        guid: a48179c86af39c48af681069ba57db04
+      - ElementName: Play_SFX_Scintillement
+        ObjectType: 3
+        guid: 93d82d93715c62439026554b3c3d5d8f
+      Path: Events\SFX_WU\Play_SFX_Scintillement
+      maxAttenuation: 10
+      maxDuration: 0
+      minDuration: 0
   - PhysicalPath: Events\SFX02_WU.wwu
     PathAndIcons:
     - ElementName: Events
@@ -1165,8 +1248,42 @@ MonoBehaviour:
     ParentPath: Events\UI_WU
     guid: ab9be2386fd8504d917a5c99d0da3795
     GuidInternal: 
-    m_lastTime: -8584525653863889885
+    m_lastTime: -8584518960773944864
     List:
+    - name: Play_State_In_Menu
+      guid: 8898b225e4f03b44af0dedda02a5f0b6
+      id: 2027606521
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: UI_WU
+        ObjectType: 12
+        guid: ab9be2386fd8504d917a5c99d0da3795
+      - ElementName: Play_State_In_Menu
+        ObjectType: 3
+        guid: 8898b225e4f03b44af0dedda02a5f0b6
+      Path: Events\UI_WU\Play_State_In_Menu
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Play_State_Out_Menu
+      guid: ce33937a6b89fb44ad3d1dec56bc93b4
+      id: 3911561590
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: UI_WU
+        ObjectType: 12
+        guid: ab9be2386fd8504d917a5c99d0da3795
+      - ElementName: Play_State_Out_Menu
+        ObjectType: 3
+        guid: ce33937a6b89fb44ad3d1dec56bc93b4
+      Path: Events\UI_WU\Play_State_Out_Menu
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Play_SUI_CliqueValidationBouton_RC
       guid: cba854d5bb76a140a653f4d96ee48528
       id: 129827151
@@ -1348,7 +1465,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: ade3c0f59ebd6c47bb373552589cde30
     GuidInternal: 
-    m_lastTime: -8584519803938652466
+    m_lastTime: -8584518960438623154
     List:
     - name: MusicLevel_TG
       guid: 64feebe6b5d22f4492197b6291a1c9c3
@@ -1413,6 +1530,72 @@ MonoBehaviour:
         - ElementName: None
           ObjectType: 8
           guid: 58f40f84366fbd4b9013b01b2db68f2b
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: State_Menu_Pause
+      guid: 6643b3640302024b9d42a965d6c16e8d
+      id: 3470340733
+      PathAndIcons:
+      - ElementName: States
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: ade3c0f59ebd6c47bb373552589cde30
+      - ElementName: State_Menu_Pause
+        ObjectType: 9
+        guid: 6643b3640302024b9d42a965d6c16e8d
+      Path: States\Default Work Unit\State_Menu_Pause
+      values:
+      - name: In_Menu
+        guid: 6578c1de666f664b9cf6cf49b6ac553b
+        id: 1631528850
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: ade3c0f59ebd6c47bb373552589cde30
+        - ElementName: State_Menu_Pause
+          ObjectType: 9
+          guid: 6643b3640302024b9d42a965d6c16e8d
+        - ElementName: In_Menu
+          ObjectType: 8
+          guid: 6578c1de666f664b9cf6cf49b6ac553b
+      - name: None
+        guid: 52832e7963f2ed46b0c9b7a0a6b65334
+        id: 748895195
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: ade3c0f59ebd6c47bb373552589cde30
+        - ElementName: State_Menu_Pause
+          ObjectType: 9
+          guid: 6643b3640302024b9d42a965d6c16e8d
+        - ElementName: None
+          ObjectType: 8
+          guid: 52832e7963f2ed46b0c9b7a0a6b65334
+      - name: Out_Menu
+        guid: 1c56b2ed884d534b8bfbbbbc1e032476
+        id: 139557087
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: ade3c0f59ebd6c47bb373552589cde30
+        - ElementName: State_Menu_Pause
+          ObjectType: 9
+          guid: 6643b3640302024b9d42a965d6c16e8d
+        - ElementName: Out_Menu
+          ObjectType: 8
+          guid: 1c56b2ed884d534b8bfbbbbc1e032476
       ValueGuids: []
       ValueIcons: []
       valuesInternal: []
