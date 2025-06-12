@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PaintInOutController : MonoBehaviour
 {
     [SerializeField] private LineRenderer _line;
-    [SerializeField] private SpriteRenderer _eraseRend;
+     private SpriteRenderer _eraseRend;
     [SerializeField]float _durationIn=5f;
     [SerializeField]float _durationCameraIn=5f;
     [SerializeField]float _durationOut=3f;
@@ -56,7 +56,7 @@ public class PaintInOutController : MonoBehaviour
     {
 
         Reset(paint);
-        Setup(paint);
+        //Setup(paint);
         paint.GetComponent<LevelDoorManage>().Disable();
         _coroutine = StartCoroutine(ShaderOut(paint));
     }
@@ -123,12 +123,23 @@ public class PaintInOutController : MonoBehaviour
     {
         Level paintLevel = paint.GetComponent<Level>();
         paintLevel.GetComponent<Level>().FindPlayer(false);
-        if (paint != _endPaint && !paintLevel.WasAlreadySpawned)
+        _eraseRend = paintLevel.Bords.GetComponent<SpriteRenderer>();
+        if ( !paintLevel.WasAlreadySpawned)
         {
             CameraManager.Instance.SeeCurrentLevel(paint);
         }
         yield return new WaitForSeconds(_durationCameraOut);
-        _eraseRend.material.SetFloat("_CursorErase", -1);
+        _eraseRend.material.SetFloat("_Cursor_Erase_Canva", 2);
+    
+  
+        float timer = 0;
+        yield return new WaitForSeconds(_cameraMoveDuration);
+        while (timer < _durationOut)
+        {
+            _eraseRend.material.SetFloat("_Cursor_Erase_Canva",2-(timer / _durationOut)*3);
+            timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
+            yield return null;
+        }
         paint.layer = 6;
         foreach (GameObject child in AllChilds(paint))
         {
@@ -137,29 +148,13 @@ public class PaintInOutController : MonoBehaviour
             else
                 child.layer = 11;
         }
-        float timer = 0;
-        yield return new WaitForSeconds(_cameraMoveDuration);
-        while (timer < _durationOut)
-        {
-            _eraseRend.material.SetFloat("_CursorErase", (timer / _durationOut)*3-1);
-            timer += Time.deltaTime;//remplacer line avec shader d'aurore FLOAT OUI 
-            yield return null;
-        }
-        paint.layer = 6;
-        foreach (GameObject child in AllChilds(paint))
-        {
-            child.layer = 6;
-        }
         paint.SetActive(false);
-        _image.enabled = false;
         if(!paintLevel.WasAlreadySpawned)
        {
+
+            CameraManager.Instance.FocusCamera();
+            CameraManager.Instance.ReEvaluate();
             paintLevel.WasAlreadySpawned = true;
-            if (paint != _endPaint)
-            {
-                CameraManager.Instance.FocusCamera();
-                CameraManager.Instance.ReEvaluate();
-            }
         }  
         yield return null;
     }
@@ -177,11 +172,13 @@ public class PaintInOutController : MonoBehaviour
     }
     private void Reset(GameObject paint)
     {
+        Level paintLevel = paint.GetComponent<Level>();
+        _eraseRend = paintLevel.Bords.GetComponent<SpriteRenderer>();
         if (_coroutine != null)
         {
             StopCoroutine(_coroutine);
         }
-        _eraseRend.material.SetFloat("_CursorErase", 2);
+        _eraseRend.material.SetFloat("_Cursor_Erase_Canva", 2);
             _line.material.SetFloat("_CursorAppearance", 0);
             foreach (Renderer rend in _appearanceAddOns)
             {
