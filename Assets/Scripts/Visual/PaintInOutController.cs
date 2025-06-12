@@ -151,12 +151,9 @@ public class PaintInOutController : MonoBehaviour
         paint.SetActive(false);
         if(!paintLevel.WasAlreadySpawned)
        {
-            
-            if (paint != _endPaint && paintLevel.WasAlreadySpawned)
-            {
-                CameraManager.Instance.FocusCamera();
-                CameraManager.Instance.ReEvaluate();
-            }
+
+            CameraManager.Instance.FocusCamera();
+            CameraManager.Instance.ReEvaluate();
             paintLevel.WasAlreadySpawned = true;
         }  
         yield return null;
