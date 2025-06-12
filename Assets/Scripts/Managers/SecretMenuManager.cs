@@ -17,7 +17,7 @@ public class SecretMenuManager : MonoBehaviour
 
     void ToggleSecretMenu()
     {
-        if (MenuSecret.active)
+        if (MenuSecret.activeSelf)
         {
             MenuSecret.SetActive(false);
         } else
