@@ -69,4 +69,10 @@ public class ScenesManager : MonoBehaviour
         yield return null;
     }
 
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
 }

@@ -22,17 +22,22 @@ public class RunningPlayerState : PlayerState
 
     protected override void OnStateUpdate()
     {
-        if (SettingsManager.Instance.isInPause)
+        if (SettingsManager.Instance != null)
         {
-            StateMachine.ChangeState(StateMachine.IdleState);
-            return;
+            if (SettingsManager.Instance.isInPause)
+            {
+                StateMachine.ChangeState(StateMachine.IdleState);
+                return;
+            }
         }
+
         if (StateMachine.JumpBuffer > 0)
         {
             StateMachine.JumpBuffer = 0;
             StateMachine.ChangeState(StateMachine.JumpStartState);
             return;
         }
+        
 
         // afin d'éviter de faire les petits sauts dans les slopes
         if (!StateMachine.CollisionInfo.isCollidingBelow)
