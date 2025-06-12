@@ -77,7 +77,6 @@ public class EndProto : Interactable
 
     private void CloseRift()
     {
-
         _animator.SetBool("Closing", true);
     }
 
