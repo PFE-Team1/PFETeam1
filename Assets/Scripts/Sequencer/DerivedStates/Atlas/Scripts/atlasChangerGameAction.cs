@@ -1,3 +1,4 @@
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,19 @@ using UnityEngine;
 public class atlasChangerGameAction : AGameAction
 {
     [Header("Action Settings")]
-    [SerializeField] private Texture2D atlasTexture;
+    [SerializeField] private Material Mat;
     [SerializeField] private ChangeMode changeMode = ChangeMode.ChangeCurrentPlayer;
+    public override ActionEndCondition EndCondition => ActionEndCondition.ConditionMet;
     protected override void OnExecute()
     {
+    }
+    protected override void OnUpdate(float deltaTime)
+    {
+        PlayerStateMachine playerStateMachine = CloneManager.instance.GetCurrentStateMachine();
+        if (playerStateMachine == null)
+        {
+            return;
+        }
         if (CloneManager.instance == null)
         {
             Debug.LogWarning("CloneManager instance is null. Please ensure it is initialized before executing this action.");
@@ -18,13 +28,12 @@ public class atlasChangerGameAction : AGameAction
         switch (changeMode)
         {
             case ChangeMode.ChangeCurrentPlayer:
-                PlayerStateMachine playerStateMachine = CloneManager.instance.GetCurrentStateMachine();
                 if (playerStateMachine == null)
                 {
-                    Debug.LogWarning("PlayerStateMachine is null. Please ensure it is initialized before executing this action.");
                     return;
                 }
                 SetAtlasTexture(playerStateMachine);
+                _ConditionMet = true;
                 break;
             case ChangeMode.ChangeAllPlayers:
                 foreach (Clone clone in CloneManager.instance.Characters)
@@ -37,11 +46,9 @@ public class atlasChangerGameAction : AGameAction
                     }
                     SetAtlasTexture(playerStateMachineAll);
                 }
+                _ConditionMet = true;
                 break;
         }
-    }
-    protected override void OnUpdate(float deltaTime)
-    {
     }
     protected override void OnEnd()
     {
@@ -49,12 +56,11 @@ public class atlasChangerGameAction : AGameAction
 
     public void SetAtlasTexture(PlayerStateMachine playerStateMachine)
     {
-        if (playerStateMachine == null)
+        foreach(SkeletonRenderer skeletonRenderer in playerStateMachine.GetComponentsInChildren<SkeletonRenderer>())
         {
-            Debug.LogWarning("PlayerStateMachine is null. Please ensure it is initialized before setting the atlas texture.");
-            return;
+            var originalMaterial = skeletonRenderer.SkeletonDataAsset.atlasAssets[0].PrimaryMaterial;
+            skeletonRenderer.CustomMaterialOverride[originalMaterial] = Mat; // to enable the replacement.
         }
-        playerStateMachine.MeshRenderer.sharedMaterial.mainTexture = atlasTexture;
     }
 
     private enum ChangeMode

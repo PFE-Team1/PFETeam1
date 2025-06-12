@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2943117310187215212
+--- !u!1 &8531248818791608226
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1407551466525969781}
-  - component: {fileID: 360324815430520887}
+  - component: {fileID: 2820269242652937944}
+  - component: {fileID: 6151595987024824451}
   m_Layer: 0
-  m_Name: ChangeAtlasLight
+  m_Name: PlayMMFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1407551466525969781
+--- !u!4 &2820269242652937944
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2943117310187215212}
+  m_GameObject: {fileID: 8531248818791608226}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,19 +32,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &360324815430520887
+--- !u!114 &6151595987024824451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2943117310187215212}
+  m_GameObject: {fileID: 8531248818791608226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac19eecb79b0051448bcef2121381e60, type: 3}
+  m_Script: {fileID: 11500000, guid: ffec8bd0590c167458d0f621c2975740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startCondition: 0
   delayAmount: 0
-  Mat: {fileID: 2100000, guid: 2a959bd5a1de2b04f9621bce79e63b4d, type: 2}
-  changeMode: 0
+  _feedback: {fileID: 0}
