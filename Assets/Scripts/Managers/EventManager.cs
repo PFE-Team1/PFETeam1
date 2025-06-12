@@ -19,6 +19,9 @@ public class EventManager : MonoBehaviour
     public UnityEvent OnInput;
 
     public UnityEvent OnInputInteract = new UnityEvent();
+    public UnityEvent OnInputJump = new UnityEvent();
+    public UnityEvent OnInputMove = new UnityEvent();
+    public UnityEvent OnInputSwitch = new UnityEvent();
     private void Awake()
     {
         if (instance != null && instance != this)
