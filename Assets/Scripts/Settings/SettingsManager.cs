@@ -47,6 +47,10 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private AK.Wwise.RTPC _sfxVolumeRTPC;
     [SerializeField] private AK.Wwise.RTPC _uiVolumeRTPC;
 
+    [Header("Events")]
+    [SerializeField] private AK.Wwise.Event _pauseEvent;
+    [SerializeField] private AK.Wwise.Event _unpauseEvent;
+
     bool wantParallax = true;
     bool wantScreenShake = true;
     bool isMainMenuActive = true;
@@ -99,6 +103,7 @@ public class SettingsManager : MonoBehaviour
         InitVolume();
         SetControls();
         _mainMenu.SetActive(false);
+        _unpauseEvent.Post(gameObject);
     }
 
     void Update()
@@ -107,7 +112,7 @@ public class SettingsManager : MonoBehaviour
         if (!SplashScreen.isFinished) return;
         if ((Gamepad.current != null && Gamepad.current.allControls.Any(control => control.IsPressed())) || Input.anyKeyDown)
         {
-            MusicScenePermanent.instance.StartFirstMusic();
+            
             didOnce = true;
             AudioManager.Instance.SUI_PressAnyKey.Post(gameObject);
             if (_zoomCoroutine != null) return;
@@ -126,6 +131,8 @@ public class SettingsManager : MonoBehaviour
         yield return new WaitForSeconds(_firstMenuAnimation.length);
 
         EventSystem.current.SetSelectedGameObject(_firstItem);
+        yield return new WaitForSeconds(2f);
+        MusicScenePermanent.instance.StartFirstMusic();
         onComplete?.Invoke();
     }
 
@@ -298,6 +305,8 @@ public class SettingsManager : MonoBehaviour
             _settingsMenu.SetActive(false);
             EventSystem.current.SetSelectedGameObject(_firstPauseItem);
             isInPause = _pauseMenu.activeSelf;
+            if (isInPause) _pauseEvent.Post(gameObject);
+            else _unpauseEvent.Post(gameObject);
         }
     }
 
