@@ -9,8 +9,8 @@ public class Parrallaxe : MonoBehaviour
     [SerializeField] private bool _vertical;
     [SerializeField] private bool _horizontal;
     private Camera _mainCamera;
-    [SerializeField]private BoxCollider2D _bounds;
-    [SerializeField]private Transform _removed;
+    [SerializeField] private BoxCollider2D _bounds;
+    [SerializeField] private Transform _removed;
     #region Layers
 
     [SerializeField] private List<Layer> _layers;
@@ -20,7 +20,7 @@ public class Parrallaxe : MonoBehaviour
     {
         GameObject newLayerObject = new GameObject();
         newLayerObject.transform.parent = transform;
-        if(_layers[_layers.Count - 1]?.layer)
+        if (_layers[_layers.Count - 1]?.layer)
         {
             newLayerObject.name = _layers[_layers.Count - 1].layer.name + "1";
         }
@@ -37,7 +37,7 @@ public class Parrallaxe : MonoBehaviour
         Layer oldLayer = _layers[_layers.Count - 1];
         GameObject oldLayerObject = oldLayer.layer;
         _layers.RemoveAt(_layers.Count - 1);
-        foreach(Transform child in oldLayerObject.transform)
+        foreach (Transform child in oldLayerObject.transform)
         {
             child.SetParent(_removed);
         }
@@ -48,38 +48,38 @@ public class Parrallaxe : MonoBehaviour
     private Vector2 _startPos;
     void Start()
     {
-        _mainCamera=GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         _startPos = transform.position;
     }
-	
+
     public void UpdateParallaxePosition()
     {
-	
+
     }
-	
+
     // Update is called once per frame
     void FixedUpdate()
     {
-	_startPos = transform.position;
+        _startPos = transform.position;
 
-        //if (SettingsManager.Instance.WantParallax == false) return;
+        if (SettingsManager.Instance?.WantParallax == false) return;
         float distX = 0;
         float distY = 0;
         if (_vertical)
         {
-            distY = transform.position.y-_mainCamera.transform.position.y ;
+            distY = transform.position.y - _mainCamera.transform.position.y;
             if (distY > _bounds.size.y / 2) distY = _bounds.size.y / 2;
-            if (distY <1- _bounds.size.y / 2) distY = 1-_bounds.size.y / 2;
+            if (distY < 1 - _bounds.size.y / 2) distY = 1 - _bounds.size.y / 2;
         }
         if (_horizontal)
         {
             distX = transform.position.x - _mainCamera.transform.position.x;
             if (distX > _bounds.size.x / 2) distX = _bounds.size.x / 2;
-            if (distX <1- _bounds.size.x / 2) distX = 1-_bounds.size.x / 2;
+            if (distX < 1 - _bounds.size.x / 2) distX = 1 - _bounds.size.x / 2;
         }
-        foreach(Layer currentLayer in _layers)
+        foreach (Layer currentLayer in _layers)
         {
-            currentLayer.layer.transform.position = new Vector2(_startPos.x + distX * currentLayer.strengthX , _startPos.y + distY * currentLayer.strengthY);
+            currentLayer.layer.transform.position = new Vector2(_startPos.x + distX * currentLayer.strengthX, _startPos.y + distY * currentLayer.strengthY);
         }
 
     }
@@ -89,12 +89,12 @@ public class Parrallaxe : MonoBehaviour
 [System.Serializable]
 public class Layer
 {
-     public string name;
-     public GameObject layer;
-     public float strengthY=0.1f;
-     public float strengthX = 0.1f;
+    public string name;
+    public GameObject layer;
+    public float strengthY = 0.1f;
+    public float strengthX = 0.1f;
 
-    public Layer(GameObject gameobject,string lName)
+    public Layer(GameObject gameobject, string lName)
     {
         name = lName;
         layer = gameobject;

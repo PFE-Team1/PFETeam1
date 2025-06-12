@@ -13,6 +13,16 @@
 						<State Name="Level" ID="{19721471-C01B-4F2A-9240-F71DB31E7BB7}"/>
 					</ChildrenList>
 				</StateGroup>
+				<StateGroup Name="State_Menu_Pause" ID="{64B34366-0203-4B02-9D42-A965D6C16E8D}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="0.1"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{792E8352-F263-46ED-B0C9-B7A0A6B65334}"/>
+						<State Name="In_Menu" ID="{DEC17865-6F66-4B66-9CF6-CF49B6AC553B}"/>
+						<State Name="Out_Menu" ID="{EDB2561C-4D88-4B53-8BFB-BBBC1E032476}"/>
+					</ChildrenList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>
