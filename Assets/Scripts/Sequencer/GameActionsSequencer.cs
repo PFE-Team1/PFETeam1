@@ -283,5 +283,6 @@ public class GameActionsSequencer : MonoBehaviour
     {
         AutoStart,
         Trigger,
+        Manual,
     }
 }
