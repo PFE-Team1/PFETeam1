@@ -317,6 +317,10 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public void OpenSettings()
+    {
+        _settingsMenu.SetActive(!_settingsMenu.activeSelf);
+    }
 
     public void QuitGame()
     {

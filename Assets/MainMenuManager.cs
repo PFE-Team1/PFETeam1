@@ -79,4 +79,14 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(GetSecondAnimationLength());
         onComplete?.Invoke();
     }
+
+    public void OpenSettings()
+    {
+        SettingsManager.Instance?.OpenSettings();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
