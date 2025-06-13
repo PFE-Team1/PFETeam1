@@ -106,7 +106,6 @@ public class LevelSpawner : Interactable
 
         //FindPlayer(true);
         isAlreadySpawned = true;
-        paintingController.PlayVFXSocle();
         paintingController.FreezePos();
         paintingController.AnimateDropPainting(transform);
     }

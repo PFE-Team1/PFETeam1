@@ -1,4 +1,5 @@
 using Spine.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,7 +11,7 @@ public class PaintingController : Interactable
 {
     [SerializeField] private GameObject _newLevelPrefab;
     [SerializeField] private GameObject _spawnPoint;
-    [SerializeField] private GameObject _VFXPoseSocle;
+    [SerializeField] private ParticleSystem _VFXPoseSocle;
     [SerializeField] private ParticleSystem _VFXTrail;
     [SerializeField] private float RotationZ = 0f;
     [SerializeField] private bool _mustRotate;
@@ -25,9 +26,6 @@ public class PaintingController : Interactable
     public PlayerStateMachine CurrentHoldingStateMachine;
 
     private Transform _currentlyGrabbingTransform = null;
-
-    [SerializeField] private ParticleSystem VFX_GrabToile;
-    [SerializeField] private ParticleSystem VFX_PoseToile;
 
     private BoneFollower boneFollower;
     private bool _hasSpawned;
@@ -55,10 +53,6 @@ public class PaintingController : Interactable
             {
                 if (!PlayerC.IsInSocleRange)
                 {
-                    if (VFX_PoseToile != null)
-                    {
-                        Destroy(Instantiate(VFX_PoseToile, transform), 1f);
-                    }
                     AudioManager.Instance.SFX_PoseToile.Post(gameObject);
                     AnimateDropPainting();
                 }
@@ -122,7 +116,11 @@ public class PaintingController : Interactable
         _paintHandler.ChangeSortingorder(_spriteRenderer.sortingOrder + 2);
         boneFollower.SkeletonRenderer = null;
 
-        if (transform.parent.GetComponent<LevelSpawner>() != null) transform.localPosition = Vector3.zero;
+        if (transform.parent.GetComponent<LevelSpawner>() != null)
+        {
+            transform.localPosition = Vector3.zero;
+            PlayVFXSocle();
+        }
         else { _VFXTrail.Play(true); }
         return;
     }
@@ -138,10 +136,6 @@ public class PaintingController : Interactable
     public void GrabPainting()
     {
         _VFXTrail.Stop(true);
-        if (VFX_GrabToile != null)
-        {
-            Destroy(Instantiate(VFX_GrabToile, transform), 1f);
-        }
         UnfreezePos();
         _rigidBody.useGravity = false;
         AudioManager.Instance.SFX_GrabToile.Post(gameObject);
@@ -175,8 +169,8 @@ public class PaintingController : Interactable
 
         _rigidBody.constraints = RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotation;
     }
-    public void PlayVFXSocle()
+    private void PlayVFXSocle()
     {
-        _VFXPoseSocle.SetActive(true);
+        _VFXPoseSocle.Play(true);
     }
 }
