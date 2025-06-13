@@ -13,6 +13,7 @@ public class PaintingController : Interactable
     [SerializeField] private GameObject _VFXPoseSocle;
     [SerializeField] private ParticleSystem _VFXTrail;
     [SerializeField] private float RotationZ = 0f;
+    [SerializeField] private bool _mustRotate;
     public GameObject newLevelPrefab { get => _newLevelPrefab; set => _newLevelPrefab = value; }
     public GameObject spawnPoint { get => _spawnPoint; set => _spawnPoint = value; }
     private SpriteRenderer _spriteRenderer;
@@ -66,6 +67,7 @@ public class PaintingController : Interactable
             {
                 AnimateGrabPainting();
             }
+            Buffer = 1;
         }
     }
 
@@ -146,7 +148,14 @@ public class PaintingController : Interactable
         boneFollower.SkeletonRenderer = Player.GetComponentInChildren<SkeletonRenderer>();
         boneFollower.followZPosition = false;
         boneFollower.boneName = "Target_Arm_R";
-        boneFollower.followBoneRotation = false;
+        if (_mustRotate)
+        {
+            boneFollower.followBoneRotation = false;
+        }
+        else
+        {
+            boneFollower.followBoneRotation = true;
+        }
         transform.localRotation = Quaternion.Euler(0, 0, RotationZ);
         transform.SetParent(_currentlyGrabbingTransform);
         transform.position = _currentlyGrabbingTransform.position;
