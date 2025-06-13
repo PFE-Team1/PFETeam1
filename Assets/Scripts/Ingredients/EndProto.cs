@@ -10,12 +10,14 @@ public class EndProto : Interactable
     [SerializeField]private GameObject _level;
     [SerializeField] PaintInOutController _endEffect;
     [SerializeField] ParticleSystem _riftEffect;
+    [SerializeField] GameActionsSequencer _endSequence;
     private SpriteRenderer _fissure;
     private SpriteRenderer _renderer;
     private Animator _animator;
 
     protected override void Start()
     {
+        _endSequence = GameObject.Find("EndSequence").GetComponent<GameActionsSequencer>();
         base.Start();
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -82,16 +84,17 @@ public class EndProto : Interactable
     {
         if (IsInRange)
         {
-            transform.parent = null;
-            if (!_endEffect || !_level)
-            {
-                ScenesManager.instance.LoadNextScene();
-            }
-            else
-            {
+            _endSequence.Play();
+            //transform.parent = null;
+            //if (!_endEffect || !_level)
+            //{
+            //    ScenesManager.instance.LoadNextScene();
+            //}
+            //else
+            //{
 
-                StartCoroutine(EndOfLevel());
-            }
+            //    StartCoroutine(EndOfLevel());
+            //}
         }
     }
 }
