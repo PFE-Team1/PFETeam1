@@ -9690,7 +9690,7 @@ GameObject:
   - component: {fileID: 887142646}
   - component: {fileID: 887142645}
   m_Layer: 0
-  m_Name: Sequencer_Fadeout
+  m_Name: Sequencer_FadeIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11346,6 +11346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778736d28ee9d78498e16dfdd6529ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sequencer: {fileID: 887142645}
   _landingMenu: {fileID: 1279127779}
   _mainMenu: {fileID: 1482086648}
   _firstItem: {fileID: 330614664}
@@ -15304,10 +15305,6 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: c54c28bdffe385947acb1f28b53a03c4, type: 2}
-  isMainMenuActive: 1
-  _sequencer: {fileID: 887142645}
-  isInPause: 0
-  didOnce: 0
 --- !u!224 &1481164771
 RectTransform:
   m_ObjectHideFlags: 0

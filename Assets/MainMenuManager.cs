@@ -5,6 +5,8 @@ public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager Instance { get; private set; }
 
+    [Header("Ce gros dégueulasse de JN qui vient tout crasser")]
+    [SerializeField] private GameActionsSequencer _sequencer;
     [SerializeField] private GameObject _landingMenu;
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _firstItem;
@@ -70,6 +72,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ZoomForPlay()
     {
+        PlaySequencer();
         SecondMenuAnimator.Play(ZoomForPlayAnimation.name);
         StartCoroutine(WaitForZoomToComplete(() => ScenesManager.instance.LoadNextScene()));
     }
@@ -88,5 +91,10 @@ public class MainMenuManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void PlaySequencer()
+    {
+        _sequencer?.Play();
     }
 }

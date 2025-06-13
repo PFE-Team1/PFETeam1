@@ -43,15 +43,12 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private AK.Wwise.Event _pauseEvent;
     [SerializeField] private AK.Wwise.Event _unpauseEvent;
 
-    [Header("Ce gros d�gueulasse de JN qui vient tout crasser")]
-    [SerializeField] private GameActionsSequencer _sequencer;
-
     bool wantParallax = true;
     bool wantScreenShake = true;
-    public bool isMainMenuActive = true;
-    public bool isInPause = false;
-    public bool didOnce;
-    public bool hasAldreadyAMusic = false;
+    bool isMainMenuActive = true;
+    bool isInPause = false;
+    bool didOnce;
+    bool hasAldreadyAMusic = false;
     Coroutine _zoomCoroutine;
     public bool IsMainMenuActive { get => isMainMenuActive; set => isMainMenuActive = value; }
     public bool IsInPause { get => isInPause; set => isInPause = value; }
