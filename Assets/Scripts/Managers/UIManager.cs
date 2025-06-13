@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Canvas Settings")]
     public CanvasGroup CanvasGroup; // Pour gérer la transparence du canvas si nécessaire
-    [SerializeField] private bool isCanvasfadedin = false;
+    [SerializeField] private bool isCanvasFadedIn = false;
     private RectTransform _canvasRectTransform;
 
     void Awake()
@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
             Instance = this;
         }
         else Destroy(this.gameObject);
-        if (isCanvasfadedin)
+        if (isCanvasFadedIn)
         {
             CanvasGroup.alpha = 1f;
         }
