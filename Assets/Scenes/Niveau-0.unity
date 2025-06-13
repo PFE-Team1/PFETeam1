@@ -3617,8 +3617,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1481164770}
-        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 1019839865}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: ZoomForPlay
         m_Mode: 1
         m_Arguments:
@@ -4618,8 +4618,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1481164770}
-        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 1019839865}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -5157,7 +5157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7294,7 +7294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -54.480713, y: 0.947937}
+  m_AnchoredPosition: {x: -54.480713, y: 0.94799805}
   m_SizeDelta: {x: 227.84, y: 72.0641}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &642863436
@@ -9036,10 +9036,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1128837094}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1019839865}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+        m_MethodName: OpenSettings
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9690,7 +9690,7 @@ GameObject:
   - component: {fileID: 887142646}
   - component: {fileID: 887142645}
   m_Layer: 0
-  m_Name: Sequencer_Fadeout
+  m_Name: Sequencer_FadeIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11346,8 +11346,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778736d28ee9d78498e16dfdd6529ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sequencer: {fileID: 887142645}
   _landingMenu: {fileID: 1279127779}
   _mainMenu: {fileID: 1482086648}
+  _firstItem: {fileID: 330614664}
+  _firstMenuAnimator: {fileID: 1279127783}
+  _secondMenuAnimator: {fileID: 1482086652}
+  _firstMenuAnimation: {fileID: 7400000, guid: 652b90a1bbbb57a4bb86166d9b8ae349, type: 2}
+  _secondMenuAnimation: {fileID: 7400000, guid: 1ec38a2e855ff6847b00de9962e3359d, type: 2}
+  _zoomForPlayAnimation: {fileID: 7400000, guid: 403052f9c641d934baf395c46347cdc2, type: 2}
 --- !u!1 &1022849208
 GameObject:
   m_ObjectHideFlags: 0
@@ -13479,7 +13486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1250796001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15269,13 +15276,7 @@ MonoBehaviour:
   _uiVolumeSlider: {fileID: 628886850}
   _controlsPrefab: {fileID: 1592857771155052678, guid: 31c7f764e05b75e4ebf358d7765593a1, type: 3}
   _controlsParent: {fileID: 115494599}
-  _firstItem: {fileID: 330614664}
   _firstPauseItem: {fileID: 1138993469}
-  _firstMenuAnimator: {fileID: 1279127783}
-  _secondMenuAnimator: {fileID: 1482086652}
-  _firstMenuAnimation: {fileID: 7400000, guid: 652b90a1bbbb57a4bb86166d9b8ae349, type: 2}
-  _secondMenuAnimation: {fileID: 7400000, guid: 1ec38a2e855ff6847b00de9962e3359d, type: 2}
-  _zoomForPlayAnimation: {fileID: 7400000, guid: 403052f9c641d934baf395c46347cdc2, type: 2}
   _masterVolumeRTPC:
     idInternal: 0
     valueGuidInternal: 
@@ -15304,8 +15305,6 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: c54c28bdffe385947acb1f28b53a03c4, type: 2}
-  _sequencer: {fileID: 887142645}
-  isInPause: 0
 --- !u!224 &1481164771
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17765,8 +17764,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 1302587610}
+    m_SelectOnUp: {fileID: 1215755786}
+    m_SelectOnDown: {fileID: 848179204}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1

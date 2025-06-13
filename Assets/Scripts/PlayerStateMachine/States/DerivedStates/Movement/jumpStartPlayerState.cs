@@ -21,7 +21,7 @@ public class JumpStartPlayerState : PlayerState
     {
         if (SettingsManager.Instance != null)
         {
-            if (SettingsManager.Instance.isInPause)
+            if (SettingsManager.Instance.IsInPause)
             {
                 StateMachine.ChangeState(StateMachine.IdleState);
                 return;

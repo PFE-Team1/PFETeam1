@@ -63,7 +63,12 @@ public class Clone : MonoBehaviour
     {
         if (isEnable)
         {
-            CVC.Follow = gameObject.transform;
+            CameraManager.Instance.PlayerTransform = transform;
+            CVC.Follow = transform;
+            if (gameObject.layer != 3)
+            {
+                ChangeLayer();
+            }
             //CVC.transform.position = transform.position;
         }
         //_playerVFX.CanPlayVFX(isEnable);
@@ -150,7 +155,7 @@ public class Clone : MonoBehaviour
             }
         }
     }
-    public void ChangeLayer(int layerID)
+    public void ChangeLayer()
     {
         gameObject.layer = 3;
         foreach (GameObject child in AllChilds(gameObject))
