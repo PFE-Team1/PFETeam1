@@ -3674,8 +3674,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1481164770}
-        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 1019839865}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: ZoomForPlay
         m_Mode: 1
         m_Arguments:
@@ -11336,6 +11336,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _landingMenu: {fileID: 1279127779}
   _mainMenu: {fileID: 1482086648}
+  _firstItem: {fileID: 330614664}
+  _firstMenuAnimator: {fileID: 1279127783}
+  _secondMenuAnimator: {fileID: 1482086652}
+  _firstMenuAnimation: {fileID: 7400000, guid: 652b90a1bbbb57a4bb86166d9b8ae349, type: 2}
+  _secondMenuAnimation: {fileID: 7400000, guid: 1ec38a2e855ff6847b00de9962e3359d, type: 2}
+  _zoomForPlayAnimation: {fileID: 7400000, guid: 403052f9c641d934baf395c46347cdc2, type: 2}
 --- !u!1 &1022849208
 GameObject:
   m_ObjectHideFlags: 0
@@ -15257,13 +15263,7 @@ MonoBehaviour:
   _uiVolumeSlider: {fileID: 628886850}
   _controlsPrefab: {fileID: 1592857771155052678, guid: 31c7f764e05b75e4ebf358d7765593a1, type: 3}
   _controlsParent: {fileID: 115494599}
-  _firstItem: {fileID: 330614664}
   _firstPauseItem: {fileID: 1138993469}
-  _firstMenuAnimator: {fileID: 1279127783}
-  _secondMenuAnimator: {fileID: 1482086652}
-  _firstMenuAnimation: {fileID: 7400000, guid: 652b90a1bbbb57a4bb86166d9b8ae349, type: 2}
-  _secondMenuAnimation: {fileID: 7400000, guid: 1ec38a2e855ff6847b00de9962e3359d, type: 2}
-  _zoomForPlayAnimation: {fileID: 7400000, guid: 403052f9c641d934baf395c46347cdc2, type: 2}
   _masterVolumeRTPC:
     idInternal: 0
     valueGuidInternal: 
@@ -15292,7 +15292,9 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: c54c28bdffe385947acb1f28b53a03c4, type: 2}
+  isMainMenuActive: 1
   isInPause: 0
+  didOnce: 0
 --- !u!224 &1481164771
 RectTransform:
   m_ObjectHideFlags: 0
