@@ -48,6 +48,7 @@ public class SettingsManager : MonoBehaviour
     public bool isMainMenuActive = true;
     public bool isInPause = false;
     public bool didOnce;
+    public bool hasAldreadyAMusic = false;
     Coroutine _zoomCoroutine;
     public bool IsMainMenuActive { get => isMainMenuActive; set => isMainMenuActive = value; }
     public bool IsInPause { get => isInPause; set => isInPause = value; }
@@ -127,7 +128,7 @@ public class SettingsManager : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(MainMenuManager.Instance.FirstItem);
         }));
         yield return new WaitForSeconds(2f);
-        MusicScenePermanent.instance.StartFirstMusic();
+        if (!hasAldreadyAMusic) { MusicScenePermanent.instance.StartFirstMusic(); hasAldreadyAMusic = true; }
         onComplete?.Invoke();
     }
 
