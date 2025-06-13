@@ -76,10 +76,10 @@ public class OpenButton : Interactable
         }
         if (destroyed.RespawnTime + destroyed.RespawnStartTime == hightestRespawnTime||time>hightestRespawnTime)
         {
-            _spriteRenderer.sprite = _sprite;
+            _spriteRenderer.material.SetFloat("_Disolve_Key", -3);
             if (_addedRend != null)
             {
-                _addedRend.enabled=true;
+                _addedRend.material.SetFloat("_Disolve_Key", -3);
             }
             _isRespawning = false;
             _cantInterract = false;
@@ -106,8 +106,8 @@ public class OpenButton : Interactable
             if (IsInRange)
             {
                 _cantInterract = true;
-                _spriteRenderer.sprite = null;
-                _isRespawning = true;
+               StartCoroutine( DisolveKey(_spriteRenderer));
+                    _isRespawning = true;
                 foreach (ObectToDestroy toRemove in _objectsToRemove)
                 {
 
@@ -119,7 +119,7 @@ public class OpenButton : Interactable
                     }
                     if (_addedRend != null)
                     {
-                        _addedRend.enabled = false;
+                        StartCoroutine(DisolveKey(_addedRend));
                     }
                     if (toRemove.IsRespawnable == true)
                     {
@@ -142,6 +142,19 @@ public class OpenButton : Interactable
             yield return null;
         }
         mat.SetFloat("_Disolve_Cursor2", -1.2f);
+        yield return null;
+    }
+    IEnumerator DisolveKey(Renderer renderer)
+    {
+        float timer = 0;
+        Material mat = renderer.material;
+        while (timer < disolveDuration)
+        {
+            mat.SetFloat("_Disolve_Key",  (timer / disolveDuration) * 2.2f-3f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        mat.SetFloat("_Disolve_Key", -0.8f);
         yield return null;
     }
 }
