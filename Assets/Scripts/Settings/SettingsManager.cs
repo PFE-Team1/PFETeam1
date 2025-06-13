@@ -43,6 +43,9 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private AK.Wwise.Event _pauseEvent;
     [SerializeField] private AK.Wwise.Event _unpauseEvent;
 
+    [Header("Ce gros d�gueulasse de JN qui vient tout crasser")]
+    [SerializeField] private GameActionsSequencer _sequencer;
+
     bool wantParallax = true;
     bool wantScreenShake = true;
     public bool isMainMenuActive = true;
