@@ -21,6 +21,8 @@ public class CloneSpawner : Interactable
     {
         PlayerC.Cloned(_spawnPoint, InitialSkinName);
         Destroy(_spawnPoint);
-        Destroy(gameObject);
+        Destroy(gameObject.GetComponent<CloneSpawner>());
+        Destroy(gameObject.GetComponent<UIToolTipZone>());
+
     }
 }

@@ -59,6 +59,7 @@ public class ScenesManager : MonoBehaviour
             SettingsManager.Instance.IsMainMenuActive = false;
         }
         yield return new WaitForSeconds(1);
+        print("Loading next scene: " + _nextScene + " from current scene: " + currentScene + "...");
         SceneManager.UnloadSceneAsync(currentScene);
         SceneManager.LoadSceneAsync(_nextScene, LoadSceneMode.Additive);
         yield return null;
