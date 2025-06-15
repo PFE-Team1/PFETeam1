@@ -21,6 +21,7 @@ public class PaintInOutController : MonoBehaviour
     [SerializeField] RectTransform _rectTransform;
     [SerializeField]RawImage _image;
     [SerializeField] Material _mat;
+    [SerializeField] GameObject _currentCam;
     Coroutine _coroutine;
 
     [Button("Paint In")]
@@ -32,6 +33,7 @@ public class PaintInOutController : MonoBehaviour
     public GameObject EndPaint { get => _endPaint; set => _endPaint = value; }
     public float DurationIn { get => _durationIn;}
     public float DelayZoomOnEnd { get => _delayZoomOnEnd;}
+    public GameObject CurrentCam { get => _currentCam; set => _currentCam = value; }
 
     private void Awake()
     {
@@ -110,6 +112,7 @@ public class PaintInOutController : MonoBehaviour
                 CameraManager.Instance.FocusCamera();
             }
         }
+        _currentCam.SetActive(false);
         _image.enabled = false;
         _line.material.SetFloat("_CursorAppearance", 0);
         foreach (Renderer rend in _appearanceAddOns)
@@ -148,6 +151,7 @@ public class PaintInOutController : MonoBehaviour
             else
                 child.layer = 11;
         }
+        _currentCam.SetActive(false);
         paint.SetActive(false);
         if(!paintLevel.WasAlreadySpawned)
        {
@@ -207,6 +211,8 @@ public class PaintInOutController : MonoBehaviour
         _rectTransform.sizeDelta = paintRect.sizeDelta;
         _rectTransform.localScale = paintRect.localScale;
         transform.position = paintRect.position;
+        _currentCam = paint.GetComponent<Level>().LevelCam;
+        _currentCam.SetActive(true);
         _image.texture = paint.GetComponent<Level>().LevelTexture;
         _mat.SetTexture("_MainTex", _image.texture);
         _image.enabled = true;
