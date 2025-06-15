@@ -12,6 +12,7 @@ public class FallingPlayerState : PlayerState
 
     protected override void OnStateEnter(PlayerState previousState)
     {
+        StateMachine.Velocity.y = -0.1f;
         _timeSinceEnteredState = StateMachine.Velocity.x / _playerMovementParameters.fallMaxSpeedX * _playerMovementParameters.fallAccelerationTime;
         if (previousState is not JumpingPlayerState && previousState is not IdlePlayerState) _coyoteWindow = _playerMovementParameters.CoyoteWindow;
         else _coyoteWindow = 0f;
@@ -30,7 +31,7 @@ public class FallingPlayerState : PlayerState
         {
             if (_inputsManager.MoveX != 0)
             {
-                StateMachine.Velocity.y = -0.1f;
+                StateMachine.Velocity.y = -10f;
                 StateMachine.ChangeState(StateMachine.RunningState);
                 return;
             }
