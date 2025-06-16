@@ -7,19 +7,21 @@ public class CloneSpawner : Interactable
     [SerializeField] GameObject _spawnPoint;
     [SerializeField] GameActionsSequencer _sequencer;
     [SerializeField] string InitialSkinName = "Pink Clone";
+    Clone player;
     // Update is called once per frame
 
     protected override void Interact()
     {
         if (IsInRange)
         {
+            player = PlayerC;
             _sequencer.Play();
         }
     }
 
     public void CreateClone()
     {
-        PlayerC.Cloned(_spawnPoint, InitialSkinName);
+        player.Cloned(_spawnPoint, InitialSkinName);
         Destroy(_spawnPoint);
         Destroy(gameObject.GetComponent<CloneSpawner>());
         Destroy(gameObject.GetComponent<UIToolTipZone>());
