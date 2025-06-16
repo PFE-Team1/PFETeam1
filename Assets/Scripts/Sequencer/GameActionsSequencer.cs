@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class GameActionsSequencer : MonoBehaviour
@@ -15,7 +15,7 @@ public class GameActionsSequencer : MonoBehaviour
     [ConditionalField("actionTrigger", ActionTrigger.Trigger, ActionTrigger.Trigger)]
     private bool canBeReTriggered = false;
 
-    // Structure pour stocker les données d'exécution de chaque action
+    // Structure pour stocker les donnï¿½es d'exï¿½cution de chaque action
     private class ActionExecutionData
     {
         public AGameAction action;
@@ -59,7 +59,7 @@ public class GameActionsSequencer : MonoBehaviour
         if (actionTrigger == ActionTrigger.Trigger && !_isRunning)
         {
             //destroy the trigger
-            if(!canBeReTriggered) Destroy(gameObject.GetComponent<BoxCollider>());
+            if (!canBeReTriggered) Destroy(gameObject.GetComponent<BoxCollider>());
             Play();
         }
     }
@@ -76,23 +76,23 @@ public class GameActionsSequencer : MonoBehaviour
         float dt = Time.deltaTime;
         float currentTime = Time.time - _sequenceStartTime;
 
-        // Mettre à jour toutes les actions actives
+        // Mettre ï¿½ jour toutes les actions actives
         for (int i = 0; i < _actionExecutionData.Count; i++)
         {
             var actionData = _actionExecutionData[i];
 
-            // Vérifier si l'action doit démarrer
+            // Vï¿½rifier si l'action doit dï¿½marrer
             if (!actionData.hasBeenExecuted && _ShouldStartAction(i, currentTime))
             {
                 _StartAction(i, currentTime);
             }
 
-            // Mettre à jour les actions actives
+            // Mettre ï¿½ jour les actions actives
             if (actionData.isActive)
             {
                 actionData.action.ActionUpdate(dt);
 
-                // Vérifier si l'action est terminée
+                // Vï¿½rifier si l'action est terminï¿½e
                 if (actionData.action.IsFinished())
                 {
                     actionData.action.End();
@@ -101,33 +101,33 @@ public class GameActionsSequencer : MonoBehaviour
             }
         }
 
-        // Vérifier si toutes les actions sont terminées
+        // Vï¿½rifier si toutes les actions sont terminï¿½es
         if (_AreAllActionsFinished())
         {
             Stop();
         }
     }
 
-    // Remplacez votre méthode _ShouldStartAction par cette version avec debug
+    // Remplacez votre mï¿½thode _ShouldStartAction par cette version avec debug
 
     private bool _ShouldStartAction(int actionIndex, float currentTime)
     {
         var actionData = _actionExecutionData[actionIndex];
         var action = actionData.action;
 
-        // Si l'action a déjà été exécutée, ne pas la redémarrer
+        // Si l'action a dï¿½jï¿½ ï¿½tï¿½ exï¿½cutï¿½e, ne pas la redï¿½marrer
         if (actionData.hasBeenExecuted) return false;
 
-        // Première action : vérifier sa condition aussi
+        // Premiï¿½re action : vï¿½rifier sa condition aussi
         if (actionIndex == 0)
         {
-            // Si la première action a DelayFromStart, elle doit attendre aussi
+            // Si la premiï¿½re action a DelayFromStart, elle doit attendre aussi
             if (action.StartCondition == AGameAction.ActionStartCondition.DelayFromStart)
             {
                 bool delayReached = currentTime >= action.DelayAmount;
                 return delayReached;
             }
-            // Sinon, démarrer immédiatement
+            // Sinon, dï¿½marrer immï¿½diatement
             return true;
         }
 
@@ -161,14 +161,14 @@ public class GameActionsSequencer : MonoBehaviour
                 return simultaneous;
 
             case AGameAction.ActionStartCondition.DelayFromStart:
-                // Vérifier que la première action a démarré
+                // Vï¿½rifier que la premiï¿½re action a dï¿½marrï¿½
                 var firstActionData = _actionExecutionData[0];
                 if (!firstActionData.hasBeenExecuted)
                 {
                     return false;
                 }
 
-                // Le délai est calculé depuis le début de la séquence
+                // Le dï¿½lai est calculï¿½ depuis le dï¿½but de la sï¿½quence
                 bool delayFromStartReached = currentTime >= action.DelayAmount;
                 return delayFromStartReached;
 
@@ -252,7 +252,7 @@ public class GameActionsSequencer : MonoBehaviour
         return _gameActionsList.Count == 0;
     }
 
-    // Méthodes utilitaires pour debug
+    // Mï¿½thodes utilitaires pour debug
     public void SkipToNextAction()
     {
         if (!_isRunning) return;
@@ -283,5 +283,6 @@ public class GameActionsSequencer : MonoBehaviour
     {
         AutoStart,
         Trigger,
+        Manual,
     }
 }
