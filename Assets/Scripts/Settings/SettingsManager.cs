@@ -43,8 +43,8 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private AK.Wwise.Event _pauseEvent;
     [SerializeField] private AK.Wwise.Event _unpauseEvent;
 
-    bool wantParallax = true;
-    bool wantScreenShake = true;
+    public bool wantParallax = true;
+    public bool wantScreenShake = true;
     bool isMainMenuActive = true;
     bool isInPause = false;
     bool didOnce;

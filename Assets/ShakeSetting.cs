@@ -12,7 +12,7 @@ public class ShakeSetting : MonoBehaviour
 
     void Start()
     {
-        textDisplay.text = textChoices[currentChoiceIndex];
+        textDisplay.text = SettingsManager.Instance.WantScreenShake ? textChoices[1] : textChoices[0];
     }
 
     public void ChangeSetting()
