@@ -48,6 +48,7 @@ public class EndProto : Interactable
         }
         DestroyOtherLevel();
         CloseRift();
+        yield return new WaitForSeconds(1.5f);
         _riftEffect.Stop();
         yield return new WaitForSeconds(.5f);
         _renderer.enabled = false;
