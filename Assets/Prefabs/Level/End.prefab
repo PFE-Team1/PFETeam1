@@ -110,6 +110,7 @@ MonoBehaviour:
   _level: {fileID: 0}
   _endEffect: {fileID: 0}
   _riftEffect: {fileID: 3371565124925192099}
+  _endSequence: {fileID: 0}
 --- !u!114 &-2533505191153262489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +202,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5935027798015342362}
     m_Modifications:
+    - target: {fileID: 435841975041740391, guid: c3f65c6e74a8af94990820ea5c795cef, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 435841975041740391, guid: c3f65c6e74a8af94990820ea5c795cef, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 1
@@ -326,6 +331,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3860619887668219361, guid: 7716f005751d82b478cb97e645d297a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6024987418276226109, guid: 7716f005751d82b478cb97e645d297a1, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6024987418276226109, guid: 7716f005751d82b478cb97e645d297a1, type: 3}
