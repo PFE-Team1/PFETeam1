@@ -28,8 +28,13 @@ public class MusicScenePermanent : MonoBehaviour
     {
         if (_playMusicEvents.Length > 0 && _currentMusicIndex < _playMusicEvents.Length)
         {
-            _playMusicEvents[_currentMusicIndex].Post(gameObject);
-            Debug.Log("Starting music at index: " + _currentMusicIndex);
+            var playEvent = _playMusicEvents[_currentMusicIndex];
+            if (playEvent != null)
+            {
+                // Ensure the music persists across scenes
+                DontDestroyOnLoad(gameObject);
+                playEvent.Post(gameObject);
+            }
         }
     }
 
@@ -39,7 +44,6 @@ public class MusicScenePermanent : MonoBehaviour
         {
             StopCoroutine(_musicTransitionCoroutine);
         }
-
         _musicTransitionCoroutine = StartCoroutine(MusicTransition());
     }
 
@@ -50,7 +54,6 @@ public class MusicScenePermanent : MonoBehaviour
             var stopEvent = _stopMusicEvents[_currentMusicIndex];
             if (stopEvent != null)
             {
-                Debug.Log("Stopping music for index: " + _currentMusicIndex);
                 stopEvent.Post(gameObject);
             }
         }
@@ -62,7 +65,6 @@ public class MusicScenePermanent : MonoBehaviour
         if (_playMusicEvents.Length > 0)
         {
             _playMusicEvents[_currentMusicIndex].Post(gameObject);
-            Debug.Log("Music changed to index: " + _currentMusicIndex);
         }
         
         _musicTransitionCoroutine = null;
