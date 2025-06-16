@@ -22,7 +22,6 @@ public class EndProto : Interactable
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         _level.GetComponent<Level>().End = gameObject;
-        OpenRift();
         // Make it move up and down a litle based on his original position using a tween 
         transform.DOLocalMoveY(transform.localPosition.y + 0.25f, 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         _endEffect = FindFirstObjectByType<PaintInOutController>();
@@ -35,6 +34,10 @@ public class EndProto : Interactable
     {
         yield return new WaitForSeconds(5f);
         _fissure.enabled = true;
+        OpenRift();
+        yield return new WaitForSeconds(1f);
+        _riftEffect.Play();
+
 
         //_fissure.le truc l� anim et tout;
     }
