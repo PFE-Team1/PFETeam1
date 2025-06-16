@@ -12,7 +12,7 @@ public class ParallaxSetting : MonoBehaviour
 
     void Start()
     {
-        textDisplay.text = textChoices[currentChoiceIndex];
+        textDisplay.text = SettingsManager.Instance.WantParallax ? textChoices[1] : textChoices[0];
     }
 
     public void ChangeSetting()
